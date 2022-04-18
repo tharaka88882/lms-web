@@ -1,0 +1,926 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Requests\AddTeachersRequest;
+use App\Http\Requests\RequestPayoutRequest;
+use App\Http\Requests\StoreMySubjectRequest;
+use App\Http\Requests\UpdateTeacherRequest;
+use App\Models\Complaint;
+use App\Models\Conversation;
+use App\Models\Industry;
+use App\Models\MentorConversation;
+use App\Models\MentorMessage;
+use App\Models\Message;
+use App\Models\Schedule;
+use App\Models\Subject;
+use App\Models\Teacher;
+use App\Models\Rating;
+use App\Models\Setting;
+use App\Models\TeacherSubject;
+use Illuminate\Http\Request;
+use App\Traits\UserTrait;
+use App\Models\User;
+use App\Models\UserOrder;
+use App\Models\UserTransaction;
+//use App\Traits\UserTrait;
+use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\DB;
+use Exception;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+
+
+use function PHPUnit\Framework\isEmpty;
+
+class TeacherController extends Controller
+{
+
+    use UserTrait;
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $teachers = Teacher::paginate(10);
+        $id = '';
+        $classes = array();
+        return view('admin.teachers_list', compact('teachers', 'id', 'classes'));
+    }
+    // public function addTeachers()
+    // {
+    //     // $teachers = Teacher::all();
+    //     // $id = '';
+    //     // $classes = array();
+    //    // return view('admin.add_teacher');
+    // }
+
+    //save new teacher with login
+    public function save_teacher(Request $request)
+    {
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('admin.add_teacher');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(AddTeachersRequest $request)
+    {
+        $user = null;
+        DB::beginTransaction();
+        try {
+            $user = User::create([
+                'name' => $request->get('name'),
+                'email' =>  $request->get('email'),
+                'password' => bcrypt($request->get('password')),
+            ]);
+
+
+            $teacher = new Teacher();
+            $teacher->nic = $request->get('nic');
+            $teacher->qualification = $request->get('qualification');
+            $teacher->experience = $request->get('experience');
+            $teacher->skills = $request->get('skills');
+            if ($request->get('status') == 'on') {
+                $teacher->status = true;
+            } else {
+                $teacher->status = false;
+            }
+
+            $teacher->save();
+            $teacher->user()->save($user);
+            Toastr::success('Teacher Added successfully :)', 'Success');
+
+            DB::commit();
+        } catch (Exception $e) {
+            return $e;
+            Log::error($e);
+            DB::rollback();
+            Toastr::error($e->getMessage(), 'Error');
+        }
+
+        return redirect()->route('admin.add-teachers');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $teacher =  Teacher::findOrFail($id);
+        return view('admin.edit_teacher', compact('id', 'teacher'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+
+    public function update(UpdateTeacherRequest $request, $id)
+    {
+        //dd($id);
+        $teacher = Teacher::findOrFail($id);
+        $teacher->user->name = $request->get('name');
+        $teacher->user->address = $request->get('address');
+        $teacher->user->city = $request->get('city');
+        $teacher->user->country = $request->get('country');
+        //$teacher->user->email = $request->get('email');
+        // if (!empty($request->get('password'))) {
+        //     $teacher->user->password = $request->get('password');
+        // }
+        $teacher->nic = $request->get('nic');
+        $teacher->qualification = $request->get('qualification');
+        $teacher->experience = $request->get('experience');
+        $teacher->skills = $request->get('skills');
+        $teacher->industry = $request->get('industry');
+        $teacher->job = $request->get('job');
+        $teacher->level = $request->get('level');
+        $teacher->linkedin_link = $request->get('linkedin_link');
+        if ($request->get('status') == 'on') {
+            $teacher->status = true;
+            $this->createNotification($teacher->user->id, 'Your account has been Activated');
+        } else {
+            $teacher->status = false;
+            $this->createNotification($teacher->user->id, 'Your account has been Deactivated');
+        }
+        $teacher->save();
+        $teacher->user->save();
+        Toastr::success('Teacher Updated successfully :)', 'Success');
+
+        return redirect()->route('admin.edit_teacher', $id);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $teacher = Teacher::findOrFail($id);
+        $teacher->delete();
+        Toastr::success('Teacher Deleted successfully :)', 'Deleted');
+        return redirect()->route('admin.teachers');
+    }
+    public function pending()
+    {
+        //  $status = 0;
+        $teachers =  Teacher::where('status', 0)->get();
+        return view('admin.pending_teachers', compact('teachers'));
+    }
+    public function my_subject()
+    {
+
+        $user =  Auth::user();
+        $subjects = TeacherSubject::query()->select('teacher_subjects.*', 'subjects.name')
+            ->join('subjects', 'subjects.id', '=', 'teacher_subjects.subject_id')
+            ->where(['teacher_subjects.teacher_id' => $user->userable->id])->get();
+
+        return view('teacher.my_subject_list', compact('subjects', $user->userable->id));
+    }
+    public function find_subject()
+    {
+        $subjects = Subject::where('status', 1)->get();
+        // $user =  Auth::user();
+
+        return view('teacher.add_my_subject', compact('subjects'));
+    }
+    public function stor_my_subject(StoreMySubjectRequest $request)
+    {
+        $user = Auth::user();
+
+        $subject = TeacherSubject::where('subject_id', $request->get('subject'))->Where('teacher_id', $user->userable->id)->get();
+        // $teacher_s = TeacherSubject::where('teacher_id',$user->userable->id)->get();
+        //  return $subject;
+
+        if (empty($subject[0])) {
+
+            $teacher_subject = new TeacherSubject();
+            $teacher_subject->teacher_id = $user->userable->id;
+            $teacher_subject->subject_id = $request->get('subject');
+            $teacher_subject->save();
+
+            $teacher = Teacher::findOrFail(Auth()->user()->userable_id);
+            if( $teacher->skills!=null){
+                $teacher->skills  =  $teacher->skills." | ".$teacher_subject->subject->name;
+            }else{
+                $teacher->skills  = $teacher_subject->subject->name;
+            }
+            $teacher->save();
+            Toastr::success('Mentoring Topic Added successfully :)', 'Success');
+        }else{
+            Toastr::warning('This Topic has already been taken. :)', 'Warning');
+            return redirect()->back();
+        }
+
+
+        return redirect()->route('teacher.my_subject');
+    }
+    public function stor_my_subject1(StoreMySubjectRequest $request)
+    {
+        $user = Auth::user();
+
+        $subject = TeacherSubject::where('subject_id', $request->get('subject'))->Where('teacher_id', $user->userable->id)->get();
+        // $teacher_s = TeacherSubject::where('teacher_id',$user->userable->id)->get();
+        //  return $subject;
+
+        if (empty($subject[0])) {
+
+            $teacher_subject = new TeacherSubject();
+            $teacher_subject->teacher_id = $user->userable->id;
+            $teacher_subject->subject_id = $request->get('subject');
+            $teacher_subject->save();
+
+            $teacher = Teacher::findOrFail(Auth()->user()->userable_id);
+            if( $teacher->skills!=null){
+                $teacher->skills  =  $teacher->skills." | ".$teacher_subject->subject->name;
+            }else{
+                $teacher->skills  = $teacher_subject->subject->name;
+            }
+            $teacher->save();
+            Toastr::success('Mentoring Topic Added successfully :)', 'Success');
+        }else{
+            Toastr::warning('This Topic has already been taken. :)', 'Warning');
+            return array(
+                'error'=>true
+            );
+        }
+
+
+        return array(
+            'error'=>false
+        );
+    }
+
+    public function edit_my_subject($id)
+    {
+        $teacher =  Teacher::findOrFail($id);
+        return view('teacher.edit_my_subject', compact('id', 'teacher'));
+    }
+
+    public function destroy_subject(Request $request)
+    {
+        $teacher_subject = TeacherSubject::findOrFail($request->get('id'));
+        $teacher_subject->delete();
+
+        return array(
+            "success" => true
+        );
+    }
+
+    public function chat(Request $request, $id)
+    {
+
+        $conversation = Conversation::findOrFail($id);
+        $userTransaction = UserTransaction::where('sender_id', $conversation->student->user->id)
+            ->where('receiver_id', Auth()->user()->id)->where('status', 0)->first();
+        return view('teacher.chat', compact('request', 'id', 'conversation', 'userTransaction'));
+    }
+
+    public function conversations(Request $request)
+    {
+
+        $mentee_conversations = Conversation::where('teacher_id', Auth()->user()->userable->id)->paginate(10);
+        $mentor_conversations = MentorConversation::where('mentor_id', Auth()->user()->userable->id)->paginate(10);
+        //dd( $mentee_conversations);
+        $conversations =  array();
+        $i = 0;
+        foreach ($mentee_conversations as $mentee_conversation) {
+            $conversations[$i] = array(
+                'id' => $mentee_conversation->student_id,
+                'name' => $mentee_conversation->student->user->name,
+                'email' => $mentee_conversation->student->user->email,
+                'grade' => $mentee_conversation->student->grade,
+                'user' => 'mentee',
+                'conversation_id' => $mentee_conversation->id,
+                'status' => $mentee_conversation->student->status,
+                'updated_at' => $mentee_conversation->updated_at
+            );
+            $i++;
+        }
+        $i = sizeof($conversations) + 1;
+        foreach ($mentor_conversations as $mentor_conversation) {
+            $conversations[$i] = array(
+                'id' => $mentor_conversation->mentee_id,
+                'name' => $mentor_conversation->mentee->user->name,
+                'email' => $mentor_conversation->mentee->user->email,
+                'grade' => 'Non',
+                'user' => 'mentor',
+                'conversation_id' => $mentor_conversation->id,
+                'status' => $mentor_conversation->mentee->status,
+                'updated_at' => $mentor_conversation->updated_at
+            );
+            $i++;
+        }
+        $conversations = collect($conversations)->sortBy('updated_at')->reverse()->toArray();
+
+        // dd($conversations);
+
+        return view('teacher.my_students', compact('conversations', 'request'));
+    }
+
+
+
+    public function mentors(Request $request)
+    {
+
+        $query = Teacher::query();
+
+        if ($request->get('search_industry') != 'Any' && $request->get('search_industry')) {
+            $query->where('industry', $request->get('search_industry'));
+        }
+        else if ($request->get('search_subject') != 'Any' && $request->get('search_subject')) {
+            $query->select('teachers.*')
+                    ->leftjoin('teacher_subjects', 'teacher_subjects.teacher_id', '=', 'teachers.id')
+                    ->join('subjects', 'subjects.id', '=', 'teacher_subjects.subject_id')
+                    ->where('subjects.id', $request->get('search_subject'));
+        } else if ($request->get('city')) {
+            // dd('test2');
+            // dd($request->get('city'));
+            $query->select('teachers.*')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.city', 'like', $request->get('city'))->where('status', 1)->where('users.id', '<>', Auth()->user()->id);
+        } else if ($request->get('country') != null) {
+            // dd('test3');
+            // dd($request->get('country'));
+            $query->select('teachers.*')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.country', 'like', $request->get('country'))->where('status', 1)->where('users.id', '<>', Auth()->user()->id);
+        } else {
+            //dd('test4');
+            $query = Teacher::where('status', 1)->where('id', '<>', Auth()->user()->userable->id);
+        }
+
+
+        $tutors = $query->get();
+
+        for ($i=0; $i < count($tutors); $i++) {
+            $tutor_subjects = TeacherSubject::select('subjects.*')->join('subjects', 'teacher_subjects.subject_id', '=', 'subjects.id')->where('teacher_subjects.teacher_id', '=', $tutors[$i]['id'])->get();
+            $tutor_subjects = json_decode($tutor_subjects, true);
+            $tutors[$i]['subjects'] = $tutor_subjects;
+
+            $tutor_convversation = Conversation::where('teacher_id', $tutors[$i]['id'])->where('student_id', Auth()->user()->userable->id)->first();
+            $tutor_convversation = json_decode($tutor_convversation, true);
+            $tutors[$i]['conversation'] = $tutor_convversation;
+        }
+
+
+        $subjects = Subject::all();
+        $industries = Industry::all();
+
+
+        return view('teacher.find_mentors', compact('tutors', 'subjects', 'industries', 'request'));
+    }
+
+    public function view_mentor(Request $request, $id)
+    {
+        // dd($request);
+        $teacher = Teacher::findOrFail($id);
+        $schedules = Schedule::where('teacher_id', $id)->get();
+
+        $query = MentorConversation::where('mentor_id', $id)->where('mentee_id', Auth()->user()->userable->id)->first();
+        // dd($query);
+        $conversations = array();
+        if ($query != null) {
+            $conversations = MentorMessage::where('conversation_id', $query->id)->where('sender_id', $teacher->id)->get();
+        }
+        // dd($teacher->user->id);
+
+
+        $rating = Rating::where('teacher_id',  $id)->where('user_id', Auth()->user()->id)->get();
+
+        $subjects = TeacherSubject::select('name')
+            ->join('subjects', 'subjects.id', '=', 'teacher_subjects.subject_id')
+            ->where('teacher_subjects.teacher_id', $id)
+            ->get();
+
+        //return $rating;
+        $time_total_array = rand(1, 5);
+        return view('teacher.view_mentor', compact('request', 'teacher', 'conversations', 'rating', 'schedules', 'query', 'subjects', 'time_total_array'));
+    }
+
+
+    public function mentor_chat(Request $request, $id)
+    {
+        $setting = Setting::first();
+        $conversation = MentorConversation::findOrFail($id);
+        $teacher = Teacher::findOrFail($conversation->mentor_id);
+        $userTransaction = UserTransaction::where('sender_id', Auth()->user()->id)->where('receiver_id', $conversation->mentor->user->id)->where('status', 0)->first();
+        $userMentorTransaction = UserTransaction::where('sender_id', $conversation->mentee->user->id)->where('receiver_id', Auth()->user()->id)->where('status', 0)->first();
+
+        //dd($conversation->mentor);
+        //  return view('teacher.mentor_chat', compact('request', 'id', 'conversation'));
+        $conversations = MentorConversation::select('mentor_messages.sender_id')->join('mentor_messages', 'mentor_messages.conversation_id', '=', 'mentor_conversations.id')
+            ->where('mentor_conversations.mentee_id', Auth()->user()->userable->id)->get();
+        // dd($conversations);
+        $flag = false;
+        foreach ($conversations as $conver) {
+            if ($conver->sender_id != Auth()->user()->userable->id) {
+                // dd('tt');
+                $user = Teacher::findOrFail($conver->sender_id);
+                // dd($user);
+                // if( $user->userable_type == 'App\Models\Teacher'){
+                $rating =  Rating::where('teacher_id', $conver->sender_id)->where('user_id', Auth()->user()->id)->get();
+                // dd(sizeof($rating));
+                $flag = false;
+                if (sizeof($rating) > 0) {
+                    // dd('test');
+                    return view('teacher.mentor_chat', compact('request', 'id', 'conversation', 'userTransaction', 'userMentorTransaction', 'teacher', 'setting'));
+                } else {
+                    Toastr::warning("Please rate Mentor..! (" . $user->user->name . ")", 'Warning');
+                    return redirect()->route('teacher.view_mentor', $conver->sender_id);
+                }
+                // }
+
+            } else {
+                $flag = true;
+                //    if(sizeof($conversations)<2){
+                //     return view('teacher.mentor_chat', compact('request', 'id', 'conversation'));
+                //    }
+                // dd(sizeof($conversations));
+            }
+        }
+        if ($flag) {
+            //dd("test");
+            return view('teacher.mentor_chat', compact('request', 'id', 'conversation', 'userTransaction', 'userMentorTransaction', 'teacher', 'setting'));
+        } else if (sizeof($conversations) == 0) {
+            return view('teacher.mentor_chat', compact('request', 'id', 'conversation', 'userTransaction', 'userMentorTransaction', 'teacher', 'setting'));
+            // dd("test");
+        }
+    }
+
+    public function mentor_conversation(Request $request)
+    {
+
+        $conversations = MentorConversation::where('mentee_id', Auth()->user()->userable->id)->orderBy('created_at', 'DESC')->paginate(20);
+        // dd($conversations);
+
+        return view('teacher.my_mentor', compact('conversations', 'request'));
+    }
+
+    public function rate_mentor(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            if ($request->get('rating') != '') {
+                $ratings = Rating::where('teacher_id', $request->get('teacher_id'))->where('user_id', Auth()->user()->id)->get();
+                if (sizeof($ratings) > 0) {
+                    $rating = $ratings->first();
+                    $rating->rating = $request->get('rating');
+                    $rating->save();
+                } else {
+                    $rating = new Rating();
+                    $rating->rating = $request->get('rating');
+                    $rating->teacher_id = $request->get('teacher_id');
+                    $rating->user_id = Auth()->user()->id;
+                    $rating->save();
+                }
+            }
+
+            DB::commit();
+            Toastr::success('Ratings Added successfully :)', 'Success');
+            return redirect()->route('teacher.view_mentor', $request->get('teacher_id'));
+        } catch (Exception $e) {
+            DB::rollBack();
+            Log::error($e->getMessage());
+            Toastr::error($e->getMessage(), 'Success');
+            return redirect()->back();
+        }
+    }
+
+
+    public function complaint($id)
+    {
+        return view('teacher.complaint', compact('id'));
+    }
+
+    public function add_complaint(Request $request)
+    {
+        $complaints = new Complaint();
+        $complaints->user_id = Auth()->user()->id;
+        $complaints->mentor_id = $request->get('mentor_id');
+        $complaints->description = $request->get('complaint');
+        $complaints->seen = 0;
+        $complaints->save();
+        $id = $request->get('mentor_id');
+        Toastr::success('Complaint Added successfully :)', 'Success');
+        return redirect()->route('teacher.view_mentor', compact('id'));
+    }
+
+    public function payment_history()
+    {
+        $user_orders = UserOrder::where('user_id', Auth()->user()->id)->get();
+        return view('teacher.purchase_history', compact('user_orders'));
+    }
+
+    public function approve_request(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $conversation = Conversation::findOrFail($request->get('conversation_id'));
+
+            $message = new Message();
+            $message->message = 'Approved Meeting Request';
+            $message->sender_id = Auth()->user()->id;
+            $message->conversation_id = $request->get('conversation_id');
+            $message->seen = '1';
+            $message->save();
+
+            $userTransaction = UserTransaction::where('sender_id', $conversation->student->user->id)
+                ->where('receiver_id', Auth()->user()->id)->where('status', 0)->first();
+           if(!empty($userTransaction)){
+                $userTransaction->status = 1;
+                $userTransaction->save();
+
+                $user = Auth()->user();
+                $teacher = Teacher::findOrFail($user->userable->id);
+                $teacher->amount = $teacher->amount + $userTransaction->amount;
+                $teacher->save();
+                $teacher->user()->save($user);
+           }
+
+
+            $this->createNotification($conversation->student->user->id, explode(' ', Auth()->user()->name)[0] . ' has Approve Your Request..!.', route('student.view_conversation', $conversation->id));
+
+            $to = $conversation->student->user->email;
+            $subject = "Approved The Meeting Request";
+            $txt = "Hi, " . $conversation->teacher->user->name . "has Approve Your Request..! Click Here : " . route('login') . " ";
+            $headers = "From: info@you2mentor.com" . "\r\n";
+
+            mail($to,$subject,$txt,$headers);
+            DB::commit();
+            Toastr::success('Approve :)', 'Success');
+
+            return  array(
+                'error' => false,
+                'flag' => true
+            );
+        } catch (Exception $e) {
+            DB::rollBack();
+            dd($e);
+            Toastr::error('Error :(', 'Error');
+            return array(
+                'error' => true,
+                'flag' => false
+
+            );
+        }
+    }
+
+    public function cancel_request(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $conversation = Conversation::findOrFail($request->get('conversation_id'));
+
+            $message = new Message();
+            $message->message = 'Canceled The Meeting Request';
+            $message->sender_id = Auth()->user()->id;
+            $message->conversation_id = $request->get('conversation_id');
+            $message->seen = '1';
+            $message->save();
+
+            $userTransaction = UserTransaction::where('sender_id', $conversation->student->user->id)
+                ->where('receiver_id', Auth()->user()->id)->where('status', 0)->first();
+           if(!empty($userTransaction)){
+                $userTransaction->delete();
+                // $user = Auth()->user();
+                // $user->userable->amount = $user->userable->amount + $userTransaction->amount;
+                // $user->save();
+
+                $student = User::findOrFail($conversation->student->user->id);
+                $student->streaming_count = $student->streaming_count + 1;
+                $student->save();
+           }
+
+            $this->createNotification($conversation->student->user->id, explode(' ', Auth()->user()->name)[0] . ' has Cancel Your Request..!.', route('student.view_conversation', $conversation->id));
+
+            $to = $conversation->student->user->email;
+            $subject = "Canceled The Meeting Request";
+            $txt = "Hi, " . $conversation->teacher->user->name . "has Cancled Your Request..! Click Here : " . route('login') . " ";
+            $headers = "From: info@you2mentor.com" . "\r\n";
+
+            mail($to,$subject,$txt,$headers);
+            DB::commit();
+            Toastr::success('Cancel :)', 'Success');
+
+            return  array(
+                'error' => false
+            );
+        } catch (Exception $e) {
+            DB::rollBack();
+            dd($e);
+            Toastr::error('Error :(', 'Error');
+            return array(
+                'error' => true
+            );
+        }
+    }
+
+    public function request_meeting(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $conversation = MentorConversation::findOrFail($request->get('conversation_id'));
+            $setting = Setting::first();
+
+            $message = new MentorMessage();
+            $message->message = 'Requesting a Booking (' . $request->get('start_time') . ')';
+            $message->sender_id = Auth()->user()->userable->id;
+            $message->conversation_id = $request->get('conversation_id');
+            $message->seen = '1';
+            $message->save();
+
+            if($conversation->mentor->level>= $setting->paid_level){
+                $userTransaction = new UserTransaction();
+                $userTransaction->sender_id = Auth()->user()->id;
+                $userTransaction->receiver_id = $conversation->mentor->user->id;
+                $userTransaction->amount = $setting->streaming_amount;
+                $userTransaction->notes = 'Requesting a Booking (' . $request->get('start_time') . ')';
+                $userTransaction->save();
+
+                $user = Auth()->user();
+                $user->streaming_count = $user->streaming_count - 1;
+                $user->save();
+
+            }
+
+            $this->createNotification($conversation->mentor->user->id, explode(' ', Auth()->user()->name)[0] . ' has Requested a Meeting..!.', route('teacher.view_mentor_conversation', $conversation->id));
+
+            $to = $conversation->mentor->user->email;
+            $subject = "Request a Booking";
+            $txt = "Hi, " . $conversation->mentee->user->name . " Requesting a Meeting  with you. (" . $request->get('start_time') . ") Click Here : " . route('login') . " ";
+            $headers = "From: info@you2mentor.com" . "\r\n";
+
+            mail($to,$subject,$txt,$headers);
+            DB::commit();
+            Toastr::success('Requested :)', 'Success');
+
+            return  array(
+                'error' => false
+            );
+        } catch (Exception $e) {
+            DB::rollBack();
+            // dd($e);
+            Toastr::error('Error :(', 'Error');
+            return array(
+                'error' => true
+            );
+        }
+    }
+    public function cancel_meeting(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $conversation = MentorConversation::findOrFail($request->get('conversation_id'));
+            $setting = Setting::first();
+
+            $message = new MentorMessage();
+            $message->message = 'Canceled the Booking';
+            $message->sender_id = Auth()->user()->userable->id;
+            $message->conversation_id = $request->get('conversation_id');
+            $message->seen = '1';
+            $message->save();
+
+           if($conversation->mentor->level>= $setting->paid_level){
+                $userTransaction = UserTransaction::where('sender_id', Auth()->user()->id)
+                    ->where('receiver_id', $conversation->mentor->user->id)->where('status', 0)->orderBy('created_at', 'desc')->first();
+                $userTransaction->delete();
+
+                $user = Auth()->user();
+                $user->streaming_count = $user->streaming_count + 1;
+                $user->save();
+           }
+
+
+            $this->createNotification($conversation->mentor->user->id, explode(' ', Auth()->user()->name)[0] . ' has Cancel a Meeting..!.', route('teacher.view_mentor_conversation', $conversation->id));
+
+            $to = $conversation->mentor->user->email;
+            $subject = "Canceled the Booking";
+            $txt = "Hi, " . $conversation->mentee->user->name . " Canceled the Meeting request with you. Click Here : " . route('login') . " ";
+            $headers = "From: info@you2mentor.com" . "\r\n";
+
+            mail($to,$subject,$txt,$headers);
+            DB::commit();
+            Toastr::success('Canceled :)', 'Success');
+
+            return  array(
+                'error' => false
+            );
+        } catch (Exception $e) {
+            DB::rollBack();
+            // dd($e);
+            Toastr::error('Error :(', 'Error');
+            return array(
+                'error' => true
+            );
+        }
+    }
+
+    public function approve_mentor_request(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $conversation = MentorConversation::findOrFail($request->get('conversation_id'));
+
+            $message = new MentorMessage();
+            $message->message = 'Approved Booking Request';
+            $message->sender_id = Auth()->user()->userable->id;
+            $message->conversation_id = $request->get('conversation_id');
+            $message->seen = '1';
+            $message->save();
+
+            $userTransaction = UserTransaction::where('sender_id', $conversation->mentee->user->id)
+                ->where('receiver_id', Auth()->user()->id)->where('status', 0)->first();
+            if(!empty($userTransaction)){
+                $userTransaction->status = 1;
+                $userTransaction->save();
+
+                $user = Auth()->user();
+                $teacher = Teacher::findOrFail($user->userable->id);
+                $teacher->amount = $teacher->amount + $userTransaction->amount;
+                $teacher->save();
+                $teacher->user()->save($user);
+            }
+
+            $this->createNotification($conversation->mentee->user->id, explode(' ', Auth()->user()->name)[0] . ' has Approve Your Request..!.', route('teacher.view_mentor_conversation', $conversation->id));
+
+            $to = $conversation->mentee->user->email;
+            $subject = "Approved Booking Request";
+            $txt = "Hi, " . $conversation->mentor->user->name . "has Approved Your Booking Request..! Click Here : " . route('login') . " ";
+            $headers = "From: info@you2mentor.com" . "\r\n";
+
+            mail($to,$subject,$txt,$headers);
+            DB::commit();
+            Toastr::success('Approve :)', 'Success');
+
+            return  array(
+                'error' => false,
+                'flag' => true
+            );
+        } catch (Exception $e) {
+            DB::rollBack();
+            dd($e);
+            Toastr::error('Error :(', 'Error');
+            return array(
+                'error' => true,
+                'flag' => false
+
+            );
+        }
+    }
+
+    public function cancel_mentor_request(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $conversation = MentorConversation::findOrFail($request->get('conversation_id'));
+
+            $message = new MentorMessage();
+            $message->message = 'Canceled The Booking Request';
+            $message->sender_id = Auth()->user()->userable->id;
+            $message->conversation_id = $request->get('conversation_id');
+            $message->seen = '1';
+            $message->save();
+
+            $userTransaction = UserTransaction::where('sender_id', $conversation->mentee->user->id)
+                ->where('receiver_id', Auth()->user()->id)->where('status', 0)->first();
+            if(!empty($userTransaction)){
+                $userTransaction->delete();
+                // $user = Auth()->user();
+                // $user->userable->amount = $user->userable->amount + $userTransaction->amount;
+                // $user->save();
+                $mentee = User::findOrFail($conversation->mentee->user->id);
+                $mentee->streaming_count = $mentee->streaming_count + 1;
+                $mentee->save();
+            }
+
+            $this->createNotification($conversation->mentee->user->id, explode(' ', Auth()->user()->name)[0] . ' has Cancel Your Request..!.', route('teacher.view_mentor_conversation', $conversation->id));
+
+            $to = $conversation->mentee->user->email;
+            $subject = "Canceled The Booking Request";
+            $txt = "Hi, " . $conversation->mentor->user->name . "has Cancled Your Booking Request..! Click Here : " . route('login') . " ";
+            $headers = "From: info@you2mentor.com" . "\r\n";
+
+            mail($to,$subject,$txt,$headers);
+            DB::commit();
+            Toastr::success('Cancel :)', 'Success');
+
+            return  array(
+                'error' => false
+            );
+        } catch (Exception $e) {
+            DB::rollBack();
+            dd($e);
+            Toastr::error('Error :(', 'Error');
+            return array(
+                'error' => true
+            );
+        }
+    }
+
+    public function request_payout(RequestPayoutRequest $request)
+    {
+        $userTransaction = new UserTransaction();
+        $userTransaction->sender_id =  Auth()->user()->id;
+        $userTransaction->receiver_id =  3;
+        $userTransaction->amount = $request->get('payout_amount');
+        $userTransaction->notes = "Payout Request : " . $request->get('paypal_email');
+        $userTransaction->save();
+
+        $this->createNotification(3, explode(' ', Auth()->user()->name)[0] . ' is  Request Payout..!.', route('admin.payout_requests'));
+
+        // $to = $conversation->mentee->user->email;
+        // $subject = "Cancel a Meeting";
+        // $txt = "Hi, " . $conversation->mentor->user->name . "has Cancle Your Request..!.. Click Here : " . route('login') . " ";
+        // $headers = "From: info@chamathkaara.com" . "\r\n";
+
+        // mail($to,$subject,$txt,$headers);
+
+        Toastr::success('Payout Request Sent Successfully  :)', 'Success');
+        return redirect()->route('teacher.payout_history');
+    }
+
+    public function create_payout()
+    {
+        $setting = Setting::first();
+        $userTransaction = UserTransaction::where('sender_id', Auth()->user()->id)->where('receiver_id', 3)
+            ->where('status', 0)->first();
+        if (empty($userTransaction)) {
+            return view('teacher.request_payout', compact('setting'));
+        } else {
+            Toastr::warning('Payout Request is Processing  :)', 'Processing');
+            return redirect()->route('teacher.payout_history');
+        }
+    }
+    public function payout_history()
+    {
+        $setting = Setting::first();
+        $userTransactions = UserTransaction::where('sender_id', Auth()->user()->id)->orderBy('updated_at', 'DESC')->paginate(20);
+        return view('teacher.payout_history', compact('setting', 'userTransactions'));
+    }
+    public function show_payout($id)
+    {
+        $setting = Setting::first();
+        $userTransaction = UserTransaction::findOrFail($id);
+        return view('teacher.view_payout', compact('setting', 'userTransaction'));
+    }
+
+    public function get_topics(Request $request)
+    {
+        $subjects = Subject::where('name', 'like', '%' . $request->get('search') . '%')->get();
+        $i = 0;
+        $result = array();
+        foreach ($subjects as $subject) {
+
+            $result[$i] = array(
+                'id' => $subject->id,
+                'text' => $subject->name
+            );
+            $i++;
+        }
+
+        $returnData = array(
+            'error' => false,
+            'msg' => 'Success!',
+            'results' => $result,
+        );
+
+        return json_encode($returnData);
+    }
+
+    public function view_purchase_package($id)
+    {
+        $user_order = UserOrder::findOrFail($id);
+        return view('teacher.view_purchase_package', compact('user_order'));
+    }
+}
