@@ -716,6 +716,7 @@ class ComposerStaticInit24d43722947f657d1a46880f5ba77be8
         'App\\Models\\MentorMessage' => __DIR__ . '/../..' . '/app/Models/MentorMessage.php',
         'App\\Models\\Message' => __DIR__ . '/../..' . '/app/Models/Message.php',
         'App\\Models\\Milestone' => __DIR__ . '/../..' . '/app/Models/Milestone.php',
+        'App\\Models\\Note' => __DIR__ . '/../..' . '/app/Models/Note.php',
         'App\\Models\\Notification' => __DIR__ . '/../..' . '/app/Models/Notification.php',
         'App\\Models\\PaymentPackage' => __DIR__ . '/../..' . '/app/Models/PaymentPackage.php',
         'App\\Models\\ProductName' => __DIR__ . '/../..' . '/app/Models/ProductName.php',

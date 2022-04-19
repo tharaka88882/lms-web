@@ -73,6 +73,7 @@ return array(
     'App\\Models\\MentorMessage' => $baseDir . '/app/Models/MentorMessage.php',
     'App\\Models\\Message' => $baseDir . '/app/Models/Message.php',
     'App\\Models\\Milestone' => $baseDir . '/app/Models/Milestone.php',
+    'App\\Models\\Note' => $baseDir . '/app/Models/Note.php',
     'App\\Models\\Notification' => $baseDir . '/app/Models/Notification.php',
     'App\\Models\\PaymentPackage' => $baseDir . '/app/Models/PaymentPackage.php',
     'App\\Models\\ProductName' => $baseDir . '/app/Models/ProductName.php',

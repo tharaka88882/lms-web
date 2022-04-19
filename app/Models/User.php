@@ -80,4 +80,8 @@ class User extends Authenticatable
     public function user_transaction(){
         return $this->hasMany(UserTransaction::class);
     }
+
+    public function milestones(){
+        return $this->hasMany(Milestone::class);
+    }
 }
