@@ -99,10 +99,10 @@
                             <h5>
                           </td>
                           <td>
-                             <select id='status' class="form-control">
-                                 <option value="1">complete</option>
-                                 <option value="2">In progress</option>
-                                 <option value="3">Overdue</option>
+                             <select onchange="update_milestone('{{ $milestone->id}}')" id='status-{{ $milestone->id}}' class="form-control">
+                                 <option {{$milestone->status==1?'selected="true"':''}}  value="1">complete</option>
+                                 <option {{$milestone->status==2?'selected="true"':''}} value="2">In progress</option>
+                                 <option {{$milestone->status==3?'selected="true"':''}} value="3">Overdue</option>
                              </select>
                           </td>
                           <td>
@@ -138,5 +138,24 @@
                 $('#deleteform-'+num).submit();
             }
         });
+
+
+function update_milestone(id){
+
+    if (confirm("Are you sure?") == true) {
+        $.post("{{route('student.update_milestone')}}",
+        {
+            id: id,
+            status: $('#status-'+id+' option:selected').val(),
+            _method: "put",
+            _token: "{{ csrf_token() }}"
+        },
+        function(data, status){
+            if(data.success==true){
+                window.location="{{route('user.milestone')}}";
+            }
+        });
+}
+}
   </script>
 @endpush

@@ -6,6 +6,7 @@ use App\Models\Milestone;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\MilestoneRequest;
 
 class MilestoneController extends Controller
 {
@@ -17,7 +18,7 @@ class MilestoneController extends Controller
         return view('milestone_list', compact('milestones'));
     }
 
-    public function create(Request $request)
+    public function create(MilestoneRequest $request)
     {
         $user = Auth::user();
         $milestone = new Milestone();
@@ -36,5 +37,15 @@ class MilestoneController extends Controller
         $milestone->delete();
         Toastr::success('Milestone is deleted successfully :)', 'Deleted');
         return redirect()->route('user.milestone');
+    }
+    public function update(Request $request)
+    {
+        $milestone = Milestone::findOrFail($request->get('id'));
+        $milestone->status = $request->get('status');
+        $milestone->save();
+        Toastr::success('Milestone is update successfully :)', 'Updated');
+        return array(
+            'success'=>true
+        );
     }
 }
