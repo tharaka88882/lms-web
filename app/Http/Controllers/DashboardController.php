@@ -79,12 +79,20 @@ class DashboardController extends Controller
         $my_milestones_count = json_decode($milestones, true);
         $my_milestones_count = count($my_milestones_count);
 
+
+        $completed_milestones_count = Milestone::where('user_id', '=',Auth()->user()->userable_id)
+                                    ->where('status', '=', '1')->count();
+        $inprogress_milestones_count = Milestone::where('user_id', '=',Auth()->user()->userable_id)
+                                    ->where('status', '=', '2')->count();
+        $overdue_milestones_count = Milestone::where('user_id', '=',Auth()->user()->userable_id)
+                                    ->where('status', '=', '3')->count();
+
         if (get_class($user->userable) == 'App\Models\Teacher') {
             // return view('under_construction');
             return view('home_teacher', compact('pending_count', 'teachers_count', 'students_count', 'subject_count', 'pending_teachers_list', 'schedules', 'schedule_count', 'subjects', 'convo_count','my_teachers_count','my_students_count', 'my_subject_count', 'my_milestones_count'));
         } else if (get_class($user->userable) == 'App\Models\Student') {
             // return view('under_construction');
-            return view('home_student', compact('pending_count', 'teachers_count', 'students_count', 'subject_count', 'pending_teachers_list', 'convo_count', 'user_orders', 'my_milestones_count'));
+            return view('home_student', compact('pending_count', 'teachers_count', 'students_count', 'subject_count', 'pending_teachers_list', 'convo_count', 'user_orders', 'my_milestones_count', 'completed_milestones_count','inprogress_milestones_count','overdue_milestones_count'));
         } else if (get_class($user->userable) == 'App\Models\Admin') {
             return view('home', compact('pending_count', 'teachers_count', 'students_count', 'subject_count', 'pending_teachers_list', 'total_sale', 'total_payout'));
         } else {

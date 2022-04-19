@@ -126,14 +126,66 @@
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-light">
+              
+              <div class="inner">
+              <p style="margin-bottom: 0px;">Milestones</p>
+                <div class="row">
+                  <div class="col-sm-4 border-right">
+                    <div class="description-block">
+                      <h5 class="description-header">{{$completed_milestones_count}}</h5>
+                      <p>Completed</p>
+                      <!-- <span class="description-text">Completed</span> -->
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-sm-4 border-right">
+                    <div class="description-block">
+                      <h5 class="description-header">{{$inprogress_milestones_count}}</h5>
+                      <p>In Progress</p>
+                      <!-- <span class="description-text">In Progress</span> -->
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-sm-4">
+                    <div class="description-block">
+                      <h5 class="description-header">{{$overdue_milestones_count}}</h5>
+                      <p>Overdue</p>
+                      <!-- <span class="description-text">Overdue</span> -->
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                  <!-- /.col -->
+                </div>
+              </div>
+
+            <!-- <div class="row">  
+            <div class="small-box bg-light">
               <div class="inner">
                 <h3>{{$my_milestones_count}}</h3>
 
-                <p>My Development</p>
+                <p>Completed</p>
               </div>
-              <div class="icon">
+          </div>
+          <div class="small-box bg-light">
+              <div class="inner">
+                <h3>{{$my_milestones_count}}</h3>
+
+                <p>In Progess</p>
+              </div>
+          </div>
+          <div class="small-box bg-light">
+              <div class="inner">
+                <h3>{{$my_milestones_count}}</h3>
+
+                <p>Overdue</p>
+              </div>
+          </div>
+          </div> -->
+              <!-- <div class="icon">
                 <i class="fas fa-flag"></i>
-              </div>
+              </div> -->
               <a href="{{route('user.milestone')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
