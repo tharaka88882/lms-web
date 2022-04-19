@@ -72,6 +72,7 @@
                           <th>Note</th>
                           <th>Created On</th>
                           <th>Due Date</th>
+                          <th>Status</th>
                           <th>Actions</th>
                       </tr>
                   </thead>
@@ -98,6 +99,14 @@
                             <h5>
                           </td>
                           <td>
+                             <select id='status' class="form-control">
+                                 <option value="1">complete</option>
+                                 <option value="2">In progress</option>
+                                 <option value="3">Overdue</option>
+                             </select>
+                          </td>
+                          <td>
+                            <button type="button" class="btn btn-success" id="goal">Goals</button>
                             <button type="button" class="btn btn-danger pull-right" id="deleteBtn-{{$milestone->id}}">Delete</button>
                             <form action="{{route('user.milestone_delete', $milestone->id)}}" id="deleteform-{{$milestone->id}}" method="POST">
                                 @csrf

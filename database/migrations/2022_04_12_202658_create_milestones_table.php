@@ -16,6 +16,7 @@ class CreateMilestonesTable extends Migration
         Schema::create('milestones', function (Blueprint $table) {
             $table->id();
             $table->string('note');
+            $table->integer('status')->default(2);
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->date('due_date');
