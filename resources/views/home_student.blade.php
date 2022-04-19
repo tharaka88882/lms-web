@@ -126,7 +126,7 @@
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-light">
-              
+
               <div class="inner">
               <p style="margin-bottom: 3px;">Milestones</p>
                 <div class="row">
@@ -142,7 +142,7 @@
                   <div class="col-sm-4 border-right">
                     <div class="description-block">
                       <h5 class="description-header">{{$inprogress_milestones_count}}</h5>
-                      <p style="color:yellow; font-size: 14px;">In Progress</p>
+                      <p style="color:rgb(255, 153, 0); font-size: 14px;">In Progress</p>
                       <!-- <span class="description-text">In Progress</span> -->
                     </div>
                     <!-- /.description-block -->
@@ -160,7 +160,7 @@
                 </div>
               </div>
 
-            <!-- <div class="row">  
+            <!-- <div class="row">
             <div class="small-box bg-light">
               <div class="inner">
                 <h3>{{$my_milestones_count}}</h3>
