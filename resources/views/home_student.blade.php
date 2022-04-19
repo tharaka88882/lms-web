@@ -128,12 +128,12 @@
             <div class="small-box bg-light">
               
               <div class="inner">
-              <p style="margin-bottom: 0px;">Milestones</p>
+              <p style="margin-bottom: 3px;">Milestones</p>
                 <div class="row">
                   <div class="col-sm-4 border-right">
                     <div class="description-block">
                       <h5 class="description-header">{{$completed_milestones_count}}</h5>
-                      <p>Completed</p>
+                      <p style="color:green; font-size: 14px;">Completed</p>
                       <!-- <span class="description-text">Completed</span> -->
                     </div>
                     <!-- /.description-block -->
@@ -142,7 +142,7 @@
                   <div class="col-sm-4 border-right">
                     <div class="description-block">
                       <h5 class="description-header">{{$inprogress_milestones_count}}</h5>
-                      <p>In Progress</p>
+                      <p style="color:yellow; font-size: 14px;">In Progress</p>
                       <!-- <span class="description-text">In Progress</span> -->
                     </div>
                     <!-- /.description-block -->
@@ -151,7 +151,7 @@
                   <div class="col-sm-4">
                     <div class="description-block">
                       <h5 class="description-header">{{$overdue_milestones_count}}</h5>
-                      <p>Overdue</p>
+                      <p style="color:red; font-size: 14px;">Overdue</p>
                       <!-- <span class="description-text">Overdue</span> -->
                     </div>
                     <!-- /.description-block -->
