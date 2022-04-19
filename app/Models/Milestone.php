@@ -13,4 +13,8 @@ class Milestone extends Model
         'due_date',
         'user_id'
     ];
+
+    public function notes(){
+        return $this->hasMany(Note::class);
+    }
 }
