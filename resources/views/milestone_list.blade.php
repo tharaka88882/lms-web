@@ -6,6 +6,7 @@
 
 @push('styles')
     {{-- <style>h1 {background-color: red !important}</style> --}}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 @endpush
 
 @section('content')
@@ -64,6 +65,22 @@
           <h3 class="card-title">Milestone List</h3>
         </div>
         <div class="card-body">
+            <div class="container col-md-12">
+                {{-- <h2>Stacked Progress Bars</h2>
+                <p>Create a stacked progress bar by placing multiple bars into the same div with class .progress:</p> --}}
+                <div class="progress">
+                  <div class="progress-bar progress-bar-success" role="progressbar" style="width:{{$completed}}%">
+                    Completed
+                  </div>
+                  <div class="progress-bar progress-bar-warning" role="progressbar" style="width:{{$in_progress}}%">
+                    In Progress
+                  </div>
+                  <div class="progress-bar progress-bar-danger" role="progressbar" style="width:{{$overdue}}%">
+                    Overdue
+                  </div>
+                </div>
+              </div>
+
             <div class="table-responsive">
               <table class="table ">
                   <thead>
@@ -91,18 +108,19 @@
                                     ($date_facturation = \Carbon\Carbon::parse($milestone->due_date))
                                 @endphp
                                 @if ($date_facturation->isPast())
-                                    <span class="badge badge-danger">
+                                    <span class="badge" style="background-color: red;">
                                 @else
-                                    <span class="badge badge-success">
+                                    <span class="badge" style="background-color: green;">
                                 @endif
                                 {{ \Carbon\Carbon::parse($milestone->due_date)->format('d-m-Y')}}</span>
                             <h5>
                           </td>
                           <td>
                              <select onchange="update_milestone('{{ $milestone->id}}')" id='status-{{ $milestone->id}}' class="form-control">
-                                 <option {{$milestone->status==1?'selected="true"':''}}  value="1">complete</option>
+                                 <option {{$milestone->status==1?'selected="true"':''}}  value="1">Completed</option>
                                  <option {{$milestone->status==2?'selected="true"':''}} value="2">In progress</option>
-                                 <option {{$milestone->status==3?'selected="true"':''}} value="3">Overdue</option>
+                                 <option disabled="" {{$milestone->status==3?'selected="true"':''}} value="3">Overdue</option>
+                                 <option {{$milestone->status==0?'selected="true"':''}} value="0">Cancelled</option>
                              </select>
                           </td>
                           <td>
@@ -158,4 +176,7 @@ function update_milestone(id){
 }
 }
   </script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 @endpush
