@@ -12,10 +12,28 @@ class MilestoneController extends Controller
 {
     public function index()
     {
+        $in_progress = 0;
+        $completed = 0;
+        $overdue = 0;
         $user = Auth::user();
         $milestones = Milestone::where(['user_id' => $user->userable->id])->get();
+        foreach($milestones as $milestone){
+            if($milestone->status==2){
+                $in_progress+=1;
+            }else if($milestone->status==1){
+                $completed+=1;
+            }else if($milestone->status==3){
+                $overdue+=1;
+            }
+        }
+       $tot =($in_progress+$completed+$overdue);
+        $in_progress = ($in_progress/$tot)*100;
+        $completed = ($completed/$tot)*100;
+        $overdue = ($overdue/$tot)*100;
+       // dd($in_progress." ".$completed." ".$overdue);
 
-        return view('milestone_list', compact('milestones'));
+
+        return view('milestone_list', compact('milestones','in_progress','completed','overdue'));
     }
 
     public function create(MilestoneRequest $request)
@@ -42,6 +60,11 @@ class MilestoneController extends Controller
     {
         $milestone = Milestone::findOrFail($request->get('id'));
         $milestone->status = $request->get('status');
+
+        $date_facturation = \Carbon\Carbon::parse($milestone->due_date);
+        if( $milestone->status!=1 && $date_facturation->isPast() && $milestone->status!=0){
+            $milestone->status=3;
+        }
         $milestone->save();
         Toastr::success('Milestone is update successfully :)', 'Updated');
         return array(
