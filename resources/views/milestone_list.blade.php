@@ -106,7 +106,7 @@
                              </select>
                           </td>
                           <td>
-                            <button type="button" class="btn btn-success" id="goal">Goals</button>
+                            <a href="{{route('user.notes',$milestone->id)}}" class="btn btn-success" id="goal">Goals</a>
                             <button type="button" class="btn btn-danger pull-right" id="deleteBtn-{{$milestone->id}}">Delete</button>
                             <form action="{{route('user.milestone_delete', $milestone->id)}}" id="deleteform-{{$milestone->id}}" method="POST">
                                 @csrf
@@ -143,7 +143,7 @@
 function update_milestone(id){
 
     if (confirm("Are you sure?") == true) {
-        $.post("{{route('student.update_milestone')}}",
+        $.post("{{route('user.update_milestone')}}",
         {
             id: id,
             status: $('#status-'+id+' option:selected').val(),

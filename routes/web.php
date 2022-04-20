@@ -124,9 +124,18 @@ Route::prefix('user')->middleware('check.user')->group(function () {
     Route::post('/message', 'App\Http\Controllers\ChatController@add_message_json')->name('chat.store_message');
     Route::post('/message/list', 'App\Http\Controllers\ChatController@list_messages_json')->name('chat.message_list');
 
+    //mentee milestones & notes-----------------------------------------------------------------------------------
     Route::get('/milestone', 'App\Http\Controllers\MilestoneController@index')->name('user.milestone');
     Route::post('/milestone/create', 'App\Http\Controllers\MilestoneController@create')->name('user.milestone_create');
     Route::delete('/milestone/delete/{id}', 'App\Http\Controllers\MilestoneController@destroy')->name('user.milestone_delete');
+
+
+     Route::put('/milestone/update', 'App\Http\Controllers\MilestoneController@update')->name('user.update_milestone');
+     Route::get('/milestone/notes/{id}', 'App\Http\Controllers\NoteController@index')->name('user.notes');
+     Route::get('/milestone/notes/create/{id}', 'App\Http\Controllers\NoteController@create')->name('user.create_notes');
+     Route::post('/milestone/notes/store', 'App\Http\Controllers\NoteController@store')->name('user.store_notes');
+     Route::delete('/milestone/notes/destroy/{id}', 'App\Http\Controllers\NoteController@destroy')->name('user.destroy_notes');
+
 
     Route::any('/notification-json', 'App\Http\Controllers\UserController@notifications_json')->name('user.json.notifications');
     Route::any('/notification', 'App\Http\Controllers\UserController@notifications')->name('user.notifications');
@@ -149,7 +158,7 @@ Route::prefix('student')->middleware('check.user')->group(function () {
     Route::post('/meeting/cancel', 'App\Http\Controllers\StudentController@cancel_meeting')->name('student.cancel_meeting');
     Route::get('/payment/packages/view/{id}', 'App\Http\Controllers\StudentController@view_purchase_package')->name('student.view_purchase_package');
     Route::get('/get-topics', 'App\Http\Controllers\TeacherController@get_topics')->name('student.get_topics');
-    Route::put('/milestone/update', 'App\Http\Controllers\MilestoneController@update')->name('student.update_milestone');
+
 });
 
 Route::prefix('teacher')->middleware(['check.tutor', 'check.user'])->group(function () {
