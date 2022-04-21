@@ -78,7 +78,7 @@
                       <th style="width: 10px">#</th>
                       <th>Action plans to achieve Milestone</th>
                       <th>Due by</th>
-                      <th style="width: 40px">Status</th>
+                      <th style="width: 150px">Status</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -116,6 +116,11 @@
                   </tbody>
                 </table>
               </div>
+              <div class="form-control">
+                <div>
+                  
+</div>
+</div>
               <!-- /.card-body -->
               </div>
 
