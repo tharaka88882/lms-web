@@ -56,7 +56,7 @@ class MilestoneController extends Controller
         $milestone = new Milestone();
         $milestone->note = $request->get('note');
         $milestone->due_date = $request->get('due_date');
-        $milestone->user_id = $user->userable->id;
+        $milestone->user_id = $user->id;
         $milestone->save();
         Toastr::success('Milestone is added successfully :)', 'Success');
 

@@ -96,7 +96,9 @@
                             {{$note->due_date}}
                         </td>
                         <td>
+
                           <select onchange="update_note('{{$note->id}}')" id="status-{{$note->id}}" class="form-control">
+
                                 <option {{$note->status==2?'selected="true"':''}} value="2">In progress</option>
                                 <option {{$note->status==1?'selected="true"':''}}  value="1">Completed</option>
 
@@ -221,19 +223,20 @@
 
 function update_note(id){
 
-    if (confirm("Are you sure?") == true) {
-        $.post("{{route('user.update_note')}}",
-        {
-            id: id,
-            status: $('#status-'+id+' option:selected').val(),
-            _method: "put",
-            _token: "{{ csrf_token() }}"
-        },
-        function(data, status){
-            if(data.success==true){
-                window.location="{{route('user.notes',$milestone->id)}}";
-            }
-        });
+if (confirm("Are you sure?") == true) {
+    $.post("{{route('user.update_notes')}}",
+    {
+        id: id,
+        status: $('#status-'+id+' option:selected').val(),
+        _method: "put",
+        _token: "{{ csrf_token() }}"
+    },
+    function(data, status){
+        if(data.success==true){
+            window.location="{{route('user.notes',$milestone->id)}}";
+        }
+    });
+
 }
 }
   </script>
