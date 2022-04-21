@@ -96,11 +96,12 @@
                             {{$note->due_date}}
                         </td>
                         <td>
-                          <select id="status-1" class="form-control">
-                                   <option value="1">Completed</option>
-                                   <option selected="&quot;true&quot;" value="2">In progress</option>
+                            <select onchange="update_note('{{$note->id}}')" id="status-{{$note->id}}" class="form-control">
+                                <option {{$note->status==2?'selected="true"':''}} value="2">In progress</option>
+                                <option {{$note->status==1?'selected="true"':''}}  value="1">Completed</option>
+
                                    {{-- <option disabled="" value="3">Overdue</option> --}}
-                                   <option value="0">Cancelled</option>
+                                <option {{$note->status==0?'selected="true"':''}} value="0">Cancelled</option>
                           </select>
                         </td>
                       </tr>
@@ -217,22 +218,21 @@
             }
         });
 
+function update_note(id){
 
-function update_milestone(id){
-
-    if (confirm("Are you sure?") == true) {
-        $.post("{{route('user.update_milestone')}}",
-        {
-            id: id,
-            status: $('#status-'+id+' option:selected').val(),
-            _method: "put",
-            _token: "{{ csrf_token() }}"
-        },
-        function(data, status){
-            if(data.success==true){
-                window.location="{{route('user.milestone')}}";
-            }
-        });
+if (confirm("Are you sure?") == true) {
+    $.post("{{route('user.update_notes')}}",
+    {
+        id: id,
+        status: $('#status-'+id+' option:selected').val(),
+        _method: "put",
+        _token: "{{ csrf_token() }}"
+    },
+    function(data, status){
+        if(data.success==true){
+            window.location="{{route('user.notes',$milestone->id)}}";
+        }
+    });
 }
 }
   </script>
