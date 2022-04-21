@@ -17,7 +17,13 @@ class MilestoneController extends Controller
         $overdue = 0;
         $user = Auth::user();
         $milestones = Milestone::where(['user_id' => $user->userable->id])->get();
+
         foreach($milestones as $milestone){
+            $date_facturation = \Carbon\Carbon::parse($milestone->due_date);
+            if( $milestone->status!=1 && $date_facturation->isPast() && $milestone->status!=0){
+                $milestone->status=3;
+            }
+
             if($milestone->status==2){
                 $in_progress+=1;
             }else if($milestone->status==1){
@@ -25,6 +31,7 @@ class MilestoneController extends Controller
             }else if($milestone->status==3){
                 $overdue+=1;
             }
+            $milestone->save();
         }
        $tot =($in_progress+$completed+$overdue);
         $in_progress = ($in_progress/$tot)*100;
