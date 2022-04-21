@@ -17,7 +17,7 @@
   <div class="col-md-9">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Milestone Name</h3>
+                <h3 class="card-title">Milestone Details</h3>
 
                 <!-- <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
@@ -53,15 +53,13 @@
                   </div>
                   <!-- /.col -->
 </div>
-<div class="row">
-</div>
             <table class="table table-bordered">
                   <tbody>
                   <!-- success -->
                   <tr>
                     <td>
                     <div class="btn-group float-right">
-                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-lg">Add Note</button>
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-md">Add Note</button>
                         <button type="button" class="btn btn-danger">Delete</button>
                       </div>
                     </td>
@@ -69,7 +67,7 @@
                   <!-- /.success -->
                 </tbody>
             </table>
-
+<div class="row">
               <div class="col-md-11">
               <div class="card-body p-2">
                 <table class="table table-sm">
@@ -94,8 +92,8 @@
                                  <option selected="&quot;true&quot;" value="2">In progress</option>
                                  <option disabled="" value="3">Overdue</option>
                                  <option value="0">Cancelled</option>
-                             </select>
-                            </td>
+                        </select>
+                      </td>
                     </tr>
                     <tr>
                       <td>2.</td>
@@ -103,7 +101,14 @@
                       <td>
                       24-03-2022
                       </td>
-                      <td><span class="badge bg-warning">70%</span></td>
+                      <td>
+                      <select id="status-1" class="form-control">
+                                 <option value="1">Completed</option>
+                                 <option selected="&quot;true&quot;" value="2">In progress</option>
+                                 <option disabled="" value="3">Overdue</option>
+                                 <option value="0">Cancelled</option>
+                        </select>
+                      </td>
                     </tr>
                     <tr>
                       <td>3.</td>
@@ -111,20 +116,25 @@
                       <td>
                       26-03-2022
                       </td>
-                      <td><span class="badge bg-primary">30%</span></td>
+                      <td>
+                      <select id="status-1" class="form-control">
+                                 <option value="1">Completed</option>
+                                 <option selected="&quot;true&quot;" value="2">In progress</option>
+                                 <option disabled="" value="3">Overdue</option>
+                                 <option value="0">Cancelled</option>
+                        </select>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-              <div class="form-control">
-                <div>
-                  
 </div>
 </div>
+              <dl>
+                  <dt>Notes</dt>
+                  <dd>A description list is perfect for defining terms.</dd>
+                </dl>
               <!-- /.card-body -->
-              </div>
-
-                </div>
 
                 <div class="container col-md-10">
                     {{-- <h2>Stacked Progress Bars</h2>
@@ -151,20 +161,26 @@
 
   </div>
   <!-- /.card -->
+                    </section>
 
  <!-- /.modal -->
-  <div class="modal fade" id="modal-lg">
+  <div class="modal fade" id="modal-md">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Large Modal</h4>
+          <h4 class="modal-title">Add new note</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <p>One fine body&hellip;</p>
-        </div>
+        <div class="form-group">
+                        <label>Action Plan to achive the Milestone</label>
+                        <input type="text" class="form-control" placeholder="Enter ...">
+                      </div>
+                        <label>Due Date</label>
+                        <input type="date" class="form-control" placeholder="Enter ...">
+                      </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary">Save changes</button>

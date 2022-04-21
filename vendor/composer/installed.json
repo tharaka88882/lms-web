@@ -1985,17 +1985,17 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v8.83.8",
-            "version_normalized": "8.83.8.0",
+            "version": "v8.83.9",
+            "version_normalized": "8.83.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "cf430301ad17656b3d918995bcdd0454c3c119b9"
+                "reference": "ac6e16bb56510eda2e373c6365d5c92da3fd559d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/cf430301ad17656b3d918995bcdd0454c3c119b9",
-                "reference": "cf430301ad17656b3d918995bcdd0454c3c119b9",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/ac6e16bb56510eda2e373c6365d5c92da3fd559d",
+                "reference": "ac6e16bb56510eda2e373c6365d5c92da3fd559d",
                 "shasum": ""
             },
             "require": {
@@ -2114,7 +2114,7 @@
                 "symfony/psr-http-message-bridge": "Required to use PSR-7 bridging features (^2.0).",
                 "wildbit/swiftmailer-postmark": "Required to use Postmark mail driver (^3.0)."
             },
-            "time": "2022-04-12T13:49:56+00:00",
+            "time": "2022-04-19T15:01:38+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -2161,17 +2161,17 @@
         },
         {
             "name": "laravel/jetstream",
-            "version": "v2.7.3",
-            "version_normalized": "2.7.3.0",
+            "version": "v2.7.4",
+            "version_normalized": "2.7.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/jetstream.git",
-                "reference": "1e7975056a5c86de779e2744e18ecfb49081ab4f"
+                "reference": "8e31ac5f92ffdf5408cad4b82d58a02f2e278ebb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/jetstream/zipball/1e7975056a5c86de779e2744e18ecfb49081ab4f",
-                "reference": "1e7975056a5c86de779e2744e18ecfb49081ab4f",
+                "url": "https://api.github.com/repos/laravel/jetstream/zipball/8e31ac5f92ffdf5408cad4b82d58a02f2e278ebb",
+                "reference": "8e31ac5f92ffdf5408cad4b82d58a02f2e278ebb",
                 "shasum": ""
             },
             "require": {
@@ -2188,7 +2188,7 @@
                 "orchestra/testbench": "^6.0|^7.0",
                 "phpunit/phpunit": "^9.3"
             },
-            "time": "2022-04-08T09:04:45+00:00",
+            "time": "2022-04-19T15:35:17+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -2230,17 +2230,17 @@
         },
         {
             "name": "laravel/sail",
-            "version": "v1.13.9",
-            "version_normalized": "1.13.9.0",
+            "version": "v1.13.10",
+            "version_normalized": "1.13.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
-                "reference": "7bb294fe99fc42c3b1bee83fb667cd7698b3c385"
+                "reference": "cbf55e1a392724313f7726c38578b5e008df6a0f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/7bb294fe99fc42c3b1bee83fb667cd7698b3c385",
-                "reference": "7bb294fe99fc42c3b1bee83fb667cd7698b3c385",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/cbf55e1a392724313f7726c38578b5e008df6a0f",
+                "reference": "cbf55e1a392724313f7726c38578b5e008df6a0f",
                 "shasum": ""
             },
             "require": {
@@ -2249,7 +2249,7 @@
                 "illuminate/support": "^8.0|^9.0",
                 "php": "^7.3|^8.0"
             },
-            "time": "2022-04-04T15:21:51+00:00",
+            "time": "2022-04-14T18:29:22+00:00",
             "bin": [
                 "bin/sail"
             ],
