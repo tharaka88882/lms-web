@@ -11,7 +11,7 @@
 
 @section('content')
 
-  <section class="content">
+  <section class="content-header">
   <!-- general form elements -->
   <div class="col-sm-6">
     <div class="card">
@@ -101,9 +101,8 @@
                       <tr>
                           <td>{{$i}}</td>
                           <td>{{$milestone->note}}</td>
-                          <td><h5>{{ \Carbon\Carbon::parse($milestone->created_at)->format('d-m-Y')}}<h5></td>
+                          <td>{{ \Carbon\Carbon::parse($milestone->created_at)->format('d-m-Y')}}</td>
                           <td>
-                            <h5>
                                 @php
                                     ($date_facturation = \Carbon\Carbon::parse($milestone->due_date))
                                 @endphp
@@ -113,7 +112,7 @@
                                     <span class="badge" style="background-color: green;">
                                 @endif
                                 {{ \Carbon\Carbon::parse($milestone->due_date)->format('d-m-Y')}}</span>
-                            <h5>
+                            
                           </td>
                           <td>
                              <select onchange="update_milestone('{{ $milestone->id}}')" id='status-{{ $milestone->id}}' class="form-control">
@@ -124,12 +123,16 @@
                              </select>
                           </td>
                           <td>
-                            <a href="{{route('user.notes',$milestone->id)}}" class="btn btn-success" id="goal">Goals</a>
-                            <button type="button" class="btn btn-danger pull-right" id="deleteBtn-{{$milestone->id}}">Delete</button>
+                              <div class="col-md-6 p-1">
+                            <a href="{{route('user.notes',$milestone->id)}}" class="btn btn-success float-right" id="goal">Goals</a>
+                </div>
+                <div class="col-md-6 p-1">
+                            <button type="button" class="btn btn-danger pull-left" id="deleteBtn-{{$milestone->id}}">Delete</button>
                             <form action="{{route('user.milestone_delete', $milestone->id)}}" id="deleteform-{{$milestone->id}}" method="POST">
                                 @csrf
                                 @method('delete')
                             </form>
+                </div>
                           </td>
                       </tr>
                       @php
