@@ -16,8 +16,32 @@ class NoteController extends Controller
      */
     public function index($id)
     {
+        $in_progress = 0;
+        $completed = 0;
+        $Cancelled = 0;
         $milestone = Milestone::FindOrFail($id);
-        return view('student.notes', compact('milestone'));
+
+        foreach($milestone->notes as $note){
+            if($note->status==2){
+                $in_progress+=1;
+            }else if($note->status==1){
+                $completed+=1;
+            }else if($note->status==0){
+                $Cancelled+=1;
+            }
+        }
+        $tot = ($in_progress+$completed+$Cancelled);
+        if($in_progress!=0){
+            $in_progress = ($in_progress/$tot)*100;
+        }
+        if($completed!=0){
+            $completed = ($completed/$tot)*100;
+        }
+        if($Cancelled!=0){
+            $Cancelled = ($Cancelled/$tot)*100;
+        }
+
+        return view('student.notes', compact('milestone','in_progress','completed','Cancelled'));
     }
 
     /**

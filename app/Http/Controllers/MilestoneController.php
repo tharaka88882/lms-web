@@ -34,9 +34,16 @@ class MilestoneController extends Controller
             $milestone->save();
         }
        $tot =($in_progress+$completed+$overdue);
+       if($in_progress!=0){
         $in_progress = ($in_progress/$tot)*100;
+       }
+       if($completed!=0){
         $completed = ($completed/$tot)*100;
+       }
+       if($overdue!=0){
         $overdue = ($overdue/$tot)*100;
+       }
+
        // dd($in_progress." ".$completed." ".$overdue);
 
 
