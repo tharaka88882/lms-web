@@ -89,7 +89,7 @@ class DashboardController extends Controller
 
         if (get_class($user->userable) == 'App\Models\Teacher') {
             // return view('under_construction');
-            return view('home_teacher', compact('pending_count', 'teachers_count', 'students_count', 'subject_count', 'pending_teachers_list', 'schedules', 'schedule_count', 'subjects', 'convo_count','my_teachers_count','my_students_count', 'my_subject_count', 'my_milestones_count'));
+            return view('home_teacher', compact('pending_count', 'teachers_count', 'students_count', 'subject_count', 'pending_teachers_list', 'schedules', 'schedule_count', 'subjects', 'convo_count','my_teachers_count','my_students_count', 'my_subject_count', 'my_milestones_count','completed_milestones_count','inprogress_milestones_count','overdue_milestones_count'));
         } else if (get_class($user->userable) == 'App\Models\Student') {
             // return view('under_construction');
             return view('home_student', compact('pending_count', 'teachers_count', 'students_count', 'subject_count', 'pending_teachers_list', 'convo_count', 'user_orders', 'my_milestones_count', 'completed_milestones_count','inprogress_milestones_count','overdue_milestones_count'));
