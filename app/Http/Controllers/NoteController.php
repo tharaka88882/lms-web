@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Milestone;
 use App\Models\Note;
 use App\Http\Requests\TaskRequest;
+use Brian2694\Toastr\Facades\Toastr;
 
 class NoteController extends Controller
 {
@@ -65,7 +66,7 @@ class NoteController extends Controller
         $note = new Note();
         $note->text = $request->get('text');
         $note->due_date = $request->get('due_date');
-        $note->status = $request->get('status');
+        $note->status = 2;
         $note->milestone_id = $request->get('milestone_id');
         $note->save();
         Toastr::success('Task is added successfully :)', 'Added');
