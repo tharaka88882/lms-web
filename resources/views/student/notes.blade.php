@@ -88,9 +88,12 @@
                     </tr>
                   </thead>
                   <tbody>
+                      @php
+                          $i = 1;
+                      @endphp
                     @foreach ($milestone->notes as $note)
                     <tr>
-                        <td>{{$note->id}}</td>
+                        <td>{{$i}}</td>
                         <td>{{$note->text}}</td>
                         <td>
                             {{$note->due_date}}
@@ -107,6 +110,9 @@
                           </select>
                         </td>
                       </tr>
+                      @php
+                          $i++;
+                      @endphp
                     @endforeach
                     {{-- <tr>
                       <td>2.</td>
