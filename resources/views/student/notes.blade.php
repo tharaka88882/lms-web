@@ -61,7 +61,7 @@
                   <tr>
                     <td>
                     <div class="btn-group float-right">
-                        <button type="button" class="btn btn-warning">Add Note</button>
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-lg">Add Note</button>
                         <button type="button" class="btn btn-danger">Delete</button>
                       </div>
                     </td>
@@ -120,13 +120,56 @@
               </div>
 
                 </div>
+
+                <div class="container col-md-10">
+                    {{-- <h2>Stacked Progress Bars</h2>
+                    <p>Create a stacked progress bar by placing multiple bars into the same div with class .progress:</p> --}}
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-success" role="progressbar" style="width:20%">
+                        Completed
+                      </div>
+                      <div class="progress-bar progress-bar-warning" role="progressbar" style="width:30%">
+                        In Progress
+                      </div>
+                      <div class="progress-bar progress-bar-danger" role="progressbar" style="width:50%">
+                        Cancelled
+                      </div>
+                    </div>
+                  </div>
+              </div>
+
               </div>
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
-          </div>
+
+
   </div>
   <!-- /.card -->
+
+ <!-- /.modal -->
+  <div class="modal fade" id="modal-lg">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Large Modal</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>One fine body&hellip;</p>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
 
 @endsection
 
