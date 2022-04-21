@@ -102,9 +102,15 @@ class NoteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $note = Note::FindOrFail($request->get('id'));
+        $note->status = $request->get('status');
+        $note->save();
+        Toastr::success('Milestone is Update successfully :)', 'Updated');
+        return array(
+            'success'=>true
+        );
     }
 
     /**
