@@ -204,8 +204,8 @@
                         <input type="date" name="due_date" class="form-control" placeholder="Enter ...">
                       </div>
         <div class="modal-footer justify-content-between btn-group">
-          <button type="submit" class="btn btn-primary">Save changes</button>
-          <button onclick="location.reload();" type="button" class="btn btn-default" data-dismiss="modal">Close</button>          
+          <button type="submit" class="btn btn-primary">Save</button>
+          <button onclick="location.reload();" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
         </form>
       </div>

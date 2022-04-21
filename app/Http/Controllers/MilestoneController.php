@@ -16,7 +16,7 @@ class MilestoneController extends Controller
         $completed = 0;
         $overdue = 0;
         $user = Auth::user();
-        $milestones = Milestone::where(['user_id' => $user->userable->id])->get();
+        $milestones = Milestone::where(['user_id' => $user->id])->get();
 
         foreach($milestones as $milestone){
             $date_facturation = \Carbon\Carbon::parse($milestone->due_date);

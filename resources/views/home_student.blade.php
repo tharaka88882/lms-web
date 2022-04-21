@@ -128,7 +128,7 @@
             <div class="small-box bg-light">
 
               <div class="inner">
-              <p style="margin-bottom: 3px;">Milestones</p>
+              <p style="margin-bottom: 3px;">My Development</p>
                 <div class="row">
                   <div class="col-sm-4 border-right">
                     <div class="description-block">
