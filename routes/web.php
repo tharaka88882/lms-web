@@ -134,7 +134,9 @@ Route::prefix('user')->middleware('check.user')->group(function () {
      Route::get('/milestone/notes/{id}', 'App\Http\Controllers\NoteController@index')->name('user.notes');
      Route::get('/milestone/notes/create/{id}', 'App\Http\Controllers\NoteController@create')->name('user.create_notes');
      Route::post('/milestone/notes/store', 'App\Http\Controllers\NoteController@store')->name('user.store_notes');
+
      Route::put('/milestone/notes/update', 'App\Http\Controllers\NoteController@update')->name('user.update_notes');
+
      Route::delete('/milestone/notes/destroy/{id}', 'App\Http\Controllers\NoteController@destroy')->name('user.destroy_notes');
 
 
