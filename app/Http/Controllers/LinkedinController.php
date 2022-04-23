@@ -76,7 +76,7 @@ class LinkedinController extends Controller
                     'password' => encrypt('admin12345')
                 ]);
                 $teacher = new Teacher();
-                $teacher->status = false;
+                $teacher->status = true;
                 $teacher->save();
                 $teacher->user()->save($user1);
 

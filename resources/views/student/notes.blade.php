@@ -68,7 +68,7 @@
                     <td>
                     <div class="btn-group float-right">
                         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-md">Add Note</button>
-                        <button type="button" class="btn btn-danger">Delete</button>
+                        {{-- <button type="button" class="btn btn-danger">Delete</button> --}}
                       </div>
                     </td>
                   </tr>
@@ -85,6 +85,7 @@
                       <th>Action plans to achieve Milestone</th>
                       <th>Due by</th>
                       <th style="width: 150px">Status</th>
+                      <th style="width: 100px">Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -108,6 +109,9 @@
                                    {{-- <option disabled="" value="3">Overdue</option> --}}
                                 <option {{$note->status==0?'selected="true"':''}} value="0">Cancelled</option>
                           </select>
+                        </td>
+                        <td>
+                            <button onclick="delete_note('{{$note->id}}');" type="button" class="btn btn-danger">Delete</button>
                         </td>
                       </tr>
                       @php
@@ -235,6 +239,23 @@ if (confirm("Are you sure?") == true) {
         id: id,
         status: $('#status-'+id+' option:selected').val(),
         _method: "put",
+        _token: "{{ csrf_token() }}"
+    },
+    function(data, status){
+        if(data.success==true){
+            window.location="{{route('user.notes',$milestone->id)}}";
+        }
+    });
+
+}
+}
+function delete_note(id){
+
+if (confirm("Are you sure?") == true) {
+    $.post("{{route('user.destroy_notes')}}",
+    {
+        id: id,
+        _method: "delete",
         _token: "{{ csrf_token() }}"
     },
     function(data, status){
