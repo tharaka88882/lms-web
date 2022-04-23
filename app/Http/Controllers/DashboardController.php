@@ -75,16 +75,16 @@ class DashboardController extends Controller
         $my_subject_count = json_decode($subjects, true);
         $my_subject_count = count($my_subject_count);
 
-        $milestones = Milestone::where(['user_id' => $user->userable->id])->get();
+        $milestones = Milestone::where(['user_id' => $user->id])->get();
         $my_milestones_count = json_decode($milestones, true);
         $my_milestones_count = count($my_milestones_count);
 
 
-        $completed_milestones_count = Milestone::where('user_id', '=',Auth()->user()->userable_id)
+        $completed_milestones_count = Milestone::where('user_id', '=',Auth()->user()->id)
                                     ->where('status', '=', '1')->count();
-        $inprogress_milestones_count = Milestone::where('user_id', '=',Auth()->user()->userable_id)
+        $inprogress_milestones_count = Milestone::where('user_id', '=',Auth()->user()->id)
                                     ->where('status', '=', '2')->count();
-        $overdue_milestones_count = Milestone::where('user_id', '=',Auth()->user()->userable_id)
+        $overdue_milestones_count = Milestone::where('user_id', '=',Auth()->user()->id)
                                     ->where('status', '=', '3')->count();
 
         if (get_class($user->userable) == 'App\Models\Teacher') {

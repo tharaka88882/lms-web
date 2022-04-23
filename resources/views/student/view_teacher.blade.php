@@ -146,7 +146,7 @@
 
                                         @csrf
 
-                                        <label><i class="fa fa-star"></i> Ratings:
+                                        <label data-toggle="modal" data-target="#modal-md"><i class="fa fa-star"></i> Ratings:
 
                                             <select name="rating" class="form-control" style="max-width: 120px; margin-left: 5px;" id="ratingInp">
 
@@ -370,6 +370,39 @@
 
     </section>
 
+
+     <!-- /.modal -->
+  <div class="modal fade" id="modal-md">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Add new note</h4>
+          <button onclick="location.reload();" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="{{route('user.store_notes')}}" method="POST">
+            @csrf
+            <input type="hidden" name="milestone_id" value=""/>
+        <div class="modal-body">
+        <div class="form-group">
+                        <label>Action Plan to achive the Milestone</label>
+                        <input type="text" name="text" class="form-control" placeholder="Enter ...">
+                      </div>
+                        <label>Due Date</label>
+                        <input type="date" name="due_date" class="form-control" placeholder="Enter ...">
+                      </div>
+        <div class="modal-footer justify-content-between btn-group">
+          <button type="submit" class="btn btn-primary">Save</button>
+          <button onclick="location.reload();" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+        </form>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
 @endsection
 
 

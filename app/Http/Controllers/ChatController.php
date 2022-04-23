@@ -57,7 +57,7 @@ class ChatController extends Controller
             $txt = "Hi, ".$teacher->user->name." Mentee has started conversation with you. Click Here : ".route('login')." ";
             $headers = "From: info@you2mentor.com" . "\r\n";
 
-            mail($to,$subject,$txt,$headers);
+           // mail($to,$subject,$txt,$headers);
 
             DB::commit();
             Toastr::success('Conversation Started', 'Success');
@@ -232,7 +232,7 @@ class ChatController extends Controller
             $txt = "Hi, ".$teacher->user->name." Mentee has started conversation with you. Click Here : ".route('login')." ";
             $headers = "From: info@you2mentor.com" . "\r\n";
 
-            mail($to,$subject,$txt,$headers);
+            //mail($to,$subject,$txt,$headers);
 
             DB::commit();
             Toastr::success('Conversation Started', 'Success');

@@ -137,7 +137,7 @@ Route::prefix('user')->middleware('check.user')->group(function () {
 
      Route::put('/milestone/notes/update', 'App\Http\Controllers\NoteController@update')->name('user.update_notes');
 
-     Route::delete('/milestone/notes/destroy/{id}', 'App\Http\Controllers\NoteController@destroy')->name('user.destroy_notes');
+     Route::delete('/milestone/notes/destroy', 'App\Http\Controllers\NoteController@destroy')->name('user.destroy_notes');
 
 
     Route::any('/notification-json', 'App\Http\Controllers\UserController@notifications_json')->name('user.json.notifications');

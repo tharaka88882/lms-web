@@ -121,7 +121,7 @@ class NoteController extends Controller
      */
     public function destroy(Request $request)
     {
-        $note = Note::FindOrFail($request->get('note_id'));
+        $note = Note::FindOrFail($request->get('id'));
         $note->delete();
         Toastr::success('Milestone is deleted successfully :)', 'Deleted');
       //  return redirect()->route('user.notes',$request->get('milestone_id'));

@@ -15,6 +15,7 @@ class AddJobAndIndustryToTeachers extends Migration
     {
         Schema::table('teachers', function (Blueprint $table) {
             $table->string('job')->nullable();
+            $table->string('linkedin_link')->nullable();
             $table->string('industry')->nullable();
         });
     }
