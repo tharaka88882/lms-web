@@ -403,13 +403,30 @@ class StudentController extends Controller
 
         $conversations = array();
 
+
+        // Rating-------------------------------------------------------------------------
+
+        $ratings = Rating::where('teacher_id',$id)->get();
+        $rator_count = count(json_decode( $ratings,true));
+        $rating_count = 0;
+        $mediation = 0;
+            foreach($ratings as $rating){
+                $rating_count+=$rating->rating;
+            }
+       if($rator_count!=0){
+        $mediation = $rating_count/$rator_count;
+       }
+
+        $round_mediation =(int)$mediation;
+      // dd($mediation);
+
         if ($query != null) {
             $conversations = Message::where('conversation_id', $query->id)->where('sender_id', $teacher->user->id)->get();
         }
 
         // dd($teacher->user->id);
 
-        $rating = Rating::where('teacher_id',  $id)->where('user_id', Auth()->user()->id)->get();
+       // $rating = Rating::where('teacher_id',  $id)->where('user_id', Auth()->user()->id)->get();
 
 
         $subjects = TeacherSubject::select('name')
@@ -419,7 +436,7 @@ class StudentController extends Controller
 
         //return $rating;
 
-        return view('student.view_teacher', compact('request', 'teacher', 'conversations', 'rating', 'schedules', 'query', 'subjects', 'time_total_array'));
+        return view('student.view_teacher', compact('request', 'teacher', 'conversations', 'mediation', 'schedules', 'query', 'subjects', 'time_total_array'));
     }
 
 

@@ -13,6 +13,7 @@ use App\Models\Subject;
 use App\Models\Teacher;
 use App\Models\TeacherSubject;
 use App\Models\UserOrder;
+use App\Models\Rating;
 use App\Models\UserTransaction;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
@@ -87,9 +88,22 @@ class DashboardController extends Controller
         $overdue_milestones_count = Milestone::where('user_id', '=',Auth()->user()->id)
                                     ->where('status', '=', '3')->count();
 
+        $ratings = Rating::where('teacher_id',Auth()->user()->userable_id)->get();
+        $rator_count = count(json_decode( $ratings,true));
+        $rating_count = 0;
+        $mediation = 0;
+            foreach($ratings as $rating){
+                $rating_count+=$rating->rating;
+            }
+       if($rator_count!=0){
+        $mediation = $rating_count/$rator_count;
+       }
+
+        $round_mediation =(int)$mediation;
+        // dd($round_mediation);
         if (get_class($user->userable) == 'App\Models\Teacher') {
             // return view('under_construction');
-            return view('home_teacher', compact('pending_count', 'teachers_count', 'students_count', 'subject_count', 'pending_teachers_list', 'schedules', 'schedule_count', 'subjects', 'convo_count','my_teachers_count','my_students_count', 'my_subject_count', 'my_milestones_count','completed_milestones_count','inprogress_milestones_count','overdue_milestones_count'));
+            return view('home_teacher', compact('pending_count', 'teachers_count', 'students_count', 'subject_count', 'pending_teachers_list', 'schedules', 'schedule_count', 'subjects', 'convo_count','my_teachers_count','my_students_count', 'my_subject_count', 'my_milestones_count','completed_milestones_count','inprogress_milestones_count','overdue_milestones_count','mediation','round_mediation'));
         } else if (get_class($user->userable) == 'App\Models\Student') {
             // return view('under_construction');
             return view('home_student', compact('pending_count', 'teachers_count', 'students_count', 'subject_count', 'pending_teachers_list', 'convo_count', 'user_orders', 'my_milestones_count', 'completed_milestones_count','inprogress_milestones_count','overdue_milestones_count'));

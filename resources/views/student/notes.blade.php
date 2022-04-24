@@ -50,7 +50,7 @@
                     @if ($milestone->status==1)
                     <span style="color: green;" class="description-text">Completed</span>
                       @elseif ($milestone->status==2)
-                      <span style="color: yellow;" class="description-text">In Progress</span>
+                      <span style="color: rgb(255, 187, 0);" class="description-text">In Progress</span>
                       @elseif ($milestone->status==3)
                       <span style="color: red;" class="description-text">Overdue</span>
                       @else

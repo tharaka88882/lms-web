@@ -48,7 +48,7 @@
 
                             </h3>
 
-                            <a><h5 class="widget-user-desc">Rating {{ $teacher->rating }}</h5></a>
+                            <a><h5 class="widget-user-desc">Rating {{$mediation }}</h5></a>
 
                         </div>
 
@@ -141,8 +141,9 @@
 
 
                                 <div class="col-sm-4" style="text-align: center">
+                                    <button data-toggle="modal" data-target="#modal-md" class="btn btn-warning fa fa-star">Rate Now</button>
 
-                                    <form action="{{ route('student.rate_teacher') }}" method="POST" class="form-inline" style="float: right" id="changeRatings">
+                                    {{-- <form action="{{ route('student.rate_teacher') }}" method="POST" class="form-inline" style="float: right" id="changeRatings">
 
                                         @csrf
 
@@ -168,7 +169,7 @@
 
                                         <input type="hidden" name="teacher_id" value="{{$teacher->id}}">
 
-                                    </form>
+                                    </form> --}}
 
                                 </div>
 
@@ -377,7 +378,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title">Add new note</h4>
-          <button onclick="location.reload();" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -394,7 +395,7 @@
                       </div>
         <div class="modal-footer justify-content-between btn-group">
           <button type="submit" class="btn btn-primary">Save</button>
-          <button onclick="location.reload();" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
         </form>
       </div>

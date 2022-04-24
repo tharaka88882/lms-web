@@ -16,6 +16,8 @@ class CreateRatingsTable extends Migration
         Schema::create('ratings', function (Blueprint $table) {
             $table->id();
             $table->integer('rating')->default(0);
+            $table->string('description')->nullable();
+            $table->boolean('answer')->default(0);
             $table->unsignedBigInteger('teacher_id');
             $table->foreign('teacher_id')->references('id')->on('teachers')->cascadeOnDelete();
             $table->unsignedBigInteger('user_id');
