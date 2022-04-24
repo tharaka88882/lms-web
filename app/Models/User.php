@@ -84,4 +84,9 @@ class User extends Authenticatable
     public function milestones(){
         return $this->hasMany(Milestone::class);
     }
+    public function rates(){
+        return $this->hasMany(Rating::class);
+    }
+
+
 }

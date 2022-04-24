@@ -225,28 +225,28 @@
                       <div class="inner">
                       <p style="margin-bottom: 3px;">My Development</p>
                         <div class="row">
-                          <div class="col-sm-4 border-right">
+                          <div class="col-4 border-right">
                             <div class="description-block">
                               <h5 class="description-header">{{$completed_milestones_count}}</h5>
-                              <p style="color:green; font-size: 14px;">Completed</p>
+                              <p style="color:green; font-size: 9px;">Completed</p>
                               <!-- <span class="description-text">Completed</span> -->
                             </div>
                             <!-- /.description-block -->
                           </div>
                           <!-- /.col -->
-                          <div class="col-sm-4 border-right">
+                          <div class="col-4 border-right">
                             <div class="description-block">
                               <h5 class="description-header">{{$inprogress_milestones_count}}</h5>
-                              <p style="color:rgb(255, 153, 0); font-size: 14px;">In Progress</p>
+                              <p style="color:rgb(255, 153, 0); font-size: 8px;">In Progress</p>
                               <!-- <span class="description-text">In Progress</span> -->
                             </div>
                             <!-- /.description-block -->
                           </div>
                           <!-- /.col -->
-                          <div class="col-sm-4">
+                          <div class="col-4">
                             <div class="description-block">
                               <h5 class="description-header">{{$overdue_milestones_count}}</h5>
-                              <p style="color:red; font-size: 14px;">Overdue</p>
+                              <p style="color:red; font-size: 9px;">Overdue</p>
                               <!-- <span class="description-text">Overdue</span> -->
                             </div>
                             <!-- /.description-block -->
@@ -292,7 +292,8 @@
                       <p>My Rating</p>
                       @php
                           $i = 0;
-                          $r = intval(Auth()->user()->userable->level);
+                          //$r = intval(Auth()->user()->userable->level);
+                          $r = $round_mediation;
                       @endphp
                         @while ($i<5)
                             @if ($r>0)
@@ -316,8 +317,8 @@
                     <div class="icon">
                       <i class="ion ion-android-star-half"></i>
                     </div>
-                    <a  class="small-box-footer"> <i class="fas "></i></a>
-                  </div>
+                    <a href="{{route('user.milestone')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
                 </div>
                 <!-- ./col -->
               </div>
