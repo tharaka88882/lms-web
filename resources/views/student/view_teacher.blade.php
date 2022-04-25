@@ -141,7 +141,7 @@
 
 
                                 <div class="col-sm-4" style="text-align: center">
-                                    <button data-toggle="modal" data-target="#modal-md" class="btn btn-warning fa fa-star">Rate Now</button>
+                                    <button data-toggle="modal" data-target="#modal-md" class="btn btn-warning"><i class="fa fa-star"></i>Rate Now</button>
 
                                     {{-- <form action="{{ route('student.rate_teacher') }}" method="POST" class="form-inline" style="float: right" id="changeRatings">
 
@@ -243,49 +243,49 @@
 
                       </div>
 
+                        <!-- /.card-header -->
+
+                        <div class="card-body">
+
+<dl>
+
+  <dt>Qualifications</dt>
+
+  <dd>{{$teacher->qualification}}</dd>
+
+  <dt>Experience</dt>
+
+  <dd>{{$teacher->experience}}</dd>
+
+  <dt>Skills</dt>
+
+  <dd>{{$teacher->skills}}</dd>
+
+  <dt>Industry</dt>
+
+  <dd>{{$teacher->industry}}</dd>
+
+  <dt>Job Title</dt>
+
+  <dd>{{$teacher->job}}</dd>
+
+</dl>
+
+</div>
+
+<!-- /.card-body -->
+
+<div class="card-footer">
+
+<div class="float-right">
+
+    <b>Average Responce time: </b> {{$time_total_array}}hrs
+
+</div>
+
+</div>
+
                       </div>
-
-                      <!-- /.card-header -->
-
-                      <div class="card-body">
-
-                        <dl>
-
-                          <dt>Qualifications</dt>
-
-                          <dd>{{$teacher->qualification}}</dd>
-
-                          <dt>Experience</dt>
-
-                          <dd>{{$teacher->experience}}</dd>
-
-                          <dt>Skills</dt>
-
-                          <dd>{{$teacher->skills}}</dd>
-
-                          <dt>Industry</dt>
-
-                          <dd>{{$teacher->industry}}</dd>
-
-                          <dt>Job Title</dt>
-
-                          <dd>{{$teacher->job}}</dd>
-
-                        </dl>
-
-                      </div>
-
-                      <!-- /.card-body -->
-
-                      <div class="card-footer">
-
-                        <div class="float-right">
-
-                            <b>Average Responce time: </b> {{$time_total_array}}hrs
-
-                        </div>
-
-                    </div>
 
                     </div>
 
@@ -386,13 +386,31 @@
             @csrf
             <input type="hidden" name="milestone_id" value=""/>
         <div class="modal-body">
-        <div class="form-group">
-                        <label>Action Plan to achive the Milestone</label>
-                        <input type="text" name="text" class="form-control" placeholder="Enter ...">
-                      </div>
-                        <label>Due Date</label>
-                        <input type="date" name="due_date" class="form-control" placeholder="Enter ...">
-                      </div>
+          <div class="form-group">
+                        <label>How would you rate your overall experience with the mentor</label>
+                        <!-- <input type="text" name="text" class="form-control" placeholder="Type Here"> -->
+                      <div>
+                        <span class="fa fa-star" style="cursor: pointer" aria-hidden = "true" id = "st1"></span>
+                        <span class="fa fa-star" style="cursor: pointer" aria-hidden = "true" id = "st2"></span>
+                        <span class="fa fa-star" style="cursor: pointer" aria-hidden = "true" id = "st3"></span>
+                        <span class="fa fa-star" style="cursor: pointer" aria-hidden = "true" id = "st4"></span>
+                        <span class="fa fa-star" style="cursor: pointer" aria-hidden = "true" id = "st5"></span>
+                    </div>  
+    </div>  
+          <div class="form-group">
+                      <label>Was your quection answered?</label>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="radio1" checked="">
+                          <label class="form-check-label">Yes</label><br>
+                          <input class="form-check-input" type="radio" name="radio1">
+                          <label class="form-check-label">No</label>
+                        </div>
+            </div>
+              <div class="form-group">
+                        <label>Question 3</label>
+                        <textarea name="question3" class="form-control" column="3" rows="2"></textarea>
+                        <!-- <input type="test" name="due_date" class="form-control" placeholder="Enter ..."> -->
+              </div>
         <div class="modal-footer justify-content-between btn-group">
           <button type="submit" class="btn btn-primary">Save</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -798,7 +816,34 @@ var event = $('<div />')
 
         });
 
-
+        // Star Ratings
+        $(document).ready(function() {  
+          $("#st1").click(function() {  
+              $(".fa-star").css("color", "black");  
+              $("#st1").css("color", "yellow");  
+  
+          });  
+          $("#st2").click(function() {  
+              $(".fa-star").css("color", "black");  
+              $("#st1, #st2").css("color", "yellow");  
+  
+          });  
+          $("#st3").click(function() {  
+              $(".fa-star").css("color", "black")  
+              $("#st1, #st2, #st3").css("color", "yellow");  
+  
+          });  
+          $("#st4").click(function() {  
+              $(".fa-star").css("color", "black");  
+              $("#st1, #st2, #st3, #st4").css("color", "yellow");  
+  
+          });  
+          $("#st5").click(function() {  
+              $(".fa-star").css("color", "black");  
+              $("#st1, #st2, #st3, #st4, #st5").css("color", "yellow");  
+  
+          });  
+        });  
 
 
 
