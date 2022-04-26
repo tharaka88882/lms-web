@@ -13,7 +13,7 @@ class RateController extends Controller
      */
     public function index()
     {
-        return view('teacher.view_rates');
+        return view('teacher.view_rating');
     }
 
     /**
