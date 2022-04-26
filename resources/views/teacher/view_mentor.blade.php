@@ -48,8 +48,25 @@
 
                             </h3>
 
-                            <h5 class="widget-user-desc">Rating {{$mediation}}</h5>
+                                    {{-- <a href="{{route('user.view_rating')}}"> --}}
+                                        @php
+                                        $i = 0;
+                                        //$r = intval(Auth()->user()->userable->level);
+                                        $r = (int)$mediation;
+                                    @endphp
+                                    @while ($i<5)
+                                        @if ($r>0)
+                                        <span class="fa fa-star checked"></span>
+                                        @else
+                                        <span class="fa fa-star"></span>
 
+                                        @endif
+                                        @php
+                                        $i += 1;
+                                        $r -=1;
+                                        @endphp
+                                    @endwhile
+                                        {{-- </a> --}}
                         </div>
 
                         <div class="widget-user-image">
