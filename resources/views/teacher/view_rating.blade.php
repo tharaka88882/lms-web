@@ -45,13 +45,13 @@ My Ratings
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-               
+
          <div class="row">
           <div class="col-lg-4 col-6">
             <!-- small card -->
             <div class="small-box bg-light">
               <div class="inner">
-                <h3 style="color: green;">150</h3>
+                <h3 style="color: green;">{{$mediation}}</h3>
 
                 <p>Overall Rating</p>
               </div>
@@ -68,7 +68,7 @@ My Ratings
             <!-- small card -->
             <div class="small-box bg-light">
               <div class="inner">
-                <h3 style="color: yellow;">53<sup style="font-size: 20px">%</sup></h3>
+                <h3 style="color: rgb(255, 174, 0);">{{$relevance}}<sup style="font-size: 20px">%</sup></h3>
 
                 <p>Relevance</p>
               </div>
@@ -100,15 +100,17 @@ My Ratings
         </div>
 
         <h4> Details and Feedbacks</h4>
-        
+
                 <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-6"></div>
         <div class="col-md-6">
             <div class="row pull-right">
+                <form action="{{route('user.view_rating')}}" method="GET">
                     <div class="p-1">
                         <div class="form-group" id="currentModal">
                             <label>Search by Star Rating</label>
+
                               <select class="select2 form-control" data-placeholder="Any" style="width: 100%;" name="search_rating">
                                                     <option>Any</option>
                                                     <option>5</option>
@@ -120,26 +122,30 @@ My Ratings
                         </div>
                     </div>
                     <div class="p-1">
-                        <button class="btn btn-success" style="margin-top: 31px;">Search</button>
+                        <button type="submit" class="btn btn-success" style="margin-top: 31px;">Search</button>
                     </div>
+                </form>
             </div>
         </div>
                 </div>
                 <hr class="mt-0">
 
         <div class="row">
+            @foreach ($ratings as $rating)
+
+
             <div class="col-12 col-sm-6 col-md-6 d-flex align-items-stretch flex-column">
               <div class="card bg-light d-flex flex-fill">
                 <div class="card-header text-muted border-bottom-0" style="text-align: right;">
-                  <b>Date: </b> 22-Feb-2022
+                  <b>Date: </b> {{explode(" ",$rating->created_at)[0]}}
                 </div>
                 <div class="card-body pt-0">
                   <div class="row">
                     <div class="col-10">
                       <!-- <h1 class="lead">How would you rate your overall experience with the mentor</h1> -->
-                      <p class="text-muted text-md"> How would you rate your overall experience with the mentor: <b>4.5</b></p>
-                      <p class="text-muted text-md"> Any Comments? <b>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad maxime tenetur illo</b></p>
-                      <p class="text-muted text-md"> Question 3: <b>Yes</b></p>
+                      <p class="text-muted text-md"> How would you rate your overall experience with the mentor: <b>{{$rating->rating}}</b></p>
+                      <p class="text-muted text-md"> Any Comments? <b>{{$rating->description}}</b></p>
+                      <p class="text-muted text-md"> Question 3: <b>{{$rating->answer==1?"Yes":"No"}}</b></p>
                       <p class="text-muted text-md"> Question 4: <b>No</b></p>
                       <!-- <ul class="ml-4 mb-0 fa-ul text-muted">
                         <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address: Demo Street 123, Demo City 04312, NJ</li>
@@ -163,7 +169,7 @@ My Ratings
                 </div> -->
               </div>
             </div>
-            <div class="col-12 col-sm-6 col-md-6 d-flex align-items-stretch flex-column">
+            {{-- <div class="col-12 col-sm-6 col-md-6 d-flex align-items-stretch flex-column">
               <div class="card bg-light d-flex flex-fill">
               <div class="card-header text-muted border-bottom-0" style="text-align: right;">
                   <b>Date: </b> 22-Feb-2022
@@ -192,9 +198,9 @@ My Ratings
                   </div>
                 </div> -->
               </div>
-            </div>
+            </div> --}}
           </div>
-
+          @endforeach
             </div>
               </div>
               <!-- /.card-body -->
