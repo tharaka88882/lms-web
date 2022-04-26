@@ -48,7 +48,7 @@
 
                             </h3>
 
-                            <a><h5 class="widget-user-desc">Rating {{$mediation }}</h5></a>
+                            <a href="{{route('user.rating')}}"><h5 class="widget-user-desc">Rating {{$mediation }}</h5></a>
 
                         </div>
 

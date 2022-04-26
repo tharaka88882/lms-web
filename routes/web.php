@@ -139,6 +139,8 @@ Route::prefix('user')->middleware('check.user')->group(function () {
 
      Route::delete('/milestone/notes/destroy', 'App\Http\Controllers\NoteController@destroy')->name('user.destroy_notes');
 
+     Route::get('/Rating', 'App\Http\Controllers\RateController@index')->name('user.rating');
+
 
     Route::any('/notification-json', 'App\Http\Controllers\UserController@notifications_json')->name('user.json.notifications');
     Route::any('/notification', 'App\Http\Controllers\UserController@notifications')->name('user.notifications');
