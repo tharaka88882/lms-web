@@ -16,6 +16,7 @@ class RateController extends Controller
      */
     public function index(Request $request)
     {
+
        // $ratings = Rating::where('teacher_id',Auth()->user()->userable->id)->get();
 
         $query = Rating::query();
@@ -25,8 +26,9 @@ class RateController extends Controller
             $query->where('rating', $request->get('rating'));
         }
 
-        $rating = $query->get();
-        return view('teacher.view_rates',compact('ratings'));
+        $ratings = $query->get();
+        return view('teacher.view_rating',compact('ratings'));
+
     }
 
     /**
