@@ -105,8 +105,9 @@ My Ratings
                 <div class="row">
                     <div class="col-md-6"></div>
         <div class="col-md-6">
+            <form action="{{route('user.view_rating')}}" method="GET">
             <div class="row pull-right">
-                <form action="{{route('user.view_rating')}}" method="GET">
+
                     <div class="p-1">
                         <div class="form-group" id="currentModal">
                             <label>Search by Star Rating</label>
@@ -124,8 +125,9 @@ My Ratings
                     <div class="p-1">
                         <button type="submit" class="btn btn-success" style="margin-top: 31px;">Search</button>
                     </div>
-                </form>
+
             </div>
+        </form>
         </div>
                 </div>
                 <hr class="mt-0">

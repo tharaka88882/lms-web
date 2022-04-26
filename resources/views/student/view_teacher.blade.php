@@ -48,7 +48,7 @@
 
                             </h3>
 
-                            <a href="{{route('user.rating')}}"><h5 class="widget-user-desc">Rating {{$mediation }}</h5></a>
+                            <a href="{{route('user.view_rating')}}"><h5 class="widget-user-desc">Rating {{$mediation }}</h5></a>
 
                         </div>
 
@@ -377,12 +377,11 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Add new Rate</h4>
+          <h4 class="modal-title">Add new Rating</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        {{-- <form action="{{route('user.store_rates')}}" method="POST"> --}}
             @csrf
             <input type="hidden" name="milestone_id" value=""/>
         <div class="modal-body">
@@ -415,7 +414,6 @@
           <button onclick="store_rating('{{$teacher->id}}');" type="submit" class="btn btn-primary">Save</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
-        {{-- </form> --}}
       </div>
       <!-- /.modal-content -->
     </div>

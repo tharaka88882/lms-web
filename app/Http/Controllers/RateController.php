@@ -25,6 +25,7 @@ class RateController extends Controller
        $rating_count = 0;
        $q2_true_count = 0;
        $mediation = 0;
+       $relevance = 0;
            foreach($ratings as $rating){
                $rating_count+=$rating->rating;
                if($rating->answer==1){

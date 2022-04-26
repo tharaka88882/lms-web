@@ -407,6 +407,21 @@ class TeacherController extends Controller
         $teacher = Teacher::findOrFail($id);
         $schedules = Schedule::where('teacher_id', $id)->get();
 
+         // Rating-------------------------------------------------------------------------
+
+         $ratings = Rating::where('teacher_id',$id)->get();
+         $rator_count = count(json_decode( $ratings,true));
+         $rating_count = 0;
+         $mediation = 0;
+             foreach($ratings as $rating){
+                 $rating_count+=$rating->rating;
+             }
+        if($rator_count!=0){
+         $mediation = $rating_count/$rator_count;
+        }
+
+         $round_mediation =(int)$mediation;
+
         $query = MentorConversation::where('mentor_id', $id)->where('mentee_id', Auth()->user()->userable->id)->first();
         // dd($query);
         $conversations = array();
@@ -416,7 +431,7 @@ class TeacherController extends Controller
         // dd($teacher->user->id);
 
 
-        $rating = Rating::where('teacher_id',  $id)->where('user_id', Auth()->user()->id)->get();
+        //$rating = Rating::where('teacher_id',  $id)->where('user_id', Auth()->user()->id)->get();
 
         $subjects = TeacherSubject::select('name')
             ->join('subjects', 'subjects.id', '=', 'teacher_subjects.subject_id')
@@ -424,8 +439,9 @@ class TeacherController extends Controller
             ->get();
 
         //return $rating;
+        $old_ratings = Rating::where('teacher_id',$id)->where('user_id',Auth()->user()->id)->get();
         $time_total_array = rand(1, 5);
-        return view('teacher.view_mentor', compact('request', 'teacher', 'conversations', 'rating', 'schedules', 'query', 'subjects', 'time_total_array'));
+        return view('teacher.view_mentor', compact('request', 'teacher', 'conversations', 'mediation', 'schedules', 'query', 'subjects', 'time_total_array','old_ratings'));
     }
 
 
