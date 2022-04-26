@@ -17,17 +17,39 @@ class RateController extends Controller
     public function index(Request $request)
     {
 
+       // dd($request->get('search_rating'));
        // $ratings = Rating::where('teacher_id',Auth()->user()->userable->id)->get();
+
+       $ratings = Rating::where('teacher_id',Auth()->user()->userable_id)->get();
+       $rator_count = count(json_decode( $ratings,true));
+       $rating_count = 0;
+       $q2_true_count = 0;
+       $mediation = 0;
+           foreach($ratings as $rating){
+               $rating_count+=$rating->rating;
+               if($rating->answer==1){
+                $q2_true_count +=1;
+               }
+           }
+      if($rator_count!=0){
+       $mediation = $rating_count/$rator_count;
+      }
+      if($rator_count!=0){
+       $relevance = ($q2_true_count/$rator_count)*100;
+      }
 
         $query = Rating::query();
         $query->where('teacher_id',Auth()->user()->userable->id);
 
-        if ($request->get('rating')) {
-            $query->where('rating', $request->get('rating'));
+        if($request->get('search_rating')!=null){
+
+        if (($request->get('search_rating')!='Any')) {
+            $query->where('rating', $request->get('search_rating'));
+        }
         }
 
         $ratings = $query->get();
-        return view('teacher.view_rating',compact('ratings'));
+        return view('teacher.view_rating',compact('ratings','mediation','relevance','request'));
 
     }
 
