@@ -141,7 +141,7 @@
 
 
                                 <div class="col-sm-4" style="text-align: center">
-                                    <button data-toggle="modal" data-target="#modal-md" class="btn btn-warning"><i class="fa fa-star"></i>Rate Now</button>
+                                    <button {{sizeof($old_ratings)>0?"disabled":""}}  data-toggle="modal" data-target="#modal-md" class="btn btn-warning"><i class="fa fa-star"></i>Rate Now</button>
 
                                     {{-- <form action="{{ route('student.rate_teacher') }}" method="POST" class="form-inline" style="float: right" id="changeRatings">
 
@@ -377,12 +377,12 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Add new note</h4>
+          <h4 class="modal-title">Add new Rate</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="{{route('user.store_notes')}}" method="POST">
+        {{-- <form action="{{route('user.store_rates')}}" method="POST"> --}}
             @csrf
             <input type="hidden" name="milestone_id" value=""/>
         <div class="modal-body">
@@ -395,27 +395,27 @@
                         <span class="fa fa-star" style="cursor: pointer" aria-hidden = "true" id = "st3"></span>
                         <span class="fa fa-star" style="cursor: pointer" aria-hidden = "true" id = "st4"></span>
                         <span class="fa fa-star" style="cursor: pointer" aria-hidden = "true" id = "st5"></span>
-                    </div>  
-    </div>  
+                    </div>
+    </div>
           <div class="form-group">
                       <label>Was your quection answered?</label>
                         <div class="form-check">
-                          <input class="form-check-input" type="radio" name="radio1" checked="">
+                          <input id="radio1" class="form-check-input" type="radio" name="radio1" value="1" checked="">
                           <label class="form-check-label">Yes</label><br>
-                          <input class="form-check-input" type="radio" name="radio1">
+                          <input id="radio2" class="form-check-input" type="radio" value="0" name="radio1">
                           <label class="form-check-label">No</label>
                         </div>
             </div>
               <div class="form-group">
                         <label>Question 3</label>
-                        <textarea name="question3" class="form-control" column="3" rows="2"></textarea>
+                        <textarea id="question3" name="question3" class="form-control" column="3" rows="2" required ></textarea>
                         <!-- <input type="test" name="due_date" class="form-control" placeholder="Enter ..."> -->
               </div>
         <div class="modal-footer justify-content-between btn-group">
-          <button type="submit" class="btn btn-primary">Save</button>
+          <button onclick="store_rating('{{$teacher->id}}');" type="submit" class="btn btn-primary">Save</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
-        </form>
+        {{-- </form> --}}
       </div>
       <!-- /.modal-content -->
     </div>
@@ -817,35 +817,121 @@ var event = $('<div />')
         });
 
         // Star Ratings
-        $(document).ready(function() {  
-          $("#st1").click(function() {  
-              $(".fa-star").css("color", "black");  
-              $("#st1").css("color", "yellow");  
-  
-          });  
-          $("#st2").click(function() {  
-              $(".fa-star").css("color", "black");  
-              $("#st1, #st2").css("color", "yellow");  
-  
-          });  
-          $("#st3").click(function() {  
-              $(".fa-star").css("color", "black")  
-              $("#st1, #st2, #st3").css("color", "yellow");  
-  
-          });  
-          $("#st4").click(function() {  
-              $(".fa-star").css("color", "black");  
-              $("#st1, #st2, #st3, #st4").css("color", "yellow");  
-  
-          });  
-          $("#st5").click(function() {  
-              $(".fa-star").css("color", "black");  
-              $("#st1, #st2, #st3, #st4, #st5").css("color", "yellow");  
-  
-          });  
-        });  
+        var rating_count = 0;
+
+        $(document).ready(function() {
+            var st1= true;
+          $("#st1").click(function() {
+              if(st1){
+                $("#st1").css("color", "rgb(255, 153, 0)");
+                rating_count=1;
+                st1 = false;
+              }else{
+                $(".fa-star").css("color", "black");
+                rating_count=0;
+                st1 = true;
+              }
 
 
+              //console.log(rating_count);
+
+          });
+          var st2= true;
+          $("#st2").click(function() {
+            if(st2){
+                $("#st1, #st2").css("color", "rgb(255, 153, 0)");
+                rating_count=2;
+                st2 = false;
+              }else{
+                $(".fa-star").css("color", "black");
+                rating_count=0;
+                st2 = true;
+              }
+
+
+             // console.log(rating_count);
+
+          });
+          var st3= true;
+          $("#st3").click(function() {
+            if(st3){
+                $("#st1, #st2, #st3").css("color", "rgb(255, 153, 0)");
+                rating_count=3;
+                st3 = false;
+              }else{
+                $(".fa-star").css("color", "black")
+                rating_count=0;
+                st3 = true;
+              }
+
+
+             // console.log(rating_count);
+
+          });
+
+          var st4= true;
+          $("#st4").click(function() {
+            if(st4){
+                $("#st1, #st2, #st3, #st4").css("color", "rgb(255, 153, 0)");
+                rating_count=4;
+                st4 = false;
+              }else{
+                $(".fa-star").css("color", "black");
+                rating_count=0;
+                st4 = true;
+              }
+             // console.log(rating_count);
+
+          });
+
+
+          var st5= true;
+          $("#st5").click(function() {
+            if(st5){
+                $("#st1, #st2, #st3, #st4, #st5").css("color", "rgb(255, 153, 0)");
+                rating_count=5;
+                st5 = false;
+              }else{
+                $(".fa-star").css("color", "black");
+                rating_count=0;
+                st5 = true;
+              }
+
+
+            //  console.log(rating_count);
+
+          });
+
+
+
+
+            });
+
+            function store_rating(id){
+               // console.log("test");
+                var q2 = 1;
+                    if($('#radio1').is(":checked")){
+                        q2 =1;
+
+                    }else{
+                        q2 =0;
+                    }
+
+                        $.post("{{route('user.store_rates')}}",
+                        {
+                            rating: rating_count,
+                            question_2: q2,
+                            question_3: $('#question3').val(),
+                            teacher_id:id,
+                            _token: "{{ csrf_token() }}"
+                        },
+                        function(data, status){
+                            if(data.success==true){
+                                window.location="{{route('student.view_tutor',$teacher->id)}}";
+                            }
+                        });
+
+                }
 
 
 

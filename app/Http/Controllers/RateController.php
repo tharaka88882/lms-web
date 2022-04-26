@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Rating;
+use Brian2694\Toastr\Facades\Toastr;
+use App\Http\Requests\RatingRequest;
 
 class RateController extends Controller
 {
@@ -11,9 +14,21 @@ class RateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('teacher.view_rating');
+
+       // $ratings = Rating::where('teacher_id',Auth()->user()->userable->id)->get();
+
+        $query = Rating::query();
+        $query->where('teacher_id',Auth()->user()->userable->id);
+
+        if ($request->get('rating')) {
+            $query->where('rating', $request->get('rating'));
+        }
+
+        $ratings = $query->get();
+        return view('teacher.view_rating',compact('ratings'));
+
     }
 
     /**
@@ -32,9 +47,22 @@ class RateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RatingRequest $request)
     {
-        //
+        $rating = new Rating();
+        $rating->rating = $request->get('rating');
+        $rating->description = $request->get('question_3');
+        $rating->answer = $request->get('question_2');
+        $rating->teacher_id = $request->get('teacher_id');
+        $rating->user_id = Auth()->user()->id;
+        $rating->save();
+
+        Toastr::success('Rating is added successfully :)', 'Success');
+
+        return array(
+            'success'=>true
+        );
+
     }
 
     /**
@@ -81,4 +109,6 @@ class RateController extends Controller
     {
         //
     }
+
+
 }
