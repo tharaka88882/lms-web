@@ -202,11 +202,11 @@
                                     <div class="col-md-6">
                                         <div class="card p-3">
                                             <div class="d-flex align-items-center">
-                                                <a href="{{ route('student.view_tutor',$tutor->id)}}">
+                                                <a href="{{ route('teacher.view_mentor',$tutor->id)}}">
                                                     <img @if ($tutor->user->image != null) src="{{ url('public') }}/images/profile/{{ $tutor->user->image}}" @else src="" @endif alt="User Image" style="width: 120px; height: 120px; border-radius: 50%;" onerror=" this.src='{{ url('public') }}/theme/admin/dist/img/default-avatar.jpg'">
                                                 </a>
                                                 <div class="ml-3 w-100">
-                                                    <h4 class="mb-0 mt-0"><a style="text-transform: capitalize" href="{{ route('student.view_tutor', $tutor->id) }}">{{ $tutor->user->name }}</a></h4>
+                                                    <h4 class="mb-0 mt-0"><a style="text-transform: capitalize" href="{{ route('teacher.view_mentor', $tutor->id) }}">{{ $tutor->user->name }}</a></h4>
                                                     <span class="users-list-date">Rating {{ $tutor->rating }}</span>
                                                     @if ($tutor->user->country !=null)
                                                         <span class="users-list-date">{{ $tutor->user->country }}/{{ $tutor->user->city}}</span>
@@ -226,9 +226,9 @@
                                                             </span>
                                                         </div>
                                                     @endif
-                                                    
+
                                                     <div class="button mt-2 d-flex flex-row align-items-center">
-                                                        <a href="{{ route('student.view_tutor',$tutor->id)}}">
+                                                        <a href="{{ route('teacher.view_mentor',$tutor->id)}}">
                                                             <button class="btn btn-sm btn-outline-primary w-100">View Profile</button>
                                                         </a>
                                                         @if ($tutor->conversation != null)

@@ -66,7 +66,7 @@
                                             <!-- /.direct-chat-info -->
                                             <img class="direct-chat-img"
                                                 @if ($message->sender->image != null) src="{{url('public')}}/images/profile/{{ $message->sender->image }}" @else src="" @endif
-                                                onerror="this.src='http://test105.nawalokacare.com/assets/client/images/default-picture.png'"
+                                                onerror="this.src='https://login.you2mentor.com/public/images/def.jpg'"
                                                 >
                                             <!-- /.direct-chat-img -->
                                             <div class="direct-chat-text" style="max-width:60%; float: left">
