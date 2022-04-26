@@ -436,7 +436,9 @@ class StudentController extends Controller
 
         //return $rating;
 
-        return view('student.view_teacher', compact('request', 'teacher', 'conversations', 'mediation', 'schedules', 'query', 'subjects', 'time_total_array'));
+        $old_ratings = Rating::where('teacher_id',$id)->where('user_id',Auth()->user()->id)->get();
+
+        return view('student.view_teacher', compact('request', 'teacher', 'conversations', 'mediation', 'schedules', 'query', 'subjects', 'time_total_array','old_ratings'));
     }
 
 
