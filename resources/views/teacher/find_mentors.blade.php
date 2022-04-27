@@ -62,7 +62,7 @@
 
                             <div class="col-md-12">
 
-                                <form action="{{ route('student.tutors') }}">
+                                <form action="{{ route('teacher.mentors') }}">
 
                                     <div class="row">
 
@@ -199,7 +199,53 @@
                                                 </a>
                                                 <div class="ml-3 w-100">
                                                     <h4 class="mb-0 mt-0"><a style="text-transform: capitalize" href="{{ route('teacher.view_mentor', $tutor->id) }}">{{ $tutor->user->name }}</a></h4>
-                                                    <span class="users-list-date">Rating {{ $tutor->rating }}</span>
+
+                                                    @php
+                                                    $mediation = 0;
+                                                    $rator_count = count(json_decode($tutor->ratings,true));
+                                                    $rating_count = 0;
+                                                        $mediation = 0;
+                                                    @endphp
+                                                    @foreach ($tutor->ratings as $rating1)
+                                                    @php
+                                                    $rating_count+=$rating1->rating;
+                                                    @endphp
+
+
+
+                                                    @if($rator_count!=0)
+                                                       @php
+                                                            $mediation = $rating_count/$rator_count;
+                                                       @endphp
+                                                    @endif
+
+                                                       @php
+                                                            $round_mediation =(int)$mediation;
+                                                       @endphp
+
+
+
+                                                    @endforeach
+
+                                                    @php
+                                                        $i = 0;
+                                                        //$r = intval(Auth()->user()->userable->level);
+                                                        $r = (int)$mediation;
+                                                    @endphp
+                                                    @while ($i<5)
+                                                        @if ($r>0)
+                                                        <span class="fa fa-star checked"></span>
+                                                        @else
+                                                        <span class="fa fa-star"></span>
+
+                                                        @endif
+                                                        @php
+                                                        $i += 1;
+                                                        $r -=1;
+                                                        @endphp
+                                                    @endwhile
+
+
                                                     @if ($tutor->user->country !=null)
                                                         <span class="users-list-date">{{ $tutor->user->country }}/{{ $tutor->user->city}}</span>
                                                     @endif
