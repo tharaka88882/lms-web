@@ -34,7 +34,7 @@
 
                         <div class="card-header">
 
-                            <h3 class="card-title">Find Mentor</h3>
+                            <h3 class="card-title">Find a Mentor</h3>
 
 
 
@@ -66,7 +66,7 @@
 
                                     <div class="row">
 
-                                        <div class="col-4">
+                                        <div class="col-lg-4">
 
                                             <div class="form-group" id="currentModal">
 
@@ -96,34 +96,6 @@
 
                                             </div>
 
-                                        </div>
-
-                                        <div class="col-3">
-
-                                            <div class="form-group">
-
-                                                <label>City:</label>
-
-                                                <input placeholder="Enter City" class="select2 form-control" data-placeholder="Any" name="city"/>
-
-                                            </div>
-
-                                        </div>
-
-                                        <div class="col-3">
-
-                                            <div class="form-group">
-
-                                                <label> Country:</label>
-
-                                                <input placeholder="Enter Country" class="select2 form-control" data-placeholder="Any" name="country"/>
-
-                                            </div>
-
-                                        </div>
-
-                                        <div class="col-3">
-
                                             <div class="form-group">
 
                                                 <label>Sort Order:</label>
@@ -140,9 +112,18 @@
 
                                         </div>
 
-                                        <div class="col-4">
+                                        <div class="col-lg-4">
+
+                                            <div class="form-group">
+
+                                                <label>City:</label>
+
+                                                <input placeholder="Enter City" class="select2 form-control" data-placeholder="Any" name="city"/>
+
+                                            </div>
+
                                             <div class="form-group" id="currentModal">
-                                                <label>Mentoring Industry :</label>
+                                                <label>Industry:</label>
                                                 <select class="select2 form-control" data-placeholder="Any" style="width: 100%;" name="search_industry">
                                                     <option>Any</option>
                                                     @foreach ($industries as $industry)
@@ -152,13 +133,24 @@
                                                     @endforeach
                                                 </select>
                                             </div>
+
+                                        </div>
+
+                                        <div class="col-lg-4">
+
+                                            <div class="form-group">
+
+                                                <label> Country:</label>
+
+                                                <input placeholder="Enter Country" class="select2 form-control" data-placeholder="Any" name="country"/>
+
+                                            </div>
+
+                                            <button class="btn btn-success" style="margin-top: 30px;">Find Mentor</button>
+
                                         </div>
 
                                         @csrf
-
-                                        <div class="col-3">
-                                            <button class="btn btn-success" style="margin-top: 30px;">Find Mentor</button>
-                                        </div>
                                     </div>
                                 </form>
                             </div>
