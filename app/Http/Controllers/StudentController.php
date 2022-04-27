@@ -589,7 +589,7 @@ class StudentController extends Controller
 
         $conversations = Conversation::where('student_id', Auth()->user()->userable->id)->orderBy('created_at', 'DESC')->paginate(20);
 
-        return view('student.my_teachers', compact('conversations', 'request'));
+        return view('student.my_teachers', compact('conversations','request'));
 
     }
 

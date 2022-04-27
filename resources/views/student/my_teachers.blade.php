@@ -35,7 +35,7 @@
           <div class="card-header">
             <h3 class="card-title">Mentor conversations List</h3>
           </div>
-          <div class="card-body">
+          <!-- <div class="card-body">
               <div class="table-responsive">
                 <table class="table ">
                     <thead>
@@ -69,7 +69,54 @@
                 </table>
 
               </div>
-          </div>
+          </div> -->
+
+          <div class="card-body">
+          <div class="row">
+                                @foreach ($conversations as $conversation)
+                                    <div class="col-md-6">
+                                        <div class="card p-2">
+                                            <div class="d-flex align-items-center">
+                                                <a href="#">
+                                                    <img @if ($conversation->teacher->image != null) src="{{ url('public') }}/images/profile/{{ $conversation->user->image}}" @else src="" @endif alt="User Image" style="width: 120px; height: 120px; border-radius: 50%;" onerror=" this.src='{{ url('public') }}/theme/admin/dist/img/default-avatar.jpg'">
+                                                </a>
+                                                <div class="ml-3 w-100">
+                                                    <h4 class="mb-0 mt-0"><a style="text-transform: capitalize" href="{{ route('student.view_tutor', $conversation->teacher->user->id) }}">{{ $conversation->teacher->user->name}}</a></h4>
+                                                  
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+
+                                                    <div class="p-2 mt-2 bg-light d-flex justify-content-between rounded text-white stats" style="font-size: 14px;">
+                                                            <span>Skills -
+                                                                <span class="badge bg-gray">Maths</span>
+                                                                <span class="badge bg-gray">English</span>
+                                                            </span>
+                                                        </div>
+
+                                                        <span class="users-list-date">Sri Lanka/ Kegalle</span>
+
+                                                    <div class="button mt-2 d-flex flex-row align-items-center">
+                                                            <a href="{{ route('student.view_tutor', $conversation->teacher->user->id) }}">
+                                                            <button class="btn btn-sm btn-outline-primary w-100">View Profile</button>
+                                                        </a>
+                                                            <a href="#">
+                                                                <button class="btn btn-sm btn-primary w-100 ml-2">Conversation</button>
+                                                            </a>
+                                                            
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                            </div>
+
+
+
           <!-- /.card-body -->
           <div class="card-footer">
           </div>
