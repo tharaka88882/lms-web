@@ -147,8 +147,8 @@ My Ratings
                       <!-- <h1 class="lead">How would you rate your overall experience with the mentor</h1> -->
                       <p class="text-muted text-md"> How would you rate your overall experience with the mentor: <b>{{$rating->rating}}</b></p>
                       <p class="text-muted text-md"> Any Comments? <b>{{$rating->description}}</b></p>
-                      <p class="text-muted text-md"> Question 3: <b>{{$rating->answer==1?"Yes":"No"}}</b></p>
-                      <p class="text-muted text-md"> Question 4: <b>No</b></p>
+                      <p class="text-muted text-md"> Was Your Questions answered ?: <b>{{$rating->answer==1?"Yes":"No"}}</b></p>
+                      {{-- <p class="text-muted text-md"> Question 4: <b>No</b></p> --}}
                       <!-- <ul class="ml-4 mb-0 fa-ul text-muted">
                         <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address: Demo Street 123, Demo City 04312, NJ</li>
                         <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone #: + 800 - 12 12 23 52</li>
