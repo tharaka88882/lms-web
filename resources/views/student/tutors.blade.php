@@ -34,7 +34,7 @@
 
                         <div class="card-header">
 
-                            <h3 class="card-title">Find Mentor</h3>
+                            <h3 class="card-title">Find a Mentor</h3>
 
 
 
@@ -66,7 +66,7 @@
 
                                     <div class="row">
 
-                                        <div class="col-4">
+                                        <div class="col-lg-4">
 
                                             <div class="form-group" id="currentModal">
 
@@ -96,34 +96,6 @@
 
                                             </div>
 
-                                        </div>
-
-                                        <div class="col-3">
-
-                                            <div class="form-group">
-
-                                                <label>City:</label>
-
-                                                <input placeholder="Enter City" class="select2 form-control" data-placeholder="Any" name="city"/>
-
-                                            </div>
-
-                                        </div>
-
-                                        <div class="col-3">
-
-                                            <div class="form-group">
-
-                                                <label> Country:</label>
-
-                                                <input placeholder="Enter Country" class="select2 form-control" data-placeholder="Any" name="country"/>
-
-                                            </div>
-
-                                        </div>
-
-                                        <div class="col-3">
-
                                             <div class="form-group">
 
                                                 <label>Sort Order:</label>
@@ -140,9 +112,18 @@
 
                                         </div>
 
-                                        <div class="col-4">
+                                        <div class="col-lg-4">
+
+                                            <div class="form-group">
+
+                                                <label>City:</label>
+
+                                                <input placeholder="Enter City" class="select2 form-control" data-placeholder="Any" name="city"/>
+
+                                            </div>
+
                                             <div class="form-group" id="currentModal">
-                                                <label>Mentoring Industry :</label>
+                                                <label>Industry :</label>
                                                 <select class="select2 form-control" data-placeholder="Any" style="width: 100%;" name="search_industry">
                                                     <option>Any</option>
                                                     @foreach ($industries as $industry)
@@ -152,13 +133,26 @@
                                                     @endforeach
                                                 </select>
                                             </div>
+
+                                        </div>
+
+                                        <div class="col-lg-4">
+
+                                            <div class="form-group">
+
+                                                <label> Country:</label>
+
+                                                <input placeholder="Enter Country" class="select2 form-control" data-placeholder="Any" name="country"/>
+
+                                            </div>
+
+                                            <button class="btn btn-success" style="margin-top: 30px;">Find Mentor</button>
+
                                         </div>
 
                                         @csrf
 
-                                        <div class="col-3">
-                                            <button class="btn btn-success" style="margin-top: 30px;">Find Mentor</button>
-                                        </div>
+                                        
                                     </div>
                                 </form>
                             </div>
@@ -207,10 +201,47 @@
                                                 </a>
                                                 <div class="ml-3 w-100">
                                                     <h4 class="mb-0 mt-0"><a style="text-transform: capitalize" href="{{ route('student.view_tutor', $tutor->id) }}">{{ $tutor->user->name }}</a></h4>
-                                                    <span class="users-list-date">Rating {{ $tutor->rating }}</span>
-                                                    @if ($tutor->user->country !=null)
-                                                        <span class="users-list-date">{{ $tutor->user->country }}/{{ $tutor->user->city}}</span>
-                                                    @endif
+                                                    
+                                                    @php
+                                                    $mediation = 0;
+                                                    @endphp
+                                                    @foreach ($tutor->ratings as $rating1)
+
+                                                    // Rating-------------------------------------------------------------------------
+
+                                                        $rator_count = count(json_decode( $rating1,true));
+                                                        $rating_count = 0;
+                                                        $mediation = 0;
+                                                            foreach($rating1 as $rating){
+                                                                $rating_count+=$rating->rating;
+                                                            }
+                                                    if($rator_count!=0){
+                                                        $mediation = $rating_count/$rator_count;
+                                                    }
+
+                                                        $round_mediation =(int)$mediation;
+                                                        
+                                                    
+
+                                                    @endforeach
+
+                                                    @php
+                                                        $i = 0;
+                                                        //$r = intval(Auth()->user()->userable->level);
+                                                        $r = (int)$mediation;
+                                                    @endphp
+                                                    @while ($i<5)
+                                                        @if ($r>0)
+                                                        <span class="fa fa-star checked"></span>
+                                                        @else
+                                                        <span class="fa fa-star"></span>
+
+                                                        @endif
+                                                        @php
+                                                        $i += 1;
+                                                        $r -=1;
+                                                        @endphp
+                                                    @endwhile
                                                     @if ($tutor->user->industry !=null)
                                                         <span class="users-list-date">Industry - {{ $tutor->user->industry }}</span>
                                                     @endif
@@ -221,12 +252,14 @@
                                                         <div class="p-2 mt-2 bg-light d-flex justify-content-between rounded text-white stats" style="font-size: 14px;">
                                                             <span>Skills -
                                                             @foreach ($tutor->subjects as $subject)
-                                                                <span class="badge badge-success">{{$subject['name']}}</span>
+                                                                <span class="badge bg-gray">{{$subject['name']}}</span>
                                                             @endforeach
                                                             </span>
                                                         </div>
                                                     @endif
-
+                                                    @if ($tutor->user->country !=null)
+                                                        <span class="users-list-date">{{ $tutor->user->country }}/{{ $tutor->user->city}}</span>
+                                                    @endif
                                                     <div class="button mt-2 d-flex flex-row align-items-center">
                                                         <a href="{{ route('student.view_tutor',$tutor->id)}}">
                                                             <button class="btn btn-sm btn-outline-primary w-100">View Profile</button>
