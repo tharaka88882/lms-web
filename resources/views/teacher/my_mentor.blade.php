@@ -143,6 +143,10 @@
                                                             <a href="{{route('teacher.view_mentor_conversation', $conversation->id)}}">
                                                                 <button class="btn btn-sm btn-primary w-100 ml-2">Conversation</button>
                                                             </a>
+                                                            <a>
+                                                                <button  data-toggle="modal" data-target="#modal-md" class="btn btn-sm btn-warning w-100 ml-3">Notes</button>
+                                                            </a>
+
 
                                                     </div>
                                                 </div>
@@ -163,4 +167,35 @@
         <!-- /.card -->
 
       </section>
+
+
+          <!-- /.modal -->
+  <div class="modal fade" id="modal-md">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Name</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+            @csrf
+
+            <div class="row">
+                <div class="form-group col-md-12">
+                    {{-- <label>Any Comments</label> --}}
+                    <input id="question3" name="question3" class="form-control"  required />
+                    <!-- <input type="test" name="due_date" class="form-control" placeholder="Enter ..."> -->
+          </div>
+            </div>
+        <div class="modal-footer justify-content-between btn-group">
+          <button  type="submit" class="btn btn-primary">Save</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
 @endsection
