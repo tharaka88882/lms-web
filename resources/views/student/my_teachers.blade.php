@@ -78,18 +78,18 @@
                                         <div class="card p-2">
                                             <div class="d-flex align-items-center">
                                                 <a href="#">
-                                                    <img @if ($conversation->teacher->image != null) src="{{ url('public') }}/images/profile/{{ $conversation->user->image}}" @else src="" @endif alt="User Image" style="width: 120px; height: 120px; border-radius: 50%;" onerror=" this.src='{{ url('public') }}/images/def.jpg'">
+                                                    <img @if ($conversation->teacher->user->image != null) src="{{ url('public') }}/images/profile/{{ $conversation->teacher->user->image}}" @else src="" @endif alt="User Image" style="width: 120px; height: 120px; border-radius: 50%;" onerror=" this.src='{{ url('public') }}/images/def.jpg'">
                                                 </a>
                                                 <div class="ml-3 w-100">
                                                     <h4 class="mb-0 mt-0"><a style="text-transform: capitalize" href="{{ route('student.view_tutor', $conversation->teacher->user->id) }}">{{ $conversation->teacher->user->name}}</a></h4>
 
                                                     @php
                                                     $mediation = 0;
-                                                    $rator_count = count(json_decode($conversation->teacher->ratings,true));
+                                                    $rator_count = count(json_decode($conversation->teacher->rate,true));
                                                     $rating_count = 0;
                                                         $mediation = 0;
                                                     @endphp
-                                                    @foreach ($conversation->teacher->ratings as $rating1)
+                                                    @foreach ($conversation->teacher->rate as $rating1)
                                                     @php
                                                     $rating_count+=$rating1->rating;
                                                     @endphp
@@ -141,7 +141,7 @@
                                                        @endif
 
                                                     <div class="button mt-2 d-flex flex-row align-items-center">
-                                                            <a href="{{ route('student.view_tutor', $conversation->teacher->user->id) }}">
+                                                            <a href="{{ route('student.view_tutor', $conversation->teacher->id) }}">
                                                             <button class="btn btn-sm btn-outline-primary w-100">View Profile</button>
                                                         </a>
                                                             <a href="{{route('student.view_conversation', $conversation->id)}}">

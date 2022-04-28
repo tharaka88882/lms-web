@@ -202,11 +202,11 @@
 
                                                     @php
                                                     $mediation = 0;
-                                                    $rator_count = count(json_decode($tutor->ratings,true));
+                                                    $rator_count = count(json_decode($tutor->rate,true));
                                                     $rating_count = 0;
                                                         $mediation = 0;
                                                     @endphp
-                                                    @foreach ($tutor->ratings as $rating1)
+                                                    @foreach ($tutor->rate as $rating1)
                                                     @php
                                                     $rating_count+=$rating1->rating;
                                                     @endphp
