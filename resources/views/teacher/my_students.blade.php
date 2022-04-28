@@ -35,81 +35,54 @@
           <div class="card-header">
             <h3 class="card-title">Mentee Conversations</h3>
           </div>
-          <!-- <div class="card-body">
-              <div class="table-responsive">
-                <table class="table ">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Mantee Name</th>
-                            {{-- <th>Email</th> --}}
-                            <th>Grade/Level</th>
-                            {{-- <th>Status</th> --}}
-                            <th>action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @php
-                            $i = 1;
-                        @endphp
-                        @foreach($conversations as $conversation)
-                        <tr>
-                            <td>{{$i}}</td>
-                            <td>{{$conversation['name']}}</td>
-                            {{-- <td>{{$conversation->student->user->email}}</td> --}}
-                            <td>{{$conversation['grade']}}</td>
-
-                            {{-- <td><h5><span class="badge badge-secondary">{{$conversation->student->status==('1')? 'Active':'Inactive'}}</span><h5></td> --}}
-                            <td>
-                                @if ($conversation['user']=='mentee')
-                                <a class="btn btn-sm btn-warning" href="{{route('teacher.view_conversation', $conversation['conversation_id'])}}"><i class="far fa-edit"></i> View Conversation</a>
-
-                                @else
-                                <a class="btn btn-sm btn-warning" href="{{route('teacher.view_mentor_conversation', $conversation['conversation_id'])}}"><i class="far fa-edit"></i> View Conversation</a>
-
-                                @endif
-                          </td>
-                        </tr>
-                        @php
-                            $i++;
-                        @endphp
-                        @endforeach
-                    </tbody>
-                </table>
-
-              </div>
-          </div> -->
 
 
           <div class="card-body">
           <div class="row">
+
+                        @php
+                            $i = 1;
+                        @endphp
+                        @foreach($conversations as $conversation)
                                     <div class="col-md-6">
                                         <div class="card p-2">
                                             <div class="d-flex align-items-center">
                                                 <a href="#">
-                                                    <img alt="User Image" style="width: 120px; height: 120px; border-radius: 50%;" onerror=" this.src='{{ url('public') }}/theme/admin/dist/img/default-avatar.jpg'">
+                                                    <img alt="User Image" style="width: 120px; height: 120px; border-radius: 50%;" src="{{ url('public') }}/images/{{$conversation['image']}}" onerror=" this.src='{{ url('public') }}/images/def.jpg'">
                                                 </a>
                                                 <div class="ml-3 w-100">
-                                                    <h4 class="mb-0 mt-0"><a style="text-transform: capitalize" href="#">Mentee Name</a></h4>
-                                                  
-                                                    <div class="p-2 mt-2 bg-light d-flex justify-content-between rounded text-white stats" style="font-size: 14px;">
-                                                            <span>My Developments -
-                                                                <span class="badge bg-gray">Milestone 1</span>
-                                                                <span class="badge bg-gray">Milestone 2</span>
+                                                    <h4 class="mb-0 mt-0"><a style="text-transform: capitalize" href="#">{{$conversation['name']}}</a></h4>
 
-                                                            </span>
-                                                        </div>
+                                                    @foreach ($conversation['milestone'] as $milestone)
+                                                    <div class="p-2 mt-2 bg-light d-flex justify-content-between rounded text-white stats" style="font-size: 14px;">
+                                                        <span>My Developments -
+                                                            <span class="badge bg-gray">{{$milestone->note}}</span>
+                                                        </span>
+                                                    </div>
+                                                    @endforeach
 
                                                     <div class="button mt-2 d-flex flex-row align-items-center">
-                                                            <a href="#">
-                                                                <button class="btn btn-sm btn-primary w-100 ml-2">Conversation</button>
-                                                            </a>
-                                                            
+                                                         @if ($conversation['user']=='mentee')
+                                                         <a href="{{route('teacher.view_conversation',$conversation['conversation_id'])}}">
+                                                            <button class="btn btn-sm btn-primary w-100 ml-2">Conversation</button>
+                                                        </a>
+
+                                                        @else
+                                                        <a href="{{route('teacher.view_mentor_conversation',$conversation['conversation_id'])}}">
+                                                            <button class="btn btn-sm btn-primary w-100 ml-2">Conversation</button>
+                                                        </a>
+                                                         @endif
+
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
+                                    @php
+                                    $i++;
+                                @endphp
+                                @endforeach
                             </div>
                             </div>
 
