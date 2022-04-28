@@ -322,10 +322,12 @@ class TeacherController extends Controller
             $conversations[$i] = array(
                 'id' => $mentee_conversation->student_id,
                 'name' => $mentee_conversation->student->user->name,
+                'image' => $mentee_conversation->student->user->image,
                 'email' => $mentee_conversation->student->user->email,
                 'grade' => $mentee_conversation->student->grade,
                 'user' => 'mentee',
                 'conversation_id' => $mentee_conversation->id,
+                'milestone'=> $mentee_conversation->student->user->milestones,
                 'status' => $mentee_conversation->student->status,
                 'updated_at' => $mentee_conversation->updated_at
             );
@@ -336,10 +338,12 @@ class TeacherController extends Controller
             $conversations[$i] = array(
                 'id' => $mentor_conversation->mentee_id,
                 'name' => $mentor_conversation->mentee->user->name,
+                'image' => $mentor_conversation->mentee->user->image,
                 'email' => $mentor_conversation->mentee->user->email,
                 'grade' => 'Non',
                 'user' => 'mentor',
                 'conversation_id' => $mentor_conversation->id,
+                'milestone' => $mentor_conversation->mentee->user->milestones,
                 'status' => $mentor_conversation->mentee->status,
                 'updated_at' => $mentor_conversation->updated_at
             );

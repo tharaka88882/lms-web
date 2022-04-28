@@ -68,43 +68,88 @@
 
           <div class="card-body">
           <div class="row">
+            @foreach($conversations as $conversation)
                                     <div class="col-md-6">
                                         <div class="card p-2">
                                             <div class="d-flex align-items-center">
                                                 <a href="#">
-                                                    <img alt="User Image" style="width: 120px; height: 120px; border-radius: 50%;" onerror=" src='{{ url('public') }}/theme/admin/dist/img/default-avatar.jpg'">
+                                                    <img alt="User Image" style="width: 120px; height: 120px; border-radius: 50%;" src="{{ url('public') }}/images/{{$conversation->mentor->user->image}}" onerror=" src='{{ url('public') }}/images/def.jpg'">
                                                 </a>
                                                 <div class="ml-3 w-100">
-                                                    <h4 class="mb-0 mt-0"><a style="text-transform: capitalize" href="#">Mentor Name</a></h4>
-                                                  
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star checked"></span>
-                                                    <span class="fa fa-star"></span>
-                                                    <span class="fa fa-star"></span>
+                                                    <h4 class="mb-0 mt-0"><a style="text-transform: capitalize" href="#">{{$conversation->mentor->user->name}}</a></h4>
+
+
+
+                                                    @php
+                                                    $mediation = 0;
+                                                    $rator_count = count(json_decode($conversation->mentor->ratings,true));
+                                                    $rating_count = 0;
+                                                        $mediation = 0;
+                                                    @endphp
+                                                    @foreach ($conversation->mentor->ratings as $rating1)
+                                                    @php
+                                                    $rating_count+=$rating1->rating;
+                                                    @endphp
+
+
+
+                                                    @if($rator_count!=0)
+                                                       @php
+                                                            $mediation = $rating_count/$rator_count;
+                                                       @endphp
+                                                    @endif
+
+                                                       @php
+                                                            $round_mediation =(int)$mediation;
+                                                       @endphp
+
+
+
+                                                    @endforeach
+
+                                                    @php
+                                                        $i = 0;
+                                                        //$r = intval(Auth()->user()->userable->level);
+                                                        $r = (int)$mediation;
+                                                    @endphp
+                                                    @while ($i<5)
+                                                        @if ($r>0)
+                                                        <span class="fa fa-star checked"></span>
+                                                        @else
+                                                        <span class="fa fa-star"></span>
+
+                                                        @endif
+                                                        @php
+                                                        $i += 1;
+                                                        $r -=1;
+                                                        @endphp
+                                                    @endwhile
 
                                                     <div class="p-2 mt-2 bg-light d-flex justify-content-between rounded text-white stats" style="font-size: 14px;">
-                                                            <span>Skills -
-                                                                <span class="badge bg-gray">Maths</span>
-                                                                <span class="badge bg-gray">English</span>
-                                                            </span>
+                                                           @foreach ($conversation->mentor->teachersubject as $skils)
+                                                           <span>Skills -
+                                                            <span class="badge bg-gray">{{$skils->name}}/span>
+                                                        </span>
+                                                           @endforeach
                                                         </div>
 
-                                                        <span class="users-list-date">Sri Lanka/ Kegalle</span>
-
+                                                        @if ($conversation->mentor->user->country!=null)
+                                                        <span class="users-list-date">{{$conversation->mentor->user->country}}/{{$conversation->mentor->user->city}}</span>
+                                                        @endif
                                                     <div class="button mt-2 d-flex flex-row align-items-center">
-                                                            <a href="#">
+                                                            <a href="{{route('teacher.view_mentor',$conversation->mentor->id)}}">
                                                             <button class="btn btn-sm btn-outline-primary w-100">View Profile</button>
                                                         </a>
-                                                            <a href="#">
+                                                            <a href="{{route('teacher.view_mentor_conversation', $conversation->id)}}">
                                                                 <button class="btn btn-sm btn-primary w-100 ml-2">Conversation</button>
                                                             </a>
-                                                            
+
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                        @endforeach
                             </div>
                             </div>
 
