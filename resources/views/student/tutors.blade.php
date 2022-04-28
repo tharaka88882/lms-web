@@ -201,33 +201,30 @@
                                                 </a>
                                                 <div class="ml-3 w-100">
                                                     <h4 class="mb-0 mt-0"><a style="text-transform: capitalize" href="{{ route('student.view_tutor', $tutor->id) }}">{{ $tutor->user->name }}</a></h4>
-
-                                                    @php
-                                                    $mediation = 0;
-                                                    $rator_count = count(json_decode($tutor->ratings,true));
+                                                    <?php
+                                                    $rator_count = count(json_decode($tutor->rate,true));
                                                     $rating_count = 0;
-                                                        $mediation = 0;
-                                                    @endphp
-                                                    @foreach ($tutor->ratings as $rating1)
-                                                    @php
-                                                    $rating_count+=$rating1->rating;
-                                                    @endphp
+                                                    $mediation = 0;
 
+                                                    ?>
 
-
-                                                    @if($rator_count!=0)
-                                                       @php
-                                                            $mediation = $rating_count/$rator_count;
-                                                       @endphp
-                                                    @endif
-
-                                                       @php
-                                                            $round_mediation =(int)$mediation;
-                                                       @endphp
-
-
-
+                                                    @foreach ($tutor->rate as $rate)
+                                                    <?php
+                                                    $rating_count ++;
+                                                    ?>
                                                     @endforeach
+
+                                                 <?php
+
+                                                    if($rator_count!=0){
+
+                                                            $mediation = $rating_count/$rator_count;
+
+                                                    }
+
+
+                                                            $round_mediation =(int)$mediation;
+                                                 ?>
 
                                                     @php
                                                         $i = 0;
