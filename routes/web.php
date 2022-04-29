@@ -4,6 +4,7 @@ use App\Models\Student;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,10 @@ Route::get('/privacy', 'App\Http\Controllers\DashboardController@privacy_policy'
 Route::get('/disclaimer', 'App\Http\Controllers\DashboardController@disclaimer')->name('disclaimer');
 
 //Route::get('/login', 'App\Http\Controllers\auth\LoginController@index')->name('login');
+
+
+Route::get('/sendMail', 'App\Http\Controllers\MailController@sendMail')->name('sendMail');
+
 
 Auth::routes();
 
@@ -259,3 +264,7 @@ Route::get('abcd/admin/migrate/db', function () {
         '--force' => true
      ]);
 });
+
+
+
+
