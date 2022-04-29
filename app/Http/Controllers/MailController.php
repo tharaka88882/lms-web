@@ -7,8 +7,9 @@ use App\Mail\SignUp;
 class MailController extends Controller {
    public function sendMail(){
 
-        Mail::to('ash.lakshan@gmail.com')->send(new SignUp());
+        Mail::to('gaveenwick@gmail.com')->send(new SignUp());
 
-        return view('welcome');
+        return redirect()->route('user.milestone');
+        // return view('welcome');
    }
 }
