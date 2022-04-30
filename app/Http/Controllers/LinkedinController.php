@@ -11,6 +11,8 @@ use App\Models\Teacher;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Log;
 use PhpParser\Node\Stmt\TryCatch;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SignUp;
 
 class LinkedinController extends Controller
 {
@@ -88,6 +90,8 @@ class LinkedinController extends Controller
                     $headers = "From: info@you2mentor.com" . "\r\n";
 
                     mail($to, $subject, $txt, $headers);
+                    //Mail::to($user1->email)->send(new SignUp());
+
 
 
                 if(Auth()->user()->userable->linkedin_link!=null){

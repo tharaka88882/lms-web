@@ -157,6 +157,12 @@
                                         @csrf @method('post')
                                         <button class="btn btn-link btn-flat" style="padding-left: 0">Sign out</button>
                                     </form>
+                                    <ul style="list-style: none; padding-left: 0px">
+                                        <li><a href="{{ route('user.profile') }}">Refer a Friend</a></li>
+                                    </ul>
+                                    <ul style="list-style: none; padding-left: 0px">
+                                        <li><a href="{{ route('user.profile') }}">Help and Support</a></li>
+                                    </ul>
                                 </div>
                             </li>
                         </ul>

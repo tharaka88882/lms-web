@@ -503,8 +503,10 @@ class TeacherController extends Controller
 
         $conversations = MentorConversation::where('mentee_id', Auth()->user()->userable->id)->orderBy('created_at', 'DESC')->paginate(20);
         // dd($conversations);
+        $subjects = Subject::all();
+        $industries = Industry::all();
 
-        return view('teacher.my_mentor', compact('conversations', 'request'));
+        return view('teacher.my_mentor', compact('conversations', 'request','subjects','industries'));
     }
 
     public function rate_mentor(Request $request)
