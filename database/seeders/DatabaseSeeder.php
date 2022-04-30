@@ -31,15 +31,15 @@ class DatabaseSeeder extends Seeder
         $teacher1->save();
         $teacher1->user()->save($user1);
 
-        // $user4 = new User();
-        // $user4->name = "Hansi Nissanka";
-        // $user4->email = "hansi.nissanka7@gmail.com";
-        // $user4->password = bcrypt('12345678');
-        // $teacher2 = new Teacher();
-        // $teacher2->status = true;
-        // $teacher2->level = 4;
-        // $teacher2->save();
-        // $teacher2->user()->save($user4);
+        $user4 = new User();
+        $user4->name = "Kavidu";
+        $user4->email = "kavidu@gmail.com";
+        $user4->password = bcrypt('12345678');
+        $teacher2 = new Teacher();
+        $teacher2->status = true;
+        $teacher2->level = 4;
+        $teacher2->save();
+        $teacher2->user()->save($user4);
 
         $user2 = new User();
         $user2->name = "dinesh";

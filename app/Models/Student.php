@@ -19,4 +19,10 @@ class Student extends Model
     // {
     //     return $this->hashMany(Complaint::class, 'mentee_id','id');
     // }
+    public function stikey(){
+        return $this->hasMany(StikeyNoteMentee::class);
+    }
+    public function stikey_note(){
+        return $this->hasMany(StikeyNoteMentee::class);
+    }
 }

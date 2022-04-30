@@ -153,6 +153,11 @@ Route::prefix('user')->middleware('check.user')->group(function () {
 
     Route::any('/notification-json', 'App\Http\Controllers\UserController@notifications_json')->name('user.json.notifications');
     Route::any('/notification', 'App\Http\Controllers\UserController@notifications')->name('user.notifications');
+
+
+    //Stikey Notes-------------------------------------------------------------------------------------
+    Route::any('/stikey', 'App\Http\Controllers\UserController@stikey')->name('user.update_stikey');
+    Route::any('/stikey-mentee', 'App\Http\Controllers\UserController@stikey_mentee')->name('user.update_mentee_stikey');
 });
 
 Route::prefix('student')->middleware('check.user')->group(function () {
