@@ -3,13 +3,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SignUp;
+use Brian2694\Toastr\Facades\Toastr;
+
 
 class MailController extends Controller {
    public function sendMail(){
 
-        Mail::to('gaveenwick@gmail.com')->send(new SignUp());
+        Mail::to('dilkikalpana123@gmail.com')->send(new SignUp());
 
-        return redirect()->route('user.milestone');
+        Toastr::success('sent:)', 'Success');
+
+       // return redirect()->route('home');
         // return view('welcome');
    }
 }

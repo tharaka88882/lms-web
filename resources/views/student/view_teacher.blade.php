@@ -42,7 +42,7 @@
 
                         <!-- Add the bg color to the header using any of the bg-* classes -->
 
-                        <div class="widget-user-header bg-olive">
+                        <div class="widget-user-header bg-olive" style="background-image: url('https://login.you2mentor.com/public/images/download.jpg') !important;">
 
                             <h3 class="widget-user-username" style="text-transform: uppercase">{{ $teacher->user->name }}
 

@@ -73,6 +73,144 @@
 
           <div class="card-body">
           <div class="row">
+
+            <div class="col-md-12">
+
+                <!-- USERS LIST -->
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <h3 class="card-title">Filter a Mentor</h3>
+
+
+
+                        <div class="card-tools">
+
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+
+                                <i class="fas fa-minus"></i>
+
+                            </button>
+
+                            <button type="button" class="btn btn-tool" data-card-widget="remove">
+
+                                <i class="fas fa-times"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <!-- /.card-header -->
+
+                    <div class="card-body p-10">
+
+                        <div class="col-md-12">
+
+                            <form action="{{ route('teacher.mentors') }}">
+
+                                <div class="row">
+
+                                    <div class="col-lg-4">
+
+                                        <div class="form-group" id="currentModal">
+
+                                            <label> Mentoring Topics:</label>
+
+                                            {{-- <select class="select2 form-control" data-placeholder="Any"
+
+                                                style="width: 100%;" name="search_subject">
+
+                                                <option>Any</option>
+
+                                                @foreach ($subjects as $subject)
+
+                                                    <option value="{{ $subject->id }}" @if ($subject->id == $request->get('search_subject')) {{ 'selected' }} @endif>
+
+                                                        {{ $subject->name }}</option>
+
+                                                @endforeach
+
+                                            </select> --}}
+
+                                             <select name="search_subject" class="form-control select22 @if($errors->has('search_subject')) {{'is-invalid'}} @endif" id="select2-echannel-doctor">
+
+                                                {{-- <option>Any</option> --}}
+
+                                            </select>
+
+                                        </div>
+
+                                        <div class="form-group">
+
+                                            <label>Sort Order:</label>
+
+                                            <select class="select2 form-control" style="width: 100%;">
+
+                                                <option selected>Rating ASC</option>
+
+                                                <option>Rating DESC</option>
+
+                                            </select>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-lg-4">
+
+                                        <div class="form-group">
+
+                                            <label>City:</label>
+
+                                            <input placeholder="Enter City" class="select2 form-control" data-placeholder="Any" name="city"/>
+
+                                        </div>
+
+                                        <div class="form-group" id="currentModal">
+                                            <label>Industry:</label>
+                                            <select class="select2 form-control" data-placeholder="Any" style="width: 100%;" name="search_industry">
+                                                <option>Any</option>
+                                                @foreach ($industries as $industry)
+                                                    <option value="{{ $industry->id }}" @if ($industry->id == $request->get('search_industry')) {{ 'selected' }} @endif>
+                                                        {{ $industry->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-lg-4">
+
+                                        <div class="form-group">
+
+                                            <label> Country:</label>
+
+                                            <input placeholder="Enter Country" class="select2 form-control" data-placeholder="Any" name="country"/>
+
+                                        </div>
+
+                                        <button disabled class="btn btn-success" style="margin-top: 30px;">Filter</button>
+
+                                    </div>
+
+                                    @csrf
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- /.card-body -->
+
+                </div>
+
+                <!--/.card -->
+
+            </div>
                                 @foreach ($conversations as $conversation)
                                     <div class="col-md-6">
                                         <div class="card p-2">
@@ -148,7 +286,7 @@
                                                                 <button class="btn btn-sm btn-primary w-100 ml-2">Conversation</button>
                                                             </a>
                                                             <a>
-                                                                <button  data-toggle="modal" data-target="#modal-md" class="btn btn-sm btn-warning w-100 ml-3">Notes</button>
+                                                                <button  data-toggle="modal" data-target="#modal-md{{$conversation->id}}" class="btn btn-sm btn-warning w-100 ml-3">Notes</button>
                                                             </a>
 
                                                     </div>
@@ -156,6 +294,37 @@
                                             </div>
                                         </div>
                                     </div>
+
+
+                                                                            <!-- /.modal -->
+                                        <div class="modal fade" id="modal-md{{$conversation->id}}">
+                                            <div class="modal-dialog modal-md">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                <h4 class="modal-title">{{$conversation->teacher->user->name}}</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                </div>
+                                                    @csrf
+
+                                                    <div class="row">
+                                                        <div class="form-group col-md-12">
+                                                            {{-- <label>Any Comments</label> --}}
+                                                            <input id="question3" name="question3" class="form-control"  required />
+                                                            <!-- <input type="test" name="due_date" class="form-control" placeholder="Enter ..."> -->
+                                                </div>
+                                                    </div>
+                                                <div class="modal-footer justify-content-between btn-group">
+                                                <button  type="submit" class="btn btn-primary">Save</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                            </div>
+                                            <!-- /.modal-dialog -->
+                                        </div>
+                                        <!-- /.modal -->
                                 @endforeach
                             </div>
                             </div>
@@ -171,33 +340,5 @@
 
       </section>
 
-        <!-- /.modal -->
-  <div class="modal fade" id="modal-md">
-    <div class="modal-dialog modal-md">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Name</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-            @csrf
 
-            <div class="row">
-                <div class="form-group col-md-12">
-                    {{-- <label>Any Comments</label> --}}
-                    <input id="question3" name="question3" class="form-control"  required />
-                    <!-- <input type="test" name="due_date" class="form-control" placeholder="Enter ..."> -->
-          </div>
-            </div>
-        <div class="modal-footer justify-content-between btn-group">
-          <button  type="submit" class="btn btn-primary">Save</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-  </div>
-  <!-- /.modal -->
 @endsection
