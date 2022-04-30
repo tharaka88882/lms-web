@@ -317,8 +317,14 @@ class TeacherController extends Controller
         $mentor_conversations = MentorConversation::where('mentor_id', Auth()->user()->userable->id)->paginate(10);
         //dd( $mentee_conversations);
         $conversations =  array();
+        $stikey = '';
         $i = 0;
         foreach ($mentee_conversations as $mentee_conversation) {
+                foreach($mentee_conversation->student->stikey as $stikey){
+                    if($stikey->user_id==Auth()->user()->id && $stikey->student_id==$mentee_conversation->student->id){
+                        $stikey = $stikey->note;
+                    }
+                }
             $conversations[$i] = array(
                 'id' => $mentee_conversation->student_id,
                 'name' => $mentee_conversation->student->user->name,
@@ -328,6 +334,7 @@ class TeacherController extends Controller
                 'user' => 'mentee',
                 'conversation_id' => $mentee_conversation->id,
                 'milestone'=> $mentee_conversation->student->user->milestones,
+                'stikey'=> $stikey,
                 'status' => $mentee_conversation->student->status,
                 'updated_at' => $mentee_conversation->updated_at
             );
@@ -335,6 +342,12 @@ class TeacherController extends Controller
         }
         $i = sizeof($conversations) + 1;
         foreach ($mentor_conversations as $mentor_conversation) {
+
+            foreach($mentor_conversation->mentee->stikey as $stikey){
+                if($stikey->user_id==Auth()->user()->id && $stikey->student_id==$mentee_conversation->mentee->id){
+                    $stikey = $stikey->note;
+                }
+            }
             $conversations[$i] = array(
                 'id' => $mentor_conversation->mentee_id,
                 'name' => $mentor_conversation->mentee->user->name,
@@ -344,6 +357,7 @@ class TeacherController extends Controller
                 'user' => 'mentor',
                 'conversation_id' => $mentor_conversation->id,
                 'milestone' => $mentor_conversation->mentee->user->milestones,
+                'stikey'=> $stikey,
                 'status' => $mentor_conversation->mentee->status,
                 'updated_at' => $mentor_conversation->updated_at
             );

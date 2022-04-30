@@ -6,6 +6,8 @@ use App\Http\Requests\UpdateProfileRequest;
 use App\Http\Requests\UpdateTeacherProfileRequest;
 use App\Models\Complaint;
 use App\Models\Industry;
+use App\Models\StikeyNote;
+use App\Models\StikeyNoteMentee;
 use App\Models\Notification;
 use Exception;
 use Illuminate\Http\Request;
@@ -185,4 +187,43 @@ class UserController extends Controller
             "success" => true
         );
     }
+    public function stikey(Request $request)
+    {
+       $stikey = StikeyNote::where('user_id',Auth()->user()->id)->where('teacher_id',$request->get('id'))->get();
+
+       if(sizeof($stikey)>0){
+        $stikey->note = $request->get('note');
+
+       }else{
+        $stikey = new StikeyNote();
+        $stikey->note = $request->get('note');
+        $stikey->user_id = Auth()->user()->id;
+        $stikey->teacher_id = $request->get('id');
+        $stikey->save();
+       }
+       $stikey->save();
+       return array(
+           'success'=>true
+       );
+    }
+    public function stikey_mentee(Request $request)
+    {
+       $stikey = StikeyNoteMentee::where('user_id',Auth()->user()->id)->where('student_id',$request->get('id'))->get();
+
+       if(sizeof($stikey)>0){
+        $stikey->note = $request->get('note');
+
+       }else{
+        $stikey = new StikeyNoteMentee();
+        $stikey->note = $request->get('note');
+        $stikey->user_id = Auth()->user()->id;
+        $stikey->student_id = $request->get('id');
+        $stikey->save();
+       }
+       $stikey->save();
+       return array(
+           'success'=>true
+       );
+    }
+
 }

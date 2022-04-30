@@ -83,5 +83,9 @@ class Teacher extends Model
         return $this->hasMany(Rating::class);
     }
 
+     public function stikey(){
+        return $this->hasMany(StikeyNote::class);
+    }
+
 }
 

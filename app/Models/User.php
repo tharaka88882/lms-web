@@ -87,6 +87,12 @@ class User extends Authenticatable
     public function rates(){
         return $this->hasMany(Rating::class);
     }
+    public function stikey(){
+        return $this->hasMany(StikeyNote::class);
+    }
+    public function stikeymentee(){
+        return $this->hasMany(StikeyNoteMentee::class);
+    }
 
 
 }
