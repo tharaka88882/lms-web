@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
 use PhpParser\Node\Stmt\TryCatch;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\VerifyMail;
 
 class ResetPasswordController extends Controller
 {
@@ -120,12 +122,13 @@ class ResetPasswordController extends Controller
             $code = rand(1000, 99999);
 
 
-        $to = $request->get('email');
-        $subject = "You2Mentor Verification Code";
-        $txt = "Hi,  Your Code is :- ".$code;
-        $headers = "From: info@you2mentor.com" . "\r\n";
+        $user_mail = $request->get('email');
+        // $subject = "You2Mentor Verification Code";
+        // $txt = "Hi,  Your Code is :- ".$code;
+        // $headers = "From: info@you2mentor.com" . "\r\n";
 
-        mail($to,$subject,$txt,$headers);
+        // mail($to,$subject,$txt,$headers);
+        Mail::to($user_mail)->send(new VerifyMail($code));
 
            // dd($student);
          // Toastr::success("Can't Find Your Account  :(", "Can't Find");

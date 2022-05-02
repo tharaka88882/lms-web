@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MailController;
+use App\Mail\WelcomeMail;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +31,9 @@ Route::get('/disclaimer', 'App\Http\Controllers\DashboardController@disclaimer')
 
 //Route::get('/login', 'App\Http\Controllers\auth\LoginController@index')->name('login');
 
-
+// Route::get('/sendMail', function(){
+//     return new WelcomeMail();
+// });
 Route::get('/sendMail', 'App\Http\Controllers\MailController@sendMail')->name('sendMail');
 
 

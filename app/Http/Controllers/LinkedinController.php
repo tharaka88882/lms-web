@@ -12,7 +12,7 @@ use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Log;
 use PhpParser\Node\Stmt\TryCatch;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\SignUp;
+use App\Mail\WelcomeMentorMail;
 
 class LinkedinController extends Controller
 {
@@ -85,12 +85,13 @@ class LinkedinController extends Controller
                 Auth::login($user1);
 
                     $to = $user1->email;
-                    $subject = "Teacher Registerd";
-                    $txt = "You Successfully Registered as a Mentor. Please Wait Activates you within 24 hours..!". route('login');
-                    $headers = "From: info@you2mentor.com" . "\r\n";
+                    // $subject = "Teacher Registerd";
+                    // $txt = "You Successfully Registered as a Mentor. Please Wait Activates you within 24 hours..!". route('login');
+                    // $headers = "From: info@you2mentor.com" . "\r\n";
 
-                    mail($to, $subject, $txt, $headers);
+                    // mail($to, $subject, $txt, $headers);
                     //Mail::to($user1->email)->send(new SignUp());
+                    Mail::to($to)->send(new WelcomeMentorMail());
 
 
 

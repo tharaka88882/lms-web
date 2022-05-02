@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use PhpParser\Node\Stmt\TryCatch;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\StartConversation;
 
 class ChatController extends Controller
 {
@@ -53,11 +55,13 @@ class ChatController extends Controller
             $this->createNotification($teacher->user->id,explode(' ',Auth()->user()->name)[0].' has started a conversation.',route('teacher.view_conversation',$conversation->id));
 
             $to = $teacher->user->email;
-            $subject = "Welcome to You2Mentor";
-            $txt = "Hi, ".$teacher->user->name." Mentee has started conversation with you. Click Here : ".route('login')." ";
-            $headers = "From: info@you2mentor.com" . "\r\n";
+            $user_name = $teacher->user->name;
+            // $subject = "Welcome to You2Mentor";
+            // $txt = "Hi, ".$teacher->user->name." Mentee has started conversation with you. Click Here : ".route('login')." ";
+            // $headers = "From: info@you2mentor.com" . "\r\n";
 
            // mail($to,$subject,$txt,$headers);
+            Mail::to($to)->send(new StartConversation($user_name));
 
             DB::commit();
             Toastr::success('Conversation Started', 'Success');
@@ -228,11 +232,13 @@ class ChatController extends Controller
             $this->createNotification($teacher->user->id,explode(' ',Auth()->user()->name)[0].' has started a conversation.',route('teacher.view_mentor_conversation',$conversation->id));
 
             $to = $teacher->user->email;
-            $subject = "Welcome to You2Mentor";
-            $txt = "Hi, ".$teacher->user->name." Mentee has started conversation with you. Click Here : ".route('login')." ";
-            $headers = "From: info@you2mentor.com" . "\r\n";
+            // $subject = "Welcome to You2Mentor";
+            // $txt = "Hi, ".$teacher->user->name." Mentee has started conversation with you. Click Here : ".route('login')." ";
+            // $headers = "From: info@you2mentor.com" . "\r\n";
 
+            $user_name = $teacher->user->name;
             //mail($to,$subject,$txt,$headers);
+            Mail::to($to)->send(new StartConversation($user_name));
 
             DB::commit();
             Toastr::success('Conversation Started', 'Success');

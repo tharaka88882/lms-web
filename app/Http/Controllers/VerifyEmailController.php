@@ -10,6 +10,8 @@ use Brian2694\Toastr\Facades\Toastr;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\VerifyMail;
 
 class VerifyEmailController extends Controller
 {
@@ -21,23 +23,26 @@ class VerifyEmailController extends Controller
         $password = $request->get('password');
         $type = $request->get('type');
 
-        $to =$request->get('email');
-        $subject = "Verify Email";
-        $txt = "Welcome to You2Mentor.
+        $user_mail = $request->get('email');
+        // $subject = "Verify Email";
+        // $txt = "Welcome to You2Mentor.
 
-        To verify your email, please use the code below.
+        // To verify your email, please use the code below.
 
-        ".$code."
+        // ".$code."
 
-        Please note, this link expires in 28 days
+        // Please note, this link expires in 28 days
 
 
-        Need help? (Link to contact us page)
-        If you didn't register an account with us, please ignore this email";
+        // Need help? (Link to contact us page)
+        // If you didn't register an account with us, please ignore this email";
 
-        $headers = "From: info@you2mentor.com" . "\r\n";
+        // $headers = "From: info@you2mentor.com" . "\r\n";
 
-        mail($to,$subject,$txt,$headers);
+        // mail($to,$subject,$txt,$headers);
+
+        Mail::to($user_mail)->send(new VerifyMail($code));
+
         return view('student.verify_mentee_email',compact('email','en_code','name','password','type'));
     }
     protected function verify(Request $request){
