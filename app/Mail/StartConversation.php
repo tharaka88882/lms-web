@@ -11,14 +11,16 @@ class StartConversation extends Mailable
 {
     use Queueable, SerializesModels;
 
+    Public $user_name;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($user_name)
     {
-        //
+        $this->user_name = $user_name;
     }
 
     /**
@@ -28,6 +30,6 @@ class StartConversation extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->markdown('mails.startConversation')->subject('Conversation Started');
     }
 }

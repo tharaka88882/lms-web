@@ -11,14 +11,16 @@ class SignUp extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $username;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($username)
     {
-        //
+        $this->username = $username;
     }
 
     /**
@@ -28,6 +30,6 @@ class SignUp extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.SignUpView');
+        return $this->markdown('mails.SignUpView');
     }
 }

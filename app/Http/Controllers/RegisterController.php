@@ -8,6 +8,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\WelcomeMentorMail;
+use App\Mail\WelcomeMail;
 
 class RegisterController extends Controller
 {
@@ -37,21 +40,27 @@ class RegisterController extends Controller
                 $teacher->status = false;
                 $teacher->save();
                 $teacher->user()->save($user);
-                
-                $to = $user->email;
-                $subject = "Teacher Registerd";
-                $txt = "".$user->name." Registered as a Mentor. Please approve mentor  <a = \"".route('admin.teachers')."\">".route('admin.teachers')."</a> ";
-                $headers = "From: info@you2mentor.com" . "\r\n";
 
-                mail($to,$subject,$txt,$headers);
+                $to = $user->email;
+                // $subject = "Teacher Registerd";
+                // $txt = "".$user->name." Registered as a Mentor. Please approve mentor  <a = \"".route('admin.teachers')."\">".route('admin.teachers')."</a> ";
+                // $headers = "From: info@you2mentor.com" . "\r\n";
+
+                // mail($to,$subject,$txt,$headers);
+
+                Mail::to($to)->send(new WelcomeMentorMail());
             }
 
-            $to2 = $user->email;
-            $subject2 = "Welcome to You2Mentor";
-            $txt2 = "Hi, ".$user->name." welcome to You2Mentor.com. Thank you";
-            $headers2 = "From: info@you2mentor.com" . "\r\n";
+            // $to2 = $user->email;
+            // $subject2 = "Welcome to You2Mentor";
+            // $txt2 = "Hi, ".$user->name." welcome to You2Mentor.com. Thank you";
+            // $headers2 = "From: info@you2mentor.com" . "\r\n";
 
-            mail($to2,$subject2,$txt2,$headers2);
+            // mail($to2,$subject2,$txt2,$headers2);
+
+            $username = $user->name;
+            $user_mail = $user->email;
+            Mail::to($user_mail)->send(new WelcomeMail($username));
 //d
             DB::commit();
         } catch (Exception $e) {
