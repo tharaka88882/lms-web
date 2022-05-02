@@ -41,7 +41,7 @@
               We would love to hear feedback on how we can improve your experience, <a href="https://you2mentor.com/contact/" target="_blank">so drop us a note through here</a>
               <br/>
               <span style="color:black; font-size:larger;">
-                You can follow us on &nbsp;&nbsp;<a href="https://www.linkedin.com/company/you2mentor/" target="_blank"><i class="bi bi-linkedin"></i></a> &nbsp;&nbsp; <a href="https://www.twitter.com/You2Mentor" target="_blank" ><i class="bi bi-twitter"></i></a> &nbsp;&nbsp; <a href="https://www.instagram.com/You2Mentor/" target="_blank"><i class="bi bi-instagram"></i></a>
+                You can follow us on &nbsp;&nbsp;<a href="https://www.linkedin.com/company/you2mentor/" target="_blank"><i class="bi bi-linkedin"></i></a> &nbsp;&nbsp; <a href="https://www.twitter.com/You2Mentor" target="_blank" ><i class="bi bi-twitter"></i></a> &nbsp;&nbsp; <a href="https://www.instagram.com/You2Mentor/" target="_blank"><i class="bi bi-instagram"></i></a> &nbsp;&nbsp; <a href="https://www.tiktok.com/You2Mentor/" target="_blank"><i class="bi bi-tiktok"></i></a>
               </span>
             </div>
           </div>
@@ -131,7 +131,7 @@
                     <div class="inner">
                       <h3>{{$my_students_count}}</h3>
 
-                      <p>My Mentees</p>
+                      <p>Mentee Conversations</p>
                     </div>
                     <div class="icon">
                       <i class="ion ion-ios-people-outline"></i>
@@ -148,7 +148,7 @@
                     <div class="inner">
                       <h3>{{$my_teachers_count}}</h3>
 
-                      <p>My Mentors</p>
+                      <p>Conversations</p>
                     </div>
                     <div class="icon">
                       <i class="ion ion-ios-people-outline"></i>

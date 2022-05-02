@@ -103,7 +103,7 @@
                     <!--/.direct-chat -->
                 </div>
 
-                    {{-- @if ($conversation->mentor->user->id == Auth()->user()->id)
+                    {{-- @if ($conversation->mentor->user->id == Auth()->user()->id)                 
 
                     <div class="col-md-5" style="margin-top: 42px">
                         <div class="card card-default">
