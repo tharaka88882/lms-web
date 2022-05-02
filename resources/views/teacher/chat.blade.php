@@ -102,7 +102,7 @@
                     </div>
                     <!--/.direct-chat -->
                 </div>
-               {{-- <div class="col-md-5" style="margin-top: 42px">
+               <div class="col-md-5" style="margin-top: 42px">
                        <div class="card card-default">
                          <div class="card-header">
                            <h3 class="card-title">
@@ -113,7 +113,13 @@
                           <!-- /.card-header -->
 
                           <div class="card-body">
-                             @if (empty($userTransaction))
+                            <div class="callout callout-danger">
+                                <p>Don't share personal details etc, as per the message provided.
+                                </p>
+                            </div>
+
+
+                             {{-- @if (empty($userTransaction))
                              <div class="callout callout-info">
                                 <h5>Follow the Instrctions</h5>
 
@@ -138,15 +144,31 @@
                                 <div class="col-md-6"><button id="approve"  class="btn btn-block btn-success">Approve Booking</button></div>
                                 <div class="col-md-6"><button id="cancel"  class="btn btn-block btn-danger">Cancel Booking</button></div>
                             </div>
-                            @endif
+                            @endif --}}
 
                           </div>
 
                           <!-- /.card-body -->
                     </div>
                         <!-- /.card -->
+                        <div class="card card-default">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                  <i class="fas fa-list"></i>
+                                      Mentee Developments
+                               </h3>
+                               <div class="card-body">
+                            <div class="p-2 mt-2 bg-light d-flex justify-content rounded text-white stats" style="font-size: 18px;">
+                                @foreach ($menteeDevs as $development)
+                                    <span class="badge bg-gray mr-1">{{$development->note}}</span>
+                                @endforeach
+                            </div>
 
-                </div> --}}
+                               </div>
+                             </div>
+                          </div>
+
+                </div>
             </div>
         </div>
     </section>

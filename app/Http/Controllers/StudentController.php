@@ -452,7 +452,7 @@ class StudentController extends Controller
         $conversation = Conversation::findOrFail($id);
 
         $teacher = Teacher::findOrFail($conversation->teacher_id);
-
+        $teacherSubs = TeacherSubject::select('*')->join('subjects','teacher_subjects.subject_id','=','subjects.id')->where('teacher_id', $conversation->teacher_id)->get();
         $userTransaction = UserTransaction::where('sender_id', Auth()->user()->id)->where('receiver_id', $conversation->teacher->user->id)->where('status', 0)->first();
 
         $conversations = Conversation::where('student_id', Auth()->user()->userable->id)->where('teacher_id',$conversation->teacher_id)->first();
@@ -485,7 +485,7 @@ class StudentController extends Controller
 
                     if (sizeof($rating) > 0) {
 
-                        return view('student.chat', compact('request', 'id', 'conversation', 'userTransaction', 'teacher', 'setting'));
+                        return view('student.chat', compact('request', 'id', 'conversation', 'userTransaction', 'teacher', 'setting','teacherSubs'));
 
                     } else {
 
@@ -515,11 +515,11 @@ class StudentController extends Controller
 
         if ($flag) {
 
-            return view('student.chat', compact('request', 'id', 'conversation', 'userTransaction', 'teacher', 'setting'));
+            return view('student.chat', compact('request', 'id', 'conversation', 'userTransaction', 'teacher', 'setting','teacherSubs'));
 
         } elseif (sizeof($conversations) == 0) {
 
-            return view('student.chat', compact('request', 'id', 'conversation', 'userTransaction', 'teacher', 'setting'));
+            return view('student.chat', compact('request', 'id', 'conversation', 'userTransaction', 'teacher', 'setting','teacherSubs'));
 
         }
 

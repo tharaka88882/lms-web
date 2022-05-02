@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Update Student Profile
+    Mentor Conversation
 @endsection
 
 @push('styles')
@@ -104,26 +104,32 @@
                     </div>
                     <!--/.direct-chat -->
                 </div>
-                {{-- <div class="col-md-5" style="margin-top: 42px">
+                <div class="col-md-5" style="margin-top: 42px">
                     <div class="card card-default">
                         <div class="card-header">
                           <h3 class="card-title">
                             <i class="fas fa-bullhorn"></i>
-                                Notice.!
+                                Warning!
                          </h3>
                        </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                          <div class="callout callout-info">
+                            <div class="callout callout-danger">
+
+                                <p>Don't share personal details etc, as per the message provided.
+                                    </p>
+                            </div>
+
+                          {{-- <div class="callout callout-info">
 
                             <p>Once you request a meeting Mentor will check and Approve it.
                                 Then mentor will send a link to your meeting from this chat.
                                 <br>
                                 <strong>Important:</strong> After mentor approve your request, you can not reverse back the transaction.
                             </p>
-                          </div>
+                          </div> --}}
 
-                          <div class="row" style="margin-top: 20px;">
+                          {{-- <div class="row" style="margin-top: 20px;">
                           @if ((Auth()->user()->streaming_count>0 && empty($userTransaction)) || ($teacher->level < $setting->paid_level))
                           <div class="col-md-6"><button id="request_link" class="btn btn-block btn-success">Booking</button></div>
                             <div class="col-md-6">
@@ -139,12 +145,31 @@
                           @elseif(!empty($userTransaction))
                           <div class="col-md-6"><button id="cancel_request" class="btn btn-block btn-danger">Cancel Booking</button></div>
                           @endif
-                        </div>
+                        </div> --}}
                         </div>
                         <!-- /.card-body -->
                    </div>
                       <!-- /.card -->
-                </div> --}}
+
+                      <div class="card card-default">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                              <i class="fas fa-list"></i>
+                                  Skills
+                           </h3>
+                           <div class="card-body">
+                        @if (count($teacherSubs)>0)
+                        <div class="p-2 mt-2 bg-light d-flex justify-content rounded text-white stats" style="font-size: 18px;">
+                            @foreach ($teacherSubs as $subject)
+                                <span class="badge bg-gray mr-1">{{$subject->name}}</span>
+                            @endforeach
+                        </div>
+                        @endif
+
+                           </div>
+                         </div>
+                      </div>
+                </div>
             </div>
         </div>
     </section>

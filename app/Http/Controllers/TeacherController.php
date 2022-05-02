@@ -23,6 +23,7 @@ use App\Traits\UserTrait;
 use App\Models\User;
 use App\Models\UserOrder;
 use App\Models\UserTransaction;
+use App\Models\Milestone;
 //use App\Traits\UserTrait;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\DB;
@@ -305,9 +306,11 @@ class TeacherController extends Controller
     {
 
         $conversation = Conversation::findOrFail($id);
+        $menteeDevs = Milestone::where('user_id', $conversation->student->user->id)->get();
+        //dd($menteeDevs);
         $userTransaction = UserTransaction::where('sender_id', $conversation->student->user->id)
             ->where('receiver_id', Auth()->user()->id)->where('status', 0)->first();
-        return view('teacher.chat', compact('request', 'id', 'conversation', 'userTransaction'));
+        return view('teacher.chat', compact('request', 'id', 'conversation', 'userTransaction','menteeDevs'));
     }
 
     public function conversations(Request $request)

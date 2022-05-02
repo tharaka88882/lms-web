@@ -90,27 +90,27 @@
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <!-- Navbar Search -->
-                <!--<li class="nav-item">-->
-                <!--    <a class="nav-link" data-widget="navbar-search" href="#" role="button">-->
-                <!--        <i class="fas fa-search"></i>-->
-                <!--    </a>-->
-                <!--    <div class="navbar-search-block">-->
-                <!--        <form class="form-inline">-->
-                <!--            <div class="input-group input-group-sm">-->
-                <!--                <input class="form-control form-control-navbar" type="search" placeholder="Search"-->
-                <!--                    aria-label="Search">-->
-                <!--                <div class="input-group-append">-->
-                <!--                    <button class="btn btn-navbar" type="submit">-->
-                <!--                        <i class="fas fa-search"></i>-->
-                <!--                    </button>-->
-                <!--                    <button class="btn btn-navbar" type="button" data-widget="navbar-search">-->
-                <!--                        <i class="fas fa-times"></i>-->
-                <!--                    </button>-->
-                <!--                </div>-->
-                <!--            </div>-->
-                <!--        </form>-->
-                <!--    </div>-->
-                <!--</li>-->
+                {{-- <li class="nav-item">
+                    <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+                       <i class="fas fa-search"></i>
+                    </a>
+                    <div class="navbar-search-block">
+                       <form class="form-inline">
+                            <div class="input-group input-group-sm">
+                                <input class="form-control form-control-navbar" type="search" placeholder="Search"
+                                    aria-label="Search">
+                                <div class="input-group-append">
+                                    <button class="btn btn-navbar" type="submit">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                    <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </li> --}}
 
 
 
@@ -195,10 +195,8 @@
 
             <!-- Sidebar -->
             <div class="sidebar">
-
-
                 <!-- SidebarSearch Form -->
-                {{-- <div class="form-inline">
+                <div class="form-inline">
                     <div class="input-group pt-3" data-widget="sidebar-search">
                         <input class="form-control form-control-sidebar" type="search" placeholder="Search"
                             aria-label="Search">
@@ -208,7 +206,7 @@
                             </button>
                         </div>
                     </div>
-                </div> --}}
+                </div>
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
@@ -254,10 +252,10 @@
         <!-- SlimScroll -->
            <!-- /.modal -->
   <div class="modal fade" id="modal-md">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-md">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Refer a Friend</h4>
+          <h4 class="modal-title">Refer to a Friend</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -267,8 +265,9 @@
             <input type="hidden" name="milestone_id" value=""/>
         <div class="modal-body">
               <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" name="email" class="form-control" placeholder="Enter Email" required />
+                        <label>Friend's Email</label>
+                        <input type="email" name="email" class="form-control" placeholder="Enter Email Here" required />
+                        <input type="hidden" name="username" value="{{ Auth()->user()->name }}"/>
                         <!-- <input type="test" name="due_date" class="form-control" placeholder="Enter ..."> -->
               </div>
         <div class="modal-footer justify-content-between btn-group">
@@ -280,6 +279,7 @@
       <!-- /.modal-content -->
     </div>
     <!-- /.modal-dialog -->
+  </div>
   </div>
   <!-- /.modal -->
 
