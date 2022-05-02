@@ -246,9 +246,7 @@
                                                     @endwhile
 
 
-                                                    @if ($tutor->user->country !=null)
-                                                        <span class="users-list-date">{{ $tutor->user->country }}/{{ $tutor->user->city}}</span>
-                                                    @endif
+
                                                     @if ($tutor->user->industry !=null)
                                                         <span class="users-list-date">Industry - {{ $tutor->user->industry }}</span>
                                                     @endif
@@ -259,10 +257,13 @@
                                                         <div class="p-2 mt-2 bg-light d-flex justify-content-between rounded text-white stats" style="font-size: 14px;">
                                                             <span>Skills -
                                                             @foreach ($tutor->subjects as $subject)
-                                                                <span class="badge badge-success">{{$subject['name']}}</span>
+                                                                <span class="badge badge-gray">{{$subject['name']}}</span>
                                                             @endforeach
                                                             </span>
                                                         </div>
+                                                    @endif
+                                                    @if ($tutor->user->country !=null)
+                                                        <span class="users-list-date">{{ $tutor->user->country }}/{{ $tutor->user->city}}</span>
                                                     @endif
 
                                                     <div class="button mt-2 d-flex flex-row align-items-center">

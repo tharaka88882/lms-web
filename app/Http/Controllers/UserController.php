@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ReferMail;
 
 class UserController extends Controller
 {
@@ -229,7 +231,11 @@ class UserController extends Controller
     public function refer(Request $request)
     {
         $email = $request->get('email');
+        $username = $request->get('username');
         // To do email send code hear....
+        Mail::to($email)->send(new ReferMail($username));
+
+        Toastr::success('Refered Successfully :)', 'Success');
         return  redirect()->back();
     }
 
