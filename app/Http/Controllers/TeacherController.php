@@ -344,7 +344,7 @@ class TeacherController extends Controller
         foreach ($mentor_conversations as $mentor_conversation) {
 
             foreach($mentor_conversation->mentee->stikey as $stikey){
-                if($stikey->user_id==Auth()->user()->id && $stikey->student_id==$mentee_conversation->mentee->id){
+                if($stikey->user_id==Auth()->user()->id && $stikey->student_id==$mentor_conversation->mentee->id){
                     $stikey = $stikey->note;
                 }
             }
@@ -473,9 +473,10 @@ class TeacherController extends Controller
 
         //dd($conversation->mentor);
         //  return view('teacher.mentor_chat', compact('request', 'id', 'conversation'));
+        // $conversations = MentorConversation::where('mentee_id', Auth()->user()->userable->id)->where('mentor_id',$conversation->mentor_id)->first();
         $conversations = MentorConversation::select('mentor_messages.sender_id')->join('mentor_messages', 'mentor_messages.conversation_id', '=', 'mentor_conversations.id')
             ->where('mentor_conversations.mentee_id', Auth()->user()->userable->id)->get();
-        // dd($conversations);
+        //dd($conversations);
         $flag = false;
         foreach ($conversations as $conver) {
             if ($conver->sender_id != Auth()->user()->userable->id) {

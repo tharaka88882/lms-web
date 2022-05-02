@@ -101,14 +101,14 @@
                                                 <div class="row">
                                                     <div class="form-group col-md-12">
                                                         {{-- <label>Any Comments</label> --}}
-                                                        <textarea onkeyup="saveNote('{{$conversation['id']}}');" id="stikey_{{$conversation['id']}}" style="background-color: rgb(255, 251, 0);" id="question3" name="question3" class="form-control" rows="6">
+                                                        <textarea onkeyup="saveNote('{{$conversation['id']}}');" id="stikey_{{$conversation['id']}}" style="background-color: rgb(255, 251, 0);"  name="question3" class="form-control" rows="6">
                                                             {{$conversation['stikey']}}
                                                         </textarea>
                                                         <!-- <input type="test" name="due_date" class="form-control" placeholder="Enter ..."> -->
                                             </div>
                                                 </div>
                                             {{-- <div class="modal-footer justify-content-between btn-group">
-                                            <button  type="submit" class="btn btn-primary">Save</button>
+                                            <button onclick="saveNote('{{$conversation['id']}}');" type="submit" class="btn btn-warning">Save</button>
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                             </div> --}}
                                         </div>
@@ -145,7 +145,7 @@ function saveNote(id){
         {
             id: id,
             note: $('#stikey_'+id).val(),
-            _method: "put",
+            _method: "PUT",
             _token: "{{ csrf_token() }}"
         },
         function(data, status){

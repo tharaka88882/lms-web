@@ -158,7 +158,7 @@
                                         <button class="btn btn-link btn-flat" style="padding-left: 0">Sign out</button>
                                     </form>
                                     <ul style="list-style: none; padding-left: 0px">
-                                        <li><a href="{{ route('user.profile') }}">Refer a Friend</a></li>
+                                        <li><a href="#!"  data-toggle="modal" data-target="#modal-md">Refer a Friend</a></li>
                                     </ul>
                                     <ul style="list-style: none; padding-left: 0px">
                                         <li><a href="{{ route('user.profile') }}">Help and Support</a></li>
@@ -252,6 +252,36 @@
     <!-- jQuery -->
 
         <!-- SlimScroll -->
+           <!-- /.modal -->
+  <div class="modal fade" id="modal-md">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Refer a Friend</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="{{route('user.refer_friend')}}" method="POST">
+            @csrf
+            <input type="hidden" name="milestone_id" value=""/>
+        <div class="modal-body">
+              <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" class="form-control" placeholder="Enter Email" required />
+                        <!-- <input type="test" name="due_date" class="form-control" placeholder="Enter ..."> -->
+              </div>
+        <div class="modal-footer justify-content-between btn-group">
+          <button onclick="" type="submit" class="btn btn-primary">Send</button>
+          {{-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> --}}
+        </div>
+      </div>
+        </form>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
 
 
     <script src="{{ url('public/') }}/theme/admin/plugins/jquery/jquery.min.js"></script>

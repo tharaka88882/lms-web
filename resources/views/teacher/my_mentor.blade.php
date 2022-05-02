@@ -307,7 +307,7 @@
                                                                                         <div class="row">
                                                                                             <div class="form-group col-md-12">
                                                                                                 {{-- <label>Any Comments</label> --}}
-                                                                                                <textarea onkeyup="saveNote('{{$conversation->mentor->id}}');" id="stikey_{{$conversation->mentor->id}}" style="background-color: rgb(255, 251, 0);" id="question3" name="question3" class="form-control" rows="6">
+                                                                                                <textarea onkeyup="saveNote('{{$conversation->mentor->id}}');" id="stikey_{{$conversation->mentor->id}}" style="background-color: rgb(255, 251, 0);"  name="question3" class="form-control" rows="6">
                                                                                                     @foreach ($conversation->mentor->stikey as $stikey)
                                                                                                     @if ($stikey->user_id==Auth()->user()->id && $stikey->teacher_id==$conversation->mentor->id)
                                                                                                     {{$stikey->note}}
@@ -354,7 +354,7 @@ function saveNote(id){
         {
             id: id,
             note: $('#stikey_'+id).val(),
-            _method: "put",
+            _method: "PUT",
             _token: "{{ csrf_token() }}"
         },
         function(data, status){

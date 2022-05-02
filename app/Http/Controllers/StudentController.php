@@ -455,15 +455,17 @@ class StudentController extends Controller
 
         $userTransaction = UserTransaction::where('sender_id', Auth()->user()->id)->where('receiver_id', $conversation->teacher->user->id)->where('status', 0)->first();
 
-        $conversations = Conversation::select('messages.sender_id')->join('messages', 'messages.conversation_id', '=', 'conversations.id')
+        $conversations = Conversation::where('student_id', Auth()->user()->userable->id)->where('teacher_id',$conversation->teacher_id)->first();
 
-            ->where('conversations.student_id', Auth()->user()->userable->id)->get();
+        // $conversations = Conversation::select('messages.sender_id')->join('messages', 'messages.conversation_id', '=', 'conversations.id')
+
+        //     ->where('conversations.student_id', Auth()->user()->userable->id)->get();
 
         //dd();
 
         $flag = false;
 
-        foreach ($conversations as $conver) {
+        foreach ($conversations->messages as $conver) {
 
             if ($conver->sender_id != Auth()->user()->id) {
 

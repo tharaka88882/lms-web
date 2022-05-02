@@ -46,11 +46,8 @@
                                                 <small class="direct-chat-timestamp float-left">{{$message->created_at->format('y/m/d h:i')}}</small>
                                             </div>
                                             <!-- /.direct-chat-info -->
-                                            <img class="direct-chat-img"
-                                                onerror="this.src='{{url('public')}}/theme/admin/dist/img/default-avatar.jpg'"
-                                                @if (Auth()->user()->image != null) src="{{url('public')}}/images/profile/{{ Auth()->user()->image }}" @else src="" @endif
-                                                onerror="this.src='https://login.you2mentor.com/public/images/def.jpg'"
-                                                >
+                                            <img class="direct-chat-img"  onerror="this.src='{{url('public')}}/theme/admin/dist/img/default-avatar.jpg'"
+                                            @if (Auth()->user()->image != null) src="{{url('public')}}/images/profile/{{ Auth()->user()->image }}" @else src="" @endif onerror="this.src='https://login.you2mentor.com/public/images/def.jpg'"/>
 
                                             <!-- /.direct-chat-img -->
                                             <div class="direct-chat-text" style="max-width:60%; float: right">
@@ -67,7 +64,7 @@
                                             </div>
                                             <!-- /.direct-chat-info -->
                                             <img class="direct-chat-img"
-                                                @if ($message->sender->image != null) src="{{url('public')}}/images/profile/{{ $message->sender->image }}" @else src="" @endif/>                                                >
+                                                @if ($message->sender->image != null) src="{{url('public')}}/images/profile/{{ $message->sender->image }}" @else src="" @endif onerror="this.src='https://login.you2mentor.com/public/images/def.jpg'"/>
                                             <!-- /.direct-chat-img -->
                                             <div class="direct-chat-text" style="max-width:60%; float: left">
                                                 {{$message->message}} </div>

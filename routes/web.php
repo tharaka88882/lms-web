@@ -158,6 +158,9 @@ Route::prefix('user')->middleware('check.user')->group(function () {
     //Stikey Notes-------------------------------------------------------------------------------------
     Route::any('/stikey', 'App\Http\Controllers\UserController@stikey')->name('user.update_stikey');
     Route::any('/stikey-mentee', 'App\Http\Controllers\UserController@stikey_mentee')->name('user.update_mentee_stikey');
+
+    //Refer friends-----------------------------------------------------------------------------------
+    Route::any('/refer-friend', 'App\Http\Controllers\UserController@refer')->name('user.refer_friend');
 });
 
 Route::prefix('student')->middleware('check.user')->group(function () {

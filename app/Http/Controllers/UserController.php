@@ -189,11 +189,11 @@ class UserController extends Controller
     }
     public function stikey(Request $request)
     {
-       $stikey = StikeyNote::where('user_id',Auth()->user()->id)->where('teacher_id',$request->get('id'))->get();
+       $stikey_note = StikeyNote::where('user_id',Auth()->user()->id)->where('teacher_id',$request->get('id'))->first();
 
-       if(sizeof($stikey)>0){
-        $stikey->note = $request->get('note');
-
+       if(!empty($stikey_note)){
+        $stikey_note->note = $request->get('note');
+        $stikey_note->save();
        }else{
         $stikey = new StikeyNote();
         $stikey->note = $request->get('note');
@@ -201,18 +201,18 @@ class UserController extends Controller
         $stikey->teacher_id = $request->get('id');
         $stikey->save();
        }
-       $stikey->save();
+
        return array(
            'success'=>true
        );
     }
     public function stikey_mentee(Request $request)
     {
-       $stikey = StikeyNoteMentee::where('user_id',Auth()->user()->id)->where('student_id',$request->get('id'))->get();
+       $stikey = StikeyNoteMentee::where('user_id',Auth()->user()->id)->where('student_id',$request->get('id'))->first();
 
-       if(sizeof($stikey)>0){
+       if(!empty($stikey)){
         $stikey->note = $request->get('note');
-
+        $stikey->save();
        }else{
         $stikey = new StikeyNoteMentee();
         $stikey->note = $request->get('note');
@@ -220,10 +220,17 @@ class UserController extends Controller
         $stikey->student_id = $request->get('id');
         $stikey->save();
        }
-       $stikey->save();
+
        return array(
+
            'success'=>true
        );
+    }
+    public function refer(Request $request)
+    {
+        $email = $request->get('email');
+        // To do email send code hear....
+        return  redirect()->back();
     }
 
 }
