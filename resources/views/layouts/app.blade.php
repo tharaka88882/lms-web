@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title')</title>
+    <link rel="icon" href="{{ url('public/') }}/theme/admin/dist/img/logo/you2logo.png" type="image/x-icon"/>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -237,7 +238,7 @@
             <div class="float-right d-none d-sm-block">
                 <b>Version</b> 1.0.0
             </div>
-            <strong>Copyright &copy; 2021-2022 <a href="#"></a>.</strong> All rights reserved.
+            <strong>Copyright &copy; 2022 You2Mentor.<a href="#"></a>.</strong> All rights reserved.
         </footer>
 
         <!-- Control Sidebar -->

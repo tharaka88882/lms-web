@@ -104,7 +104,7 @@
 
                         <div class="col-md-12">
 
-                            <form action="{{ route('teacher.mentors') }}">
+                            <form action="{{ route('teacher.mentor_conversation_list') }}">
 
                                 <div class="row">
 
@@ -188,7 +188,7 @@
 
                                         </div>
 
-                                        <button disabled class="btn btn-success" style="margin-top: 30px;">Filter</button>
+                                        <button  class="btn btn-success" style="margin-top: 30px;">Filter</button>
 
                                     </div>
 
@@ -365,6 +365,44 @@ function saveNote(id){
         });
     //alert('test');
 }
+
+$(function () {
+
+//Initialize Select2 Elements
+
+     $('.select22').select2({
+         dropdownParent: $('#currentModal')
+     });
+
+
+
+     $('#select2-echannel-doctor').select2({
+         ajax: {
+             method: 'GET',
+             url: '{{route('student.get_topics')}}',
+             contentType: "application/json; charset=utf-8",
+             dataType: 'json',
+             data: function (params) {
+                 var query = {
+                     search: params.term,
+                     _method: "GET",
+                    // _token: "{{csrf_token()}}",
+                     type: 'public'
+                 };
+                 // Query parameters will be ?search=[term]&type=public
+                 return query;
+             },
+
+             processResults: function (data) {
+                 // Transforms the top-level key of the response object from 'items' to 'results'
+                 return {
+                     results: data.results
+                 };
+             }
+         },
+         dropdownParent: $('#currentModal')
+     });
+ });
 
 </script>
 @endpush
