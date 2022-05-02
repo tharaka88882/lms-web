@@ -256,6 +256,34 @@ Update Teacher Profile
 
                 </div>
 
+                <div class="form-group">
+
+                    <label for="profileImageInput">Profile Image</label>
+
+                    <div style="padding: 10px;">
+
+                        <img id="image-output" style="max-width: 120px; max-height:120px; border: 1px solid rgb(187, 187, 187)" class="img-fluid" onerror="this.src='{{ url('public') }}/theme/admin/dist/img/default-avatar.jpg'" @if ($user->image != null) src="{{ url('public') }}/images/profile/{{ $user->image }}" @else src="" @endif />
+
+                    </div>
+
+                    <input type="file" name="image" class="form-control @if ($errors->has('image')) {{ 'is-invalid' }} @endif" id="profileImageInput" onchange="loadImage(event)">
+
+
+
+
+
+                    @if ($errors->has('image'))
+
+                    <span class="invalid-feedback" role="alert">
+
+                        <strong>{{ $errors->first('image') }}</strong>
+
+                    </span>
+
+                    @endif
+
+                </div>
+
                 {{-- <div class="form-group">
 
                                 <label for="exampleInputEmail1">Password</label>
@@ -637,6 +665,7 @@ Update Teacher Profile
             function(data, status) {
 
                 // var jo = JSON.parse(data);
+
 
                 if (data.error == false) {
 

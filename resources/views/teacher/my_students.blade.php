@@ -40,6 +40,112 @@
           <div class="card-body">
           <div class="row">
 
+            <div class="col-md-12">
+
+                <!-- USERS LIST -->
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <h3 class="card-title">Filter a Mentee</h3>
+
+
+
+                        <div class="card-tools">
+
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+
+                                <i class="fas fa-minus"></i>
+
+                            </button>
+
+                            <button type="button" class="btn btn-tool" data-card-widget="remove">
+
+                                <i class="fas fa-times"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <!-- /.card-header -->
+
+                    <div class="card-body p-10">
+
+                        <div class="col-md-12">
+
+                            <form action="{{ route('teacher.conversation_list') }}">
+
+                                <div class="row">
+
+
+
+                                    <div class="col-lg-4">
+
+                                        <div class="form-group">
+
+                                            <label>City:</label>
+
+                                            <input placeholder="Enter City" class="select2 form-control" data-placeholder="Any" name="city"/>
+
+                                        </div>
+
+
+
+                                    </div>
+
+                                    <div class="col-lg-4">
+
+                                        <div class="form-group">
+
+                                            <label> Country:</label>
+
+                                            <input placeholder="Enter Country" class="select2 form-control" data-placeholder="Any" name="country"/>
+
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="col-lg-4">
+
+
+                                        <div class="form-group">
+
+                                            <label>Sort Order:</label>
+
+                                            <select class="select2 form-control" style="width: 100%;">
+
+                                                <option selected>Rating ASC</option>
+
+                                                <option>Rating DESC</option>
+
+                                            </select>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <button  class="btn btn-success" style="margin-top: 30px;">Filter</button>
+
+                                    </div>
+
+                                    @csrf
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- /.card-body -->
+
+                </div>
+
+                <!--/.card -->
+
+            </div>
+
                         @php
                             $i = 1;
                         @endphp
@@ -52,14 +158,15 @@
                                                 </a>
                                                 <div class="ml-3 w-100">
                                                     <h4 class="mb-0 mt-0"><a style="text-transform: capitalize" href="#">{{$conversation['name']}}</a></h4>
-
+                                                    <span>
                                                     @foreach ($conversation['milestone'] as $milestone)
                                                     <div class="p-2 mt-2 bg-light d-flex justify-content-between rounded text-white stats" style="font-size: 14px;">
-                                                        <span>My Developments -
+
                                                             <span class="badge bg-gray">{{$milestone->note}}</span>
-                                                        </span>
                                                     </div>
                                                     @endforeach
+                                                </span>
+
 
                                                     <div class="button mt-2 d-flex flex-row align-items-center">
                                                          @if ($conversation['user']=='mentee')

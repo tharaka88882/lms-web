@@ -41,7 +41,7 @@
               We would love to hear feedback on how we can improve your experience, so drop us a note through <a href="https://you2mentor.com/contact/" target="_blank">here</a>
               <br/>
               <span style="color:black; font-size:larger;">
-                You can follow us on &nbsp;&nbsp;<a href="https://www.linkedin.com/company/you2mentor/" target="_blank"><i class="bi bi-linkedin"></i></a> &nbsp;&nbsp; <a href="https://www.twitter.com/You2Mentor" target="_blank" ><i class="bi bi-twitter"></i></a> &nbsp;&nbsp; <a href="https://www.instagram.com/You2Mentor/" target="_blank"><i class="bi bi-instagram"></i></a>
+                You can follow us on &nbsp;&nbsp;<a href="https://www.linkedin.com/company/you2mentor/" target="_blank"><i class="bi bi-linkedin"></i></a> &nbsp;&nbsp; <a href="https://www.twitter.com/You2Mentor" target="_blank" ><i class="bi bi-twitter"></i></a> &nbsp;&nbsp; <a href="https://www.instagram.com/You2Mentor/" target="_blank"><i class="bi bi-instagram"></i></a>&nbsp;&nbsp; <a href="https://www.tiktok.com/You2Mentor/" target="_blank"><i class="bi bi-tiktok"></i></a>
               </span>
             </div>
           </div>

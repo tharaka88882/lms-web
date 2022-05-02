@@ -205,7 +205,7 @@ Route::prefix('teacher')->middleware(['check.tutor', 'check.user'])->group(funct
     Route::delete('/subject', 'App\Http\Controllers\TeacherController@destroy_subject')->name('teacher.remove_subject');
 
     Route::get('/conversation/{id}', 'App\Http\Controllers\TeacherController@chat')->name('teacher.view_conversation');
-    Route::get('/conversation', 'App\Http\Controllers\TeacherController@conversations')->name('teacher.conversation_list');
+    Route::any('/conversation', 'App\Http\Controllers\TeacherController@conversations')->name('teacher.conversation_list');
 
 
     // Mentor is a Mentee

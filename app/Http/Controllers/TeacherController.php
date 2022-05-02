@@ -315,10 +315,22 @@ class TeacherController extends Controller
 
     public function conversations(Request $request)
     {
+        $query1 = Conversation::query();
+        $query2 = MentorConversation::query();
+        $query1 = $query1->where('teacher_id', Auth()->user()->userable->id);
+        $query2 = $query2->where('mentor_id', Auth()->user()->userable->id);
 
-        $mentee_conversations = Conversation::where('teacher_id', Auth()->user()->userable->id)->paginate(10);
-        $mentor_conversations = MentorConversation::where('mentor_id', Auth()->user()->userable->id)->paginate(10);
+        if($request->get('city')!=null){
+            $query1->select('conversations.*')->join('students', 'students.id', '=', 'conversations.student_id')->join('users', 'users.userable_id', '=', 'students.id')->where('users.city', 'like', $request->get('city'));
+            $query2->select('mentor_conversations.*')->join('students', 'students.id', '=', 'mentor_conversations.mentee_id')->join('users', 'users.userable_id', '=', 'students.id')->where('users.city', 'like', $request->get('city'));
+        }
+        if($request->get('country')!=null){
+            $query1->select('conversations.*')->join('students', 'students.id', '=', 'conversations.student_id')->join('users', 'users.userable_id', '=', 'students.id')->where('users.country', 'like', $request->get('country'));
+            $query2->select('mentor_conversations.*')->join('students', 'students.id', '=', 'mentor_conversations.mentee_id')->join('users', 'users.userable_id', '=', 'students.id')->where('users.country', 'like', $request->get('country'));
+        }
         //dd( $mentee_conversations);
+        $mentee_conversations = $query1->get();
+        $mentor_conversations = $query2->get();
         $conversations =  array();
         $stikey = '';
         $i = 0;

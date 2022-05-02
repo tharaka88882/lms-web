@@ -267,11 +267,12 @@
                                                     @endwhile
 
                                                     <div class="p-2 mt-2 bg-light d-flex justify-content-between rounded text-white stats" style="font-size: 14px;">
-                                                          @foreach ($conversation->teacher->teachersubject as $skil)
-                                                          <span>Skills -
+                                                        <span>Skills -
+                                                        @foreach ($conversation->teacher->teachersubject as $skil)
                                                             <span class="badge bg-gray">{{$skil->name}}</span>
-                                                        </span>
+
                                                           @endforeach
+                                                        </span>
                                                         </div>
 
                                                        @if ( $conversation->teacher->user->country!=null)
