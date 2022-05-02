@@ -588,8 +588,25 @@ class StudentController extends Controller
     public function conversations(Request $request)
 
     {
+        $query =  Conversation::query();
+        $query = $query->where('student_id', Auth()->user()->userable->id)->orderBy('created_at', 'DESC');
 
-        $conversations = Conversation::where('student_id', Auth()->user()->userable->id)->orderBy('created_at', 'DESC')->paginate(20);
+        if($request->get('search_subject')!=null){
+            $query-->select('conversations.*')->join('teachers', 'teachers.id', '=', 'conversations.teacher_id')->leftjoin('teacher_subjects', 'teacher_subjects.teacher_id', '=', 'teachers.id')
+            ->join('subjects', 'subjects.id', '=', 'teacher_subjects.subject_id')
+            ->where('subjects.id', $request->get('search_subject'));
+        }
+        if($request->get('country')!=null){
+            $query->select('conversations.*')->join('teachers', 'teachers.id', '=', 'conversations.teacher_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.country', 'like', $request->get('country'));
+        }
+        if($request->get('city')!=null){
+            $query->select('conversations.*')->join('teachers', 'teachers.id', '=', 'conversations.teacher_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.city', 'like', $request->get('city'));
+        }
+        if($request->get('search_industry')!="Any"){
+            $query->select('conversations.*')->join('teachers', 'teachers.id', '=', 'conversations.teacher_id')->where('industry', $request->get('search_industry'));
+        }
+
+        $conversations= $query->paginate(20);
 
         $subjects = Subject::all();
         $industries = Industry::all();

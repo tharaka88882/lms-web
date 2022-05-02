@@ -39,7 +39,7 @@ class DashboardController extends Controller
         $my_teachers_count = 0;
         $my_students_count = 0;
 
-        $my_teachers_count += Conversation::where('student_id', '=',Auth()->user()->userable_id)->count();
+        $mentee_teachers_count = Conversation::where('student_id', '=',Auth()->user()->userable_id)->count();
         $my_teachers_count += MentorConversation::where('mentee_id', '=',Auth()->user()->userable_id)->count();
 
         $my_students_count += Conversation::where('teacher_id', '=',Auth()->user()->userable_id)->count();
@@ -106,7 +106,7 @@ class DashboardController extends Controller
             return view('home_teacher', compact('pending_count', 'teachers_count', 'students_count', 'subject_count', 'pending_teachers_list', 'schedules', 'schedule_count', 'subjects', 'convo_count','my_teachers_count','my_students_count', 'my_subject_count', 'my_milestones_count','completed_milestones_count','inprogress_milestones_count','overdue_milestones_count','mediation','round_mediation'));
         } else if (get_class($user->userable) == 'App\Models\Student') {
             // return view('under_construction');
-            return view('home_student', compact('pending_count', 'teachers_count', 'students_count', 'subject_count', 'pending_teachers_list', 'convo_count', 'user_orders', 'my_milestones_count', 'completed_milestones_count','inprogress_milestones_count','overdue_milestones_count'));
+            return view('home_student', compact('pending_count', 'teachers_count', 'students_count', 'subject_count', 'pending_teachers_list', 'convo_count', 'user_orders', 'my_milestones_count', 'completed_milestones_count','inprogress_milestones_count','overdue_milestones_count','mentee_teachers_count'));
         } else if (get_class($user->userable) == 'App\Models\Admin') {
             return view('home', compact('pending_count', 'teachers_count', 'students_count', 'subject_count', 'pending_teachers_list', 'total_sale', 'total_payout'));
         } else {

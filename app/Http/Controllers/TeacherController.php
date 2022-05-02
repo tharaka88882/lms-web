@@ -515,8 +515,27 @@ class TeacherController extends Controller
 
     public function mentor_conversation(Request $request)
     {
+        $query =  MentorConversation::query();
+        $query = $query->where('mentee_id', Auth()->user()->userable->id)->orderBy('created_at', 'DESC');
 
-        $conversations = MentorConversation::where('mentee_id', Auth()->user()->userable->id)->orderBy('created_at', 'DESC')->paginate(20);
+        if($request->get('search_subject')!=null){
+            $query-->select('mentor_conversations.*')->join('teachers', 'teachers.id', '=', 'mentor_conversations.mentor_id')->leftjoin('teacher_subjects', 'teacher_subjects.teacher_id', '=', 'teachers.id')
+            ->join('subjects', 'subjects.id', '=', 'teacher_subjects.subject_id')
+            ->where('subjects.id', $request->get('search_subject'));
+        }
+        if($request->get('country')!=null){
+            $query->select('mentor_conversations.*')->join('teachers', 'teachers.id', '=', 'mentor_conversations.mentor_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.country', 'like', $request->get('country'));
+        }
+        if($request->get('city')!=null){
+            $query->select('mentor_conversations.*')->join('teachers', 'teachers.id', '=', 'mentor_conversations.mentor_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.city', 'like', $request->get('city'));
+        }
+        if($request->get('search_industry')!="Any"){
+            $query->select('mentor_conversations.*')->join('teachers', 'teachers.id', '=', 'mentor_conversations.mentor_id')->where('industry', $request->get('search_industry'));
+        }
+
+        $conversations= $query->paginate(20);
+
+        // $conversations = MentorConversation::where('mentee_id', Auth()->user()->userable->id)->orderBy('created_at', 'DESC')->paginate(20);
         // dd($conversations);
         $subjects = Subject::all();
         $industries = Industry::all();

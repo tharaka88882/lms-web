@@ -171,11 +171,13 @@ Route::prefix('student')->middleware('check.user')->group(function () {
     Route::get('/tutor/{id}', 'App\Http\Controllers\StudentController@view_tutor')->name('student.view_tutor');
 
     Route::get('/conversation/{id}', 'App\Http\Controllers\StudentController@chat')->name('student.view_conversation');
-    Route::get('/conversation', 'App\Http\Controllers\StudentController@conversations')->name('student.conversation_list');
+    Route::any('/conversation', 'App\Http\Controllers\StudentController@conversations')->name('student.conversation_list');
     Route::post('/rate', 'App\Http\Controllers\StudentController@rate_teacher')->name('student.rate_teacher');
     //Complaint------------------------------------------------------------------------------------------------
     Route::get('/complaint/{id}', 'App\Http\Controllers\StudentController@complaint')->name('student.complaint');
     Route::post('/complaint', 'App\Http\Controllers\StudentController@add_complaint')->name('student.add_complaint');
+
+    // Payment---------------------------------------------------------------------------------------------------
     Route::get('/payment/packages', 'App\Http\Controllers\PaymentController@payment_packages')->name('student.payment_packages');
     Route::get('/payment/summary/{id}', 'App\Http\Controllers\PaymentController@payment_summary')->name('student.payment_summary');
     Route::get('/payment/history', 'App\Http\Controllers\StudentController@payment_history')->name('student.payment_history');
