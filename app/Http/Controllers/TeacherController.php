@@ -483,6 +483,10 @@ class TeacherController extends Controller
         $setting = Setting::first();
         $conversation = MentorConversation::findOrFail($id);
         $teacher = Teacher::findOrFail($conversation->mentor_id);
+        $menteeDevs = Milestone::where('user_id', $conversation->mentee->user->id)->get();
+        $teacherSubs = TeacherSubject::select('*')->join('subjects','teacher_subjects.subject_id','=','subjects.id')->where('teacher_id', $conversation->mentor_id)->get();
+
+
         $userTransaction = UserTransaction::where('sender_id', Auth()->user()->id)->where('receiver_id', $conversation->mentor->user->id)->where('status', 0)->first();
         $userMentorTransaction = UserTransaction::where('sender_id', $conversation->mentee->user->id)->where('receiver_id', Auth()->user()->id)->where('status', 0)->first();
 
@@ -504,7 +508,7 @@ class TeacherController extends Controller
                 $flag = false;
                 if (sizeof($rating) > 0) {
                     // dd('test');
-                    return view('teacher.mentor_chat', compact('request', 'id', 'conversation', 'userTransaction', 'userMentorTransaction', 'teacher', 'setting'));
+                    return view('teacher.mentor_chat', compact('request', 'id', 'conversation', 'userTransaction', 'userMentorTransaction', 'teacher', 'setting','menteeDevs','teacherSubs'));
                 } else {
                     Toastr::warning("Please rate Mentor..! (" . $user->user->name . ")", 'Warning');
                     return redirect()->route('teacher.view_mentor', $conver->sender_id);
@@ -521,9 +525,9 @@ class TeacherController extends Controller
         }
         if ($flag) {
             //dd("test");
-            return view('teacher.mentor_chat', compact('request', 'id', 'conversation', 'userTransaction', 'userMentorTransaction', 'teacher', 'setting'));
+            return view('teacher.mentor_chat', compact('request', 'id', 'conversation', 'userTransaction', 'userMentorTransaction', 'teacher', 'setting','menteeDevs','teacherSubs'));
         } else if (sizeof($conversations) == 0) {
-            return view('teacher.mentor_chat', compact('request', 'id', 'conversation', 'userTransaction', 'userMentorTransaction', 'teacher', 'setting'));
+            return view('teacher.mentor_chat', compact('request', 'id', 'conversation', 'userTransaction', 'userMentorTransaction', 'teacher', 'setting','menteeDevs','teacherSubs'));
             // dd("test");
         }
     }
