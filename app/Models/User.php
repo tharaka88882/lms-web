@@ -48,7 +48,8 @@ class User extends Authenticatable
         'two_factor_secret',
         'address',
         'city',
-        'country'
+        'country',
+        'cover_image'
     ];
 
     /**

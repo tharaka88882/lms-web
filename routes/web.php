@@ -20,7 +20,7 @@ use App\Mail\WelcomeMail;
 
 Route::get('/', function () {
     // Student::all();
-     //return  redirect('https://lms-web.chamathkaara.ceylonx.co');
+     //return  redirect('https://you2mentor.com/');
 
     return view('auth.login');
 });

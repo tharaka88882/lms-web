@@ -258,15 +258,15 @@ Update Teacher Profile
 
                 <div class="form-group">
 
-                    <label for="profileImageInput">Profile Image</label>
+                    <label for="profileImageInput">Cover Image <small>(120PX * 480PX)</small></label>
 
                     <div style="padding: 10px;">
 
-                        <img id="image-output" style="max-width: 120px; max-height:120px; border: 1px solid rgb(187, 187, 187)" class="img-fluid" onerror="this.src='{{ url('public') }}/theme/admin/dist/img/default-avatar.jpg'" @if ($user->image != null) src="{{ url('public') }}/images/profile/{{ $user->image }}" @else src="" @endif />
+                        <img id="cover-image-output" style="max-width: 480px; max-height:120px; border: 1px solid rgb(187, 187, 187)" class="img-fluid" onerror="this.src='{{ url('public') }}/images/download.jpg'" @if ($user->cover_image != null) src="{{ url('public') }}/images/profile/{{ $user->cover_image }}" @else src="" @endif />
 
                     </div>
 
-                    <input type="file" name="image" class="form-control @if ($errors->has('image')) {{ 'is-invalid' }} @endif" id="profileImageInput" onchange="loadImage(event)">
+                    <input type="file" name="cover_image" class="form-control @if ($errors->has('image')) {{ 'is-invalid' }} @endif" id="coverImageInput" onchange="loadCoverImage(event)">
 
 
 
@@ -556,6 +556,25 @@ Update Teacher Profile
         reader.onload = function() {
 
             var output = document.getElementById('image-output');
+
+            output.src = reader.result;
+
+            output.style.display = "block";
+
+        }
+
+        reader.readAsDataURL(event.target.files[0]);
+
+
+
+    }
+    var loadCoverImage = function(event) {
+
+        var reader = new FileReader();
+
+        reader.onload = function() {
+
+            var output = document.getElementById('cover-image-output');
 
             output.src = reader.result;
 

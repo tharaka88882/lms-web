@@ -102,8 +102,81 @@
                     </div>
                     <!--/.direct-chat -->
                 </div>
+                @if ($conversation->mentor->user->id == Auth()->user()->id)
+                <!-- /.card -->
+                <div class="col-md-5" style="margin-top: 42px">
+                    <div class="card card-default">
+                      <div class="card-header">
+                        <h3 class="card-title">
+                          <i class="fas fa-bullhorn"></i>
+                          Notice.!
+                         </h3>
+                       </div>
+                       <!-- /.card-header -->
 
-                    {{-- @if ($conversation->mentor->user->id == Auth()->user()->id)                 
+                       <div class="card-body">
+                         <div class="callout callout-danger">
+                             <p>Don't share personal details etc, as per the message provided.
+                             </p>
+                         </div>
+                       </div>
+                    </div>
+                <div class="card card-default">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                          <i class="fas fa-list"></i>
+                              Mentee Developments
+                       </h3>
+                       <div class="card-body">
+                    <div class="p-2 mt-2 bg-light d-flex justify-content rounded text-white stats" style="font-size: 18px;">
+                        @foreach ($menteeDevs as $development)
+                            <span class="badge bg-gray mr-1">{{$development->note}}</span>
+                        @endforeach
+                    </div>
+
+                       </div>
+                     </div>
+                  </div>
+                @else
+                <div class="col-md-5" style="margin-top: 42px">
+                    <div class="card card-default">
+                        <div class="card-header">
+                          <h3 class="card-title">
+                            <i class="fas fa-bullhorn"></i>
+                                Warning!
+                         </h3>
+                       </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="callout callout-danger">
+
+                                <p>Don't share personal details etc, as per the message provided.
+                                    </p>
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="card card-default">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                          <i class="fas fa-list"></i>
+                              Skills
+                       </h3>
+                       <div class="card-body">
+                    @if (count($teacherSubs)>0)
+                    <div class="p-2 mt-2 bg-light d-flex justify-content rounded text-white stats" style="font-size: 18px;">
+                        @foreach ($teacherSubs as $subject)
+                            <span class="badge bg-gray mr-1">{{$subject->name}}</span>
+                        @endforeach
+                    </div>
+                    @endif
+
+                       </div>
+                     </div>
+                  </div>
+                @endif
+                    {{-- @if ($conversation->mentor->user->id == Auth()->user()->id)
 
                     <div class="col-md-5" style="margin-top: 42px">
                         <div class="card card-default">

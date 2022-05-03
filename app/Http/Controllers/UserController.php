@@ -94,10 +94,16 @@ class UserController extends Controller
         try {
 
             $imageName = null;
+            $coverImageName = null;
 
-            if ($request->has('image')) {
+             if ($request->has('image')) {
                 $imageName = time() . '.' . $request->image->extension();
                 $request->image->move(public_path('images/profile/'), $imageName);
+                //return back()->with('success','You have successfully upload image.')->with('image',$imageName);
+            }
+             if ($request->has('cover_image')) {
+                $coverImageName = time() . '.' . $request->cover_image->extension();
+                $request->cover_image->move(public_path('images/profile/'), $coverImageName);
                 //return back()->with('success','You have successfully upload image.')->with('image',$imageName);
             }
 
@@ -107,6 +113,9 @@ class UserController extends Controller
                 $user->name = $request->get('name');
                if($imageName!=null){
                 $user->image = $imageName;
+               }
+               if($coverImageName!=null){
+                $user->cover_image = $coverImageName;
                }
                 $user->address = $request->get('address');
                 $user->city = $request->get('city');

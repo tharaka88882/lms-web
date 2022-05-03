@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>YOU2MENTOR | Log in</title>
+  <link rel="icon" href="{{ url('public/') }}/theme/admin/dist/img/logo/favi_logo.jpeg" type="image/x-icon"/>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -22,7 +23,7 @@
 <body class="hold-transition login-page" style="background-image: url('{{url('public')}}/theme/admin/dist/img/you2mentor_covers-01.jpg');background-repeat: no-repeat;background-attachment: fixed;background-size: cover;">
 <div class="login-box">
   <div class="login-logo">
-    <a href="{{url('')}}"><img height="200px" width="200px" src="{{url('public')}}/theme/admin/dist/img/logo/you2logo.png"/></a>
+    <a href="https://you2mentor.com"><img height="200px" width="200px" src="{{url('public')}}/theme/admin/dist/img/logo/you2logo.png"/></a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
