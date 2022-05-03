@@ -4,7 +4,7 @@
 
 @section('title')
 
-    Update Teacher Profile
+    Mentor Profile
 
 @endsection
 
@@ -25,35 +25,23 @@
     <!-- Content Header (Page header) -->
 
     <section class="content-header">
-
         <div class="container-fluid">
 
             <div class="row mb-2">
-
-
-
                 <div class="col-sm-7">
-
-
-
                     <!-- Widget: user widget style 1 -->
-
                     <div class="card card-widget widget-user">
-
                         <!-- Add the bg color to the header using any of the bg-* classes -->
-
                         <div class="widget-user-header bg-olive" @if ($teacher->user->cover_image!=null) style="background-image: url('{{ url('public') }}/images/profile/{{ $teacher->user->cover_image }}') !important;" @endif>
-
                             <h3 class="widget-user-username" style="text-transform: uppercase">{{ $teacher->user->name }}
-
                             </h3>
                             {{-- <a href="{{route('user.view_rating')}}"> --}}
                             @php
                             $i = 0;
                             //$r = intval(Auth()->user()->userable->level);
                             $r = (int)$mediation;
-                        @endphp
-                          @while ($i<5)
+                            @endphp
+                            @while ($i<5)
                               @if ($r>0)
                               <span class="fa fa-star checked"></span>
                               @else
@@ -64,326 +52,180 @@
                               $i += 1;
                               $r -=1;
                               @endphp
-                          @endwhile
+                            @endwhile
                             {{-- </a> --}}
-
                         </div>
 
                         <div class="widget-user-image">
-
                             <img class="img-circle elevation-2"
-
                                 onerror="this.src='{{ url('public') }}/theme/admin/dist/img/default-avatar.jpg'"
-
                                 @if ($teacher->user->image != null) src="{{ url('public') }}/images/profile/{{ $teacher->user->image }}" @else src="" @endif alt="User Avatar">
-
                         </div>
 
                         <div class="card-footer">
-
                             <div class="row">
-
                                 <div class="col-sm-4 border-right">
-
                                     <div class="description-block">
-
                                         {{-- <h5 class="description-header">3,200</h5>
-
                                         <span class="description-text">SALES</span> --}}
-
                                     </div>
-
                                     <!-- /.description-block -->
-
                                 </div>
-
                                 <!-- /.col -->
 
                                 <div class="col-sm-4 border-right">
-
                                     <div class="description-block">
-
                                         <h5 class="description-header"></h5>
-
                                         <span class="description-text"></span>
-
                                     </div>
-
                                     <!-- /.description-block -->
-
                                 </div>
 
                                 <!-- /.col -->
 
                                 <div class="col-sm-4">
-
                                     <div class="description-block">
-
                                         {{-- <h5 class="description-header">35</h5>
-
                                         <span class="description-text">PRODUCTS</span> --}}
-
                                     </div>
-
                                     <!-- /.description-block -->
-
                                 </div>
-
                                 <!-- /.col -->
-
                             </div>
-
                             <!-- /.row -->
 
                             <div class="row">
-
-
-
                                 @if (sizeof($conversations)>0)
-
                                 {{-- <div class="col-sm-2">
-
                                     <a class="btn btn-success" href="{{ route('student.view_conversation', $query->id) }}">Complaint</a>
-
                                 </div> --}}
-
-
-
                                 <div class="col-sm-4" style="text-align: left">
-
                                     <a class="btn btn-success" href="{{ route('student.view_conversation', $query->id) }}">Connect</a>
-
                                 </div>
-
-
-
                                 <div class="col-sm-4" style="text-align: center">
                                     <button {{sizeof($old_ratings)>0?"disabled":""}}  data-toggle="modal" data-target="#modal-md" class="btn btn-warning"><i class="fa fa-star"></i>Rate Now</button>
-
                                     {{-- <form action="{{ route('student.rate_teacher') }}" method="POST" class="form-inline" style="float: right" id="changeRatings">
-
                                         @csrf
-
                                         <label data-toggle="modal" data-target="#modal-md"><i class="fa fa-star"></i> Ratings:
-
                                             <select name="rating" class="form-control" style="max-width: 120px; margin-left: 5px;" id="ratingInp">
-
                                                 <option value="">No Ratings Given</option>
-
                                                 <option value="1" @if(sizeof($rating)>0 && $rating->first()->rating==1) {{'selected'}} @endif>1</option>
-
                                                 <option value="2" @if(sizeof($rating)>0 && $rating->first()->rating==2) {{'selected'}} @endif>2</option>
-
                                                 <option value="3" @if(sizeof($rating)>0 && $rating->first()->rating==3) {{'selected'}} @endif>3</option>
-
                                                 <option value="4" @if(sizeof($rating)>0 && $rating->first()->rating==4) {{'selected'}} @endif>4</option>
-
                                                 <option value="5" @if(sizeof($rating)>0 && $rating->first()->rating==5) {{'selected'}} @endif>5</option>
-
                                             </select>
-
                                         </label>
-
                                         <input type="hidden" name="teacher_id" value="{{$teacher->id}}">
-
                                     </form> --}}
-
                                 </div>
 
-
-
                                 <div class="col-sm-4" style="text-align: right">
-
                                     {{-- <a class="btn btn-warning" href="{{route('student.complaint',$teacher->id)}}">Complaint Mentor</a> --}}
-
                                 </div>
 
                                 @elseif ($query!=null)
-
                                 <div class="col-sm-12" style="text-align: center">
                                     <a class="btn btn-success" href="{{ route('student.view_conversation', $query->id) }}">Connect</a>
                                 </div>
 
                                 @else
-
                                 <div class="col-sm-12" style="text-align: center">
-
                                     <form action="{{ route('user.store_conversation') }}" method="POST">
-
                                         @csrf
-
                                         <input type="hidden" name="student_id" value="{{Auth()->user()->userable->id}}">
-
                                         <input type="hidden" name="teacher_id" value="{{$teacher->id}}">
-
                                         <button class="btn btn-success" type="submit">Connect</button>
-
                                     </form>
-
                                 </div>
-
                                 @endif
-
                             </div>
-
                         </div>
-
                     </div>
-
                     <!-- /.widget-user -->
-
                 </div>
 
                 <div class="col-md-5">
-
                     <div class="card">
-
                       <div class="card-header">
-
                         <h3 class="card-title">
-
                           <i class="fas fa-angle-double-down"></i>
-
                           About me
-
                         </h3>
-
                         <br>
 
                         @if ($teacher->linkedin_link !=null)
-
                         <a href="{{$teacher->linkedin_link}}" target="_blank">View Linkedin Profile
-
                             <i class="fas fa-angle-double-right"></i></a>
-
                         @endif
-
                       </div>
-
                         <!-- /.card-header -->
 
-                        <div class="card-body">
-
-<dl>
-
-  <dt>Qualifications</dt>
-
-  <dd>{{$teacher->qualification}}</dd>
-
-  <dt>Experience</dt>
-
-  <dd>{{$teacher->experience}}</dd>
-
-  <dt>Skills</dt>
-
-  <dd>{{$teacher->skills}}</dd>
-
-  <dt>Industry</dt>
-
-  <dd>{{$teacher->industry}}</dd>
-
-  <dt>Job Title</dt>
-
-  <dd>{{$teacher->job}}</dd>
-
-</dl>
-
-</div>
-
-<!-- /.card-body -->
-
-<div class="card-footer">
-
-<div class="float-right">
-
-    <b>Average Responce time: </b> {{$time_total_array}}hrs
-
-</div>
-
-</div>
-
-                      </div>
-
-                    </div>
-
-                    <!-- /.card -->
-
-                  </div>
-
-            </div>
-
-            <div class="row">
-
-                <div class="col-sm-7">
-
-                    {{-- <div class="card">
-
-                        <div class="card-header">
-
-                            <h3 class="card-title">
-
-                              <i class="fas fa-tasks"></i>
-
-                              Schedule
-
-                            </h3>
-
-                          </div>
-
-                        <div class="card-body p-2">
-
-                          <!-- THE CALENDAR -->
-
-                          <div id="calendar"></div>
-
-                        </div>
-
+                      <div class="card-body">
+                            <dl>
+                            <dt>Qualifications</dt>
+                            <dd>{{$teacher->qualification}}</dd>
+                            <dt>Experience</dt>
+                            <dd>{{$teacher->experience}}</dd>
+                            <dt>Skills</dt>
+                            <dd>{{$teacher->skills}}</dd>
+                            <dt>Industry</dt>
+                            <dd>{{$teacher->industry}}</dd>
+                            <dt>Job Title</dt>
+                            <dd>{{$teacher->job}}</dd>
+                            </dl>
+                       </div>
                         <!-- /.card-body -->
 
-                    </div> --}}
+                <div class="card-footer">
+                    <div class="float-right">
+                    <b>Average Responce time: </b> {{$time_total_array}}hrs
+                    </div>
+                </div>
+            </div>
+        </div>
+         <!-- /.card -->
+        </div>
+        </div>
 
+            <div class="row">
+                <div class="col-sm-7">
+                    {{-- <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                              <i class="fas fa-tasks"></i>
+                              Schedule
+                            </h3>
+                          </div>
+                        <div class="card-body p-2">
+                          <!-- THE CALENDAR -->
+                          <div id="calendar"></div>
+                        </div>
+                        <!-- /.card-body -->
+                    </div> --}}
                 </div>
 
                 <div class="col-md-5">
-
                     <div class="card">
-
                         <div class="card-header">
-
                           <h3 class="card-title">
-
                             <i class="fas fa-book-open"></i>
-
                             Mentoring Topics
-
                           </h3>
-
                         </div>
-
                         <!-- /.card-header -->
 
                         <div class="card-body">
-
                           <ul>
-
                             @foreach($subjects as $subject)
-
                             <li>{{$subject->name}}</li>
-
                             @endforeach
-
                           </ul>
-
                         </div>
-
                         <!-- /.card-body -->
-
                       </div>
-
                 </div>
-
             </div>
-
         </div><!-- /.container-fluid -->
 
     </section>
