@@ -281,16 +281,27 @@
 
                                                     <div class="button mt-2 d-flex flex-row align-items-center">
                                                             <a href="{{ route('student.view_tutor', $conversation->teacher->id) }}">
-                                                            <button class="btn btn-sm btn-outline-primary w-100">View Profile</button>
-                                                        </a>
+                                                                <button class="btn btn-xs btn-outline-primary w-100">View Profile</button>
+                                                            </a>
                                                             <a href="{{route('student.view_conversation', $conversation->id)}}">
-                                                                <button class="btn btn-sm btn-primary w-100 ml-2">Conversation</button>
+                                                                <button class="btn btn-xs btn-primary w-100 ml-1">Conversation</button>
                                                             </a>
                                                             <a>
-                                                                <button  data-toggle="modal" data-target="#modal-md{{$conversation->id}}" class="btn btn-sm btn-warning w-100 ml-3">Notes</button>
+                                                                <button class="btn btn-xs btn-warning w-100 ml-2" data-toggle="modal" data-target="#modal-md{{$conversation->id}}">Notes</button>
                                                             </a>
-
                                                     </div>
+
+                                                    {{-- <div class="btn-group">
+                                                        <a href="{{ route('student.view_tutor', $conversation->teacher->id) }}">
+                                                            <button type="button" class="btn btn-xs btn-outline-primary">View Profile</button>
+                                                        </a>
+                                                        <a href="{{route('student.view_conversation', $conversation->id)}}">
+                                                            <button type="button" class="btn btn-xs btn-info">Conversation</button>
+                                                        </a>
+                                                        <a>
+                                                            <button type="button" class="btn btn-xs btn-warning" data-toggle="modal" data-target="#modal-md{{$conversation->id}}">Notes</button>
+                                                        </a>
+                                                      </div> --}}
                                                 </div>
                                             </div>
                                         </div>
