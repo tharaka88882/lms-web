@@ -43,9 +43,24 @@ class FacebookSocialiteController extends Controller
 
                 return redirect('user/dashboard');
             }else{
+
+                if ($user->avatar != null) {
+
+                    try{
+                        $url = $user->avatar;
+                        $imageName = time()."facebook.png";
+                        file_put_contents(public_path('images/profile/').$imageName, file_get_contents($url));
+                     
+                    }catch(Exception $e){
+                        //dd($e);
+                    }
+                }
+
+
                 $newUser = User::create([
                     'name' => $user->name,
                     'email' => $user->email,
+                    'image'=>$imageName,
                     'social_id'=> $user->id,
                     'social_type'=> 'facebook',
                     'password' => encrypt('my-facebook')
