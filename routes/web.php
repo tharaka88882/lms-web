@@ -258,8 +258,18 @@ Route::prefix('teacher')->middleware(['check.tutor', 'check.user'])->group(funct
 //     return view('dashboard');
 // })->name('dashboard');
 
+// Linkedin-----------------------------------------------------------------------------------
 Route::get('auth/linkedin', 'App\Http\Controllers\LinkedinController@linkedinRedirect');
 Route::get('auth/linkedin/callback', 'App\Http\Controllers\LinkedinController@linkedinCallback');
+
+// FB---------------------------------------------------------------------------------------------
+Route::get('auth/facebook','App\Http\Controllers\FacebookSocialiteController@redirectToFB');
+Route::get('callback/facebook','App\Http\Controllers\FacebookSocialiteController@handleCallback');
+
+//Google---------------------------------------------------------------------------------------------
+Route::get('auth/google','App\Http\Controllers\GoogleSocialiteController@redirectToGoogle');
+Route::get('callback/google','App\Http\Controllers\GoogleSocialiteController@handleCallback');
+
 
 //Excel ---------------------------------------------------------------------------------------------
 

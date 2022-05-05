@@ -36,4 +36,16 @@ return [
         'redirect' => 'https://login.you2mentor.com/auth/linkedin/callback',
     ],
 
+    'facebook' => [
+        'client_id' => 'xxxx',
+        'client_secret' => 'xxx',
+        'redirect' => 'https://login.you2mentor.com/callback/facebook',
+    ],
+
+    'google' => [
+        'client_id' => 'xxxx',
+        'client_secret' => 'xxx',
+        'redirect' => 'http://127.0.0.1:8000/callback/google',
+    ],
+
 ];
