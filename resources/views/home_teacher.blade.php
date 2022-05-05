@@ -365,6 +365,30 @@
                 </div> --}}
           </div>
 
+          <div class="row mb-2">
+            <div class="col-sm-12">
+              <div style="font-size:15px; text-align:center;" class="card">
+                (Welcome to your You2Mentor dashboard. What you need to do when you first login:
+                Go to the top right of the page and click on your profile( click name and profile)
+                Update your profile and make sure to add location details, development areas and your skills/ expertise for a better search experience.
+                Now you are ready to use You2Mentor.
+                How to navigate if you are looking for a Mentor:
+                If you want to search for a mentor, click on find a mentor and you can search based on topic of interest and location.
+                Click on the mentors to find out more and chat with them.
+                Please do not share personal identifiable information such as credit card details, phone numbers and emails through chat for your online safety.
+                Please rate your Mentor once your question has been answered to continue chatting.
+                Please note that any advice is general in nature and based on mentors experience. Always consider your individual circumstances when applying it to your development.
+                How to navigate if you are a Mentor.
+                Ensure your skills/expertise and location details are updated in your profile so that mentees can search for you based on your area of knowledge and location.
+                When you receive a message from a mentee, you will receive an email notification. Please try to respond within 48 hours.
+                The Mentees will rate you based on their experience with you.
+                All highly rated mentors will get the opportunity to join our Mentors club in the coming months where you get paid to Mentor others. We will let you know further details closer to the launch date. )
+                
+              </div>
+            </div>
+
+          </div><!-- /.row -->
+
       <!--    <div class="col-md-6">-->
               <!-- Default box -->
       <!--        <div class="card-primary">-->

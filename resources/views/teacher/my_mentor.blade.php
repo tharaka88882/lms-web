@@ -274,15 +274,23 @@
                                                         <span class="users-list-date">{{$conversation->mentor->user->country}}/{{$conversation->mentor->user->city}}</span>
                                                         @endif
                                                     <div class="button mt-2 d-flex flex-row align-items-center">
-                                                            <a href="{{route('teacher.view_mentor',$conversation->mentor->id)}}">
-                                                            <button class="btn btn-sm btn-outline-primary w-100">View Profile</button>
-                                                        </a>
-                                                            <a href="{{route('teacher.view_mentor_conversation', $conversation->id)}}">
-                                                                <button class="btn btn-sm btn-primary w-100 ml-2">Conversation</button>
-                                                            </a>
-                                                            <a>
-                                                                <button  data-toggle="modal" data-target="#modal-md{{$conversation->id}}" class="btn btn-sm btn-warning w-100 ml-3">Notes</button>
-                                                            </a>
+                                                        <div class="row">
+                                                            <div class="col-xs-12 p-1">
+                                                                <a href="{{route('teacher.view_mentor',$conversation->mentor->id)}}">
+                                                                    <button class="btn btn-sm btn-outline-primary w-100">View Profile</button>
+                                                                </a>
+                                                            </div>
+                                                              <div class="col-xs-12 p-1">
+                                                                <a href="{{route('teacher.view_mentor_conversation', $conversation->id)}}">
+                                                                    <button class="btn btn-sm btn-primary w-100 ml-2">Conversation</button>
+                                                                </a>
+                                                              </div>
+                                                              <div class="col-xs-12 p-1">
+                                                                <a>
+                                                                    <button  data-toggle="modal" data-target="#modal-md{{$conversation->id}}" class="btn btn-sm btn-warning w-100 ml-3">Notes</button>
+                                                                </a>
+                                                              </div>
+                                                        </div>
 
 
                                                     </div>
