@@ -320,13 +320,13 @@ class TeacherController extends Controller
         $query1 = $query1->where('teacher_id', Auth()->user()->userable->id);
         $query2 = $query2->where('mentor_id', Auth()->user()->userable->id);
 
-        if($request->get('city')!=null){
-            $query1->select('conversations.*')->join('students', 'students.id', '=', 'conversations.student_id')->join('users', 'users.userable_id', '=', 'students.id')->where('users.city', 'like', $request->get('city'));
-            $query2->select('mentor_conversations.*')->join('students', 'students.id', '=', 'mentor_conversations.mentee_id')->join('users', 'users.userable_id', '=', 'students.id')->where('users.city', 'like', $request->get('city'));
+        if($request->get('m_name')!=null){
+            $query1->select('conversations.*')->join('students', 'students.id', '=', 'conversations.student_id')->join('users', 'users.userable_id', '=', 'students.id')->where('users.name', 'like', '%'.$request->get('m_name').'%');
+            $query2->select('mentor_conversations.*')->join('students', 'students.id', '=', 'mentor_conversations.mentee_id')->join('users', 'users.userable_id', '=', 'students.id')->where('users.name', 'like', '%'.$request->get('m_name').'%');
         }
-        if($request->get('country')!=null){
-            $query1->select('conversations.*')->join('students', 'students.id', '=', 'conversations.student_id')->join('users', 'users.userable_id', '=', 'students.id')->where('users.country', 'like', $request->get('country'));
-            $query2->select('mentor_conversations.*')->join('students', 'students.id', '=', 'mentor_conversations.mentee_id')->join('users', 'users.userable_id', '=', 'students.id')->where('users.country', 'like', $request->get('country'));
+        if($request->get('develop')!=null){
+            $query1->select('conversations.*')->join('students', 'students.id', '=', 'conversations.student_id')->join('users', 'users.userable_id', '=', 'students.id')->join('milestones','milestones.user_id','=','users.id')->where('milestones.note', 'like', '%'.$request->get('develop').'%');
+            $query2->select('mentor_conversations.*')->join('students', 'students.id', '=', 'mentor_conversations.mentee_id')->join('users', 'users.userable_id', '=', 'students.id')->join('milestones','milestones.user_id','=','users.id')->where('milestones.note', 'like', '%'.$request->get('develop').'%');
         }
         //dd( $mentee_conversations);
         $mentee_conversations = $query1->get();
@@ -394,6 +394,9 @@ class TeacherController extends Controller
 
         if ($request->get('search_industry') != 'Any' && $request->get('search_industry')) {
             $query->where('industry', $request->get('search_industry'));
+        }
+        if ($request->get('m_name')) {
+            $query->select('teachers.*')->join('users','users.userable_id','=','teachers.id')->where('users.name','LIKE', '%'.$request->get('m_name').'%');
         }
         else if ($request->get('search_subject') != 'Any' && $request->get('search_subject')) {
             $query->select('teachers.*')
@@ -543,10 +546,13 @@ class TeacherController extends Controller
             ->where('subjects.id', $request->get('search_subject'));
         }
         if($request->get('country')!=null){
-            $query->select('mentor_conversations.*')->join('teachers', 'teachers.id', '=', 'mentor_conversations.mentor_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.country', 'like', $request->get('country'));
+            $query->select('mentor_conversations.*')->join('teachers', 'teachers.id', '=', 'mentor_conversations.mentor_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.country', 'like', '%'.$request->get('country').'%');
+        }
+        if($request->get('m_name')!=null){
+            $query->select('mentor_conversations.*')->join('teachers', 'teachers.id', '=', 'mentor_conversations.mentor_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.name', 'like', '%'.$request->get('m_name').'%');
         }
         if($request->get('city')!=null){
-            $query->select('mentor_conversations.*')->join('teachers', 'teachers.id', '=', 'mentor_conversations.mentor_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.city', 'like', $request->get('city'));
+            $query->select('mentor_conversations.*')->join('teachers', 'teachers.id', '=', 'mentor_conversations.mentor_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.city', 'like', '%'.$request->get('city').'%');
         }
         if($request->get('search_industry')!="Any"){
             $query->select('mentor_conversations.*')->join('teachers', 'teachers.id', '=', 'mentor_conversations.mentor_id')->where('industry', $request->get('search_industry'));

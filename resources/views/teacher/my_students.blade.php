@@ -86,9 +86,9 @@
 
                                         <div class="form-group">
 
-                                            <label>City:</label>
+                                            <label>Name:</label>
 
-                                            <input placeholder="Enter City" class="select2 form-control" data-placeholder="Any" name="city"/>
+                                            <input placeholder="Enter Mentee name" class="select2 form-control" data-placeholder="Any" name="m_name"/>
 
                                         </div>
 
@@ -100,16 +100,16 @@
 
                                         <div class="form-group">
 
-                                            <label> Country:</label>
+                                            <label> My Development:</label>
 
-                                            <input placeholder="Enter Country" class="select2 form-control" data-placeholder="Any" name="country"/>
+                                            <input placeholder="Enter Development" class="select2 form-control" data-placeholder="Any" name="develop"/>
 
                                         </div>
 
 
                                     </div>
 
-                                    <div class="col-lg-4">
+                                    {{-- <div class="col-lg-4">
 
 
                                         <div class="form-group">
@@ -126,7 +126,7 @@
 
                                         </div>
 
-                                    </div>
+                                    </div> --}}
                                     <div class="col-lg-4">
                                         <button  class="btn btn-success" style="margin-top: 30px;">Filter</button>
 

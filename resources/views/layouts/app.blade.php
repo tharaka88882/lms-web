@@ -162,6 +162,9 @@
                                         <li><a href="#!"  data-toggle="modal" data-target="#modal-md">Refer a Friend</a></li>
                                     </ul>
                                     <ul style="list-style: none; padding-left: 0px">
+                                        <li><a target="_blank" href="https://you2mentor.com/rss-2/">Rss Feed</a></li>
+                                    </ul>
+                                    <ul style="list-style: none; padding-left: 0px">
                                         <li><a target="_blank" href="https://you2mentor.com/contact">Help and Support</a></li>
                                     </ul>
                                 </div>

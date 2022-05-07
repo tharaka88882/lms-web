@@ -23,7 +23,7 @@
 
             <p>
 
-                Mentee Conversations    
+               My Mentee
 
                 {{-- <i class="fas fa-angle-left right"></i> <span class="badge badge-info right">6</span> --}}
 
@@ -161,7 +161,7 @@
             <li class="nav-item">
                 <a href="{{route('teacher.mentor_conversation_list')}}" class="nav-link {{ request()->is('teacher/mentor/conversation') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Conversations</p>
+                    <p>My Mentor</p>
                 </a>
 
             </li>

@@ -95,11 +95,11 @@
       </form>
     </div>
       <div class="social-auth-links text-center mb-3">
-          <a href="{{ url('auth/facebook') }}" class="btn btn-block btn-primary">
+          <a id="fbBtn" href="{{ url('auth/facebook') }}" class="btn btn-block btn-primary">
           <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
         </a>
-        <a href="{{ url('auth/google') }}" class="btn btn-block btn-danger">
-            <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+        <a id="googleBtn" href="{{ url('auth/google') }}" class="btn btn-block btn-danger">
+            <i class="fab fa-google mr-2"></i> Sign in using Google
           </a-->
         {{-- <p>- OR -</p> --}}
         <!--a href="{{ url('auth/linkedin') }}" class="btn btn-block btn-primary">
@@ -147,6 +147,8 @@ $('document').ready(function(){
         $('#form_div').show();
         $('#linkedinBtn').hide();
         $('#forgotBtn').show();
+        $('#fbBtn').show();
+        $('#googleBtn').show();
         //$('#registerBtn').attr("disabled",true);
         //$('#lilnedinBtn').removeAttr('href');
         //$('#lilnedinBtn').addClass('disabled');
@@ -170,10 +172,14 @@ $('document').ready(function(){
         $('#form_div').show();
         $('#linkedinBtn').hide();
         $('#forgotBtn').show();
+        $('#fbBtn').show();
+        $('#googleBtn').show();
     }else if( $('#m_select option:selected').val()=='teacher'){
         $('#form_div').hide();
         $('#linkedinBtn').show();
         $('#forgotBtn').hide();
+        $('#fbBtn').hide();
+        $('#googleBtn').hide();
     }
 });
 

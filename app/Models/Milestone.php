@@ -9,6 +9,7 @@ class Milestone extends Model
 {
     protected $fillable = [
         'note',
+        'stikey',
         'status',
         'due_date',
         'user_id'

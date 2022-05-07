@@ -108,7 +108,20 @@
 
                                 <div class="row">
 
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-3">
+
+                                        <div class="form-group">
+
+                                            <label> Name:</label>
+
+                                            <input placeholder="Enter Mentor Name" class="select2 form-control" data-placeholder="Any" name="m_name"/>
+
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="col-lg-3">
 
                                         <div class="form-group" id="currentModal">
 
@@ -154,7 +167,7 @@
 
                                     </div>
 
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-3">
 
                                         <div class="form-group">
 
@@ -178,7 +191,7 @@
 
                                     </div>
 
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-3">
 
                                         <div class="form-group">
 
