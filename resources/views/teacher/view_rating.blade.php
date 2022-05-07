@@ -34,7 +34,7 @@ My Ratings
         <div class="col-md-12">
         <div class="card card-outline card-primary">
               <div class="card-header">
-                <h3 class="card-title">My Ratings</h3>
+                <h3 class="card-title">My Rating</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -51,7 +51,18 @@ My Ratings
             <!-- small card -->
             <div class="small-box bg-light">
               <div class="inner">
-                <h3 style="color: green;">{{$mediation}}</h3>
+                  @if ($mediation==0)
+                  <h3 style="color: red;"><small>No Rating</small></h3>
+                  @else
+                        @if ($mediation<=1)
+                        <h3 style="color: red;">{{$mediation}}</h3>
+                        @elseif ($mediation>1 && $mediation<4)
+                        <h3 style="color: rgb(255, 174, 0);">{{$mediation}}</h3>
+                        @else
+                        <h3 style="color: green;">{{$mediation}}</h3>
+                        @endif
+
+                  @endif
 
                 <p>Overall Rating</p>
               </div>
@@ -68,7 +79,16 @@ My Ratings
             <!-- small card -->
             <div class="small-box bg-light">
               <div class="inner">
-                <h3 style="color: rgb(255, 174, 0);">{{$relevance}}<sup style="font-size: 20px">%</sup></h3>
+                  @if ($relevance<=25)
+                  <h3 style="color: red;">{{$relevance}}<sup style="font-size: 20px">%</sup></h3>
+
+                  @elseif ($relevance>25 && $relevance<65)
+                  <h3 style="color: rgb(255, 174, 0);">{{$relevance}}<sup style="font-size: 20px">%</sup></h3>
+
+                  @else
+                  <h3 style="color: green;">{{$relevance}}<sup style="font-size: 20px">%</sup></h3>
+
+                  @endif
 
                 <p>Relevance</p>
               </div>
@@ -85,7 +105,7 @@ My Ratings
             <!-- small card -->
             <div class="small-box bg-light">
               <div class="inner">
-                <h3 style="color: red;">53<sup style="font-size: 20px">%</sup></h3>
+                <h3 style="color: red;">3 hours<sup style="font-size: 20px"></sup></h3>
 
                 <p>Timely Responce</p>
               </div>
@@ -108,6 +128,16 @@ My Ratings
             <form action="{{route('user.view_rating')}}" method="GET">
             <div class="row pull-right">
 
+                    <div class="p-1">
+                        <div class="form-group" id="currentModal">
+                            <label>Search by Q2</label>
+
+                              <select class="select2 form-control" data-placeholder="Any" style="width: 100%;" name="q2">
+                                                    <option value="1">Yes</option>
+                                                    <option value="0">No</option>
+                              </select>
+                        </div>
+                    </div>
                     <div class="p-1">
                         <div class="form-group" id="currentModal">
                             <label>Search by Star Rating</label>

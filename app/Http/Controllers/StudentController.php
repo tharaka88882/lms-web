@@ -326,6 +326,11 @@ class StudentController extends Controller
         if ($request->get('search_industry') != 'Any' && $request->get('search_industry')) {
             $query->where('industry', $request->get('search_industry'));
         }
+        if ($request->get('m_name')) {
+
+            $query->select('teachers.*')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.name', 'like', '%'.$request->get('m_name').'%')->where('status', 1);
+
+        }
         else if ($request->get('search_subject') != 'Any' && $request->get('search_subject')) {
             $query->select('teachers.*')
                     ->leftjoin('teacher_subjects', 'teacher_subjects.teacher_id', '=', 'teachers.id')
@@ -337,7 +342,7 @@ class StudentController extends Controller
 
             // dd($request->get('city'));
 
-            $query->select('teachers.*')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.city', 'like', $request->get('city'))->where('status', 1);
+            $query->select('teachers.*')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.city', 'like', '%'.$request->get('city').'%')->where('status', 1);
 
         } else if ($request->get('country') != null) {
 
@@ -345,7 +350,7 @@ class StudentController extends Controller
 
             // dd($request->get('country'));
 
-            $query->select('teachers.*')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.country', 'like', $request->get('country'))->where('status', 1);
+            $query->select('teachers.*')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.country', 'like', '%'.$request->get('country').'%')->where('status', 1);
 
         } else {
 
@@ -597,10 +602,13 @@ class StudentController extends Controller
             ->where('subjects.id', $request->get('search_subject'));
         }
         if($request->get('country')!=null){
-            $query->select('conversations.*')->join('teachers', 'teachers.id', '=', 'conversations.teacher_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.country', 'like', $request->get('country'));
+            $query->select('conversations.*')->join('teachers', 'teachers.id', '=', 'conversations.teacher_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.country', 'like', '%'.$request->get('country').'%');
+        }
+        if($request->get('m_name')!=null){
+            $query->select('conversations.*')->join('teachers', 'teachers.id', '=', 'conversations.teacher_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.name', 'like', '%'.$request->get('m_name').'%');
         }
         if($request->get('city')!=null){
-            $query->select('conversations.*')->join('teachers', 'teachers.id', '=', 'conversations.teacher_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.city', 'like', $request->get('city'));
+            $query->select('conversations.*')->join('teachers', 'teachers.id', '=', 'conversations.teacher_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.city', 'like', '%'.$request->get('city').'%');
         }
         if($request->get('search_industry')!="Any"){
             $query->select('conversations.*')->join('teachers', 'teachers.id', '=', 'conversations.teacher_id')->where('industry', $request->get('search_industry'));

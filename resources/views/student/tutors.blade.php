@@ -63,10 +63,23 @@
                             <div class="col-md-12">
 
                                 <form action="{{ route('student.tutors') }}">
-
+                                    @csrf
                                     <div class="row">
 
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-3">
+
+                                            <div class="form-group">
+
+                                                <label>Name:</label>
+
+                                                <input placeholder="Enter Mentor Name" class="select2 form-control" data-placeholder="Any" name="m_name"/>
+
+                                            </div>
+
+
+                                        </div>
+
+                                        <div class="col-lg-3">
 
                                             <div class="form-group" id="currentModal">
 
@@ -96,6 +109,10 @@
 
                                             </div>
 
+
+                                        </div>
+
+                                        <div class="col-lg-3">
                                             <div class="form-group">
 
                                                 <label>Sort Order:</label>
@@ -109,10 +126,9 @@
                                                 </select>
 
                                             </div>
-
                                         </div>
 
-                                        <div class="col-lg-4">
+                                     <div class="col-lg-3">
 
                                             <div class="form-group">
 
@@ -122,6 +138,10 @@
 
                                             </div>
 
+
+                                        </div>
+
+                                        <div class="col-lg-3">
                                             <div class="form-group" id="currentModal">
                                                 <label>Industry :</label>
                                                 <select class="select2 form-control" data-placeholder="Any" style="width: 100%;" name="search_industry">
@@ -133,10 +153,8 @@
                                                     @endforeach
                                                 </select>
                                             </div>
-
                                         </div>
-
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-3">
 
                                             <div class="form-group">
 
@@ -146,11 +164,12 @@
 
                                             </div>
 
-                                            <button class="btn btn-success" style="margin-top: 30px;">Find Mentor</button>
 
                                         </div>
 
-                                        @csrf
+                                        <button class="btn btn-success" style="margin-top: 40px;">Find Mentor</button>
+
+
 
 
                                     </div>

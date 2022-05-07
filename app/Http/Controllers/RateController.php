@@ -49,6 +49,10 @@ class RateController extends Controller
         }
         }
 
+        if($request->get('q2')!=null){
+            $query->where('answer', $request->get('q2'));
+        }
+
         $ratings = $query->get();
         return view('teacher.view_rating',compact('ratings','mediation','relevance','request'));
 

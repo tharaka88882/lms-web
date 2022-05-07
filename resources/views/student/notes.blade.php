@@ -67,7 +67,7 @@
                   <tr>
                     <td>
                     <div class="btn-group float-right">
-                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-md">Add Note</button>
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-md">Add Task</button>
                         {{-- <button type="button" class="btn btn-danger">Delete</button> --}}
                       </div>
                     </td>
@@ -154,8 +154,9 @@
 </div>
 </div>
               <dl>
-                  <dt>Notes</dt>
-                  <dd>A description list is perfect for defining terms.</dd>
+                  {{-- <dt>Notes</dt> --}}
+                  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-md">Add Note</button>
+                  {{-- <dd>A description list is perfect for defining terms.</dd> --}}
                 </dl>
               <!-- /.card-body -->
 

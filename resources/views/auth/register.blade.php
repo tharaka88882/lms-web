@@ -31,7 +31,7 @@
           <select id="m_select" type="text" class="form-control">
             <!--<option value="select">Select One</option>-->
             <option selected="" value="student">Mentee</option>
-            <option value="teacher">Mentor</option>
+            <option value="teacher">Mentor/Mentee</option>
           </select>
           <div class="input-group-append">
             <div class="input-group-text">
@@ -125,14 +125,12 @@
 </div>
         <div id="lilnedin_div" class="social-auth-links text-center">
             {{-- <p>- OR -</p> --}}
-            <!--a href="#" class="btn btn-block btn-primary">
-            <i class="fab fa-facebook mr-2"></i>
-            Sign up using Facebook
-            </a>
-            <a href="#" class="btn btn-block btn-danger">
-            <i class="fab fa-google-plus mr-2"></i>
-            Sign up using Google+
-            </a-->
+            <a id="fbBtn" href="{{ url('auth/facebook') }}" class="btn btn-block btn-primary">
+                <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+              </a>
+              <a id="googleBtn" href="{{ url('auth/google') }}" class="btn btn-block btn-danger">
+                  <i class="fab fa-google mr-2"></i> Sign in using Google
+                </a-->
             <a id="lilnedinBtn" href="{{ url('auth/linkedin') }}" class="btn btn-block btn-primary">
             <i class="fab fa-linkedin mr-2"></i> Sign up using Liknedin
             </a>
@@ -159,7 +157,9 @@ $('document').ready(function(){
    // alert('test');
 
         $('#form_div').show();
-        $('#lilnedin_div').hide();
+        $('#lilnedinBtn').hide();
+        $('#fbBtn').show();
+        $('#googleBtn').show();
         //$('#registerBtn').attr("disabled",true);
         //$('#lilnedinBtn').removeAttr('href');
         //$('#lilnedinBtn').addClass('disabled');
@@ -180,10 +180,14 @@ $('document').ready(function(){
     $('#m_select').on('change', function() {
         if( $('#m_select option:selected').val()=='student'){
         $('#form_div').show();
-        $('#lilnedin_div').hide();
+        $('#lilnedinBtn').hide();
+        $('#fbBtn').show();
+        $('#googleBtn').show();
         }else if( $('#m_select option:selected').val()=='teacher'){
         $('#form_div').hide();
-        $('#lilnedin_div').show();
+        $('#lilnedinBtn').show();
+        $('#fbBtn').hide();
+        $('#googleBtn').hide();
     }
      });
 

@@ -112,7 +112,7 @@
                                     <span class="badge" style="background-color: green;">
                                 @endif
                                 {{ \Carbon\Carbon::parse($milestone->due_date)->format('d-m-Y')}}</span>
-                            
+
                           </td>
                           <td>
                              <select onchange="update_milestone('{{ $milestone->id}}')" id='status-{{ $milestone->id}}' class="form-control">
@@ -124,7 +124,7 @@
                           </td>
                           <td>
                               <div class="col-md-6 p-1">
-                            <a href="{{route('user.notes',$milestone->id)}}" class="btn btn-success float-right" id="goal">Goals</a>
+                            <a href="{{route('user.notes',$milestone->id)}}" class="btn btn-success float-right" id="goal">Action</a>
                 </div>
                 <div class="col-md-6 p-1">
                             <button type="button" class="btn btn-danger pull-left" id="deleteBtn-{{$milestone->id}}">Delete</button>

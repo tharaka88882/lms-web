@@ -66,7 +66,8 @@
 
                                     <div class="row">
 
-                                        <div class="col-lg-4">
+
+                                        <div class="col-lg-3">
 
                                             <div class="form-group" id="currentModal">
 
@@ -112,7 +113,20 @@
 
                                         </div>
 
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-3">
+
+                                            <div class="form-group">
+
+                                                <label> Name:</label>
+
+                                                <input placeholder="Enter Mentor name" class="select2 form-control" data-placeholder="Any" name="m_name"/>
+
+                                            </div>
+
+
+                                        </div>
+
+                                        <div class="col-lg-3">
 
                                             <div class="form-group">
 
@@ -136,7 +150,7 @@
 
                                         </div>
 
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-3">
 
                                             <div class="form-group">
 
@@ -146,9 +160,10 @@
 
                                             </div>
 
-                                            <button class="btn btn-success" style="margin-top: 30px;">Find Mentor</button>
 
                                         </div>
+                                        <button class="btn btn-success" style="margin-top: 30px;">Find Mentor</button>
+
 
                                         @csrf
                                     </div>
@@ -271,11 +286,11 @@
                                                             <button class="btn btn-sm btn-outline-primary w-100">View Profile</button>
                                                         </a>
                                                         @if ($tutor->conversation != null)
-                                                            <a href="{{ route('student.view_conversation', $tutor->id) }}">
+                                                            <a href="{{ route('teacher.view_mentor_conversation', $tutor->id) }}">
                                                                 <button class="btn btn-sm btn-primary w-100 ml-2">Message</button>
                                                             </a>
                                                         @else
-                                                            <form action="{{ route('user.store_conversation') }}" method="POST">
+                                                            <form action="{{ route('teacher.store_mentor_conversation') }}" method="POST">
                                                                 @csrf
                                                                 <input type="hidden" name="student_id" value="{{Auth()->user()->userable->id}}">
                                                                 <input type="hidden" name="teacher_id" value="{{$tutor->id}}">

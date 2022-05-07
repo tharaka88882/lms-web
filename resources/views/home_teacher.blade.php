@@ -131,7 +131,7 @@
                     <div class="inner">
                       <h3>{{$my_students_count}}</h3>
 
-                      <p>Mentee Conversations</p>
+                      <p>My Mentees</p>
                     </div>
                     <div class="icon">
                       <i class="ion ion-ios-people-outline"></i>
@@ -148,7 +148,7 @@
                     <div class="inner">
                       <h3>{{$my_teachers_count}}</h3>
 
-                      <p>Conversations</p>
+                      <p>My Mentor</p>
                     </div>
                     <div class="icon">
                       <i class="ion ion-ios-people-outline"></i>
@@ -383,7 +383,7 @@
                 When you receive a message from a mentee, you will receive an email notification. Please try to respond within 48 hours.
                 The Mentees will rate you based on their experience with you.
                 All highly rated mentors will get the opportunity to join our Mentors club in the coming months where you get paid to Mentor others. We will let you know further details closer to the launch date. )
-                
+
               </div>
             </div>
 
