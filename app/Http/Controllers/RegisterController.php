@@ -70,4 +70,15 @@ class RegisterController extends Controller
 
         return $user;
     }
+
+    protected function authenticated(Request $request)
+    {
+        if(Auth()->user()->first_login==1){
+            return redirect()->route('dashboard');
+        }else{
+            Auth()->user()->first_login = 1;
+            Auth()->user()->save();
+            return redirect()->route('user.profile');
+        }
+    }
 }

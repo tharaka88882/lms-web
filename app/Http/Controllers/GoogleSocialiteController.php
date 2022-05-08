@@ -11,6 +11,8 @@ use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Log;
 use PhpParser\Node\Stmt\TryCatch;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Mail\WelcomeMail;
 
 class GoogleSocialiteController extends Controller
 {
@@ -36,50 +38,70 @@ class GoogleSocialiteController extends Controller
             $user = Socialite::driver('google')->user();
 
             $finduser = User::where('social_id', $user->id)->first();
+            $users = User::all();
 
             if($finduser){
 
-                Auth::login($finduser);
+                    Auth::login($finduser);
 
-                return redirect('user/dashboard');
+                    return redirect('user/dashboard');
+
             }else{
-
-
-                if ($user->avatar != null) {
-
-                    try{
-                        $url = $user->avatar;
-                        $imageName = time()."google.png";
-                        file_put_contents(public_path('images/profile/').$imageName, file_get_contents($url));
-
-                    }catch(Exception $e){
-                        //dd($e);
+                $flag = false;
+                foreach($users as $us){
+                    if($us->email==$user->email){
+                        $flag=true;
                     }
                 }
-                $newUser = User::create([
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'image'=>$imageName,
-                    'social_id'=> $user->id,
-                    'social_type'=> 'google',
-                    'password' => encrypt('my-google')
-                ]);
 
-                $student = new Student();
-                $student->status = true;
-                $student->save();
-                $student->user()->save($newUser);
+                if($flag){
+                    Toastr::error('Email already used (:', 'Error');
+                    return redirect()->route('login');
+                }else{
+                    if ($user->avatar != null) {
 
-                Auth::login($newUser);
+                        try{
+                            $url = $user->avatar;
+                            $imageName = time()."google.png";
+                            file_put_contents(public_path('images/profile/').$imageName, file_get_contents($url));
 
-                Mail::to($user->email)->send(new WelcomeMail($user->name));
+                        }catch(Exception $e){
+                            //dd($e);
+                        }
+                    }
+                    $newUser = User::create([
+                        'name' => $user->name,
+                        'email' => $user->email,
+                        'image'=>$imageName,
+                        'social_id'=> $user->id,
+                        'social_type'=> 'google',
+                        'password' => encrypt('my-google')
+                    ]);
+
+                    $student = new Student();
+                    $student->status = true;
+                    $student->save();
+                    $student->user()->save($newUser);
+
+                    Auth::login($newUser);
+
+                    Mail::to($user->email)->send(new WelcomeMail($user->name));
 
 
-                // if(Auth()->user()->userable->linkedin_link!=null){
-                return redirect('user/dashboard');
-                 // }else{
-                 //   return redirect()->route('auth.view_linkedin');
-                 // }
+                    // if(Auth()->user()->userable->linkedin_link!=null){
+                 if(Auth()->user()->first_login==1){
+                    return redirect('user/dashboard');
+                 }else{
+                     Auth()->user()->first_login = 1;
+                     Auth()->user()->save();
+                    return redirect('user.profile');
+                 }
+                     // }else{
+                     //   return redirect()->route('auth.view_linkedin');
+                     // }
+                }
+
+
 
             }
 

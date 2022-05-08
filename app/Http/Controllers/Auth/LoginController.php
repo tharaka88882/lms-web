@@ -73,6 +73,12 @@ class LoginController extends Controller
 
         //  $this->createNotification(Auth()->user()->id, 'Hello this is a test notification message');
 
-        return redirect()->route('dashboard');
+        if(Auth()->user()->first_login==1){
+            return redirect()->route('dashboard');
+        }else{
+            Auth()->user()->first_login = 1;
+            Auth()->user()->save();
+            return redirect()->route('user.profile');
+        }
     }
 }

@@ -12,6 +12,9 @@ use App\Models\Teacher;
 use App\Models\User;
 use FFI\Exception;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\WelcomeMentorMail;
+use App\Mail\WelcomeMail;
 
 class RegisterController extends Controller
 {
@@ -99,6 +102,7 @@ class RegisterController extends Controller
 
                 // $user->userable_id = $student->id;
                 // $user->userable_type = Student::class;
+                Mail::to($to)->send(new WelcomeMail($data['name']));
             } else if ($data['type'] == 'teacher') {
                 $teacher = new Teacher();
                 $teacher->save();
@@ -112,5 +116,16 @@ class RegisterController extends Controller
         }
 
         return $user;
+    }
+
+    protected function authenticated(Request $request)
+    {
+        if(Auth()->user()->first_login==1){
+            return redirect()->route('dashboard');
+        }else{
+            Auth()->user()->first_login = 1;
+            Auth()->user()->save();
+            return redirect()->route('user.profile');
+        }
     }
 }

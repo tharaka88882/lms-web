@@ -125,9 +125,9 @@
 </div>
         <div id="lilnedin_div" class="social-auth-links text-center">
             {{-- <p>- OR -</p> --}}
-            <a id="fbBtn" href="{{ url('auth/facebook') }}" class="btn btn-block btn-primary">
+            {{-- <a id="fbBtn" href="{{ url('auth/facebook') }}" class="btn btn-block btn-primary">
                 <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-              </a>
+              </a> --}}
               <a id="googleBtn" href="{{ url('auth/google') }}" class="btn btn-block btn-danger">
                   <i class="fab fa-google mr-2"></i> Sign in using Google
                 </a-->
