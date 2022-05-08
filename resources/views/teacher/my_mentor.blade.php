@@ -118,6 +118,19 @@
 
                                         </div>
 
+                                        <div class="form-group">
+
+                                            <label>Sort Order:</label>
+
+                                            <select class="select2 form-control" style="width: 100%;">
+
+                                                <option selected>Rating ASC</option>
+
+                                                <option>Rating DESC</option>
+
+                                            </select>
+
+                                        </div>
 
                                     </div>
 
@@ -150,33 +163,6 @@
                                             </select>
 
                                         </div>
-
-                                        <div class="form-group">
-
-                                            <label>Sort Order:</label>
-
-                                            <select class="select2 form-control" style="width: 100%;">
-
-                                                <option selected>Rating ASC</option>
-
-                                                <option>Rating DESC</option>
-
-                                            </select>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-lg-3">
-
-                                        <div class="form-group">
-
-                                            <label>City:</label>
-
-                                            <input placeholder="Enter City" class="select2 form-control" data-placeholder="Any" name="city"/>
-
-                                        </div>
-
                                         <div class="form-group" id="currentModal">
                                             <label>Industry:</label>
                                             <select class="select2 form-control" data-placeholder="Any" style="width: 100%;" name="search_industry">
@@ -187,6 +173,17 @@
                                                     </option>
                                                 @endforeach
                                             </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3">
+
+                                        <div class="form-group">
+
+                                            <label>City:</label>
+
+                                            <input placeholder="Enter City" class="select2 form-control" data-placeholder="Any" name="city"/>
+
                                         </div>
 
                                     </div>
@@ -201,8 +198,13 @@
 
                                         </div>
 
-                                        <button  class="btn btn-success" style="margin-top: 30px;">Filter</button>
 
+
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <button  class="btn btn-success" style="margin-top: 30px;">Filter</button>
+                                        </div>
                                     </div>
 
                                     @csrf
@@ -278,7 +280,7 @@
                                                     <div class="p-2 mt-2 bg-light d-flex justify-content-between rounded text-white stats" style="font-size: 14px;">
                                                            @foreach ($conversation->mentor->teachersubject as $skils)
                                                            <span>Skills -
-                                                            <span class="badge bg-gray">{{$skils->name}}/span>
+                                                            <span class="badge bg-gray">{{$skils->name}}</span>
                                                         </span>
                                                            @endforeach
                                                         </div>
@@ -288,19 +290,19 @@
                                                         @endif
                                                     <div class="button mt-2 d-flex flex-row align-items-center">
                                                         <div class="row">
-                                                            <div class="col-xs-12 p-1">
+                                                            <div class="col-xs-12">
                                                                 <a href="{{route('teacher.view_mentor',$conversation->mentor->id)}}">
-                                                                    <button class="btn btn-sm btn-outline-primary w-100">View Profile</button>
+                                                                    <button class="btn btn-xs btn-outline-primary w-100">View Profile</button>
                                                                 </a>
                                                             </div>
-                                                              <div class="col-xs-12 p-1">
+                                                              <div class="col-xs-12">
                                                                 <a href="{{route('teacher.view_mentor_conversation', $conversation->id)}}">
-                                                                    <button class="btn btn-sm btn-primary w-100 ml-2">Conversation</button>
+                                                                    <button class="btn btn-xs btn-primary w-100 ml-1">Conversation</button>
                                                                 </a>
                                                               </div>
-                                                              <div class="col-xs-12 p-1">
+                                                              <div class="col-xs-12">
                                                                 <a>
-                                                                    <button  data-toggle="modal" data-target="#modal-md{{$conversation->id}}" class="btn btn-sm btn-warning w-100 ml-3">Notes</button>
+                                                                    <button  data-toggle="modal" data-target="#modal-md{{$conversation->id}}" class="btn btn-xs btn-warning w-100 ml-2">Notes</button>
                                                                 </a>
                                                               </div>
                                                         </div>

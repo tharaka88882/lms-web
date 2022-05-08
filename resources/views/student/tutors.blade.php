@@ -166,8 +166,12 @@
 
 
                                         </div>
+                                        <div class="col-lg-3">
+                                            <div class="form-group">
+                                            <button class="btn btn-success" style="margin-top: 30px;">Find Mentor</button>
+                                        </div>
+                                        </div>
 
-                                        <button class="btn btn-success" style="margin-top: 40px;">Find Mentor</button>
 
 
 
