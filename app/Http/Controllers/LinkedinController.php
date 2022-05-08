@@ -96,7 +96,16 @@ class LinkedinController extends Controller
 
 
                 if(Auth()->user()->userable->linkedin_link!=null){
-                    return redirect('user/dashboard');
+                    if(Auth()->user()->first_login==1){
+
+                        return redirect('user/dashboard');
+                    }else{
+                        Auth()->user->first_login = 1;
+                        Auth()->user->save();
+
+                        return redirect('user.profile');
+                    }
+
                 }else{
                   return redirect()->route('auth.view_linkedin');
                 }

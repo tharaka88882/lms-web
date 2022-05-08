@@ -43,9 +43,9 @@ return [
     ],
 
     'google' => [
-        'client_id' => 'xxxx',
-        'client_secret' => 'xxx',
-        'redirect' => 'http://127.0.0.1:8000/callback/google',
+        'client_id' => '713979367128-8r561eavrok9t0fm0t9kn13mjldi5kl1.apps.googleusercontent.com',
+        'client_secret' => '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',
+        'redirect' => 'https://login.you2mentor.com/callback/google',
     ],
 
 ];
