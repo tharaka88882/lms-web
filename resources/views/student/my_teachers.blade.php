@@ -215,8 +215,11 @@
 
 
                                     </div>
-                                    <button  class="btn btn-success" style="margin-top: 30px;">Filter</button>
-
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <button  class="btn btn-success" style="margin-top: 30px;">Filter</button>
+                                        </div>
+                                    </div>
                                     @csrf
                                 </div>
                             </form>
@@ -285,29 +288,38 @@
                                                         @endphp
                                                     @endwhile
 
+                                                    @if (count($conversation->teacher->teachersubject)>0)
                                                     <div class="p-2 mt-2 bg-light d-flex justify-content-between rounded text-white stats" style="font-size: 14px;">
                                                         <span>Skills -
-                                                        @foreach ($conversation->teacher->teachersubject as $skil)
-                                                            <span class="badge bg-gray">{{$skil->name}}</span>
-
-                                                          @endforeach
+                                                            @foreach ($conversation->teacher->teachersubject as $skil)
+                                                                <span class="badge bg-gray">{{$skil->name}}</span>
+                                                            @endforeach
                                                         </span>
-                                                        </div>
+                                                    </div>
+                                                    @endif
 
                                                        @if ( $conversation->teacher->user->country!=null)
                                                        <span class="users-list-date">{{$conversation->teacher->user->country}}/ {{$conversation->teacher->user->city}}</span>
                                                        @endif
 
                                                     <div class="button mt-2 d-flex flex-row align-items-center">
+                                                        <div class="row">
+                                                            <div class="col-xs-12">
                                                             <a href="{{ route('student.view_tutor', $conversation->teacher->id) }}">
                                                                 <button class="btn btn-xs btn-outline-primary w-100">View Profile</button>
                                                             </a>
+                                                            </div>
+                                                            <div class="col-xs-12">
                                                             <a href="{{route('student.view_conversation', $conversation->id)}}">
                                                                 <button class="btn btn-xs btn-primary w-100 ml-1">Conversation</button>
                                                             </a>
+                                                            </div>
+                                                            <div class="col-xs-12">
                                                             <a>
                                                                 <button class="btn btn-xs btn-warning w-100 ml-2" data-toggle="modal" data-target="#modal-md{{$conversation->id}}">Notes</button>
                                                             </a>
+                                                            </div>
+                                                        </div>
                                                     </div>
 
                                                     {{-- <div class="btn-group">
