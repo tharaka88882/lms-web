@@ -105,7 +105,7 @@ My Ratings
             <!-- small card -->
             <div class="small-box bg-light">
               <div class="inner">
-                <h3 style="color: red;">3 hours<sup style="font-size: 20px"></sup></h3>
+                <h3 style="color: red;">{{$avg_time}} hour<sup style="font-size: 20px"></sup></h3>
 
                 <p>Timely Responce</p>
               </div>

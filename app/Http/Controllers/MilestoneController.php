@@ -85,4 +85,15 @@ class MilestoneController extends Controller
             'success'=>true
         );
     }
+    public function add_s_note(Request $request)
+    {
+        $milestone = Milestone::findOrFail($request->get('id'));
+        $milestone->stikey = $request->get('stikey');
+
+        $milestone->save();
+      //  Toastr::success('Milestone is update successfully :)', 'Updated');
+        return array(
+            'success'=>true
+        );
+    }
 }

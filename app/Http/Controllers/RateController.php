@@ -54,7 +54,8 @@ class RateController extends Controller
         }
 
         $ratings = $query->get();
-        return view('teacher.view_rating',compact('ratings','mediation','relevance','request'));
+        $avg_time = round(1,5);
+        return view('teacher.view_rating',compact('ratings','mediation','relevance','avg_time','request'));
 
     }
 

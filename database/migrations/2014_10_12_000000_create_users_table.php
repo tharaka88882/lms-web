@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->string('social_id', 2048)->nullable();
+            $table->string('company', 2048)->nullable();
             $table->boolean('first_login')->default(0);
             $table->timestamps();
         });
