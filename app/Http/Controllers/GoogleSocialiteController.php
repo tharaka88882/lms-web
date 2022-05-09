@@ -40,6 +40,8 @@ class GoogleSocialiteController extends Controller
             $finduser = User::where('social_id', $user->id)->first();
             $users = User::all();
 
+            //dd($user);
+
             if($finduser){
 
                     Auth::login($finduser);
@@ -69,14 +71,22 @@ class GoogleSocialiteController extends Controller
                             //dd($e);
                         }
                     }
-                    $newUser = User::create([
-                        'name' => $user->name,
-                        'email' => $user->email,
-                        'image'=>$imageName,
-                        'social_id'=> $user->id,
-                        'social_type'=> 'google',
-                        'password' => encrypt('my-google')
-                    ]);
+                    // $newUser = User::create([
+                    //     'name' => $user->name,
+                    //     'email' => $user->email,
+                    //     'image'=>$imageName,
+                    //     'social_id'=> $user->id,
+                    //     'social_type'=> 'google',
+                    //     'password' => encrypt('my-google')
+                    // ]);
+                    $newUser = new User();
+                    $newUser->name=  $user->name;
+                    $newUser->email=  $user->email;
+                    $newUser->image=  $imageName;
+                    $newUser->social_id=  $user->id;
+                    $newUser->social_type= 'google';
+                    $newUser->password=encrypt('my-google');
+                    $newUser->save();
 
                     $student = new Student();
                     $student->status = true;
@@ -94,7 +104,7 @@ class GoogleSocialiteController extends Controller
                  }else{
                      Auth()->user()->first_login = 1;
                      Auth()->user()->save();
-                    return redirect('user.profile');
+                    return redirect()->route('user.profile');
                  }
                      // }else{
                      //   return redirect()->route('auth.view_linkedin');
