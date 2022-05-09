@@ -50,7 +50,8 @@ class User extends Authenticatable
         'city',
         'country',
         'cover_image',
-        'company'
+        'company',
+        'social_id'
     ];
 
     /**
