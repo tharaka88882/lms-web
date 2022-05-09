@@ -49,7 +49,8 @@ class User extends Authenticatable
         'address',
         'city',
         'country',
-        'cover_image'
+        'cover_image',
+        'company'
     ];
 
     /**

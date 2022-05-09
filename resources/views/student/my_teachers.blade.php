@@ -216,6 +216,18 @@
 
                                     </div>
                                     <div class="col-lg-3">
+
+                                        <div class="form-group">
+
+                                            <label> Company:</label>
+
+                                            <input placeholder="Enter Company" class="select2 form-control" data-placeholder="Any" name="company"/>
+
+                                        </div>
+
+
+                                    </div>
+                                    <div class="col-lg-3">
                                         <div class="form-group">
                                             <button  class="btn btn-success" style="margin-top: 30px;">Filter</button>
                                         </div>

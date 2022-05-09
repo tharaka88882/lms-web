@@ -155,7 +155,7 @@
 </div>
               <dl>
                   {{-- <dt>Notes</dt> --}}
-                  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-md">Add Note</button>
+                  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-md1">Add Note</button>
                   {{-- <dd>A description list is perfect for defining terms.</dd> --}}
                 </dl>
               <!-- /.card-body -->
@@ -192,7 +192,7 @@
     <div class="modal-dialog modal-md">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Add new note</h4>
+          <h4 class="modal-title">Add new Task</h4>
           <button onclick="location.reload();" type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -219,6 +219,37 @@
     <!-- /.modal-dialog -->
   </div>
   <!-- /.modal -->
+
+
+                                       <!-- /.modal -->
+                                       <div class="modal fade" id="modal-md1">
+                                        <div class="modal-dialog modal-sm">
+                                        <div class="modal-content" style="background-color: rgb(255, 251, 0);">
+                                            <div class="modal-header">
+                                            <h4 class="modal-title" style="text-transform: capitalize">Add Note</h4>
+                                            <button onclick="location.reload();" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            </div>
+                                                @csrf
+
+                                                <div class="row">
+                                                    <div class="form-group col-md-12">
+                                                        {{-- <label>Any Comments</label> --}}
+                                                        <textarea onkeyup="saveSNote('{{$milestone->id}}');" id="stikey_" style="background-color: rgb(255, 251, 0);"  name="question3" class="form-control" rows="6">{{$milestone->stikey;}} </textarea>
+                                                        <!-- <input type="test" name="due_date" class="form-control" placeholder="Enter ..."> -->
+                                            </div>
+                                                </div>
+                                            {{-- <div class="modal-footer justify-content-between btn-group">
+                                            <button  type="submit" class="btn btn-primary">Save</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div> --}}
+                                        </div>
+                                        <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
+                                    </div>
+                                    <!-- /.modal -->
 
 @endsection
 
@@ -250,6 +281,25 @@ if (confirm("Are you sure?") == true) {
 
 }
 }
+function saveSNote(id){
+
+//if (confirm("Are you sure?") == true) {
+    $.post("{{route('user.add_s_note')}}",
+    {
+        id: id,
+        stikey: $('#stikey_').val(),
+        _method: "put",
+        _token: "{{ csrf_token() }}"
+    },
+    function(data, status){
+        if(data.success==true){
+            console.log('success');
+           // window.location="{{route('user.notes',$milestone->id)}}";
+        }
+    });
+
+}
+//}
 function delete_note(id){
 
 if (confirm("Are you sure?") == true) {

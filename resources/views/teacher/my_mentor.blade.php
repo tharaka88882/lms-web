@@ -185,6 +185,13 @@
                                             <input placeholder="Enter City" class="select2 form-control" data-placeholder="Any" name="city"/>
 
                                         </div>
+                                        <div class="form-group">
+
+                                            <label>Company:</label>
+
+                                            <input placeholder="Enter Company" class="select2 form-control" data-placeholder="Any" name="company"/>
+
+                                        </div>
 
                                     </div>
 

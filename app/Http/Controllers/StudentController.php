@@ -331,6 +331,11 @@ class StudentController extends Controller
             $query->select('teachers.*')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.name', 'like', '%'.$request->get('m_name').'%')->where('status', 1);
 
         }
+        if ($request->get('company')) {
+
+            $query->select('teachers.*')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.company', 'like', '%'.$request->get('company').'%')->where('status', 1);
+
+        }
         else if ($request->get('search_subject') != 'Any' && $request->get('search_subject')) {
             $query->select('teachers.*')
                     ->leftjoin('teacher_subjects', 'teacher_subjects.teacher_id', '=', 'teachers.id')
@@ -606,6 +611,9 @@ class StudentController extends Controller
         }
         if($request->get('m_name')!=null){
             $query->select('conversations.*')->join('teachers', 'teachers.id', '=', 'conversations.teacher_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.name', 'like', '%'.$request->get('m_name').'%');
+        }
+        if($request->get('company')!=null){
+            $query->select('conversations.*')->join('teachers', 'teachers.id', '=', 'conversations.teacher_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.company', 'like', '%'.$request->get('company').'%');
         }
         if($request->get('city')!=null){
             $query->select('conversations.*')->join('teachers', 'teachers.id', '=', 'conversations.teacher_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.city', 'like', '%'.$request->get('city').'%');
