@@ -18,6 +18,13 @@ class MilestoneController extends Controller
         $user = Auth::user();
         $milestones = Milestone::where(['user_id' => $user->id])->get();
 
+        $completed_milestones_count = Milestone::where('user_id', '=',Auth()->user()->id)
+                                    ->where('status', '=', '1')->count();
+        $inprogress_milestones_count = Milestone::where('user_id', '=',Auth()->user()->id)
+                                    ->where('status', '=', '2')->count();
+        $overdue_milestones_count = Milestone::where('user_id', '=',Auth()->user()->id)
+                                    ->where('status', '=', '3')->count();
+
         foreach($milestones as $milestone){
             $date_facturation = \Carbon\Carbon::parse($milestone->due_date);
             if( $milestone->status!=1 && $date_facturation->isPast() && $milestone->status!=0){
@@ -47,7 +54,7 @@ class MilestoneController extends Controller
        // dd($in_progress." ".$completed." ".$overdue);
 
 
-        return view('milestone_list', compact('milestones','in_progress','completed','overdue'));
+        return view('milestone_list', compact('milestones','in_progress','completed','overdue','completed_milestones_count','inprogress_milestones_count','overdue_milestones_count'));
     }
 
     public function create(MilestoneRequest $request)
