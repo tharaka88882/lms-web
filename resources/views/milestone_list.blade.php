@@ -13,6 +13,7 @@
 
   <section class="content-header">
   <!-- general form elements -->
+  <div class="row">
   <div class="col-sm-6">
     <div class="card">
         <div class="card-header">
@@ -53,11 +54,51 @@
         </form>
     </div>
   </div>
+  <div class="col-sm-6">
+        <!-- small box -->
+        <div class="small-box bg-light">
+
+          <div class="inner">
+          <p style="margin-bottom: 3px; font-size: 14px;">My Development</p>
+            <div class="row">
+              <div class="col-4 border-right">
+                <div class="description-block">
+                  <h5 class="description-header">{{$completed_milestones_count}}</h5>
+                  <p style="color:green; font-size: 11px;">Completed</p>
+                  <!-- <span class="description-text">Completed</span> -->
+                </div>
+                <!-- /.description-block -->
+              </div>
+              <!-- /.col -->
+              <div class="col-4 border-right">
+                <div class="description-block">
+                  <h5 class="description-header">{{$inprogress_milestones_count}}</h5>
+                  <p style="color:rgb(255, 153, 0); font-size: 11px;">In Progress</p>
+                  <!-- <span class="description-text">In Progress</span> -->
+                </div>
+                <!-- /.description-block -->
+              </div>
+              <!-- /.col -->
+              <div class="col-4">
+                <div class="description-block">
+                  <h5 class="description-header">{{$overdue_milestones_count}}</h5>
+                  <p style="color:red; font-size: 11px;">Overdue</p>
+                  <!-- <span class="description-text">Overdue</span> -->
+                </div>
+                <!-- /.description-block -->
+              </div>
+              <!-- /.col -->
+            </div>
+          </div>
+          <a href="{{route('user.milestone')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+  </div>
   <!-- /.card -->
+  </div>
   </section>
     <!-- Main content -->
     <section class="content">
-
+        <div class="row">
       <!-- Default box -->
       <div class="col-md-9">
       <div class="card">
@@ -122,17 +163,17 @@
                                  <option {{$milestone->status==0?'selected="true"':''}} value="0">Cancelled</option>
                              </select>
                           </td>
-                          <td>
-                              <div class="col-md-6 p-1">
-                            <a href="{{route('user.notes',$milestone->id)}}" class="btn btn-success float-right" id="goal">Action</a>
-                </div>
-                <div class="col-md-6 p-1">
-                            <button type="button" class="btn btn-danger pull-left" id="deleteBtn-{{$milestone->id}}">Delete</button>
-                            <form action="{{route('user.milestone_delete', $milestone->id)}}" id="deleteform-{{$milestone->id}}" method="POST">
-                                @csrf
-                                @method('delete')
-                            </form>
-                </div>
+                          <td style="float: left;">
+                            <div class="col-xs-6 p-1">
+                                <a href="{{route('user.notes',$milestone->id)}}" class="btn btn-sm btn-success float-right" id="goal">Action</a>
+                            </div>
+                            <div class="col-xs-6 p-1">
+                                <button type="button" class="btn btn-sm btn-danger pull-left" id="deleteBtn-{{$milestone->id}}">Delete</button>
+                                <form action="{{route('user.milestone_delete', $milestone->id)}}" id="deleteform-{{$milestone->id}}" method="POST">
+                                    @csrf
+                                    @method('delete')
+                                </form>
+                            </div>
                           </td>
                       </tr>
                       @php
@@ -148,6 +189,7 @@
       </div>
       <!-- /.card -->
       </div>
+        </div>
       </section>
 @endsection
 
