@@ -116,7 +116,7 @@
 
                        <div class="card-body">
                          <div class="callout callout-danger">
-                             <p>Don't share personal details etc, as per the message provided.
+                             <p>Don't share personal details etc.
                              </p>
                          </div>
                        </div>
@@ -150,12 +150,12 @@
                         <div class="card-body">
                             <div class="callout callout-danger">
 
-                                <p>Don't share personal details etc, as per the message provided.
+                                <p>Don't share personal details etc.
                                     </p>
                             </div>
                         </div>
                     </div>
-                
+
 
                 <div class="card card-default">
                     <div class="card-header">

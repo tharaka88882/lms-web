@@ -284,13 +284,25 @@
                                                         @endphp
                                                     @endwhile
 
-                                                    <div class="p-2 mt-2 bg-light d-flex justify-content-between rounded text-white stats" style="font-size: 14px;">
+                                                    {{-- <div class="p-2 mt-2 bg-light d-flex justify-content-between rounded text-white stats" style="font-size: 14px;">
+                                                        <span>Skills -
                                                            @foreach ($conversation->mentor->teachersubject as $skils)
-                                                           <span>Skills -
+
                                                             <span class="badge bg-gray">{{$skils->name}}</span>
-                                                        </span>
+
                                                            @endforeach
+                                                        </span>
+                                                        </div> --}}
+
+                                                        @if (count($conversation->subjects)>0)
+                                                        <div class="p-2 mt-2 bg-light d-flex justify-content-between rounded text-white stats" style="font-size: 14px;">
+                                                            <span>Skills -
+                                                            @foreach ($conversation->subjects as $subject)
+                                                                <span class="badge badge-gray">{{$subject['name']}}</span>
+                                                            @endforeach
+                                                            </span>
                                                         </div>
+                                                    @endif
 
                                                         @if ($conversation->mentor->user->country!=null)
                                                         <span class="users-list-date">{{$conversation->mentor->user->country}}/{{$conversation->mentor->user->city}}</span>

@@ -116,7 +116,9 @@ class GoogleSocialiteController extends Controller
             }
 
         } catch (Exception $e) {
-            dd($e->getMessage());
+            //dd($e->getMessage());
+            Toastr::error('Something went wrone (:', 'Error');
+            return redirect()->route('login');
         }
     }
 }

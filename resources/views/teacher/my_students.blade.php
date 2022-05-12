@@ -100,7 +100,7 @@
 
                                         <div class="form-group">
 
-                                            <label> My Development:</label>
+                                            <label>Development Area:</label>
 
                                             <input placeholder="Enter Development" class="select2 form-control" data-placeholder="Any" name="develop"/>
 

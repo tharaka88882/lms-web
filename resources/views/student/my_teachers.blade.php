@@ -300,11 +300,11 @@
                                                         @endphp
                                                     @endwhile
 
-                                                    @if (count($conversation->teacher->teachersubject)>0)
+                                                    @if (count($conversation->subjects)>0)
                                                     <div class="p-2 mt-2 bg-light d-flex justify-content-between rounded text-white stats" style="font-size: 14px;">
                                                         <span>Skills -
-                                                            @foreach ($conversation->teacher->teachersubject as $skil)
-                                                                <span class="badge bg-gray">{{$skil->name}}</span>
+                                                            @foreach ($conversation->subjects as $subject)
+                                                                <span class="badge bg-gray">{{$subject['name']}}</span>
                                                             @endforeach
                                                         </span>
                                                     </div>
