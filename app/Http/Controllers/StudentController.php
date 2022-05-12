@@ -320,20 +320,21 @@ class StudentController extends Controller
     public function tutors(Request $request)
 
     {
-
+        $query = null;
         $query = Teacher::query();
 
         if ($request->get('search_industry') != 'Any' && $request->get('search_industry')) {
             $query->where('industry', $request->get('search_industry'));
         }
-        if ($request->get('m_name')) {
+        else if ($request->get('m_name')!=null) {
+           // dd($request->get('m_name'));
 
-            $query->select('teachers.*')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.name', 'like', '%'.$request->get('m_name').'%')->where('status', 1);
+            $query->select('teachers.*')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.name', 'like', $request->get('m_name').'%');
 
         }
-        if ($request->get('company')) {
+        else if ($request->get('company')!=null) {
 
-            $query->select('teachers.*')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.company', 'like', '%'.$request->get('company').'%')->where('status', 1);
+            $query->select('teachers.*')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.company', 'like', $request->get('company').'%');
 
         }
         else if ($request->get('search_subject') != 'Any' && $request->get('search_subject')) {
@@ -341,23 +342,24 @@ class StudentController extends Controller
                     ->leftjoin('teacher_subjects', 'teacher_subjects.teacher_id', '=', 'teachers.id')
                     ->join('subjects', 'subjects.id', '=', 'teacher_subjects.subject_id')
                     ->where('subjects.id', $request->get('search_subject'));
-        } else if ($request->get('city')) {
+        }  else if ($request->get('city')) {
 
             // dd('test2');
 
             // dd($request->get('city'));
 
-            $query->select('teachers.*')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.city', 'like', '%'.$request->get('city').'%')->where('status', 1);
+            $query->select('teachers.*')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.city', 'like', $request->get('city').'%')->where('status', 1);
 
-        } else if ($request->get('country') != null) {
+        }  else if ($request->get('country') != null) {
 
             // dd('test3');
 
             // dd($request->get('country'));
 
-            $query->select('teachers.*')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.country', 'like', '%'.$request->get('country').'%')->where('status', 1);
+            $query->select('teachers.*')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.country', 'like', $request->get('country').'%')->where('status', 1);
 
-        } else {
+        }
+         else {
 
             //dd('test4');
 
@@ -606,23 +608,33 @@ class StudentController extends Controller
             ->join('subjects', 'subjects.id', '=', 'teacher_subjects.subject_id')
             ->where('subjects.id', $request->get('search_subject'));
         }
-        if($request->get('country')!=null){
-            $query->select('conversations.*')->join('teachers', 'teachers.id', '=', 'conversations.teacher_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.country', 'like', '%'.$request->get('country').'%');
+        else if($request->get('country')!=null){
+            $query->select('conversations.*')->join('teachers', 'teachers.id', '=', 'conversations.teacher_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.country', 'like', $request->get('country').'%');
         }
-        if($request->get('m_name')!=null){
-            $query->select('conversations.*')->join('teachers', 'teachers.id', '=', 'conversations.teacher_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.name', 'like', '%'.$request->get('m_name').'%');
+        else if($request->get('m_name')!=null){
+            $query->select('conversations.*')->join('teachers', 'teachers.id', '=', 'conversations.teacher_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.name', 'like', $request->get('m_name').'%');
         }
-        if($request->get('company')!=null){
-            $query->select('conversations.*')->join('teachers', 'teachers.id', '=', 'conversations.teacher_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.company', 'like', '%'.$request->get('company').'%');
+        else if($request->get('company')!=null){
+            $query->select('conversations.*')->join('teachers', 'teachers.id', '=', 'conversations.teacher_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.company', 'like', $request->get('company').'%');
         }
-        if($request->get('city')!=null){
-            $query->select('conversations.*')->join('teachers', 'teachers.id', '=', 'conversations.teacher_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.city', 'like', '%'.$request->get('city').'%');
+        else if($request->get('city')!=null){
+            $query->select('conversations.*')->join('teachers', 'teachers.id', '=', 'conversations.teacher_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.city', 'like', $request->get('city').'%');
         }
-        if($request->get('search_industry')!="Any"){
+        else if($request->get('search_industry')!="Any"){
             $query->select('conversations.*')->join('teachers', 'teachers.id', '=', 'conversations.teacher_id')->where('industry', $request->get('search_industry'));
         }
 
         $conversations= $query->paginate(20);
+
+        for ($i=0; $i < count($conversations); $i++) {
+            $tutor_subjects = TeacherSubject::select('subjects.*')->join('subjects', 'teacher_subjects.subject_id', '=', 'subjects.id')->where('teacher_subjects.teacher_id', '=', $conversations[$i]['teacher_id'])->get();
+            $tutor_subjects = json_decode($tutor_subjects, true);
+            $conversations[$i]['subjects'] = $tutor_subjects;
+
+            $tutor_convversation = Conversation::where('teacher_id', $conversations[$i]['teacher_id'])->where('student_id', Auth()->user()->userable->id)->first();
+            $tutor_convversation = json_decode($tutor_convversation, true);
+            $conversations[$i]['conversation'] = $tutor_convversation;
+        }
 
         $subjects = Subject::all();
         $industries = Industry::all();

@@ -40,7 +40,7 @@ class DashboardController extends Controller
         $my_students_count = 0;
 
         $mentee_teachers_count = Conversation::where('student_id', '=',Auth()->user()->userable_id)->count();
-        $my_teachers_count += MentorConversation::where('mentee_id', '=',Auth()->user()->userable_id)->count();
+        $my_teachers_count = MentorConversation::where('mentee_id', '=',Auth()->user()->userable_id)->count();
 
         $my_students_count += Conversation::where('teacher_id', '=',Auth()->user()->userable_id)->count();
         $my_students_count += MentorConversation::where('mentor_id', '=',Auth()->user()->userable_id)->count();
