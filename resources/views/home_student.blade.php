@@ -215,10 +215,11 @@
             </div>
           </div> --}}
 
-         <div class="card">
+         <div class="card p-3">
             <div class="container">
                 {{-- <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button> --}}
                 <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
+                <p class="text-justify">
                 (Welcome to your You2Mentor dashboard. What you need to do when you first login:
                     Go to the top right of the page and click on your profile( click name and profile)
                     Update your profile and make sure to add location details, development areas and your skills/ expertise for a better search experience.
@@ -234,7 +235,7 @@
                     When you receive a message from a mentee, you will receive an email notification. Please try to respond within 48 hours.
                     The Mentees will rate you based on their experience with you.
                     All highly rated mentors will get the opportunity to join our Mentors club in the coming months where you get paid to Mentor others. We will let you know further details closer to the launch date. )
-
+                </p>
               </div>
          </div>
 
