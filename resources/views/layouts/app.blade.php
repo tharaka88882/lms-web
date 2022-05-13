@@ -154,10 +154,6 @@
                                     <ul style="list-style: none; padding-left: 0px">
                                         <li><a href="{{ route('user.profile') }}">Profile</a></li>
                                     </ul>
-                                    <form action="{{ route('logout') }}" method="post">
-                                        @csrf @method('post')
-                                        <button class="btn btn-link btn-flat" style="padding-left: 0">Sign out</button>
-                                    </form>
                                     <ul style="list-style: none; padding-left: 0px">
                                         <li><a href="#!"  data-toggle="modal" data-target="#modal-md">Refer a Friend</a></li>
                                     </ul>
@@ -166,6 +162,12 @@
                                     </ul>
                                     <ul style="list-style: none; padding-left: 0px">
                                         <li><a target="_blank" href="https://you2mentor.com/contact">Help and Support</a></li>
+                                    </ul>
+                                    <ul style="list-style: none; padding-left: 0px">
+                                    <form action="{{ route('logout') }}" method="post">
+                                        @csrf @method('post')
+                                        <button class="btn btn-link btn-flat pt-0" style="padding-left: 0">Sign out</button>
+                                    </form>
                                     </ul>
                                 </div>
                             </li>
