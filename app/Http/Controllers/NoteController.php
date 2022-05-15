@@ -23,6 +23,12 @@ class NoteController extends Controller
         $milestone = Milestone::FindOrFail($id);
 
         foreach($milestone->notes as $note){
+
+            $date_facturation = \Carbon\Carbon::parse($note->due_date);
+            if( $note->status!=1 && $date_facturation->isPast() && $note->status!=0){
+                $note->status=0;
+            }
+
             if($note->status==2){
                 $in_progress+=1;
             }else if($note->status==1){
@@ -30,6 +36,7 @@ class NoteController extends Controller
             }else if($note->status==0){
                 $Cancelled+=1;
             }
+            $note->save();
         }
         $tot = ($in_progress+$completed+$Cancelled);
         if($in_progress!=0){

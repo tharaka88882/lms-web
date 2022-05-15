@@ -309,6 +309,7 @@
                                                         </span>
                                                     </div>
                                                     @endif
+                                                    <span class="users-list-date">Timely Responce - {{ $conversation->avg_time }} hour</span>
 
                                                        @if ( $conversation->teacher->user->country!=null)
                                                        <span class="users-list-date">{{$conversation->teacher->user->country}}/ {{$conversation->teacher->user->city}}</span>

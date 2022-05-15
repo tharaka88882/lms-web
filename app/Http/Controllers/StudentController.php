@@ -378,11 +378,14 @@ class StudentController extends Controller
             $tutor_convversation = Conversation::where('teacher_id', $tutors[$i]['id'])->where('student_id', Auth()->user()->userable->id)->first();
             $tutor_convversation = json_decode($tutor_convversation, true);
             $tutors[$i]['conversation'] = $tutor_convversation;
+            $tutors[$i]['avg_time'] =round(1,5);
         }
 
 
         $subjects = Subject::all();
         $industries = Industry::all();
+
+        //$avg_time = round(1,5);
 
         return view('student.tutors', compact('tutors', 'subjects', 'industries', 'request'));
 
@@ -634,6 +637,8 @@ class StudentController extends Controller
             $tutor_convversation = Conversation::where('teacher_id', $conversations[$i]['teacher_id'])->where('student_id', Auth()->user()->userable->id)->first();
             $tutor_convversation = json_decode($tutor_convversation, true);
             $conversations[$i]['conversation'] = $tutor_convversation;
+            $conversations[$i]['avg_time'] =round(1,5);
+
         }
 
         $subjects = Subject::all();

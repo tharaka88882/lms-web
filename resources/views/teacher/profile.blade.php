@@ -230,7 +230,7 @@ Update Teacher Profile
 
                 <div class="form-group">
 
-                    <label for="exampleInputEmail1">Linkedin Profile Link <small> (Please copy & past your Link)</small></label>
+                    <label for="exampleInputEmail1">Linkedin Profile Link <small> (Please copy & past your link)</small></label>
 
                     <input name="linkedin_link" class="form-control @if ($errors->has('linkedin_link')) {{ 'is-invalid' }} @endif" value="{{ $user->userable->linkedin_link }}" />
 
@@ -250,10 +250,26 @@ Update Teacher Profile
 
                 <div class="form-group">
 
-                    <label for="exampleInputPassword1">My Rating</label>
+                    <label for="exampleInputPassword1">My Rating</label><br>
 
-                    <input disabled type="text" name="country" class="form-control" value="{{ $user->userable->level }}">
+                    {{-- <input disabled type="text" name="country" class="form-control" value="{{ $user->userable->level }}"> --}}
+                    @php
+                    $i = 0;
+                    //$r = intval(Auth()->user()->userable->level);
+                    $r =$round_mediation;
+                @endphp
+                @while ($i<5)
+                    @if ($r>0)
+                    <span class="fa fa-star checked"></span>
+                    @else
+                    <span class="fa fa-star"></span>
 
+                    @endif
+                    @php
+                    $i += 1;
+                    $r -=1;
+                    @endphp
+                @endwhile
                 </div>
 
                 <div class="form-group">
