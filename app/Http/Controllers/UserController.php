@@ -6,6 +6,7 @@ use App\Http\Requests\UpdateProfileRequest;
 use App\Http\Requests\UpdateTeacherProfileRequest;
 use App\Models\Complaint;
 use App\Models\Industry;
+use App\Models\Rating;
 use App\Models\StikeyNote;
 use App\Models\StikeyNoteMentee;
 use App\Models\Notification;
@@ -27,10 +28,24 @@ class UserController extends Controller
     {
         $user =  Auth::user();
         $industries = Industry::all();
+
+        $ratings = Rating::where('teacher_id',Auth()->user()->userable_id)->get();
+        $rator_count = count(json_decode( $ratings,true));
+        $rating_count = 0;
+        $mediation = 0;
+            foreach($ratings as $rating){
+                $rating_count+=$rating->rating;
+            }
+       if($rator_count!=0){
+        $mediation = $rating_count/$rator_count;
+       }
+
+        $round_mediation =(int)$mediation;
+
         // return get_class($user);
         if (get_class($user->userable) == 'App\Models\Teacher') {
             if (Auth()->user()->userable->status == 1) {
-                return view('teacher.profile', compact('user', 'industries'));
+                return view('teacher.profile', compact('user', 'industries','round_mediation'));
             } else {
                 return abort(403, 'You not approved yet');
             }
