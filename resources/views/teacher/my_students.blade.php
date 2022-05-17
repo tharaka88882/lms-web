@@ -154,7 +154,7 @@
                                         <div class="card p-2">
                                             <div class="d-flex align-items-center">
                                                 <a href="#">
-                                                    <img alt="User Image" style="width: 120px; height: 120px; border-radius: 50%;" src="{{ url('public') }}/images/{{$conversation['image']}}" onerror=" this.src='{{ url('public') }}/images/def.jpg'">
+                                                    <img alt="User Image" style="width: 120px; height: 120px; border-radius: 50%;" src="{{ url('public') }}/images/profile/{{$conversation['image']}}" onerror=" this.src='{{ url('public') }}/images/def.jpg'">
                                                 </a>
                                                 <div class="ml-3 w-100">
                                                     <h4 class="mb-0 mt-0"><a style="text-transform: capitalize" href="#">{{$conversation['name']}}</a></h4>
@@ -208,7 +208,7 @@
                                                 <div class="row">
                                                     <div class="form-group col-md-12">
                                                         {{-- <label>Any Comments</label> --}}
-                                                        <textarea onkeyup="saveNote('{{$conversation['id']}}');" id="stikey_{{$conversation['id']}}" style="background-color: rgb(255, 251, 0);"  name="question3" class="form-control" rows="6">
+                                                        <textarea onkeyup="saveNote('{{$conversation['id']}}','{{$conversation['user']}}');" id="stikey_{{$conversation['id']}}" style="background-color: rgb(255, 251, 0);"  name="question3" class="form-control" rows="6">
                                                             {{$conversation['stikey']}}
                                                         </textarea>
                                                         <!-- <input type="test" name="due_date" class="form-control" placeholder="Enter ..."> -->
@@ -246,12 +246,13 @@
 
 @push('scripts')
 <script>
-function saveNote(id){
+function saveNote(id,user){
 
     $.post("{{route('user.update_mentee_stikey')}}",
         {
             id: id,
             note: $('#stikey_'+id).val(),
+            user:user,
             _method: "PUT",
             _token: "{{ csrf_token() }}"
         },

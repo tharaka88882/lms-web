@@ -359,7 +359,7 @@ class TeacherController extends Controller
         foreach ($mentor_conversations as $mentor_conversation) {
 
             foreach($mentor_conversation->mentee->stikey as $stikey){
-                if($stikey->user_id==Auth()->user()->id && $stikey->student_id==$mentor_conversation->mentee->id){
+                if($stikey->user_id==Auth()->user()->id && $stikey->teacher_id==$mentor_conversation->mentee->id){
                     $stikey = $stikey->note;
                 }
             }
