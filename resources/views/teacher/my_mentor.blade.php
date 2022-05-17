@@ -303,7 +303,7 @@
                                                             </span>
                                                         </div>
                                                     @endif
-                                                    <span class="users-list-date">Timely Responce - {{ $conversation->avg_time }} hour</span>
+                                                    {{-- <span class="users-list-date">Timely Responce - {{ $conversation->avg_time }} hour</span> --}}
 
                                                         @if ($conversation->mentor->user->country!=null)
                                                         <span class="users-list-date">{{$conversation->mentor->user->country}}/{{$conversation->mentor->user->city}}</span>
@@ -331,6 +331,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <span class="users-list-date text-right">Timely Responce - {{ $conversation->avg_time }} hour</span>
                                         </div>
                                     </div>
 
