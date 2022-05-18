@@ -148,7 +148,7 @@
                     <div class="inner">
                       <h3>{{$my_teachers_count}}</h3>
 
-                      <p>My Mentor</p>
+                      <p>My Mentors</p>
                     </div>
                     <div class="icon">
                       <i class="ion ion-android-people"></i>

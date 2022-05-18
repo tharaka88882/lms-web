@@ -14,47 +14,7 @@
   <section class="content-header">
   <!-- general form elements -->
   <div class="row">
-  <div class="col-sm-6">
-    <div class="card">
-        <div class="card-header">
-        <h3 class="card-title">Add Milestone</h3>
-        </div>
-        <!-- /.card-header -->
-        <!-- form start -->
-        <form action="{{route('user.milestone_create')}}" method="POST">
-            @csrf
-            <div class="card-body">
-                <div class="form-group">
-                    <label for="Milestone">Milestone Note</label>
-                    <input type="text" class="form-control @if($errors->has('note')) {{'is-invalid'}} @endif" id="note" name="note" placeholder="Milestone Note">
-
-                    @if($errors->has('note'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('note') }}</strong>
-                        </span>
-                    @endif
-                </div>
-
-                <div class="form-group">
-                    <label for="Milestone">Due Date</label>
-                    <input type="date" class="form-control @if($errors->has('due_date')) {{'is-invalid'}} @endif" id="due_date" name="due_date" placeholder="Milestone Due Date">
-
-                    @if($errors->has('due_date'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('due_date') }}</strong>
-                        </span>
-                    @endif
-                </div>
-            </div>
-            <!-- /.card-body -->
-
-            <div class="card-footer">
-                <button type="submit" class="btn btn-success pull-right">Add</button>
-            </div>
-        </form>
-    </div>
-  </div>
-  <div class="col-sm-6">
+    <div class="col-md-6">
         <!-- small box -->
         <div class="small-box bg-light">
 
@@ -92,7 +52,51 @@
           </div>
           {{-- <a href="{{route('user.milestone')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> --}}
         </div>
+        <diV>Please note development goals are appeared in your profile and, however actions within goals are private.</diV>
+
+        <div class="card">
+            <div class="card-header">
+            <h3 class="card-title">Add Milestone</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form action="{{route('user.milestone_create')}}" method="POST">
+                @csrf
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="Milestone">Milestone Note</label>
+                        <input type="text" class="form-control @if($errors->has('note')) {{'is-invalid'}} @endif" id="note" name="note" placeholder="Milestone Note">
+
+                        @if($errors->has('note'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('note') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Milestone">Due Date</label>
+                        <input type="date" class="form-control @if($errors->has('due_date')) {{'is-invalid'}} @endif" id="due_date" name="due_date" placeholder="Milestone Due Date">
+
+                        @if($errors->has('due_date'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('due_date') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-success pull-right">Add</button>
+                </div>
+            </form>
+        </div>
   </div>
+  <div class="col-md-6">
+
+  </div>
+
   <!-- /.card -->
   </div>
   </section>
@@ -127,7 +131,7 @@
                   <thead>
                       <tr>
                           <th>#</th>
-                          <th>Note</th>
+                          <th>Goals</th>
                           <th>Created On</th>
                           <th>Due Date</th>
                           <th>Status</th>
@@ -165,7 +169,7 @@
                           </td>
                           <td style="float: left;">
                             <div class="col-xs-6 p-1">
-                                <a href="{{route('user.notes',$milestone->id)}}" class="btn btn-sm btn-success float-right" id="goal">Action</a>
+                                <a href="{{route('user.notes',$milestone->id)}}" class="btn btn-sm btn-success float-right" id="goal">Tasks</a>
                             </div>
                             <div class="col-xs-6 p-1">
                                 <button type="button" class="btn btn-sm btn-danger pull-left" id="deleteBtn-{{$milestone->id}}">Delete</button>

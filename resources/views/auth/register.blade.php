@@ -18,7 +18,7 @@
 <body class="hold-transition login-page" style="background-image: url('{{url('public')}}/theme/admin/dist/img/you2mentor_covers-02.jpg');background-repeat: no-repeat;background-attachment: fixed;background-size: cover;">
 <div class="register-box">
   <div class="register-logo">
-    <a href="{{url('')}}"><img height="200px" width="200px" src="{{url('public')}}/theme/admin/dist/img/logo/you2logo.png"/></a>
+    <a href="https://you2mentor.com"><img height="200px" width="200px" src="{{url('public')}}/theme/admin/dist/img/logo/you2logo.png"/></a>
   </div>
 
   <div class="card">
