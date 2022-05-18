@@ -13,46 +13,140 @@
 
   <section class="content-header">
   <!-- general form elements -->
+  <div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Milestone Timeline</h3>
+        </div>
+        <div class="card-body">
+          <ul class="pagination pagination-month justify-content-center">
+            <li class="page-item"><a class="page-link" href="#">«</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#">
+                    <p class="page-month">test milestone</p>
+                    <p class="page-year">2021/05/17</p>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">
+                    <p class="page-month">test milestone 1</p>
+                    <p class="page-year">2021/05/17</p>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">
+                    <p class="page-month">test milestone 2</p>
+                    <p class="page-year">2021/05/17</p>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">
+                    <p class="page-month">test milestone 3</p>
+                    <p class="page-year">2021/05/17</p>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">
+                    <p class="page-month">test milestone 4</p>
+                    <p class="page-year">2021/05/17</p>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">
+                    <p class="page-month">Feb</p>
+                    <p class="page-year">2021</p>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">
+                    <p class="page-month">Mar</p>
+                    <p class="page-year">2021</p>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">
+                    <p class="page-month">Apr</p>
+                    <p class="page-year">2021</p>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">
+                    <p class="page-month">May</p>
+                    <p class="page-year">2021</p>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">
+                    <p class="page-month">Jun</p>
+                    <p class="page-year">2021</p>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">
+                    <p class="page-month">Jul</p>
+                    <p class="page-year">2021</p>
+                </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">»</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="row">
     <div class="col-md-6">
         <!-- small box -->
         <div class="small-box bg-light">
 
-          <div class="inner">
-          <p style="margin-bottom: 3px; font-size: 14px;">My Development</p>
-            <div class="row">
-              <div class="col-4 border-right">
-                <div class="description-block">
-                  <h5 class="description-header">{{$completed_milestones_count}}</h5>
-                  <p style="color:green; font-size: 11px;">Completed</p>
-                  <!-- <span class="description-text">Completed</span> -->
+            <div class="inner">
+            <p style="margin-bottom: 3px; font-size: 14px;">My Development</p>
+              <div class="row">
+                <div class="col-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header">{{$completed_milestones_count}}</h5>
+                    <p style="color:green; font-size: 11px;">Completed</p>
+                    <!-- <span class="description-text">Completed</span> -->
+                  </div>
+                  <!-- /.description-block -->
                 </div>
-                <!-- /.description-block -->
-              </div>
-              <!-- /.col -->
-              <div class="col-4 border-right">
-                <div class="description-block">
-                  <h5 class="description-header">{{$inprogress_milestones_count}}</h5>
-                  <p style="color:rgb(255, 153, 0); font-size: 11px;">In Progress</p>
-                  <!-- <span class="description-text">In Progress</span> -->
+                <!-- /.col -->
+                <div class="col-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header">{{$inprogress_milestones_count}}</h5>
+                    <p style="color:rgb(255, 153, 0); font-size: 11px;">In Progress</p>
+                    <!-- <span class="description-text">In Progress</span> -->
+                  </div>
+                  <!-- /.description-block -->
                 </div>
-                <!-- /.description-block -->
-              </div>
-              <!-- /.col -->
-              <div class="col-4">
-                <div class="description-block">
-                  <h5 class="description-header">{{$overdue_milestones_count}}</h5>
-                  <p style="color:red; font-size: 11px;">Overdue</p>
-                  <!-- <span class="description-text">Overdue</span> -->
+                <!-- /.col -->
+                <div class="col-4">
+                  <div class="description-block">
+                    <h5 class="description-header">{{$overdue_milestones_count}}</h5>
+                    <p style="color:red; font-size: 11px;">Overdue</p>
+                    <!-- <span class="description-text">Overdue</span> -->
+                  </div>
+                  <!-- /.description-block -->
                 </div>
-                <!-- /.description-block -->
+                <!-- /.col -->
               </div>
-              <!-- /.col -->
             </div>
+            {{-- <a href="{{route('user.milestone')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> --}}
           </div>
-          {{-- <a href="{{route('user.milestone')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> --}}
-        </div>
-        <diV>Please note development goals are appeared in your profile and, however actions within goals are private.</diV>
+    </div>
+    <div class="col-md-6">
+        <div class="callout callout-warning">
+            <p>Please note development goals are appeared in your profile and, however actions within goals are private.</p>
+          </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+
+
 
         <div class="card">
             <div class="card-header">
@@ -98,6 +192,7 @@
   </div>
 
   <!-- /.card -->
+  </div>
   </div>
   </section>
     <!-- Main content -->
