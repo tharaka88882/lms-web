@@ -155,7 +155,7 @@
                             <div class="card-header">
                                 <h3 class="card-title">
                                   <i class="fas fa-list"></i>
-                                      Mentee Developments
+                                      Mentee developments goals
                                </h3>
                                <div class="card-body">
                             <div class="p-2 mt-2 bg-light d-flex justify-content rounded text-white stats" style="font-size: 18px;">

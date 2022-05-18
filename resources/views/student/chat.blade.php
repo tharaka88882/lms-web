@@ -155,7 +155,7 @@
                         <div class="card-header">
                             <h3 class="card-title">
                               <i class="fas fa-list"></i>
-                                  Skills
+                                  Mentor Skills
                            </h3>
                            <div class="card-body">
                         @if (count($teacherSubs)>0)

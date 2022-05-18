@@ -17,7 +17,7 @@
   <div class="col-md-9">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Milestone Details</h3>
+                <h3 class="card-title">Goal Details</h3>
 
                 <!-- <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
@@ -30,7 +30,7 @@
               <div class="row">
                   <div class="col-sm-6 border-right">
                     <div class="description-block">
-                      <h5 class="description-header">Milestone Name</h5>
+                      <h5 class="description-header">Goal Name</h5>
                       <span class="description-text">{{$milestone->note}}</span>
                     </div>
                     <!-- /.description-block -->
@@ -82,7 +82,7 @@
                   <thead>
                     <tr>
                       <th style="width: 10px">#</th>
-                      <th>Action plans to achieve Milestone</th>
+                      <th>Tasks to achieve goal</th>
                       <th>Due by</th>
                       <th style="width: 150px">Status</th>
                       <th style="width: 100px">Action</th>

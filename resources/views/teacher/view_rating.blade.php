@@ -119,7 +119,7 @@ My Ratings
           </div>
         </div>
 
-        <h4> Details and Feedbacks</h4>
+        <h4> Details and Feedback</h4>
 
                 <div class="col-md-12">
                 <div class="row">
@@ -130,7 +130,7 @@ My Ratings
 
                     <div class="p-1">
                         <div class="form-group" id="currentModal">
-                            <label>Search by Q2</label>
+                            <label>Search by Relavance?</label>
 
                               <select class="select2 form-control" data-placeholder="Any" style="width: 100%;" name="q2">
                                                     <option value="1">Yes</option>
