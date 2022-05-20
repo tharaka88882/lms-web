@@ -14,6 +14,7 @@
   <section class="content-header">
   <!-- general form elements -->
   <div class="container-fluid">
+
     <div class="row">
         <div class="col-xs-12">
         <div class="card">
@@ -39,10 +40,13 @@
 
 
             {{-- End of Green Balls --}}
+
         </div>
         </div>
     </div>
+
     </div>
+
 
   <div class="row">
     <div class="col-md-6">

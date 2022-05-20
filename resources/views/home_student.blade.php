@@ -215,9 +215,8 @@
             </div>
           </div> --}}
 
-         <div class="card p-3">
+         {{-- <div class="card p-3">
             <div class="container">
-                {{-- <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button> --}}
                 <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
                 <p class="text-justify">
                 (Welcome to your You2Mentor dashboard. What you need to do when you first login:
@@ -237,7 +236,7 @@
                     All highly rated mentors will get the opportunity to join our Mentors club in the coming months where you get paid to Mentor others. We will let you know further details closer to the launch date. )
                 </p>
               </div>
-         </div>
+         </div> --}}
 
           <!-- /.row -->
               <!-- Default box -->
