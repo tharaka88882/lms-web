@@ -338,7 +338,7 @@
 
                                                                             <!-- /.modal -->
                                                                             <div class="modal fade" id="modal-md{{$conversation->id}}">
-                                                                                <div class="modal-dialog modal-sm">
+                                                                                <div class="modal-dialog modal-md">
                                                                                 <div class="modal-content" style="background-color: rgb(255, 251, 0);">
                                                                                     <div class="modal-header">
                                                                                     <h4 class="modal-title" style="text-transform: capitalize">{{$conversation->mentor->user->name}}</h4>
@@ -351,6 +351,7 @@
                                                                                         <div class="row">
                                                                                             <div class="form-group col-md-12">
                                                                                                 {{-- <label>Any Comments</label> --}}
+
                                                                                                 <textarea onkeyup="saveNote('{{$conversation->mentor->id}}');" id="stikey_{{$conversation->mentor->id}}" style="background-color: rgb(255, 251, 0);"  name="question3" class="form-control" rows="6">
                                                                                                     @foreach ($conversation->mentor->stikey as $stikey)
                                                                                                     @if ($stikey->user_id==Auth()->user()->id && $stikey->teacher_id==$conversation->mentor->id)
@@ -395,10 +396,10 @@
 @push('scripts')
 <script>
 function saveNote(id){
-    $(document).keyup(function (e) {
+    //$(document).keyup(function (e) {
        //  console.log(e.keyCode);
        //alert(e.keyCode);
-    if(e.keyCode==13){
+   // if(e.keyCode==13){
         $.post("{{route('user.update_stikey')}}",
         {
             id: id,
@@ -414,8 +415,8 @@ function saveNote(id){
         });
     //alert('saved');
 
-    }
-      });
+  // }
+     // });
 
 
 }
