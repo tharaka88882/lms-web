@@ -14,93 +14,40 @@
   <section class="content-header">
   <!-- general form elements -->
   <div class="container-fluid">
-  {{-- <div class="row">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">Milestone Timeline</h3>
+    <div class="row">
+        <div class="col-xs-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Milestone Timeline</h3>
+            </div>
+            <div class="card-body">
+                {{-- black arrow --}}
+            <ul id="progress">
+                <li style="cursor: pointer" title="Due Date: 17/05/2022" class="active"><i class="fa fa-check"></i> Task 2</li>
+                <li style="cursor: pointer" title="Due Date: 18/05/2022" class="active"><i class="fa fa-check"></i> Task 1</li>
+                <li style="cursor: pointer" title="Due Date: 19/05/2022">Task 3</li>
+                <li style="cursor: pointer" title="Due Date: 21/05/2022">Task 4</li>
+                <li style="cursor: pointer" title="Due Date: 25/05/2022">Task 5</li>
+                <li style="cursor: pointer" title="Due Date: 27/05/2022">Task 6</li>
+                <li style="cursor: pointer" title="Due Date: 27/05/2022">Task 7</li>
+                <li style="cursor: pointer" title="Due Date: 27/05/2022">Task 8</li>
+                <li style="cursor: pointer" title="Due Date: 27/05/2022">Task 9</li>
+                <li style="cursor: pointer" title="Due Date: 27/05/2022">Task 10</li>
+            </ul>
+            {{-- End of black arrow --}}
+            {{-- Green Balls --}}
+
+
+            {{-- End of Green Balls --}}
         </div>
-        <div class="card-body">
-          <ul class="pagination pagination-month justify-content-center">
-            <li class="page-item"><a class="page-link" href="#">«</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#">
-                    <p class="page-month">test milestone</p>
-                    <p class="page-year">2021/05/17</p>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">
-                    <p class="page-month">test milestone 1</p>
-                    <p class="page-year">2021/05/17</p>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">
-                    <p class="page-month">test milestone 2</p>
-                    <p class="page-year">2021/05/17</p>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">
-                    <p class="page-month">test milestone 3</p>
-                    <p class="page-year">2021/05/17</p>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">
-                    <p class="page-month">test milestone 4</p>
-                    <p class="page-year">2021/05/17</p>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">
-                    <p class="page-month">Feb</p>
-                    <p class="page-year">2021</p>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">
-                    <p class="page-month">Mar</p>
-                    <p class="page-year">2021</p>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">
-                    <p class="page-month">Apr</p>
-                    <p class="page-year">2021</p>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">
-                    <p class="page-month">May</p>
-                    <p class="page-year">2021</p>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">
-                    <p class="page-month">Jun</p>
-                    <p class="page-year">2021</p>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">
-                    <p class="page-month">Jul</p>
-                    <p class="page-year">2021</p>
-                </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">»</a></li>
-          </ul>
         </div>
-      </div>
     </div>
-  </div> --}}
+    </div>
 
   <div class="row">
     <div class="col-md-6">
         <!-- small box -->
         <div class="small-box bg-light">
-
             <div class="inner">
             <p style="margin-bottom: 3px; font-size: 14px;">My Development</p>
               <div class="row">
@@ -145,9 +92,6 @@
 
   <div class="row">
     <div class="col-md-6">
-
-
-
         <div class="card">
             <div class="card-header">
             <h3 class="card-title">Add Milestone</h3>
