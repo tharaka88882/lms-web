@@ -105,7 +105,14 @@ My Ratings
             <!-- small card -->
             <div class="small-box bg-light">
               <div class="inner">
-                <h3 style="color: red;">{{$avg_time}} hour<sup style="font-size: 20px"></sup></h3>
+                  @if ($avg_time<4)
+                  <h3 style="color: green;">{{$avg_time}} hour<sup style="font-size: 20px"></sup></h3>
+                  @elseif ($avg_time>4 && $avg_time <49)
+                  <h3 style="color: rgb(255, 174, 0);">{{$avg_time}} hour<sup style="font-size: 20px"></sup></h3>
+                  @else
+                  <h3 style="color: red;">{{$avg_time}} hour<sup style="font-size: 20px"></sup></h3>
+                  @endif
+
 
                 <p>Timely Responce</p>
               </div>

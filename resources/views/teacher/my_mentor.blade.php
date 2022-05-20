@@ -358,8 +358,10 @@
                                                                                                     @endif
                                                                                                     @endforeach
                                                                                                 </textarea>
+                                                                                                {{-- <button onclick="saveNote1('{{$conversation->mentor->id}}');" class="btn btn-success">Save</button> --}}
                                                                                                 <!-- <input type="test" name="due_date" class="form-control" placeholder="Enter ..."> -->
-                                                                                    </div>
+                                                                                            </div>
+
                                                                                         </div>
                                                                                     {{-- <div class="modal-footer justify-content-between btn-group">
                                                                                     <button  type="submit" class="btn btn-primary">Save</button>
@@ -393,7 +395,33 @@
 @push('scripts')
 <script>
 function saveNote(id){
+    $(document).keyup(function (e) {
+       //  console.log(e.keyCode);
+       //alert(e.keyCode);
+    if(e.keyCode==13){
+        $.post("{{route('user.update_stikey')}}",
+        {
+            id: id,
+            note: $('#stikey_'+id).val(),
+            _method: "PUT",
+            _token: "{{ csrf_token() }}"
+        },
+        function(data, status){
+            if(data.success==true){
+                console.log('success');
+                //window.location="{{route('user.milestone')}}";
+            }
+        });
+    //alert('saved');
 
+    }
+      });
+
+
+}
+function saveNote1(id){
+    // var n = new Date();
+    // $('#stikey_'+id).val( n+" "+$('#stikey_'+id).val());
     $.post("{{route('user.update_stikey')}}",
         {
             id: id,
@@ -407,7 +435,8 @@ function saveNote(id){
                 //window.location="{{route('user.milestone')}}";
             }
         });
-    //alert('test');
+    alert('saved');
+
 }
 
 $(function () {
