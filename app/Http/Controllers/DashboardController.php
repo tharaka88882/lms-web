@@ -192,6 +192,7 @@ class DashboardController extends Controller
     }
     public function view_linkedin()
     {
+
         return view('auth.save_linkedin');
     }
 
@@ -201,7 +202,14 @@ class DashboardController extends Controller
         $teacher->linkedin_link = $request->get('linkedin_link');
         $teacher->save();
         Toastr::success('successfully :)', 'Success');
-        return redirect('user/dashboard');
+        if(Auth()->user()->first_login==1){
+            return redirect('user/dashboard');
+         }else{
+             Auth()->user()->first_login = 1;
+             Auth()->user()->save();
+            return redirect()->route('user.profile');
+         }
+       // return redirect('user/dashboard');
        }else{
         Toastr::error("Linkedin link can't be empty :(", 'Error');
         return redirect()->route('auth.view_linkedin');

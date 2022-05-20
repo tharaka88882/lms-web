@@ -218,11 +218,11 @@ class UserController extends Controller
        $stikey_note = StikeyNote::where('user_id',Auth()->user()->id)->where('teacher_id',$request->get('id'))->first();
 
        if(!empty($stikey_note)){
-        $stikey_note->note = $request->get('note');
+        $stikey_note->note =$request->get('note');
         $stikey_note->save();
        }else{
         $stikey = new StikeyNote();
-        $stikey->note = $request->get('note');
+        $stikey->note =$request->get('note');
         $stikey->user_id = Auth()->user()->id;
         $stikey->teacher_id = $request->get('id');
         $stikey->save();
