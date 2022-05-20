@@ -56,6 +56,68 @@
     .checked {
     color: orange;
     }
+
+    /* black arrow styles */
+            * {
+            box-sizing: border-box;
+        }
+
+        #progress {
+            padding: 0;
+            list-style-type: none;
+            font-family: arial;
+            font-size: 12px;
+            clear: both;
+            line-height: 1em;
+            margin: 0 -1px;
+            text-align: center;
+        }
+
+        #progress li {
+            float: left;
+            padding: 10px 30px 10px 40px;
+            background: rgb(33, 75, 17);
+            color: #fff;
+            position: relative;
+            /* border-top: 1px solid #666;
+            border-bottom: 1px solid #666; */
+            /* width: 12%; */
+            margin: 1px 1px;
+        }
+
+        #progress li:before {
+            content: '';
+            border-left: 16px solid #fff;
+            border-top: 16px solid transparent;
+            border-bottom: 16px solid transparent;
+            position: absolute;
+            top: 0;
+            left: 0;
+
+        }
+        #progress li:after {
+            content: '';
+            border-left: 16px solid rgb(33, 75, 17);
+            border-top: 16px solid transparent;
+            border-bottom: 16px solid transparent;
+            position: absolute;
+            top: 0;
+            left: 100%;
+            z-index: 20;
+        }
+
+        #progress li.active {
+            background: rgb(16, 141, 93);
+        }
+
+        #progress li.active:after {
+            border-left-color: rgb(16, 141, 93);
+        }
+        /* End of black arrow styles */
+
+        /* Green Balls */
+
+        /* End of green balls */
     </style>
 
     @stack('styles')
