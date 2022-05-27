@@ -339,7 +339,7 @@
                                                                             <!-- /.modal -->
                                                                             <div class="modal fade" id="modal-md{{$conversation->id}}">
                                                                                 <div class="modal-dialog modal-md">
-                                                                                <div class="modal-content" style="background-color: rgb(255, 251, 0);">
+                                                                                <div class="modal-content">
                                                                                     <div class="modal-header">
                                                                                     <h4 class="modal-title" style="text-transform: capitalize">{{$conversation->mentor->user->name}}</h4>
                                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -349,19 +349,51 @@
                                                                                         @csrf
 
                                                                                         <div class="row">
-                                                                                            <div class="form-group col-md-12">
+                                                                                            <div class="form-group col-md-6">
                                                                                                 {{-- <label>Any Comments</label> --}}
 
-                                                                                                <textarea onkeyup="saveNote('{{$conversation->mentor->id}}');" id="stikey_{{$conversation->mentor->id}}" style="background-color: rgb(255, 251, 0);"  name="question3" class="form-control" rows="6">
-                                                                                                    @foreach ($conversation->mentor->stikey as $stikey)
+                                                                                                <input onkeyup="saveNote('{{$conversation->mentor->id}}');" id="stikey_{{$conversation->mentor->id}}"  name="question3" class="form-control"/>
+                                                                                                <button onclick="saveNote1('{{$conversation->mentor->id}}');" class="btn btn-success">Save</button>
+                                                                                                    {{-- @foreach ($conversation->mentor->stikey as $stikey)
                                                                                                     @if ($stikey->user_id==Auth()->user()->id && $stikey->teacher_id==$conversation->mentor->id)
                                                                                                     {{$stikey->note}}
                                                                                                     @endif
-                                                                                                    @endforeach
-                                                                                                </textarea>
-                                                                                                {{-- <button onclick="saveNote1('{{$conversation->mentor->id}}');" class="btn btn-success">Save</button> --}}
+                                                                                                    @endforeach --}}
+
+
                                                                                                 <!-- <input type="test" name="due_date" class="form-control" placeholder="Enter ..."> -->
                                                                                             </div>
+
+                                                                                            <div class="table-responsive">
+                                                                                                <table class="table ">
+                                                                                                    <thead>
+                                                                                                        <tr>
+                                                                                                            <th>Goals</th>
+                                                                                                            <th>Actions</th>
+                                                                                                        </tr>
+                                                                                                    </thead>
+                                                                                                    <tbody>
+
+                                                                                                        <tr>
+                                                                                                            <td>ttt</td>
+                                                                                                            <td style="float: left;">
+                                                                                                              <div class="col-xs-6 p-1">
+                                                                                                                  <a href="" class="btn btn-sm btn-success float-right" id="goal">Tasks</a>
+                                                                                                              </div>
+                                                                                                              <div class="col-xs-6 p-1">
+                                                                                                                  <button type="button" class="btn btn-sm btn-danger pull-left" id="">Delete</button>
+                                                                                                                  <form action="" id="" method="POST">
+                                                                                                                      @csrf
+                                                                                                                      @method('delete')
+                                                                                                                  </form>
+                                                                                                              </div>
+                                                                                                            </td>
+                                                                                                        </tr>
+
+                                                                                                    </tbody>
+                                                                                                </table>
+
+                                                                                              </div>
 
                                                                                         </div>
                                                                                     {{-- <div class="modal-footer justify-content-between btn-group">
