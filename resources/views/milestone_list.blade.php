@@ -7,45 +7,350 @@
 @push('styles')
     {{-- <style>h1 {background-color: red !important}</style> --}}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+
+    <style>
+        #process {
+  margin-bottom: 40px;
+  overflow-x: hidden;
+}
+
+#process .section-heading {
+  margin-bottom: 40px;
+}
+
+.steps-pane img {
+  height: 100px;
+  margin-top: 18px;
+  -ms-transform: skewX(-15deg);
+  /* IE 9 */
+  -webkit-transform: skewX(-15deg);
+  /* Safari */
+  -o-transform: skewX(-15deg);
+  /* Standard syntax */
+  -moz-transform: skewX(-15deg);
+}
+
+.pane-warp {
+  height: 140px;
+  width: 25px;
+  margin-left: 20%;
+  margin-top: 20px;
+  -ms-transform: skewX(15deg);
+  /* IE 9 */
+  -webkit-transform: skewX(15deg);
+  /* Safari */
+  -o-transform: skewX(15deg);
+  /* Standard syntax */
+  -moz-transform: skewX(15deg);
+}
+
+.steps-pane {
+  height: 140px;
+  width: 140px;
+  margin-left: 30px;
+  box-shadow: 7px 0px 5px #bcbcbc;
+}
+
+.inverted-pane-warp {
+  height: 140px;
+  width: 25px;
+  margin-left: 20%;
+  -ms-transform: skewX(-15deg);
+  /* IE 9 */
+  -webkit-transform: skewX(-15deg);
+  /* Safari */
+  -o-transform: skewX(-15deg);
+  /* Standard syntax */
+  -moz-transform: skewX(-15deg);
+}
+
+.inverted-steps-pane {
+  height: 140px;
+  width: 140px;
+  background: #bcbcbc;
+  margin-left: 30px;
+  box-shadow: 7px 0px 5px #bcbcbc;
+}
+
+.inverted-steps-pane p {
+  -ms-transform: skewX(15deg);
+  /* IE 9 */
+  -webkit-transform: skewX(15deg);
+  /* Safari */
+  -o-transform: skewX(15deg);
+  /* Standard syntax */
+  -moz-transform: skewX(15deg);
+  padding: 20px 10px 10px 10px;
+}
+
+@media(min-width: 900px) {
+  .steps-timeline {
+    border-top: 5px double #fc6429;
+    padding-top: 20px;
+    margin-top: 40px;
+    margin-left: 3%;
+    margin-right: 3%;
+  }
+  .steps-one,
+  .steps-two,
+  .steps-three,
+  .steps-four,
+  .steps-five {
+    float: left;
+    width: 20%;
+    margin-top: -105px;
+  }
+  .step-wrap {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background: transparent;
+    margin-left: 39%;
+    border: 2px solid #fc6429;
+  }
+  .verticle-line {
+    position: absolute;
+    height: 57px;
+    width: 5px;
+    margin-left: 10px;
+    marker-top: 10px;
+  }
+  .steps-stops {
+    height: 25px;
+    width: 25px;
+    margin: 11px 10.1px;
+    border-radius: 50%;
+    background: #fc6429;
+  }
+  .end-circle {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    position: absolute;
+    margin-top: 19px;
+    margin-left: -10px;
+  }
+  .inverted-end-circle {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    position: absolute;
+    margin-top: 19px;
+    margin-left: 18.1%;
+  }
+}
+
+@media(max-width: 899px) {
+  #process .container-fluid {
+    width: 50%;
+  }
+  .steps-timeline {
+    border-left: 5px double #fc6429;
+    margin-left: 35px;
+  }
+  .steps-one,
+  .steps-two,
+  .steps-three,
+  .steps-four,
+  .steps-five {
+    margin-left: -25px;
+  }
+  .step-wrap,
+  .steps-stops {
+    float: left;
+  }
+  .steps-timeline {
+    border-left: 2px solid $brand-primary;
+    margin-left: 30px;
+  }
+  .pane-warp {
+    margin-left: 30%;
+  }
+  .inverted-pane-warp {
+    margin-left: 30%;
+  }
+  .verticle-line {
+    position: absolute;
+    width: 125px;
+    height: 5px;
+    margin-left: 5px;
+    margin-top: 10px;
+  }
+  .steps-stops {
+    height: 25px;
+    width: 25px;
+    margin: 11px 10px;
+    border-radius: 50%;
+    background: #fc6429;
+  }
+  .step-wrap {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background: transparent;
+    margin-top: 125px;
+    margin-left: -2px;
+    border: 2px solid #fc6429;
+  }
+  .end-circle {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    position: absolute;
+    margin-top: -45px;
+    margin-left: 15px;
+  }
+  .inverted-end-circle {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    position: absolute;
+    margin-top: 280px;
+    margin-left: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  #process .container-fluid {
+    width: 90%;
+  }
+}
+
+@media (max-width: 400px) {
+  .verticle-line {
+    width: 105px;
+  }
+}
+
+.back-orange {
+  background: #fc6429;
+}
+
+.back-blue {
+  background: rgb(59, 37, 132);
+}
+    </style>
 @endpush
 
 @section('content')
 
-  <section class="content-header">
-  <!-- general form elements -->
-  <div class="container-fluid">
 
+<section id="process">
     <div class="row">
-        <div class="col-xs-12">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Milestone Timeline</h3>
+      <div class="section-heading">
+        <h2 class="text-center orange">Responsive Horizontal Timeline</h2>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="steps-timeline text-center">
+          <div class="steps-one">
+            <h3>Step 1</h3>
+            <div class="end-circle back-orange"></div>
+            <div class="step-wrap">
+              <div class="steps-stops">
+                <div class="verticle-line back-orange"></div>
+              </div>
             </div>
-            <div class="card-body">
-                {{-- black arrow --}}
-            <ul id="progress">
-                <li style="cursor: pointer" title="Due Date: 17/05/2022" class="active"><i class="fa fa-check"></i> Task 2</li>
-                <li style="cursor: pointer" title="Due Date: 18/05/2022" class="active"><i class="fa fa-check"></i> Task 1</li>
-                <li style="cursor: pointer" title="Due Date: 19/05/2022">Task 3</li>
-                <li style="cursor: pointer" title="Due Date: 21/05/2022">Task 4</li>
-                <li style="cursor: pointer" title="Due Date: 25/05/2022">Task 5</li>
-                <li style="cursor: pointer" title="Due Date: 27/05/2022">Task 6</li>
-                <li style="cursor: pointer" title="Due Date: 27/05/2022">Task 7</li>
-                <li style="cursor: pointer" title="Due Date: 27/05/2022">Task 8</li>
-                <li style="cursor: pointer" title="Due Date: 27/05/2022">Task 9</li>
-                <li style="cursor: pointer" title="Due Date: 27/05/2022">Task 10</li>
-            </ul>
-            {{-- End of black arrow --}}
-            {{-- Green Balls --}}
+            <div class="pane-warp back-blue">
+              <div class="steps-pane">
+                <img src="https://imgur.com/5U7IJvy.png">
+              </div>
+            </div>
+            <div class="inverted-pane-warp back-blue">
+              <div class="inverted-steps-pane">
+                <p>Please fill your respective details in the attached TAX sheet whose salary mandat</p>
+              </div>
+            </div>
+          </div>
 
+          <div class="steps-two">
+            <h3>Step 2</h3>
+            <div class="step-wrap">
+              <div class="steps-stops">
+                <div class="verticle-line back-orange"></div>
+              </div>
+            </div>
+            <div class="pane-warp back-orange">
+              <div class="steps-pane">
+                <img src="https://imgur.com/ACjjJNm.png">
+              </div>
+            </div>
+            <div class="inverted-pane-warp back-orange">
+              <div class="inverted-steps-pane">
+                <p>Please fill your respective details in the attached TAX sheet whose salary mandat</p>
+              </div>
+            </div>
+          </div>
 
-            {{-- End of Green Balls --}}
+          <div class="steps-three">
+            <h3>Step 3</h3>
+            <div class="step-wrap">
+              <div class="steps-stops">
+                <div class="verticle-line back-orange"></div>
+              </div>
+            </div>
+            <div class="pane-warp back-blue">
+              <div class="steps-pane">
+                <img class="third" src="https://imgur.com/5U7IJvy.png">
+              </div>
+            </div>
+            <div class="inverted-pane-warp back-blue">
+              <div class="inverted-steps-pane">
+                <p>Please fill your respective details in the attached TAX sheet whose salary mandat</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="steps-four">
+            <h3>Step 4</h3>
+            <div class="step-wrap">
+              <div class="steps-stops">
+                <div class="verticle-line back-orange"></div>
+              </div>
+            </div>
+            <div class="pane-warp back-orange">
+              <div class="steps-pane">
+                <img src="https://imgur.com/ACjjJNm.png">
+              </div>
+            </div>
+            <div class="inverted-pane-warp back-orange">
+              <div class="inverted-steps-pane">
+                <p>Please fill your respective details in the attached TAX sheet whose salary mandat</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="steps-five">
+            <h3>Step 5</h3>
+            <div class="inverted-end-circle back-orange"></div>
+            <div class="step-wrap">
+              <div class="steps-stops">
+                <div class="verticle-line back-orange"></div>
+              </div>
+            </div>
+            <div class="pane-warp back-blue">
+              <div class="steps-pane">
+                <img src="https://imgur.com/5U7IJvy.png">
+              </div>
+            </div>
+            <div class="inverted-pane-warp back-blue">
+              <div class="inverted-steps-pane">
+                <p>Please fill your respective details in the attached TAX sheet whose salary mandat</p>
+              </div>
+            </div>
+          </div>
 
         </div>
-        </div>
+        <!-- /.steps-timeline -->
+      </div>
     </div>
+  </section>
 
-    </div>
+  <section class="content-header">
+
+
 
 
   <div class="row">
