@@ -347,12 +347,24 @@
                                                                                     </button>
                                                                                     </div>
                                                                                         @csrf
-
+                                                                                        <div class="container">
                                                                                         <div class="row">
                                                                                             <div class="form-group col-md-6">
                                                                                                 {{-- <label>Any Comments</label> --}}
 
-                                                                                                <input onkeyup="saveNote('{{$conversation->mentor->id}}');" id="stikey_{{$conversation->mentor->id}}"  name="question3" class="form-control"/>
+                                                                                                <input id="stikey_{{$conversation->mentor->id}}"  name="question3" class="form-control"/>
+                                                                                                    {{-- @foreach ($conversation->mentor->stikey as $stikey)
+                                                                                                    @if ($stikey->user_id==Auth()->user()->id && $stikey->teacher_id==$conversation->mentor->id)
+                                                                                                    {{$stikey->note}}
+                                                                                                    @endif
+                                                                                                    @endforeach --}}
+
+
+                                                                                                <!-- <input type="test" name="due_date" class="form-control" placeholder="Enter ..."> -->
+                                                                                            </div>
+                                                                                            <div class="form-group col-md-6">
+                                                                                                {{-- <label>Any Comments</label> --}}
+
                                                                                                 <button onclick="saveNote1('{{$conversation->mentor->id}}');" class="btn btn-success">Save</button>
                                                                                                     {{-- @foreach ($conversation->mentor->stikey as $stikey)
                                                                                                     @if ($stikey->user_id==Auth()->user()->id && $stikey->teacher_id==$conversation->mentor->id)
@@ -364,38 +376,49 @@
                                                                                                 <!-- <input type="test" name="due_date" class="form-control" placeholder="Enter ..."> -->
                                                                                             </div>
 
+                                                                                        </div>
+
+
                                                                                             <div class="table-responsive">
                                                                                                 <table class="table ">
                                                                                                     <thead>
                                                                                                         <tr>
-                                                                                                            <th>Goals</th>
-                                                                                                            <th>Actions</th>
+                                                                                                            <th>#</th>
+                                                                                                            <th>Stikey Note</th>
+                                                                                                            <th >Actions</th>
                                                                                                         </tr>
                                                                                                     </thead>
                                                                                                     <tbody>
+                                                                                                        @php
+                                                                                                            $i = 1;
+                                                                                                        @endphp
+                                                                                                       @foreach ($conversation->mentor->stikey as $stikey)
 
-                                                                                                        <tr>
-                                                                                                            <td>ttt</td>
-                                                                                                            <td style="float: left;">
-                                                                                                              <div class="col-xs-6 p-1">
-                                                                                                                  <a href="" class="btn btn-sm btn-success float-right" id="goal">Tasks</a>
-                                                                                                              </div>
-                                                                                                              <div class="col-xs-6 p-1">
-                                                                                                                  <button type="button" class="btn btn-sm btn-danger pull-left" id="">Delete</button>
-                                                                                                                  <form action="" id="" method="POST">
-                                                                                                                      @csrf
-                                                                                                                      @method('delete')
-                                                                                                                  </form>
-                                                                                                              </div>
-                                                                                                            </td>
-                                                                                                        </tr>
+                                                                                                       <tr>
+                                                                                                        <td>{{$i}}</td>
+                                                                                                        <td>{{$stikey->note}}</td>
+                                                                                                        <td >
+
+                                                                                                              {{-- <a href="" class="btn btn-sm btn-warning" id="goal">Update</a> --}}
+
+
+                                                                                                              <button type="button" onclick="del_stikey('{{$stikey->id}}');" class="btn btn-sm btn-danger" id="del_{{$stikey->id}}">Delete</button>
+
+
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                    @php
+                                                                                                        $i++;
+                                                                                                    @endphp
+                                                                                                    @endforeach
 
                                                                                                     </tbody>
                                                                                                 </table>
 
                                                                                               </div>
+                                                                                           </div>
 
-                                                                                        </div>
+
                                                                                     {{-- <div class="modal-footer justify-content-between btn-group">
                                                                                     <button  type="submit" class="btn btn-primary">Save</button>
                                                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -427,24 +450,25 @@
 
 @push('scripts')
 <script>
-function saveNote(id){
+function del_stikey(id){
     //$(document).keyup(function (e) {
        //  console.log(e.keyCode);
        //alert(e.keyCode);
    // if(e.keyCode==13){
-        $.post("{{route('user.update_stikey')}}",
+    if (confirm("Are you sure?") == true) {
+        $.post("{{route('user.distory_stikey')}}",
         {
             id: id,
-            note: $('#stikey_'+id).val(),
-            _method: "PUT",
+            _method: "delete",
             _token: "{{ csrf_token() }}"
         },
         function(data, status){
             if(data.success==true){
                 console.log('success');
-                //window.location="{{route('user.milestone')}}";
+                window.location="{{route('teacher.mentor_conversation_list')}}";
             }
         });
+    }
     //alert('saved');
 
   // }
@@ -465,10 +489,10 @@ function saveNote1(id){
         function(data, status){
             if(data.success==true){
                 console.log('success');
-                //window.location="{{route('user.milestone')}}";
+                window.location="{{route('teacher.mentor_conversation_list')}}";
             }
         });
-    alert('saved');
+   // alert('saved');
 
 }
 
