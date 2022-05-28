@@ -8,350 +8,282 @@
     {{-- <style>h1 {background-color: red !important}</style> --}}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
-
     <style>
-        #process {
-  margin-bottom: 40px;
-  overflow-x: hidden;
-}
+        /* Timeline */
+         .timeline,
+         .timeline-horizontal {
+         list-style: none;
+         padding: 20px;
+         position: relative;
+         }
+         .timeline:before {
+         top: 40px;
+         bottom: 0;
+         position: absolute;
+         content: " ";
+         width: 3px;
+         background-color: #eeeeee;
+         left: 50%;
+         margin-left: -1.5px;
+         }
+         .timeline .timeline-item {
+         margin-bottom: 20px;
+         position: relative;
+         }
+         .timeline .timeline-item:before,
+         .timeline .timeline-item:after {
+         content: "";
+         display: table;
+         }
+         .timeline .timeline-item:after {
+         clear: both;
+         }
+         .timeline .timeline-item .timeline-badge {
+         color: #fff;
+         width: 54px;
+         height: 54px;
+         line-height: 52px;
+         font-size: 22px;
+         text-align: center;
+         position: absolute;
+         top: 18px;
+         left: 50%;
+         margin-left: -25px;
+         background-color: #333;
+         border: 3px solid #ffffff;
+         z-index: 100;
+         border-top-right-radius: 50%;
+         border-top-left-radius: 50%;
+         border-bottom-right-radius: 50%;
+         border-bottom-left-radius: 50%;
+         }
+         .timeline .timeline-item .timeline-badge i,
+         .timeline .timeline-item .timeline-badge .fa,
+         .timeline .timeline-item .timeline-badge .glyphicon {
+         top: 2px;
+         left: 0px;
+         }
+         .timeline .timeline-item .timeline-badge.primary {
+         background-color: #1f9eba;
+         }
+         .timeline .timeline-item .timeline-badge.info {
+         background-color: #5bc0de;
+         }
+         .timeline .timeline-item .timeline-badge.success {
+         background-color: #59ba1f;
+         }
+         .timeline .timeline-item .timeline-badge.warning {
+         background-color: #d1bd10;
+         }
+         .timeline .timeline-item .timeline-badge.danger {
+         background-color: #ba1f1f;
+         }
+         .timeline .timeline-item .timeline-panel {
+         position: relative;
+         width: 46%;
+         float: left;
+         right: 16px;
+         border: 1px solid #777;
+         background: #ffffff;
+         border-radius: 2px;
+         padding: 20px;
+         -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+         box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+         }
+         .timeline .timeline-item .timeline-panel:before {
+         position: absolute;
+         top: 26px;
+         right: -16px;
+         display: inline-block;
+         border-top: 16px solid transparent;
+         border-left: 16px solid #777;
+         border-right: 0 solid #777;
+         border-bottom: 16px solid transparent;
+         content: " ";
+         }
+         .timeline .timeline-item .timeline-panel .timeline-title {
+         margin-top: 0;
+         color: inherit;
+         }
+         .timeline .timeline-item .timeline-panel .timeline-body > p,
+         .timeline .timeline-item .timeline-panel .timeline-body > ul {
+         margin-bottom: 0;
+         }
+         .timeline .timeline-item .timeline-panel .timeline-body > p + p {
+         margin-top: 5px;
+         }
+         .timeline .timeline-item:last-child:nth-child(even) {
+         float: right;
+         }
+         .timeline .timeline-item:nth-child(even) .timeline-panel {
+         float: right;
+         left: 16px;
+         }
+         .timeline .timeline-item:nth-child(even) .timeline-panel:before {
+         border-left-width: 0;
+         border-right-width: 14px;
+         left: -14px;
+         right: auto;
+         }
+         .timeline-horizontal {
+         list-style: none;
+         position: relative;
+         padding: 20px 0px 20px 0px;
+         display: inline-block;
+         }
+         .timeline-horizontal:before {
+         height: 3px;
+         top: auto;
+         bottom: 26px;
+         left: 56px;
+         right: 0;
+         width: 100%;
+         margin-bottom: 20px;
+         }
+         .timeline-horizontal .timeline-item {
+         display: table-cell;
+         height: 280px;
+         width: 20%;
+         min-width: 320px;
+         float: none !important;
+         padding-left: 0px;
+         padding-right: 20px;
+         margin: 0 auto;
+         vertical-align: bottom;
+         }
+         .timeline-horizontal .timeline-item .timeline-panel {
+         top: auto;
+         bottom: 64px;
+         display: inline-block;
+         float: none !important;
+         left: 0 !important;
+         right: 0 !important;
+         width: 100%;
+         margin-bottom: 20px;
+         }
+         .timeline-horizontal .timeline-item .timeline-panel:before {
+         top: auto;
+         bottom: -16px;
+         left: 28px !important;
+         right: auto;
+         border-right: 16px solid transparent !important;
+         border-top: 16px solid #777 !important;
+         border-bottom: 0 solid #777 !important;
+         border-left: 16px solid transparent !important;
+         }
+         .timeline-horizontal .timeline-item:before,
+         .timeline-horizontal .timeline-item:after {
+         display: none;
+         }
+         .timeline-horizontal .timeline-item .timeline-badge {
+         top: auto;
+         bottom: 0px;
+         left: 43px;
+         }
 
-#process .section-heading {
-  margin-bottom: 40px;
-}
+     </style>
 
-.steps-pane img {
-  height: 100px;
-  margin-top: 18px;
-  -ms-transform: skewX(-15deg);
-  /* IE 9 */
-  -webkit-transform: skewX(-15deg);
-  /* Safari */
-  -o-transform: skewX(-15deg);
-  /* Standard syntax */
-  -moz-transform: skewX(-15deg);
-}
-
-.pane-warp {
-  height: 140px;
-  width: 25px;
-  margin-left: 20%;
-  margin-top: 20px;
-  -ms-transform: skewX(15deg);
-  /* IE 9 */
-  -webkit-transform: skewX(15deg);
-  /* Safari */
-  -o-transform: skewX(15deg);
-  /* Standard syntax */
-  -moz-transform: skewX(15deg);
-}
-
-.steps-pane {
-  height: 140px;
-  width: 140px;
-  margin-left: 30px;
-  box-shadow: 7px 0px 5px #bcbcbc;
-}
-
-.inverted-pane-warp {
-  height: 140px;
-  width: 25px;
-  margin-left: 20%;
-  -ms-transform: skewX(-15deg);
-  /* IE 9 */
-  -webkit-transform: skewX(-15deg);
-  /* Safari */
-  -o-transform: skewX(-15deg);
-  /* Standard syntax */
-  -moz-transform: skewX(-15deg);
-}
-
-.inverted-steps-pane {
-  height: 140px;
-  width: 140px;
-  background: #bcbcbc;
-  margin-left: 30px;
-  box-shadow: 7px 0px 5px #bcbcbc;
-}
-
-.inverted-steps-pane p {
-  -ms-transform: skewX(15deg);
-  /* IE 9 */
-  -webkit-transform: skewX(15deg);
-  /* Safari */
-  -o-transform: skewX(15deg);
-  /* Standard syntax */
-  -moz-transform: skewX(15deg);
-  padding: 20px 10px 10px 10px;
-}
-
-@media(min-width: 900px) {
-  .steps-timeline {
-    border-top: 5px double #fc6429;
-    padding-top: 20px;
-    margin-top: 40px;
-    margin-left: 3%;
-    margin-right: 3%;
-  }
-  .steps-one,
-  .steps-two,
-  .steps-three,
-  .steps-four,
-  .steps-five {
-    float: left;
-    width: 20%;
-    margin-top: -105px;
-  }
-  .step-wrap {
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    background: transparent;
-    margin-left: 39%;
-    border: 2px solid #fc6429;
-  }
-  .verticle-line {
-    position: absolute;
-    height: 57px;
-    width: 5px;
-    margin-left: 10px;
-    marker-top: 10px;
-  }
-  .steps-stops {
-    height: 25px;
-    width: 25px;
-    margin: 11px 10.1px;
-    border-radius: 50%;
-    background: #fc6429;
-  }
-  .end-circle {
-    height: 15px;
-    width: 15px;
-    border-radius: 50%;
-    position: absolute;
-    margin-top: 19px;
-    margin-left: -10px;
-  }
-  .inverted-end-circle {
-    height: 15px;
-    width: 15px;
-    border-radius: 50%;
-    position: absolute;
-    margin-top: 19px;
-    margin-left: 18.1%;
-  }
-}
-
-@media(max-width: 899px) {
-  #process .container-fluid {
-    width: 50%;
-  }
-  .steps-timeline {
-    border-left: 5px double #fc6429;
-    margin-left: 35px;
-  }
-  .steps-one,
-  .steps-two,
-  .steps-three,
-  .steps-four,
-  .steps-five {
-    margin-left: -25px;
-  }
-  .step-wrap,
-  .steps-stops {
-    float: left;
-  }
-  .steps-timeline {
-    border-left: 2px solid $brand-primary;
-    margin-left: 30px;
-  }
-  .pane-warp {
-    margin-left: 30%;
-  }
-  .inverted-pane-warp {
-    margin-left: 30%;
-  }
-  .verticle-line {
-    position: absolute;
-    width: 125px;
-    height: 5px;
-    margin-left: 5px;
-    margin-top: 10px;
-  }
-  .steps-stops {
-    height: 25px;
-    width: 25px;
-    margin: 11px 10px;
-    border-radius: 50%;
-    background: #fc6429;
-  }
-  .step-wrap {
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    background: transparent;
-    margin-top: 125px;
-    margin-left: -2px;
-    border: 2px solid #fc6429;
-  }
-  .end-circle {
-    height: 15px;
-    width: 15px;
-    border-radius: 50%;
-    position: absolute;
-    margin-top: -45px;
-    margin-left: 15px;
-  }
-  .inverted-end-circle {
-    height: 15px;
-    width: 15px;
-    border-radius: 50%;
-    position: absolute;
-    margin-top: 280px;
-    margin-left: 15px;
-  }
-}
-
-@media (max-width: 600px) {
-  #process .container-fluid {
-    width: 90%;
-  }
-}
-
-@media (max-width: 400px) {
-  .verticle-line {
-    width: 105px;
-  }
-}
-
-.back-orange {
-  background: #fc6429;
-}
-
-.back-blue {
-  background: rgb(59, 37, 132);
-}
-    </style>
 @endpush
 
 @section('content')
 
-
-<section id="process">
+<div class="container">
     <div class="row">
-      <div class="section-heading">
-        <h2 class="text-center orange">Responsive Horizontal Timeline</h2>
-      </div>
-    </div>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="steps-timeline text-center">
-          <div class="steps-one">
-            <h3>Step 1</h3>
-            <div class="end-circle back-orange"></div>
-            <div class="step-wrap">
-              <div class="steps-stops">
-                <div class="verticle-line back-orange"></div>
-              </div>
+        <div class="col-md-12">
+            <div class="page-header" style="border-bottom: 0px;margin: 0px; !important">
+              <h3>Upcoming Milestones</h3>
             </div>
-            <div class="pane-warp back-blue">
-              <div class="steps-pane">
-                <img src="https://imgur.com/5U7IJvy.png">
-              </div>
-            </div>
-            <div class="inverted-pane-warp back-blue">
-              <div class="inverted-steps-pane">
-                <p>Please fill your respective details in the attached TAX sheet whose salary mandat</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="steps-two">
-            <h3>Step 2</h3>
-            <div class="step-wrap">
-              <div class="steps-stops">
-                <div class="verticle-line back-orange"></div>
-              </div>
-            </div>
-            <div class="pane-warp back-orange">
-              <div class="steps-pane">
-                <img src="https://imgur.com/ACjjJNm.png">
-              </div>
-            </div>
-            <div class="inverted-pane-warp back-orange">
-              <div class="inverted-steps-pane">
-                <p>Please fill your respective details in the attached TAX sheet whose salary mandat</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="steps-three">
-            <h3>Step 3</h3>
-            <div class="step-wrap">
-              <div class="steps-stops">
-                <div class="verticle-line back-orange"></div>
-              </div>
-            </div>
-            <div class="pane-warp back-blue">
-              <div class="steps-pane">
-                <img class="third" src="https://imgur.com/5U7IJvy.png">
-              </div>
-            </div>
-            <div class="inverted-pane-warp back-blue">
-              <div class="inverted-steps-pane">
-                <p>Please fill your respective details in the attached TAX sheet whose salary mandat</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="steps-four">
-            <h3>Step 4</h3>
-            <div class="step-wrap">
-              <div class="steps-stops">
-                <div class="verticle-line back-orange"></div>
-              </div>
-            </div>
-            <div class="pane-warp back-orange">
-              <div class="steps-pane">
-                <img src="https://imgur.com/ACjjJNm.png">
-              </div>
-            </div>
-            <div class="inverted-pane-warp back-orange">
-              <div class="inverted-steps-pane">
-                <p>Please fill your respective details in the attached TAX sheet whose salary mandat</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="steps-five">
-            <h3>Step 5</h3>
-            <div class="inverted-end-circle back-orange"></div>
-            <div class="step-wrap">
-              <div class="steps-stops">
-                <div class="verticle-line back-orange"></div>
-              </div>
-            </div>
-            <div class="pane-warp back-blue">
-              <div class="steps-pane">
-                <img src="https://imgur.com/5U7IJvy.png">
-              </div>
-            </div>
-            <div class="inverted-pane-warp back-blue">
-              <div class="inverted-steps-pane">
-                <p>Please fill your respective details in the attached TAX sheet whose salary mandat</p>
-              </div>
-            </div>
-          </div>
-
+            <div style="display:inline-block;width:100%;overflow-y:auto;">
+            <ul class="timeline timeline-horizontal">
+                <li class="timeline-item">
+                    <div class="timeline-badge primary"><i class="glyphicon glyphicon-check"></i></div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4 class="timeline-title">Milestone 1</h4>
+                            <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Due Date: 29/05/2022</small></p>
+                        </div>
+                        <div class="timeline-body">
+                            {{-- <p>Mussum ipsum cacilds, vidis litro abertis. Consetis faiz elementum girarzis, nisi eros gostis.</p> --}}
+                            <h5><b>Task List</b></h5>
+                            <ul>
+                                <li>Task 1</li>
+                                <li>Task 2</li>
+                                <li>Task 3</li>
+                                <li>Task 4</li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="timeline-item">
+                    <div class="timeline-badge success"><i class="glyphicon glyphicon-check"></i></div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4 class="timeline-title">Milestone 1</h4>
+                            <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11 hours ago via Twitter</small></p>
+                        </div>
+                        <div class="timeline-body">
+                            <p>Mussum ipsum cacilds, vidis faiz elementum girarzis, nisi eros gostis.</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="timeline-item">
+                    <div class="timeline-badge info"><i class="glyphicon glyphicon-check"></i></div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4 class="timeline-title">Mussum ipsum cacilds 3</h4>
+                            <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11 hours ago via Twitter</small></p>
+                        </div>
+                        <div class="timeline-body">
+                            <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipisci. Mé faiz elementum girarzis, nisi eros gostis.</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="timeline-item">
+                    <div class="timeline-badge danger"><i class="glyphicon glyphicon-check"></i></div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4 class="timeline-title">Mussum ipsum cacilds 4</h4>
+                            <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11 hours ago via Twitter</small></p>
+                        </div>
+                        <div class="timeline-body">
+                            <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis.</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="timeline-item">
+                    <div class="timeline-badge warning"><i class="glyphicon glyphicon-check"></i></div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4 class="timeline-title">Mussum ipsum cacilds 5</h4>
+                            <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11 hours ago via Twitter</small></p>
+                        </div>
+                        <div class="timeline-body">
+                            <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis.</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="timeline-item">
+                    <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4 class="timeline-title">Mussum ipsum cacilds 6</h4>
+                            <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11 hours ago via Twitter</small></p>
+                        </div>
+                        <div class="timeline-body">
+                            <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis.</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
-        <!-- /.steps-timeline -->
-      </div>
+        </div>
     </div>
-  </section>
-
-  <section class="content-header">
+</div>
 
 
 
+
+<section class="content-header">
 
   <div class="row">
     <div class="col-md-6">
@@ -445,7 +377,6 @@
   </div>
 
   <!-- /.card -->
-  </div>
   </div>
   </section>
     <!-- Main content -->
