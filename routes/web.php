@@ -165,6 +165,7 @@ Route::prefix('user')->middleware('check.user')->group(function () {
 
     Route::delete('/stikey/distory', 'App\Http\Controllers\UserController@stikey_distory')->name('user.distory_stikey');
     Route::delete('/stikey/distory-mentee', 'App\Http\Controllers\UserController@stikey_distory_mentee')->name('user.distory_mentee_stikey');
+    Route::delete('/stikey/distory-mentee', 'App\Http\Controllers\UserController@stikey_distory_mentor')->name('user.distory_mentor_stikey');
 
     //Refer friends-----------------------------------------------------------------------------------
     Route::any('/refer-friend', 'App\Http\Controllers\UserController@refer')->name('user.refer_friend');

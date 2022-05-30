@@ -365,7 +365,7 @@
                                                 @csrf
                                                 <div class="container">
                                                 <div class="row">
-                                                    <div class="form-group col-md-6">
+                                                    <div class="form-group col-md-9">
                                                         {{-- <label>Any Comments</label> --}}
 
                                                         <input id="stikey_{{$conversation->teacher->id}}"  name="question3" class="form-control"/>
@@ -378,7 +378,7 @@
 
                                                         <!-- <input type="test" name="due_date" class="form-control" placeholder="Enter ..."> -->
                                                     </div>
-                                                    <div class="form-group col-md-6">
+                                                    <div class="form-group col-md-3">
                                                         {{-- <label>Any Comments</label> --}}
 
                                                         <button onclick="saveNote1('{{$conversation->teacher->id}}');" class="btn btn-success">Save</button>
@@ -401,6 +401,7 @@
                                                                 <tr>
                                                                     <th>#</th>
                                                                     <th>Stikey Note</th>
+                                                                    <th>Date Added</th>
                                                                     <th >Actions</th>
                                                                 </tr>
                                                             </thead>
@@ -413,6 +414,7 @@
                                                                <tr>
                                                                 <td>{{$i}}</td>
                                                                 <td>{{$stikey->note}}</td>
+                                                                <td>{{$stikey->updated_at}}</td>
                                                                 <td >
 
                                                                       {{-- <a href="" class="btn btn-sm btn-warning" id="goal">Update</a> --}}

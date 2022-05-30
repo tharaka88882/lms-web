@@ -44,27 +44,48 @@ class FacebookSocialiteController extends Controller
                 return redirect('user/dashboard');
             }else{
 
+                $flag = false;
+                foreach($users as $us){
+                    if($us->email==$user->email){
+                        $flag=true;
+                    }
+                }
+
+                if($flag){
+                    Toastr::error('Email already used (:', 'Error');
+                    return redirect()->route('login');
+                }else{
+
                 if ($user->avatar != null) {
 
                     try{
                         $url = $user->avatar;
                         $imageName = time()."facebook.png";
                         file_put_contents(public_path('images/profile/').$imageName, file_get_contents($url));
-                     
+
                     }catch(Exception $e){
                         //dd($e);
                     }
                 }
 
 
-                $newUser = User::create([
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'image'=>$imageName,
-                    'social_id'=> $user->id,
-                    'social_type'=> 'facebook',
-                    'password' => encrypt('my-facebook')
-                ]);
+                // $newUser = User::create([
+                //     'name' => $user->name,
+                //     'email' => $user->email,
+                //     'image'=>$imageName,
+                //     'social_id'=> $user->id,
+                //     'social_type'=> 'facebook',
+                //     'password' => encrypt('my-facebook')
+                // ]);
+
+                $newUser = new User();
+                $newUser->name=  $user->name;
+                $newUser->email=  $user->email;
+                $newUser->image=  $imageName;
+                $newUser->social_id=  $user->id;
+                $newUser->social_type= 'facebook';
+                $newUser->password=encrypt('my-facebook');
+                $newUser->save();
 
                 $student = new Student();
                 $student->status = true;
@@ -76,11 +97,15 @@ class FacebookSocialiteController extends Controller
                 Mail::to($user->email)->send(new WelcomeMail($user->name));
 
 
-               // if(Auth()->user()->userable->linkedin_link!=null){
+                if(Auth()->user()->first_login==1){
                     return redirect('user/dashboard');
-                // }else{
-                //   return redirect()->route('auth.view_linkedin');
-                // }
+                 }else{
+                     Auth()->user()->first_login = 1;
+                     Auth()->user()->save();
+                    return redirect()->route('user.profile');
+                 }
+
+                }
             }
 
         } catch (Exception $e) {

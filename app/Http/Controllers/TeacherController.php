@@ -349,7 +349,7 @@ class TeacherController extends Controller
                 'user' => 'mentee',
                 'conversation_id' => $mentee_conversation->id,
                 'milestone'=> $mentee_conversation->student->user->milestones,
-                'stikey'=> $stikey,
+                'stikey'=> $mentee_conversation->student->stikey,
                 'status' => $mentee_conversation->student->status,
                 'updated_at' => $mentee_conversation->updated_at
             );
@@ -372,7 +372,7 @@ class TeacherController extends Controller
                 'user' => 'mentor',
                 'conversation_id' => $mentor_conversation->id,
                 'milestone' => $mentor_conversation->mentee->user->milestones,
-                'stikey'=> $stikey,
+                'stikey'=> $mentor_conversation->mentee->stikey,
                 'status' => $mentor_conversation->mentee->status,
                 'updated_at' => $mentor_conversation->updated_at
             );
