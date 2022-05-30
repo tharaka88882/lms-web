@@ -256,35 +256,38 @@ class UserController extends Controller
            'success'=>true
        );
     }
+    public function stikey_distory_mentor(Request $request)
+    {
+
+       $stikey_note = StikeyNoteMentee::findOrFail($request->get('id'));
+
+       $stikey_note->delete();
+
+       return array(
+           'success'=>true
+       );
+    }
 
     public function stikey_mentee(Request $request)
     {
       if($request->get('user')=='mentee'){
-        $stikey = StikeyNoteMentee::where('user_id',Auth()->user()->id)->where('student_id',$request->get('id'))->first();
+       // $stikey = StikeyNoteMentee::where('user_id',Auth()->user()->id)->where('student_id',$request->get('id'))->first();
 
-        if(!empty($stikey)){
-         $stikey->note = $request->get('note');
-         $stikey->save();
-        }else{
          $stikey = new StikeyNoteMentee();
          $stikey->note = $request->get('note');
          $stikey->user_id = Auth()->user()->id;
          $stikey->student_id = $request->get('id');
          $stikey->save();
-        }
-      }else{
-        $stikey = StikeyNote::where('user_id',Auth()->user()->id)->where('teacher_id',$request->get('id'))->first();
 
-        if(!empty($stikey)){
-         $stikey->note = $request->get('note');
-         $stikey->save();
-        }else{
+      }else{
+      //  $stikey = StikeyNote::where('user_id',Auth()->user()->id)->where('teacher_id',$request->get('id'))->first();
+
          $stikey = new StikeyNote();
          $stikey->note = $request->get('note');
          $stikey->user_id = Auth()->user()->id;
          $stikey->teacher_id = $request->get('id');
          $stikey->save();
-        }
+
       }
 
        return array(

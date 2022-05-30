@@ -195,8 +195,8 @@
 
                                     <!-- /.modal -->
                                     <div class="modal fade" id="modal-md{{$conversation['conversation_id']}}">
-                                        <div class="modal-dialog modal-sm">
-                                        <div class="modal-content" style="background-color: rgb(255, 251, 0);">
+                                        <div class="modal-dialog modal-md">
+                                        <div class="modal-content">
                                             <div class="modal-header">
                                             <h4 class="modal-title" style="text-transform: capitalize">{{$conversation['name']}}</h4>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -204,18 +204,84 @@
                                             </button>
                                             </div>
                                                 @csrf
-
+                                                <div class="container">
                                                 <div class="row">
-                                                    <div class="form-group col-md-12">
+                                                    <div class="form-group col-md-9">
                                                         {{-- <label>Any Comments</label> --}}
-                                                        <textarea onkeyup="saveNote('{{$conversation['id']}}','{{$conversation['user']}}');" id="stikey_{{$conversation['id']}}" style="background-color: rgb(255, 251, 0);"  name="question3" class="form-control" rows="6">
-                                                            {{$conversation['stikey']}}
-                                                        </textarea>
+
+                                                        <input id="stikey_{{$conversation['id']}}"  name="question3" class="form-control"/>
+                                                            {{-- @foreach ($conversation->mentor->stikey as $stikey)
+                                                            @if ($stikey->user_id==Auth()->user()->id && $stikey->teacher_id==$conversation->mentor->id)
+                                                            {{$stikey->note}}
+                                                            @endif
+                                                            @endforeach --}}
+
+
                                                         <!-- <input type="test" name="due_date" class="form-control" placeholder="Enter ..."> -->
-                                            </div>
+                                                    </div>
+                                                    <div class="form-group col-md-3">
+                                                        {{-- <label>Any Comments</label> --}}
+
+
+                                                        <button onclick="saveNote('{{$conversation['id']}}','{{$conversation['user']}}');" class="btn btn-success">Save</button>
+
+                                                            {{-- @foreach ($conversation->mentor->stikey as $stikey)
+                                                            @if ($stikey->user_id==Auth()->user()->id && $stikey->teacher_id==$conversation->mentor->id)
+                                                            {{$stikey->note}}
+                                                            @endif
+                                                            @endforeach --}}
+
+
+                                                        <!-- <input type="test" name="due_date" class="form-control" placeholder="Enter ..."> -->
+                                                    </div>
+
                                                 </div>
+
+
+                                                    <div class="table-responsive">
+                                                        <table class="table ">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>#</th>
+                                                                    <th>Stikey Note</th>
+                                                                    <th>Date Added</th>
+                                                                    <th >Actions</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @php
+                                                                    $i = 1;
+                                                                @endphp
+                                                               @foreach ($conversation['stikey'] as $stikey)
+
+                                                               <tr>
+                                                                <td>{{$i}}</td>
+                                                                <td>{{$stikey->note}}</td>
+                                                                <td>{{$stikey->updated_at}}</td>
+                                                                <td >
+
+                                                                      {{-- <a href="" class="btn btn-sm btn-warning" id="goal">Update</a> --}}
+
+
+                                                                      <button type="button" onclick="del_stikey('{{$stikey->id}}');" class="btn btn-sm btn-danger" id="del_{{$stikey->id}}">Delete</button>
+
+
+                                                                </td>
+                                                            </tr>
+                                                            @php
+                                                                $i++;
+                                                            @endphp
+                                                            @endforeach
+
+                                                            </tbody>
+                                                        </table>
+
+                                                      </div>
+                                                   </div>
+
+
                                             {{-- <div class="modal-footer justify-content-between btn-group">
-                                            <button onclick="saveNote('{{$conversation['id']}}');" type="submit" class="btn btn-warning">Save</button>
+                                            <button  type="submit" class="btn btn-primary">Save</button>
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                             </div> --}}
                                         </div>
@@ -259,11 +325,39 @@ function saveNote(id,user){
         function(data, status){
             if(data.success==true){
                 console.log('success');
-                //window.location="{{route('user.milestone')}}";
+                window.location="{{route('teacher.conversation_list')}}";
             }
         });
     //alert('test');
 }
+
+function del_stikey(id){
+    //$(document).keyup(function (e) {
+       //  console.log(e.keyCode);
+       //alert(e.keyCode);
+   // if(e.keyCode==13){
+    if (confirm("Are you sure?") == true) {
+        $.post("{{route('user.distory_mentor_stikey')}}",
+        {
+            id: id,
+            _method: "delete",
+            _token: "{{ csrf_token() }}"
+        },
+        function(data, status){
+            if(data.success==true){
+                console.log('success');
+                window.location="{{route('teacher.conversation_list')}}";
+            }
+        });
+    }
+    //alert('saved');
+
+  // }
+     // });
+
+
+}
+
 
 </script>
 @endpush
