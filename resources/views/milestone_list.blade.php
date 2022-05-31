@@ -195,38 +195,30 @@
             </div>
             <div style="display:inline-block;width:100%;overflow-y:auto;">
             <ul class="timeline timeline-horizontal">
-                <li class="timeline-item">
-                    <div class="timeline-badge primary"><i class="glyphicon glyphicon-check"></i></div>
-                    <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <h4 class="timeline-title">Milestone 1</h4>
-                            <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Due Date: 29/05/2022</small></p>
-                        </div>
-                        <div class="timeline-body">
-                            {{-- <p>Mussum ipsum cacilds, vidis litro abertis. Consetis faiz elementum girarzis, nisi eros gostis.</p> --}}
-                            <h5><b>Task List</b></h5>
-                            <ul>
-                                <li>Task 1</li>
-                                <li>Task 2</li>
-                                <li>Task 3</li>
-                                <li>Task 4</li>
-                            </ul>
-                        </div>
+              @foreach ($milestones as $milestone)
+              <li class="timeline-item">
+                <div class="timeline-badge primary"><i class="glyphicon glyphicon-check"></i></div>
+                <div class="timeline-panel">
+                    <div class="timeline-heading">
+                        <h4 class="timeline-title">{{$milestone->note}}</h4>
+                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Due Date: {{$milestone->due_date}}</small></p>
                     </div>
-                </li>
-                <li class="timeline-item">
-                    <div class="timeline-badge success"><i class="glyphicon glyphicon-check"></i></div>
-                    <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <h4 class="timeline-title">Milestone 1</h4>
-                            <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11 hours ago via Twitter</small></p>
-                        </div>
-                        <div class="timeline-body">
-                            <p>Mussum ipsum cacilds, vidis faiz elementum girarzis, nisi eros gostis.</p>
-                        </div>
+                    <div class="timeline-body">
+                        {{-- <p>Mussum ipsum cacilds, vidis litro abertis. Consetis faiz elementum girarzis, nisi eros gostis.</p> --}}
+                        <h5><b>Number of Tasks : {{count(json_decode( $milestone->notes,true));}}</b></h5>
+                        <ul>
+                            <a href="{{route('user.notes',$milestone->id)}}">See More</a>
+                            {{-- <li>Task 1</li>
+                            <li>Task 2</li>
+                            <li>Task 3</li>
+                            <li>Task 4</li> --}}
+                        </ul>
                     </div>
-                </li>
-                <li class="timeline-item">
+                </div>
+            </li>
+              @endforeach
+
+                {{-- <li class="timeline-item">
                     <div class="timeline-badge info"><i class="glyphicon glyphicon-check"></i></div>
                     <div class="timeline-panel">
                         <div class="timeline-heading">
@@ -237,43 +229,8 @@
                             <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipisci. Mé faiz elementum girarzis, nisi eros gostis.</p>
                         </div>
                     </div>
-                </li>
-                <li class="timeline-item">
-                    <div class="timeline-badge danger"><i class="glyphicon glyphicon-check"></i></div>
-                    <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <h4 class="timeline-title">Mussum ipsum cacilds 4</h4>
-                            <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11 hours ago via Twitter</small></p>
-                        </div>
-                        <div class="timeline-body">
-                            <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis.</p>
-                        </div>
-                    </div>
-                </li>
-                <li class="timeline-item">
-                    <div class="timeline-badge warning"><i class="glyphicon glyphicon-check"></i></div>
-                    <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <h4 class="timeline-title">Mussum ipsum cacilds 5</h4>
-                            <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11 hours ago via Twitter</small></p>
-                        </div>
-                        <div class="timeline-body">
-                            <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis.</p>
-                        </div>
-                    </div>
-                </li>
-                <li class="timeline-item">
-                    <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
-                    <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <h4 class="timeline-title">Mussum ipsum cacilds 6</h4>
-                            <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11 hours ago via Twitter</small></p>
-                        </div>
-                        <div class="timeline-body">
-                            <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis.</p>
-                        </div>
-                    </div>
-                </li>
+                </li> --}}
+
             </ul>
         </div>
         </div>
