@@ -16,7 +16,7 @@ class MilestoneController extends Controller
         $completed = 0;
         $overdue = 0;
         $user = Auth::user();
-        $milestones = Milestone::where(['user_id' => $user->id])->get();
+        $milestones = Milestone::where(['user_id' => $user->id])->orderBy('due_date', 'asc')->get();
 
         $completed_milestones_count = Milestone::where('user_id', '=',Auth()->user()->id)
                                     ->where('status', '=', '1')->count();

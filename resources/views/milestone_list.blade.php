@@ -198,6 +198,12 @@
             <div style="display:inline-block;width:100%;overflow-y:auto;">
             <ul class="timeline timeline-horizontal" style="margin-bottom: 0px; !important">
               @foreach ($milestones as $milestone)
+
+              @php
+                   $date_facturation = \Carbon\Carbon::parse($milestone->due_date);
+              @endphp
+        @if (!$date_facturation->isPast())
+
               <li class="timeline-item">
                 <div class="timeline-badge primary"><i class="glyphicon glyphicon-check"></i></div>
                 <div class="timeline-panel">
@@ -217,8 +223,22 @@
                             <li>Task 4</li> --}}
                         {{-- </ul> --}}
                     </div>
+
                 </div>
-            </li>
+                <div class="timeline-body">
+                    {{-- <p>Mussum ipsum cacilds, vidis litro abertis. Consetis faiz elementum girarzis, nisi eros gostis.</p> --}}
+                    <h5><b>Number of Tasks : {{count(json_decode( $milestone->notes,true));}}</b></h5>
+                    <ul>
+                        <a href="{{route('user.notes',$milestone->id)}}">See More</a>
+                        {{-- <li>Task 1</li>
+                        <li>Task 2</li>
+                        <li>Task 3</li>
+                        <li>Task 4</li> --}}
+                    </ul>
+                </div>
+            </div>
+        </li>
+        @endif
               @endforeach
 
                 {{-- <li class="timeline-item">
