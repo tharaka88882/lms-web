@@ -341,85 +341,69 @@
                                                                                 <div class="modal-dialog modal-md">
                                                                                 <div class="modal-content">
                                                                                     <div class="modal-header">
-                                                                                    <h4 class="modal-title" style="text-transform: capitalize">{{$conversation->mentor->user->name}}</h4>
+                                                                                    <h4 class="modal-title" style="text-transform: capitalize">{{$conversation->mentor->user->name}} Notes</h4>
                                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                                         <span aria-hidden="true">&times;</span>
                                                                                     </button>
                                                                                     </div>
                                                                                         @csrf
-                                                                                        <div class="container">
-                                                                                        <div class="row">
-                                                                                            <div class="form-group col-md-9">
-                                                                                                {{-- <label>Any Comments</label> --}}
-
-                                                                                                <input id="stikey_{{$conversation->mentor->id}}"  name="question3" class="form-control"/>
-                                                                                                    {{-- @foreach ($conversation->mentor->stikey as $stikey)
-                                                                                                    @if ($stikey->user_id==Auth()->user()->id && $stikey->teacher_id==$conversation->mentor->id)
-                                                                                                    {{$stikey->note}}
-                                                                                                    @endif
-                                                                                                    @endforeach --}}
-
-
-                                                                                                <!-- <input type="test" name="due_date" class="form-control" placeholder="Enter ..."> -->
-                                                                                            </div>
-                                                                                            <div class="form-group col-md-3">
-                                                                                                {{-- <label>Any Comments</label> --}}
-
-                                                                                                <button onclick="saveNote1('{{$conversation->mentor->id}}');" class="btn btn-success">Save</button>
-                                                                                                    {{-- @foreach ($conversation->mentor->stikey as $stikey)
-                                                                                                    @if ($stikey->user_id==Auth()->user()->id && $stikey->teacher_id==$conversation->mentor->id)
-                                                                                                    {{$stikey->note}}
-                                                                                                    @endif
-                                                                                                    @endforeach --}}
-
-
-                                                                                                <!-- <input type="test" name="due_date" class="form-control" placeholder="Enter ..."> -->
-                                                                                            </div>
-
+                                                                                        <div class="modal-body">
+                                                                                            <div class="container">
+                                                                                                <div class="row">
+                                                                                                    <div class="form-group col-sm-9">
+                                                                                                        {{-- <label>Any Comments</label> --}}
+                                                                                                        <input id="stikey_{{$conversation->mentor->id}}"  name="question3" class="form-control"/>
+                                                                                                            {{-- @foreach ($conversation->mentor->stikey as $stikey)
+                                                                                                            @if ($stikey->user_id==Auth()->user()->id && $stikey->teacher_id==$conversation->mentor->id)
+                                                                                                            {{$stikey->note}}
+                                                                                                            @endif
+                                                                                                            @endforeach --}}
+                                                                                                        <!-- <input type="test" name="due_date" class="form-control" placeholder="Enter ..."> -->
+                                                                                                    </div>
+                                                                                                    <div class="form-group col-sm-3">
+                                                                                                        {{-- <label>Any Comments</label> --}}
+                                                                                                        <button onclick="saveNote1('{{$conversation->mentor->id}}');" class="btn btn-success">Save</button>
+                                                                                                            {{-- @foreach ($conversation->mentor->stikey as $stikey)
+                                                                                                            @if ($stikey->user_id==Auth()->user()->id && $stikey->teacher_id==$conversation->mentor->id)
+                                                                                                            {{$stikey->note}}
+                                                                                                            @endif
+                                                                                                            @endforeach --}}
+                                                                                                        <!-- <input type="test" name="due_date" class="form-control" placeholder="Enter ..."> -->
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                    <div class="table-responsive">
+                                                                                                        <table class="table ">
+                                                                                                            <thead>
+                                                                                                                <tr>
+                                                                                                                    <th>#</th>
+                                                                                                                    <th>Stikey Note</th>
+                                                                                                                    <th>Date Added</th>
+                                                                                                                    <th>Actions</th>
+                                                                                                                </tr>
+                                                                                                            </thead>
+                                                                                                            <tbody>
+                                                                                                                @php
+                                                                                                                    $i = 1;
+                                                                                                                @endphp
+                                                                                                               @foreach ($conversation->mentor->stikey as $stikey)
+                                                                                                               <tr>
+                                                                                                                <td>{{$i}}</td>
+                                                                                                                <td>{{$stikey->note}}</td>
+                                                                                                                <td>{{date('Y/m/d | H:i', strtotime($stikey->updated_at))}}</td>
+                                                                                                                <td >
+                                                                                                                      {{-- <a href="" class="btn btn-sm btn-warning" id="goal">Update</a> --}}
+                                                                                                                      <button type="button" onclick="del_stikey('{{$stikey->id}}');" class="btn btn-sm btn-danger" id="del_{{$stikey->id}}">Delete</button>
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                            @php
+                                                                                                                $i++;
+                                                                                                            @endphp
+                                                                                                            @endforeach
+                                                                                                            </tbody>
+                                                                                                        </table>
+                                                                                                      </div>
+                                                                                                   </div>
                                                                                         </div>
-
-
-                                                                                            <div class="table-responsive">
-                                                                                                <table class="table ">
-                                                                                                    <thead>
-                                                                                                        <tr>
-                                                                                                            <th>#</th>
-                                                                                                            <th>Stikey Note</th>
-                                                                                                            <th>Date Added</th>
-                                                                                                            <th >Actions</th>
-                                                                                                        </tr>
-                                                                                                    </thead>
-                                                                                                    <tbody>
-                                                                                                        @php
-                                                                                                            $i = 1;
-                                                                                                        @endphp
-                                                                                                       @foreach ($conversation->mentor->stikey as $stikey)
-
-                                                                                                       <tr>
-                                                                                                        <td>{{$i}}</td>
-                                                                                                        <td>{{$stikey->note}}</td>
-                                                                                                        <td>{{$stikey->updated_at}}</td>
-                                                                                                        <td >
-
-                                                                                                              {{-- <a href="" class="btn btn-sm btn-warning" id="goal">Update</a> --}}
-
-
-                                                                                                              <button type="button" onclick="del_stikey('{{$stikey->id}}');" class="btn btn-sm btn-danger" id="del_{{$stikey->id}}">Delete</button>
-
-
-                                                                                                        </td>
-                                                                                                    </tr>
-                                                                                                    @php
-                                                                                                        $i++;
-                                                                                                    @endphp
-                                                                                                    @endforeach
-
-                                                                                                    </tbody>
-                                                                                                </table>
-
-                                                                                              </div>
-                                                                                           </div>
-
 
                                                                                     {{-- <div class="modal-footer justify-content-between btn-group">
                                                                                     <button  type="submit" class="btn btn-primary">Save</button>
