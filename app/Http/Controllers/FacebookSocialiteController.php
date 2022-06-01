@@ -11,6 +11,8 @@ use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Log;
 use PhpParser\Node\Stmt\TryCatch;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Mail\WelcomeMail;
 
 class FacebookSocialiteController extends Controller
 {
@@ -36,6 +38,7 @@ class FacebookSocialiteController extends Controller
             $user = Socialite::driver('facebook')->user();
 
             $finduser = User::where('social_id', $user->id)->first();
+            $users = User::all();
 
             if($finduser){
 
