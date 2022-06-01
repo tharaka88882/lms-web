@@ -259,9 +259,15 @@ class UserController extends Controller
     public function stikey_distory_mentor(Request $request)
     {
 
-       $stikey_note = StikeyNoteMentee::findOrFail($request->get('id'));
+       if($request->get('user')=='mentee'){
+        $stikey_note = StikeyNoteMentee::findOrFail($request->get('id'));
 
-       $stikey_note->delete();
+        $stikey_note->delete();
+       }else{
+        $stikey_note = StikeyNote::findOrFail($request->get('id'));
+
+        $stikey_note->delete();
+       }
 
        return array(
            'success'=>true

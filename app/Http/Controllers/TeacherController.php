@@ -341,6 +341,7 @@ class TeacherController extends Controller
                     }
                 }
             $conversations[$i] = array(
+                'ar_index' =>$i,
                 'id' => $mentee_conversation->student_id,
                 'name' => $mentee_conversation->student->user->name,
                 'image' => $mentee_conversation->student->user->image,
@@ -364,6 +365,7 @@ class TeacherController extends Controller
                 }
             }
             $conversations[$i] = array(
+                'ar_index' =>$i,
                 'id' => $mentor_conversation->mentee_id,
                 'name' => $mentor_conversation->mentee->user->name,
                 'image' => $mentor_conversation->mentee->user->image,

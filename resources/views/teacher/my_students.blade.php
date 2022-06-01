@@ -179,8 +179,9 @@
                                                             <button class="btn btn-sm btn-primary w-100 ml-2">Conversation</button>
                                                         </a>
                                                          @endif
+
                                                          <a>
-                                                            <button  data-toggle="modal" data-target="#modal-md{{$conversation['conversation_id']}}" class="btn btn-sm btn-warning w-100 ml-3">Notes</button>
+                                                            <button  data-toggle="modal" data-target="#modal-md{{$conversation['ar_index']}}" class="btn btn-sm btn-warning w-100 ml-3">Notes</button>
                                                         </a>
 
                                                     </div>
@@ -194,7 +195,7 @@
                                 @endphp
 
                                     <!-- /.modal -->
-                                    <div class="modal fade" id="modal-md{{$conversation['conversation_id']}}">
+                                    <div class="modal fade" id="modal-md{{$conversation['ar_index']}}">
                                         <div class="modal-dialog modal-md">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -209,7 +210,7 @@
                                                 <div class="row">
                                                     <div class="form-group col-md-9">
                                                         {{-- <label>Any Comments</label> --}}
-                                                        <input id="stikey_{{$conversation['id']}}"  name="question3" class="form-control"/>
+                                                        <input id="stikey_{{$conversation['ar_index']}}"  name="question3" class="form-control"/>
                                                             {{-- @foreach ($conversation->mentor->stikey as $stikey)
                                                             @if ($stikey->user_id==Auth()->user()->id && $stikey->teacher_id==$conversation->mentor->id)
                                                             {{$stikey->note}}
@@ -219,7 +220,7 @@
                                                     </div>
                                                     <div class="form-group col-md-3">
                                                         {{-- <label>Any Comments</label> --}}
-                                                        <button onclick="saveNote('{{$conversation['id']}}','{{$conversation['user']}}');" class="btn btn-success">Save</button>
+                                                        <button onclick="saveNote('{{$conversation['id']}}','{{$conversation['user']}}','{{$conversation['ar_index']}}');" class="btn btn-success">Save</button>
                                                             {{-- @foreach ($conversation->mentor->stikey as $stikey)
                                                             @if ($stikey->user_id==Auth()->user()->id && $stikey->teacher_id==$conversation->mentor->id)
                                                             {{$stikey->note}}
@@ -253,7 +254,7 @@
                                                                       {{-- <a href="" class="btn btn-sm btn-warning" id="goal">Update</a> --}}
 
 
-                                                                      <button type="button" onclick="del_stikey('{{$stikey->id}}');" class="btn btn-sm btn-danger" id="del_{{$stikey->id}}">Delete</button>
+                                                                      <button type="button" onclick="del_stikey('{{$stikey->id}}','{{$conversation['user']}}');" class="btn btn-sm btn-danger" id="del_{{$stikey->id}}">Delete</button>
 
 
                                                                 </td>
@@ -301,12 +302,12 @@
 
 @push('scripts')
 <script>
-function saveNote(id,user){
+function saveNote(id,user,ar_index){
 
     $.post("{{route('user.update_mentee_stikey')}}",
         {
             id: id,
-            note: $('#stikey_'+id).val(),
+            note: $('#stikey_'+ar_index).val(),
             user:user,
             _method: "PUT",
             _token: "{{ csrf_token() }}"
@@ -320,7 +321,7 @@ function saveNote(id,user){
     //alert('test');
 }
 
-function del_stikey(id){
+function del_stikey(id,user){
     //$(document).keyup(function (e) {
        //  console.log(e.keyCode);
        //alert(e.keyCode);
@@ -329,6 +330,7 @@ function del_stikey(id){
         $.post("{{route('user.distory_mentor_stikey')}}",
         {
             id: id,
+            user: user,
             _method: "delete",
             _token: "{{ csrf_token() }}"
         },
