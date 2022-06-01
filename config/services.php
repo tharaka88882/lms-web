@@ -37,8 +37,8 @@ return [
     ],
 
     'facebook' => [
-        'client_id' => 'xxxx',
-        'client_secret' => 'xxx',
+        'client_id' => '588100112737658',
+        'client_secret' => 'f470d7e1243c730989ba07113706fc75',
         'redirect' => 'https://login.you2mentor.com/callback/facebook',
     ],
 
