@@ -128,7 +128,7 @@
          .timeline-horizontal {
          list-style: none;
          position: relative;
-         padding: 20px 0px 20px 0px;
+         /* padding: 20px 0px 20px 0px; */
          display: inline-block;
          }
          .timeline-horizontal:before {
@@ -142,7 +142,7 @@
          }
          .timeline-horizontal .timeline-item {
          display: table-cell;
-         height: 280px;
+         height: 230px;
          width: 20%;
          min-width: 320px;
          float: none !important;
@@ -186,26 +186,44 @@
 @endpush
 
 @section('content')
-
-<div class="container">
+ <!-- Main content -->
+ <section class="content">
+    <div class="container-fluid">
+{{-- <div class="container"> --}}
     <div class="row">
         <div class="col-md-12">
             <div class="page-header" style="border-bottom: 0px;margin: 0px; !important">
               <h3>Upcoming Milestones</h3>
             </div>
             <div style="display:inline-block;width:100%;overflow-y:auto;">
-            <ul class="timeline timeline-horizontal">
+            <ul class="timeline timeline-horizontal" style="margin-bottom: 0px; !important">
               @foreach ($milestones as $milestone)
+
               @php
                    $date_facturation = \Carbon\Carbon::parse($milestone->due_date);
               @endphp
         @if (!$date_facturation->isPast())
-        <li class="timeline-item">
-            <div class="timeline-badge primary"><i class="glyphicon glyphicon-check"></i></div>
-            <div class="timeline-panel">
-                <div class="timeline-heading">
-                    <h4 class="timeline-title">{{$milestone->note}}</h4>
-                    <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Due Date: {{$milestone->due_date}}</small></p>
+
+              <li class="timeline-item">
+                <div class="timeline-badge primary"><i class="glyphicon glyphicon-check"></i></div>
+                <div class="timeline-panel">
+                    <div class="timeline-heading">
+                        <h4 class="timeline-title" style="margin-bottom: 0px; !important"><strong>{{$milestone->note}}</strong></h4>
+                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> Due Date: {{$milestone->due_date}}</small></p>
+                    </div>
+                    <div class="timeline-body">
+                        {{-- <p>Mussum ipsum cacilds, vidis litro abertis. Consetis faiz elementum girarzis, nisi eros gostis.</p> --}}
+                        <h5 class="text-center"><strong>Number of Tasks : <span class="badge bg-gray">{{count(json_decode( $milestone->notes,true));}}</span></strong></h5>
+                        <a type="button" href="{{route('user.notes',$milestone->id)}}" class="btn btn-block btn-info btn-xs">See More <i class='fa fa-angle-double-right'></i></a>
+                        {{-- <ul>
+                            <a href="{{route('user.notes',$milestone->id)}}">See More</a> --}}
+                            {{-- <li>Task 1</li>
+                            <li>Task 2</li>
+                            <li>Task 3</li>
+                            <li>Task 4</li> --}}
+                        {{-- </ul> --}}
+                    </div>
+
                 </div>
                 <div class="timeline-body">
                     {{-- <p>Mussum ipsum cacilds, vidis litro abertis. Consetis faiz elementum girarzis, nisi eros gostis.</p> --}}
@@ -240,14 +258,10 @@
         </div>
         </div>
     </div>
-</div>
+{{-- </div> --}}
 
-
-
-
-<section class="content-header">
-
-  <div class="row">
+{{-- <section class="content-header"> --}}
+  <div class="row" style="margin-top: 10px; !important">
     <div class="col-md-6">
         <!-- small box -->
         <div class="small-box bg-light">
@@ -305,8 +319,8 @@
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="Milestone">Milestone Note</label>
-                        <input type="text" class="form-control @if($errors->has('note')) {{'is-invalid'}} @endif" id="note" name="note" placeholder="Milestone Note">
+                        <label for="Milestone">Milestone Name</label>
+                        <input type="text" class="form-control @if($errors->has('note')) {{'is-invalid'}} @endif" id="note" name="note" placeholder="Milestone Name">
 
                         @if($errors->has('note'))
                             <span class="invalid-feedback" role="alert">
@@ -340,12 +354,13 @@
 
   <!-- /.card -->
   </div>
-  </section>
+  {{-- </section> --}}
+
     <!-- Main content -->
-    <section class="content">
-        <div class="row">
+    {{-- <section class="content"> --}}
+    <div class="row">
       <!-- Default box -->
-      <div class="col-md-9">
+      <div class="col-md-12">
       <div class="card">
         <div class="card-header">
           <h3 class="card-title">Milestone List</h3>
@@ -368,7 +383,7 @@
               </div>
 
             <div class="table-responsive">
-              <table class="table ">
+              <table class="table text-center">
                   <thead>
                       <tr>
                           <th>#</th>
@@ -408,7 +423,7 @@
                                  <option {{$milestone->status==0?'selected="true"':''}} value="0">Cancelled</option>
                              </select>
                           </td>
-                          <td style="float: left;">
+                          <td style="float: center;">
                             <div class="col-xs-6 p-1">
                                 <a href="{{route('user.notes',$milestone->id)}}" class="btn btn-sm btn-success float-right" id="goal">Tasks</a>
                             </div>
@@ -435,7 +450,10 @@
       <!-- /.card -->
       </div>
         </div>
-      </section>
+      {{-- </section> --}}
+      <!-- /.row (main row) -->
+    </div><!-- /.container-fluid -->
+</section>
 @endsection
 
 @push('scripts')
