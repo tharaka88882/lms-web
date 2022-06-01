@@ -167,10 +167,9 @@
             </li>
         </ul>
     </li>
-
-    <li class="nav-item {{ request()->is('user/dashboard*') ? 'menu-open' : '' }}">
+    <li class="nav-item {{ request()->is('user/milestone*') ? 'menu-open' : '' }}">
         <a href="{{route('user.milestone')}}" class="nav-link {{ request()->is('user/milestone*') ? 'active' : '' }}">
-            <i class="fas fa-flag"></i>
+            <i class="nav-icon fas fa-flag"></i>
             <p>My Development</p>
         </a>
     </li>
