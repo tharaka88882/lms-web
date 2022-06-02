@@ -296,7 +296,7 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-header">
-            <h3 class="card-title">Add Milestone</h3>
+            <h3 class="card-title">Add Goals</h3>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
@@ -304,7 +304,7 @@
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="Milestone">Milestone Name</label>
+                        <label for="Milestone">Goal Name</label>
                         <input type="text" class="form-control @if($errors->has('note')) {{'is-invalid'}} @endif" id="note" name="note" placeholder="Milestone Name">
 
                         @if($errors->has('note'))
@@ -348,7 +348,7 @@
       <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Milestone List</h3>
+          <h3 class="card-title">Goals List</h3>
         </div>
         <div class="card-body">
             <div class="container col-md-12">
