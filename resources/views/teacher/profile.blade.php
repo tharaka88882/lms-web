@@ -3,616 +3,591 @@
 
 
 @section('title')
-
-Update Teacher Profile
-
+    Update Teacher Profile
 @endsection
 
-
-
 @push('styles')
-
-{{-- <style>h1 {background-color: red !important}</style> --}}
-
+    {{-- <style>h1 {background-color: red !important}</style> --}}
 @endpush
 
-
-
 @section('content')
+    <!-- Content Header (Page header) -->
 
+    <section class="content">
+        <div class="container-fluid">
 
-
-<!-- Content Header (Page header) -->
-
-<section class="content-header">
-
+            {{-- <div class="content-header">
     <div class="container-fluid">
-
-        <div class="row mb-2">
-
-            <div class="col-sm-6">
-
-                {{-- <h1>YOU2MENTOR</h1> --}}
-
-            </div>
-
+        <div class="row">
+            <div class="col-sm-6"> --}}
+            {{-- <h1>YOU2MENTOR</h1> --}}
+            {{-- </div> --}}
             {{-- <div class="col-sm-6">
-
                     <ol class="breadcrumb float-sm-right">
-
                         <li class="breadcrumb-item"><a>Home</a></li>
-
                         <li class="breadcrumb-item active">Profile</li>
-
                     </ol>
-
                 </div> --}}
-
-        </div>
-
+            {{-- </div>
     </div><!-- /.container-fluid -->
+</div> --}}
 
-</section>
-
-<section class="content">
-
-    <!-- general form elements -->
-
-    <div class="card">
-
-        <div class="card-header">
-
-            <h3 class="card-title">Profile</h3>
-
-        </div>
-
-        <!-- /.card-header -->
-
-        <!-- form start -->
-
-        <form action="{{ route('user.update_teacher_profile') }}" method="POST" enctype="multipart/form-data">
-
-            @csrf
-
-            @method('PUT')
-
-            <div class="card-body">
-
-                <div class="row">
-
-                    <div class="col-md-6">
-
-                        <div class="form-group">
-
-                            <label for="exampleInputEmail1">Full Name</label>
-
-                            <input type="text" class="form-control  @if ($errors->has('name')) {{ 'is-invalid' }} @endif" name="name" placeholder="Full Name" value="{{ $user->name }}">
-
-                            <input type="hidden" value="teacher" name="type">
-
-
-
-                            @if ($errors->has('name'))
-
-                            <span class="invalid-feedback" role="alert">
-
-                                <strong>{{ $errors->first('name') }}</strong>
-
-                            </span>
-
-                            @endif
-
+            <div class="row">
+                <div class="col-md-12 mt-2">
+                    <!-- general form elements -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Profile</h3>
                         </div>
+                        <!-- /.card-header -->
 
-                        {{-- <div class="form-group">
+                        <!-- form start -->
+                        <form action="{{ route('user.update_teacher_profile') }}" method="POST"
+                            enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Full Name</label>
+                                            <input type="text"
+                                                class="form-control  @if ($errors->has('name')) {{ 'is-invalid' }} @endif"
+                                                name="name" placeholder="Full Name" value="{{ $user->name }}">
+                                            <input type="hidden" value="teacher" name="type">
 
+                                            @if ($errors->has('name'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('name') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+
+                                        {{-- <div class="form-group">
                                 <label for="exampleInputPassword1">NIC</label>
-
                                 <input type="text" name="nic" class="form-control @if ($errors->has('nic')) {{ 'is-invalid' }} @endif"
-
                         placeholder="Enter NIC" value="{{ $user->userable->nic }}">
-
-
-
                         @if ($errors->has('nic'))
-
                         <span class="invalid-feedback" role="alert">
-
                             <strong>{{ $errors->first('nic') }}</strong>
-
                         </span>
-
                         @endif
-
                     </div> --}}
 
-                    <div class="form-group">
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Email Address</label>
+                                            <input disabled="" type="email" name="email"
+                                                class="form-control @if ($errors->has('email')) {{ 'is-invalid' }} @endif"
+                                                placeholder="Enter Email" value="{{ $user->email }}">
 
-                        <label for="exampleInputPassword1">Email Address</label>
+                                            @if ($errors->has('email'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('email') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
 
-                        <input disabled="" type="email" name="email" class="form-control @if ($errors->has('email')) {{ 'is-invalid' }} @endif" placeholder="Enter Email" value="{{ $user->email }}">
-
-
-
-                        @if ($errors->has('email'))
-
-                        <span class="invalid-feedback" role="alert">
-
-                            <strong>{{ $errors->first('email') }}</strong>
-
-                        </span>
-
-                        @endif
-
-                    </div>
-
-                    {{-- <div class="form-group">
-
+                                        {{-- <div class="form-group">
                                 <label for="exampleInputEmail1">Address</label>
-
                                 <textarea name="address" class="form-control @if ($errors->has('address')) {{ 'is-invalid' }} @endif"
-
                     rows="2">{{$user->address}}</textarea>
 
-
-
                     @if ($errors->has('address'))
-
                     <span class="invalid-feedback" role="alert">
-
                         <strong>{{ $errors->first('address') }}</strong>
-
                     </span>
-
                     @endif
-
                 </div> --}}
 
-                <div class="form-group">
-
-                    <label for="exampleInputPassword1">City</label>
-
-                    <input type="text" name="city" class="form-control @if ($errors->has('city')) {{ 'is-invalid' }} @endif" value="{{ $user->city }}">
-
-
-
-                    @if ($errors->has('city'))
-
-                    <span class="invalid-feedback" role="alert">
-
-                        <strong>{{ $errors->first('city') }}</strong>
-
-                    </span>
-
-                    @endif
-
-                </div>
-
-                <div class="form-group">
-
-                    <label for="exampleInputPassword1">Country</label>
-
-                    <input type="text" name="country" class="form-control @if ($errors->has('country')) {{ 'is-invalid' }} @endif" value="{{ $user->country }}">
-
-
-
-                    @if ($errors->has('country'))
-
-                    <span class="invalid-feedback" role="alert">
-
-                        <strong>{{ $errors->first('country') }}</strong>
-
-                    </span>
-
-                    @endif
-
-                </div>
-
-                <div class="form-group">
-
-                    <label for="exampleInputEmail1">Qualifications</label>
-
-                    <textarea name="qualification" class="form-control @if ($errors->has('qualification')) {{ 'is-invalid' }} @endif" rows="3">{{ $user->userable->qualification }}</textarea>
-
-
-
-                    @if ($errors->has('qualification'))
-
-                    <span class="invalid-feedback" role="alert">
-
-                        <strong>{{ $errors->first('qualification') }}</strong>
-
-                    </span>
-
-                    @endif
-
-                </div>
-
-                <div class="form-group">
-
-                    <label for="exampleInputEmail1">Linkedin Profile Link <small> (Please copy & past your link)</small></label>
-
-                    <input name="linkedin_link" class="form-control @if ($errors->has('linkedin_link')) {{ 'is-invalid' }} @endif" value="{{ $user->userable->linkedin_link }}" />
-
-
-
-                    @if ($errors->has('linkedin_link'))
-
-                    <span class="invalid-feedback" role="alert">
-
-                        <strong>{{ $errors->first('linkedin_link') }}</strong>
-
-                    </span>
-
-                    @endif
-
-                </div>
-
-                <div class="form-group">
-
-                    <label for="exampleInputPassword1">My Rating</label><br>
-
-                    {{-- <input disabled type="text" name="country" class="form-control" value="{{ $user->userable->level }}"> --}}
-                    @php
-                    $i = 0;
-                    //$r = intval(Auth()->user()->userable->level);
-                    $r =$round_mediation;
-                @endphp
-                @while ($i<5)
-                    @if ($r>0)
-                    <span class="fa fa-star checked"></span>
-                    @else
-                    <span class="fa fa-star"></span>
-
-                    @endif
-                    @php
-                    $i += 1;
-                    $r -=1;
-                    @endphp
-                @endwhile
-                </div>
-
-                <div class="form-group">
-
-                    <label for="profileImageInput">Cover Image <small>(120PX * 480PX)</small></label>
-
-                    <div style="padding: 10px;">
-
-                        <img id="cover-image-output" style="max-width: 480px; max-height:120px; border: 1px solid rgb(187, 187, 187)" class="img-fluid" onerror="this.src='{{ url('public') }}/images/download.jpg'" @if ($user->cover_image != null) src="{{ url('public') }}/images/profile/{{ $user->cover_image }}" @else src="" @endif />
-
-                    </div>
-
-                    <input type="file" name="cover_image" class="form-control @if ($errors->has('image')) {{ 'is-invalid' }} @endif" id="coverImageInput" onchange="loadCoverImage(event)">
-
-
-
-
-
-                    @if ($errors->has('image'))
-
-                    <span class="invalid-feedback" role="alert">
-
-                        <strong>{{ $errors->first('image') }}</strong>
-
-                    </span>
-
-                    @endif
-
-                </div>
-
-                {{-- <div class="form-group">
-
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">City</label>
+                                            <input type="text" name="city"
+                                                class="form-control @if ($errors->has('city')) {{ 'is-invalid' }} @endif"
+                                                value="{{ $user->city }}">
+
+                                            @if ($errors->has('city'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('city') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Country</label>
+                                            <input type="text" name="country"
+                                                class="form-control @if ($errors->has('country')) {{ 'is-invalid' }} @endif"
+                                                value="{{ $user->country }}">
+
+                                            @if ($errors->has('country'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('country') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Qualifications</label>
+                                            <textarea name="qualification" class="form-control @if ($errors->has('qualification')) {{ 'is-invalid' }} @endif"
+                                                rows="3">{{ $user->userable->qualification }}</textarea>
+
+                                            @if ($errors->has('qualification'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('qualification') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Linkedin Profile Link <small> (Please copy &
+                                                    past your link)</small></label>
+                                            <input name="linkedin_link"
+                                                class="form-control @if ($errors->has('linkedin_link')) {{ 'is-invalid' }} @endif"
+                                                value="{{ $user->userable->linkedin_link }}" />
+
+                                            @if ($errors->has('linkedin_link'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('linkedin_link') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">My Rating</label><br>
+                                            {{-- <input disabled type="text" name="country" class="form-control" value="{{ $user->userable->level }}"> --}}
+
+                                            @php
+                                                $i = 0;
+                                                //$r = intval(Auth()->user()->userable->level);
+                                                $r = $round_mediation;
+                                            @endphp
+                                            @while ($i < 5)
+                                                @if ($r > 0)
+                                                    <span class="fa fa-star checked"></span>
+                                                @else
+                                                    <span class="fa fa-star"></span>
+                                                @endif
+                                                @php
+                                                    $i += 1;
+                                                    $r -= 1;
+                                                @endphp
+                                            @endwhile
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="profileImageInput">Cover Image <small>(120PX *
+                                                    480PX)</small></label>
+                                            <div style="padding: 10px;">
+                                                <img id="cover-image-output"
+                                                    style="max-width: 480px; max-height:120px; border: 1px solid rgb(187, 187, 187)"
+                                                    class="img-fluid"
+                                                    onerror="this.src='{{ url('public') }}/images/download.jpg'"
+                                                    @if ($user->cover_image != null) src="{{ url('public') }}/images/profile/{{ $user->cover_image }}" @else src="" @endif />
+                                            </div>
+                                            <input type="file" name="cover_image"
+                                                class="form-control @if ($errors->has('image')) {{ 'is-invalid' }} @endif"
+                                                id="coverImageInput" onchange="loadCoverImage(event)">
+
+                                            @if ($errors->has('image'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('image') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+
+                                        {{-- <div class="form-group">
                                 <label for="exampleInputEmail1">Password</label>
-
                                 <input type="password" name="password" class="form-control @if ($errors->has('password')) {{ 'is-invalid' }} @endif"
-
                 placeholder="Password">
 
-
-
                 @if ($errors->has('password'))
-
                 <span class="invalid-feedback" role="alert">
-
                     <strong>{{ $errors->first('password') }}</strong>
-
                 </span>
-
                 @endif
-
             </div>
 
             <div class="form-group">
-
                 <label for="exampleInputPassword1">Password Confirmation</label>
-
                 <input type="password" name="confirm_password" class="form-control @if ($errors->has('confirm_password')) {{ 'is-invalid' }} @endif" placeholder="Password Confirmation">
 
-
-
                 @if ($errors->has('confirm_password'))
-
                 <span class="invalid-feedback" role="alert">
-
                     <strong>{{ $errors->first('confirm_password') }}</strong>
-
                 </span>
-
                 @endif
-
             </div> --}}
+                                    </div>
 
-    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="profileImageInput">Profile Image</label>
+                                            <div style="padding: 10px;">
+                                                <img id="image-output"
+                                                    style="max-width: 120px; max-height:120px; border: 1px solid rgb(187, 187, 187)"
+                                                    class="img-fluid"
+                                                    onerror="this.src='{{ url('public') }}/theme/admin/dist/img/default-avatar.jpg'"
+                                                    @if ($user->image != null) src="{{ url('public') }}/images/profile/{{ $user->image }}" @else src="" @endif />
+                                            </div>
+                                            <input type="file" name="image"
+                                                class="form-control @if ($errors->has('image')) {{ 'is-invalid' }} @endif"
+                                                id="profileImageInput" onchange="loadImage(event)">
 
-    <div class="col-md-6">
+                                            @if ($errors->has('image'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('image') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
 
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <div class="card">
+                                                    {{-- <div class="card-header">
+                                    <h3 class="card-title">Add My  Mentoring Topics</h3>
+                                    </div> --}}
+                                                    <!-- /.card-header -->
+                                                    <!-- form start -->
+                                                    {{-- <form action="{{route('teacher.stor_subject')}}" method="POST"> --}}
+                                                    @csrf
+                                                    <div class="card-body">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1"> Mentoring Topics</label>
 
+                                                            {{-- <select class="form-control" name="subject_id">
+                                                                @foreach ($subjects as $subject)
+                                                                <option value="{{$subject->id}}">{{$subject->name}}</option>
+                                        @endforeach
+                                        </select> --}}
 
-        <div class="form-group">
+                                                            <select id="select2-echannel-doctor"
+                                                                style="width: 100% !important;padding: 12px 20px !important;margin: 8px 0 !important;display: inline-block !important;border: 1px solid #ccc !important;box-sizing: border-box !important;"
+                                                                name="subject"
+                                                                class="select2 @if ($errors->has('subject')) {{ 'is-invalid' }} @endif">
 
-            <label for="profileImageInput">Profile Image</label>
+                                                            </select>
 
-            <div style="padding: 10px;">
+                                                            @if ($errors->has('subject'))
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $errors->first('subject') }}</strong>
+                                                                </span>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.card-body -->
 
-                <img id="image-output" style="max-width: 120px; max-height:120px; border: 1px solid rgb(187, 187, 187)" class="img-fluid" onerror="this.src='{{ url('public') }}/theme/admin/dist/img/default-avatar.jpg'" @if ($user->image != null) src="{{ url('public') }}/images/profile/{{ $user->image }}" @else src="" @endif />
+                                                    <div class="card-footer">
+                                                        <button id="add_btn" type="button"
+                                                            class="btn btn-success pull-right">Add</button>
+                                                    </div>
+                                                    {{-- </form> --}}
+                                                </div>
+                                            </div>
+                                            <!-- /.card -->
 
+                                            <label for="exampleInputEmail1">Skills</label>
+                                            <textarea disabled name="skills" class="form-control @if ($errors->has('skills')) {{ 'is-invalid' }} @endif"
+                                                rows="3">{{ $user->userable->skills }}</textarea>
+
+                                            @if ($errors->has('skills'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('skills') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Experience</label>
+                                            <textarea name="experience" class="form-control @if ($errors->has('experience')) {{ 'is-invalid' }} @endif"
+                                                rows="3">{{ $user->userable->experience }}</textarea>
+
+                                            @if ($errors->has('experience'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('experience') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Job Title</label>
+                                            <input type="text" name="job"
+                                                class="form-control @if ($errors->has('job')) {{ 'is-invalid' }} @endif"
+                                                rows="3" value="{{ $user->userable->job }}">
+
+                                            @if ($errors->has('job'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('job') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Working Industry</label>
+                                            <select class="select2 form-control" data-placeholder="Any" style="width: 100%;"
+                                                name="industry">
+                                                @foreach ($industries as $industry)
+                                                    <option value="{{ $industry->id }}">
+                                                        {{ $industry->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+
+                                            @if ($errors->has('industry'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('industry') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-success pull-right">Save</button>
+                                <button type="button" data-target="#modal-md" data-toggle="modal"
+                                    class="btn btn-warning pull-right  mr-2">View Profile</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- /.card -->
             </div>
 
-            <input type="file" name="image" class="form-control @if ($errors->has('image')) {{ 'is-invalid' }} @endif" id="profileImageInput" onchange="loadImage(event)">
-
-
-
-
-
-            @if ($errors->has('image'))
-
-            <span class="invalid-feedback" role="alert">
-
-                <strong>{{ $errors->first('image') }}</strong>
-
-            </span>
-
-            @endif
-
         </div>
+    </section>
 
-        <div class="form-group">
+    <!-- /.modal -->
+    <div class="modal fade" id="modal-md">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" style="text-transform: capitalize">My Profile</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-2">
+                        <div class="col-sm-7">
+                            <!-- Widget: user widget style 1 -->
+                            <div class="card card-widget widget-user">
+                                <!-- Add the bg color to the header using any of the bg-* classes -->
+                                <div class="widget-user-header bg-olive"
+                                    @if ($user->cover_image != null) style="background-image: url('{{ url('public') }}/images/profile/{{ $user->cover_image }}') !important;" @endif>
+                                    <h3 class="widget-user-username" style="text-transform: uppercase">{{ $user->name }}
+                                    </h3>
+                                    {{-- <a href="{{route('user.view_rating')}}"> --}}
+                                    @php
+                                        $i = 0;
+                                        //$r = intval(Auth()->user()->userable->level);
+                                        $r = (int) $mediation;
+                                    @endphp
+                                    @while ($i < 5)
+                                        @if ($r > 0)
+                                            <span class="fa fa-star checked"></span>
+                                        @else
+                                            <span class="fa fa-star"></span>
+                                        @endif
+                                        @php
+                                            $i += 1;
+                                            $r -= 1;
+                                        @endphp
+                                    @endwhile
+                                    {{-- </a> --}}
+                                </div>
 
+                                <div class="widget-user-image">
+                                    <img class="img-circle elevation-2"
+                                        onerror="this.src='{{ url('public') }}/theme/admin/dist/img/default-avatar.jpg'"
+                                        @if ($teacher->user->image != null) src="{{ url('public') }}/images/profile/{{ $teacher->user->image }}" @else src="" @endif
+                                        alt="User Avatar">
+                                </div>
 
+                                <div class="card-footer">
+                                    <div class="row">
+                                        <div class="col-sm-4 border-right">
+                                            <div class="description-block">
+                                                {{-- <h5 class="description-header">3,200</h5>
+                                        <span class="description-text">SALES</span> --}}
+                                            </div>
+                                            <!-- /.description-block -->
+                                        </div>
+                                        <!-- /.col -->
 
+                                        <div class="col-sm-4 border-right">
+                                            <div class="description-block">
+                                                <h5 class="description-header"></h5>
+                                                <span class="description-text"></span>
+                                            </div>
+                                            <!-- /.description-block -->
+                                        </div>
 
+                                        <!-- /.col -->
 
+                                        <div class="col-sm-4">
+                                            <div class="description-block">
+                                                {{-- <h5 class="description-header">35</h5>
+                                        <span class="description-text">PRODUCTS</span> --}}
+                                            </div>
+                                            <!-- /.description-block -->
+                                        </div>
+                                        <!-- /.col -->
+                                    </div>
+                                    <!-- /.row -->
 
+                                    <div class="row">
+                                        @if (sizeof($conversations) > 0)
+                                            {{-- <div class="col-sm-2">
+                                    <a class="btn btn-success" href="{{ route('student.view_conversation', $query->id) }}">Complaint</a>
+                                </div> --}}
+                                            <div class="col-sm-4" style="text-align: left">
+                                                <a class="btn btn-success"
+                                                    href="{{ route('student.view_conversation', $query->id) }}">Connect</a>
+                                            </div>
+                                            <div class="col-sm-4" style="text-align: center">
+                                                <button {{ sizeof($old_ratings) > 0 ? 'disabled' : '' }}
+                                                    data-toggle="modal" data-target="#modal-md" class="btn btn-warning"><i
+                                                        class="fa fa-star"></i>Rate Now</button>
+                                                {{-- <form action="{{ route('student.rate_teacher') }}" method="POST" class="form-inline" style="float: right" id="changeRatings">
+                                        @csrf
+                                        <label data-toggle="modal" data-target="#modal-md"><i class="fa fa-star"></i> Ratings:
+                                            <select name="rating" class="form-control" style="max-width: 120px; margin-left: 5px;" id="ratingInp">
+                                                <option value="">No Ratings Given</option>
+                                                <option value="1" @if (sizeof($rating) > 0 && $rating->first()->rating == 1) {{'selected'}} @endif>1</option>
+                                                <option value="2" @if (sizeof($rating) > 0 && $rating->first()->rating == 2) {{'selected'}} @endif>2</option>
+                                                <option value="3" @if (sizeof($rating) > 0 && $rating->first()->rating == 3) {{'selected'}} @endif>3</option>
+                                                <option value="4" @if (sizeof($rating) > 0 && $rating->first()->rating == 4) {{'selected'}} @endif>4</option>
+                                                <option value="5" @if (sizeof($rating) > 0 && $rating->first()->rating == 5) {{'selected'}} @endif>5</option>
+                                            </select>
+                                        </label>
+                                        <input type="hidden" name="teacher_id" value="{{$teacher->id}}">
+                                    </form> --}}
+                                            </div>
 
-            <div class="col-sm-12">
-
-                <div class="card">
-
-                    {{-- <div class="card-header">
-
-                                            <h3 class="card-title">Add My  Mentoring Topics</h3>
-
-                                        </div> --}}
-
-                    <!-- /.card-header -->
-
-                    <!-- form start -->
-
-                    {{-- <form action="{{route('teacher.stor_subject')}}" method="POST"> --}}
-
-                    @csrf
-
-                    <div class="card-body">
-
-                        <div class="form-group">
-
-                            <label for="exampleInputEmail1"> Mentoring Topics</label>
-
-                            {{-- <select class="form-control" name="subject_id">
-
-                                                    @foreach ($subjects as $subject)
-
-                                                    <option value="{{$subject->id}}">{{$subject->name}}</option>
-
-                            @endforeach
-
-
-
-
-
-                            </select> --}}
-
-                            <select id="select2-echannel-doctor" style="width: 100% !important;padding: 12px 20px !important;margin: 8px 0 !important;display: inline-block !important;border: 1px solid #ccc !important;box-sizing: border-box !important;" name="subject" class="select2 @if($errors->has('subject')) {{'is-invalid'}} @endif">
-
-
-
-                            </select>
-
-                            @if($errors->has('subject'))
-
-                            <span class="invalid-feedback" role="alert">
-
-                                <strong>{{ $errors->first('subject') }}</strong>
-
-                            </span>
-
-                            @endif
-
+                                            <div class="col-sm-4" style="text-align: right">
+                                                {{-- <a class="btn btn-warning" href="{{route('student.complaint',$teacher->id)}}">Complaint Mentor</a> --}}
+                                            </div>
+                                        @elseif ($query != null)
+                                            <div class="col-sm-12" style="text-align: center">
+                                                <a class="btn btn-success"
+                                                    href="{{ route('student.view_conversation', $query->id) }}">Connect</a>
+                                            </div>
+                                        @else
+                                            <div class="col-sm-12" style="text-align: center">
+                                                <form action="{{ route('user.store_conversation') }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="student_id"
+                                                        value="{{ Auth()->user()->userable->id }}">
+                                                    <input type="hidden" name="teacher_id" value="{{ $teacher->id }}">
+                                                    <button class="btn btn-success" type="submit">Connect</button>
+                                                </form>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.widget-user -->
                         </div>
 
+                        <div class="col-md-5">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="fas fa-angle-double-down"></i>
+                                        About me
+                                    </h3>
+                                    <br>
 
+                                    @if ($teacher->linkedin_link != null)
+                                        <a href="{{ $teacher->linkedin_link }}" target="_blank">View Linkedin Profile
+                                            <i class="fas fa-angle-double-right"></i></a>
+                                    @endif
+                                </div>
+                                <!-- /.card-header -->
 
+                                <div class="card-body">
+                                    <dl>
+                                        <dt>Qualifications</dt>
+                                        <dd>
+                                            {{-- {{$teacher->qualification}} --}}
+                                        </dd>
+                                        <dt>Experience</dt>
+                                        <dd>
+                                            {{-- {{$teacher->experience}} --}}
+                                        </dd>
+                                        <dt>Skills</dt>
+                                        <dd>
+                                            {{-- {{$teacher->skills}} --}}
+                                        </dd>
+                                        <dt>Industry</dt>
+                                        <dd>
+                                            {{-- {{$teacher->industry}} --}}
+                                        </dd>
+                                        <dt>Job Title</dt>
+                                        <dd>
+                                            {{-- {{$teacher->job}} --}}
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <!-- /.card-body -->
+
+                                <div class="card-footer">
+                                    <div class="float-right">
+                                        <b>Average Responce time: </b> {{ $time_total_array }}hrs
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card -->
                     </div>
 
-                    <!-- /.card-body -->
+                    <div class="row">
+                        <div class="col-sm-7">
+                            {{-- <div class="card">
+                          <div class="card-header">
+                              <h3 class="card-title">
+                                <i class="fas fa-tasks"></i>
+                                Schedule
+                              </h3>
+                            </div>
+                          <div class="card-body p-2">
+                            <!-- THE CALENDAR -->
+                            <div id="calendar"></div>
+                          </div>
+                          <!-- /.card-body -->
+                      </div> --}}
+                        </div>
 
+                        <div class="col-md-5">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="fas fa-book-open"></i>
+                                        Mentoring Topics
+                                    </h3>
+                                </div>
+                                <!-- /.card-header -->
 
+                                <div class="card-body">
+                                    <ul>
+                                        @foreach ($subjects as $subject)
+                                            <li>{{ $subject->name }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                        </div>
+                    </div><!-- /.container-fluid -->
 
-                    <div class="card-footer">
-
-                        <button id="add_btn" type="button" class="btn btn-success pull-right">Add</button>
-
-                    </div>
-
-                    {{-- </form> --}}
 
                 </div>
-
             </div>
-
-            <!-- /.card -->
-
-
-
-            <label for="exampleInputEmail1">Skills</label>
-
-            <textarea disabled name="skills" class="form-control @if ($errors->has('skills')) {{ 'is-invalid' }} @endif" rows="3">{{ $user->userable->skills }}</textarea>
-
-
-
-            @if ($errors->has('skills'))
-
-            <span class="invalid-feedback" role="alert">
-
-                <strong>{{ $errors->first('skills') }}</strong>
-
-            </span>
-
-            @endif
-
+            <!-- /.modal-content -->
         </div>
-
-
-
-
-
-        <div class="form-group">
-
-            <label for="exampleInputEmail1">Experience</label>
-
-            <textarea name="experience" class="form-control @if ($errors->has('experience')) {{ 'is-invalid' }} @endif" rows="3">{{ $user->userable->experience }}</textarea>
-
-
-
-            @if ($errors->has('experience'))
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $errors->first('experience') }}</strong>
-            </span>
-            @endif
-
-        </div>
-
-        <div class="form-group">
-            <label for="exampleInputEmail1">Job Title</label>
-            <input type="text" name="job" class="form-control @if ($errors->has('job')) {{ 'is-invalid' }} @endif" rows="3" value="{{ $user->userable->job }}">
-
-            @if ($errors->has('job'))
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $errors->first('job') }}</strong>
-            </span>
-            @endif
-        </div>
-
-        <div class="form-group">
-            <label for="exampleInputEmail1">Working Industry</label>
-            <select class="select2 form-control" data-placeholder="Any" style="width: 100%;" name="industry">
-                @foreach ($industries as $industry)
-                    <option value="{{ $industry->id }}">
-                        {{ $industry->name }}
-                    </option>
-                @endforeach
-            </select>
-
-            @if ($errors->has('industry'))
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $errors->first('industry') }}</strong>
-            </span>
-            @endif
-        </div>
-
+        <!-- /.modal-dialog -->
     </div>
-
-    </div>
-
-    </div>
-
-
-
-    <!-- /.card-body -->
-
-
-
-    <div class="card-footer">
-
-        <button type="submit" class="btn btn-success pull-right">Save</button>
-        <button type="button" data-target="#modal-md" data-toggle="modal" class="btn btn-warning pull-right  mr-2">View Profile</button>
-
-    </div>
-
-    </form>
-
-    </div>
-
-    <!-- /.card -->
-
-</section>
-
-
- <!-- /.modal -->
- <div class="modal fade" id="modal-md">
-    <div class="modal-dialog modal-md">
-    <div class="modal-content">
-        <div class="modal-header">
-        <h4 class="modal-title" style="text-transform: capitalize">Test</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        </div>
-            @csrf
-            <div class="container">
-            <div class="row">
-                <div class="form-group col-md-9">
-                    {{-- <label>Any Comments</label> --}}
-
-                    <input   name="question3" class="form-control"/>
-                        {{-- @foreach ($conversation->mentor->stikey as $stikey)
-                        @if ($stikey->user_id==Auth()->user()->id && $stikey->teacher_id==$conversation->mentor->id)
-                        {{$stikey->note}}
-                        @endif
-                        @endforeach --}}
-
-
-                    <!-- <input type="test" name="due_date" class="form-control" placeholder="Enter ..."> -->
-                </div>
-                <div class="form-group col-md-3">
-                    {{-- <label>Any Comments</label> --}}
-
-                        {{-- @foreach ($conversation->mentor->stikey as $stikey)
-                        @if ($stikey->user_id==Auth()->user()->id && $stikey->teacher_id==$conversation->mentor->id)
-                        {{$stikey->note}}
-                        @endif
-                        @endforeach --}}
-
-
-                    <!-- <input type="test" name="due_date" class="form-control" placeholder="Enter ..."> -->
-                </div>
-
-            </div>
-
-               </div>
-
-
-        {{-- <div class="modal-footer justify-content-between btn-group">
-        <button  type="submit" class="btn btn-primary">Save</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div> --}}
-    </div>
-    <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
-
+    <!-- /.modal -->
 @endsection
 
 
@@ -620,168 +595,164 @@ Update Teacher Profile
 
 
 @push('scripts')
+    <script>
+        var loadImage = function(event) {
 
-<script>
-    var loadImage = function(event) {
+            var reader = new FileReader();
 
-        var reader = new FileReader();
+            reader.onload = function() {
 
-        reader.onload = function() {
+                var output = document.getElementById('image-output');
 
-            var output = document.getElementById('image-output');
+                output.src = reader.result;
 
-            output.src = reader.result;
+                output.style.display = "block";
 
-            output.style.display = "block";
+            }
+
+            reader.readAsDataURL(event.target.files[0]);
+
+
+
+        }
+        var loadCoverImage = function(event) {
+
+            var reader = new FileReader();
+
+            reader.onload = function() {
+
+                var output = document.getElementById('cover-image-output');
+
+                output.src = reader.result;
+
+                output.style.display = "block";
+
+            }
+
+            reader.readAsDataURL(event.target.files[0]);
+
+
 
         }
 
-        reader.readAsDataURL(event.target.files[0]);
+
+
+        $(function() {
+
+            //Initialize Select2 Elements
+
+            // $('.select2').select2({
+
+            //     dropdownParent: $('#currentModal')
+
+            // });
 
 
 
-    }
-    var loadCoverImage = function(event) {
+            $('#select2-echannel-doctor').select2({
 
-        var reader = new FileReader();
+                ajax: {
 
-        reader.onload = function() {
+                    method: 'GET',
 
-            var output = document.getElementById('cover-image-output');
+                    url: '{{ route('teacher.get_topics') }}',
 
-            output.src = reader.result;
+                    contentType: "application/json; charset=utf-8",
 
-            output.style.display = "block";
+                    dataType: 'json',
 
-        }
+                    data: function(params) {
 
-        reader.readAsDataURL(event.target.files[0]);
+                        var query = {
 
+                            search: params.term,
 
+                            _method: "GET",
 
-    }
+                            // _token: "{{ csrf_token() }}",
 
+                            type: 'public'
 
+                        };
 
-    $(function() {
+                        // Query parameters will be ?search=[term]&type=public
 
-        //Initialize Select2 Elements
+                        return query;
 
-        // $('.select2').select2({
+                    },
 
-        //     dropdownParent: $('#currentModal')
+                    processResults: function(data) {
 
-        // });
+                        // Transforms the top-level key of the response object from 'items' to 'results'
 
+                        return {
 
+                            results: data.results
 
-        $('#select2-echannel-doctor').select2({
+                        };
 
-            ajax: {
-
-                method: 'GET',
-
-                url: '{{route('teacher.get_topics')}}',
-
-                contentType: "application/json; charset=utf-8",
-
-                dataType: 'json',
-
-                data: function(params) {
-
-                    var query = {
-
-                        search: params.term,
-
-                        _method: "GET",
-
-                        // _token: "{{csrf_token()}}",
-
-                        type: 'public'
-
-                    };
-
-                    // Query parameters will be ?search=[term]&type=public
-
-                    return query;
+                    }
 
                 },
 
-                processResults: function(data) {
-
-                    // Transforms the top-level key of the response object from 'items' to 'results'
-
-                    return {
-
-                        results: data.results
-
-                    };
-
-                }
-
-            },
-
-            // dropdownParent: $('#currentModal')
-
-        });
-
-    });
-
-
-
-
-
-    $('#add_btn').click(function() {
-
-        addTopics();
-
-    });
-
-
-
-    function addTopics() {
-
-        //alert("Update Chat");
-
-
-
-        $.post('{{route('teacher.stor_subject1')}}', {
-
-                _method: "POST",
-
-                _token: "{{csrf_token()}}",
-
-                subject: $('#select2-echannel-doctor option:selected').val()
-
-            },
-            function(data, status) {
-
-                // var jo = JSON.parse(data);
-
-
-                if (data.error == false) {
-
-                    window.location = "{{route('user.profile') }}";
-
-                    //  alert(data.flag);
-
-                } else {
-
-                    window.location = "{{route('user.profile') }}";
-
-                }
+                // dropdownParent: $('#currentModal')
 
             });
 
+        });
+
+
+
+
+
+        $('#add_btn').click(function() {
+
+            addTopics();
+
+        });
+
+
+
+        function addTopics() {
+
+            //alert("Update Chat");
+
+
+
+            $.post('{{ route('teacher.stor_subject1') }}', {
+
+                    _method: "POST",
+
+                    _token: "{{ csrf_token() }}",
+
+                    subject: $('#select2-echannel-doctor option:selected').val()
+
+                },
+                function(data, status) {
+
+                    // var jo = JSON.parse(data);
+
+
+                    if (data.error == false) {
+
+                        window.location = "{{ route('user.profile') }}";
+
+                        //  alert(data.flag);
+
+                    } else {
+
+                        window.location = "{{ route('user.profile') }}";
+
+                    }
+
+                });
 
 
 
 
 
 
-    }
-</script>
 
-
-
+        }
+    </script>
 @endpush

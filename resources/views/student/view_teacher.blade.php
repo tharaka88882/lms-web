@@ -188,8 +188,8 @@
         </div>
         </div>
 
-            <div class="row">
-                <div class="col-sm-7">
+        <div class="row">
+          <div class="col-sm-7">
                     {{-- <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">
@@ -225,7 +225,6 @@
                         <!-- /.card-body -->
                       </div>
                 </div>
-            </div>
         </div><!-- /.container-fluid -->
 
     </section>

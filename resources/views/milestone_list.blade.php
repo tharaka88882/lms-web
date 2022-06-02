@@ -200,7 +200,7 @@
               @foreach ($milestones as $milestone)
               @php
               $date_facturation = \Carbon\Carbon::parse($milestone->due_date);
-         @endphp
+              @endphp
             @if (!$date_facturation->isPast())
             <li class="timeline-item">
                 <div  class="timeline-badge {{($milestone->status==1)?'success':'warning'}}"><i  class="glyphicon glyphicon-{{($milestone->status==1)?'check':''}}"></i></div>
