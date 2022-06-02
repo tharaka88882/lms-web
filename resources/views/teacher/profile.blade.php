@@ -492,23 +492,23 @@
                                     <dl>
                                         <dt>Qualifications</dt>
                                         <dd>
-                                            {{-- {{$teacher->qualification}} --}}
+                                            {{Auth()->user()->userable->qualification}}
                                         </dd>
                                         <dt>Experience</dt>
                                         <dd>
-                                            {{-- {{$teacher->experience}} --}}
+                                            {{Auth()->user()->userable->experience}}
                                         </dd>
                                         <dt>Skills</dt>
                                         <dd>
-                                            {{-- {{$teacher->skills}} --}}
+                                            {{Auth()->user()->userable->skills}}
                                         </dd>
                                         <dt>Industry</dt>
                                         <dd>
-                                            {{-- {{$teacher->industry}} --}}
+                                            {{Auth()->user()->userable->industry}}
                                         </dd>
                                         <dt>Job Title</dt>
                                         <dd>
-                                            {{-- {{$teacher->job}} --}}
+                                            {{Auth()->user()->userable->job}}
                                         </dd>
                                     </dl>
                                 </div>
