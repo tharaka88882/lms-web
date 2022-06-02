@@ -201,9 +201,17 @@
               @php
               $date_facturation = \Carbon\Carbon::parse($milestone->due_date);
               @endphp
-            @if (!$date_facturation->isPast())
+            @if (!$date_facturation->isPast() && $milestone->status != 0)
             <li class="timeline-item">
-                <div  class="timeline-badge {{($milestone->status==1)?'success':'warning'}}"><i  class="glyphicon glyphicon-{{($milestone->status==1)?'check':'edit'}}"></i></div>
+                <div  class="timeline-badge  @if ($milestone->status==1)
+                    success
+                    @elseif ($milestone->status==2)
+                    warning
+                @endif"><i  class="glyphicon @if ($milestone->status==1)
+                    glyphicon-check
+                    @elseif ($milestone->status==2)
+                    glyphicon-edit
+                @endif"></i></div>
                 <div class="timeline-panel">
                     <div class="timeline-heading">
                         <h4 class="timeline-title" style="margin-bottom: 0px; !important"><strong>{{$milestone->note}}</strong></h4>
