@@ -380,7 +380,7 @@
                                     @php
                                         $i = 0;
                                         //$r = intval(Auth()->user()->userable->level);
-                                        $r = (int) $mediation;
+                                        $r = (int) $round_mediation;
                                     @endphp
                                     @while ($i < 5)
                                         @if ($r > 0)
@@ -399,7 +399,7 @@
                                 <div class="widget-user-image">
                                     <img class="img-circle elevation-2"
                                         onerror="this.src='{{ url('public') }}/theme/admin/dist/img/default-avatar.jpg'"
-                                        @if ($teacher->user->image != null) src="{{ url('public') }}/images/profile/{{ $teacher->user->image }}" @else src="" @endif
+                                        @if (Auth()->user()->image != null) src="{{ url('public') }}/images/profile/{{Auth()->user()->image }}" @else src="" @endif
                                         alt="User Avatar">
                                 </div>
 
@@ -436,17 +436,15 @@
                                     <!-- /.row -->
 
                                     <div class="row">
-                                        @if (sizeof($conversations) > 0)
+
                                             {{-- <div class="col-sm-2">
                                     <a class="btn btn-success" href="{{ route('student.view_conversation', $query->id) }}">Complaint</a>
                                 </div> --}}
                                             <div class="col-sm-4" style="text-align: left">
-                                                <a class="btn btn-success"
-                                                    href="{{ route('student.view_conversation', $query->id) }}">Connect</a>
+                                                <a class="btn btn-success">Connect</a>
                                             </div>
                                             <div class="col-sm-4" style="text-align: center">
-                                                <button {{ sizeof($old_ratings) > 0 ? 'disabled' : '' }}
-                                                    data-toggle="modal" data-target="#modal-md" class="btn btn-warning"><i
+                                                <button  class="btn btn-warning"><i
                                                         class="fa fa-star"></i>Rate Now</button>
                                                 {{-- <form action="{{ route('student.rate_teacher') }}" method="POST" class="form-inline" style="float: right" id="changeRatings">
                                         @csrf
@@ -467,22 +465,7 @@
                                             <div class="col-sm-4" style="text-align: right">
                                                 {{-- <a class="btn btn-warning" href="{{route('student.complaint',$teacher->id)}}">Complaint Mentor</a> --}}
                                             </div>
-                                        @elseif ($query != null)
-                                            <div class="col-sm-12" style="text-align: center">
-                                                <a class="btn btn-success"
-                                                    href="{{ route('student.view_conversation', $query->id) }}">Connect</a>
-                                            </div>
-                                        @else
-                                            <div class="col-sm-12" style="text-align: center">
-                                                <form action="{{ route('user.store_conversation') }}" method="POST">
-                                                    @csrf
-                                                    <input type="hidden" name="student_id"
-                                                        value="{{ Auth()->user()->userable->id }}">
-                                                    <input type="hidden" name="teacher_id" value="{{ $teacher->id }}">
-                                                    <button class="btn btn-success" type="submit">Connect</button>
-                                                </form>
-                                            </div>
-                                        @endif
+
                                     </div>
                                 </div>
                             </div>
@@ -498,8 +481,8 @@
                                     </h3>
                                     <br>
 
-                                    @if ($teacher->linkedin_link != null)
-                                        <a href="{{ $teacher->linkedin_link }}" target="_blank">View Linkedin Profile
+                                    @if (Auth()->user()->userable->linkedin_link != null)
+                                        <a href="{{Auth()->user()->userable->linkedin_link }}" target="_blank">View Linkedin Profile
                                             <i class="fas fa-angle-double-right"></i></a>
                                     @endif
                                 </div>
@@ -533,7 +516,7 @@
 
                                 <div class="card-footer">
                                     <div class="float-right">
-                                        <b>Average Responce time: </b> {{ $time_total_array }}hrs
+                                        <b>Average Responce time: </b> {{round(1,5)}}hrs
                                     </div>
                                 </div>
                             </div>
@@ -570,8 +553,8 @@
 
                                 <div class="card-body">
                                     <ul>
-                                        @foreach ($subjects as $subject)
-                                            <li>{{ $subject->name }}</li>
+                                        @foreach (Auth()->user()->userable->teachersubject as $subject)
+                                            <li>{{ $subject->subject->name }}</li>
                                         @endforeach
                                     </ul>
                                 </div>
