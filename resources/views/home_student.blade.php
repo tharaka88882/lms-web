@@ -7,7 +7,6 @@
 
 
 @section('content')
-
     <!-- Content Header (Page header) -->
     {{-- <section class="content-header">
         <div class="container-fluid">
@@ -25,46 +24,54 @@
         </div>
       </section> --}}
 
-      {{-- <!-- Main content -->
+    {{-- <!-- Main content -->
       <section class="content"> --}}
 
-         <!-- Content Wrapper. Contains page content -->
-  {{-- <div class="content-wrapper"> --}}
+    <!-- Content Wrapper. Contains page content -->
+    {{-- <div class="content-wrapper"> --}}
     <!-- Content Header (Page header) -->
     <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-12">
-            <div style="font-size:15px; text-align:center;" class="alert alert-warning">
-              Thanks for signing up. We will be launching officially soon and will notify you once we are live. In the meantime our pilot is running, so update your profile, explore and check out the RSS feed curated for your development.
-              <br/>
-              We would love to hear feedback on how we can improve your experience, so drop us a note through <a href="https://you2mentor.com/contact/" target="_blank">here</a>
-              <br/>
-              <span style="color:black; font-size:larger;">
-                You can follow us on &nbsp;&nbsp;<a href="https://www.linkedin.com/company/you2mentor/" target="_blank"><i class="bi bi-linkedin"></i></a> &nbsp;&nbsp; <a href="https://www.twitter.com/You2Mentor" target="_blank" ><i class="bi bi-twitter"></i></a> &nbsp;&nbsp; <a href="https://www.instagram.com/You2Mentor/" target="_blank"><i class="bi bi-instagram"></i></a>&nbsp;&nbsp; <a href="https://www.tiktok.com/You2Mentor/" target="_blank"><i class="bi bi-tiktok"></i></a>
-              </span>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <h1 class="m-0">My Dashboard</h1>
-          </div><!-- /.col -->
-          {{-- <div class="col-sm-6">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-12">
+                    <div style="font-size:15px; text-align:center;" class="alert alert-warning">
+                        Thanks for signing up. We will be launching officially soon and will notify you once we are live. In
+                        the meantime our pilot is running, so update your profile, explore and check out the RSS feed
+                        curated for your development.
+                        <br />
+                        We would love to hear feedback on how we can improve your experience, so drop us a note through <a
+                            href="https://you2mentor.com/contact/" target="_blank">here</a>
+                        <br />
+                        <span style="color:black; font-size:larger;">
+                            You can follow us on &nbsp;&nbsp;<a href="https://www.linkedin.com/company/you2mentor/"
+                                target="_blank"><i class="bi bi-linkedin"></i></a> &nbsp;&nbsp; <a
+                                href="https://www.twitter.com/You2Mentor" target="_blank"><i class="bi bi-twitter"></i></a>
+                            &nbsp;&nbsp; <a href="https://www.instagram.com/You2Mentor/" target="_blank"><i
+                                    class="bi bi-instagram"></i></a>&nbsp;&nbsp; <a href="https://www.tiktok.com/You2Mentor/"
+                                target="_blank"><i class="bi bi-tiktok"></i></a>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <h1 class="m-0">My Dashboard</h1>
+                </div><!-- /.col -->
+                {{-- <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item active">Student Dashboard</li>
             </ol>
           </div><!-- /.col --> --}}
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
 
     <!-- Main content -->
     <section class="content">
-      <div class="container-fluid">
-        <!-- Small boxes (Stat box) -->
-        <div class="row">
-          {{-- <div class="col-lg-3 col-6">
+        <div class="container-fluid">
+            <!-- Small boxes (Stat box) -->
+            <div class="row">
+                {{-- <div class="col-lg-3 col-6">
             <!-- small box -->
              <!-- small box -->
             <div class="small-box bg-warning">
@@ -79,121 +86,128 @@
               <a href="{{ route('student.payment_history') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div> --}}
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-           <div class="small-box bg-light">
-             <div class="inner">
-               <h3>{{$convo_count}}</h3>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-light">
+                        <div class="inner">
+                            <h3>{{ $convo_count }}</h3>
 
-               <p>Conversations</p>
-             </div>
-             <div class="icon">
-               <i class="ion ion-chatbubbles"></i>
-             </div>
-             <a href="{{route('student.conversation_list')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-           </div>
-         </div>
-         <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-light">
-              <div class="inner">
-                <h3>{{$teachers_count}}</h3>
-
-                <p>Mentors</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-android-people"></i>
-              </div>
-              <a href="{{route('student.tutors')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-light">
-              <div class="inner">
-                <h3>{{$subject_count}}</h3>
-
-                <p>Mentoring Topics/Professions</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-ios-book"></i>
-              </div>
-              <a href="{{route('student.tutors')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-light">
-
-              <div class="inner">
-              <p style="margin-bottom: 3px;">My Development</p>
-                <div class="row">
-                  <div class="col-4 border-right">
-                    <div class="description-block">
-                      <h5 class="description-header">{{$completed_milestones_count}}</h5>
-                      <p style="color:green; font-size: 9px;">Completed</p>
-                      <!-- <span class="description-text">Completed</span> -->
+                            <p>Conversations</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-chatbubbles"></i>
+                        </div>
+                        <a href="{{ route('student.conversation_list') }}" class="small-box-footer">More info <i
+                                class="fas fa-arrow-circle-right"></i></a>
                     </div>
-                    <!-- /.description-block -->
-                  </div>
-                  <!-- /.col -->
-                  <div class="col-4 border-right">
-                    <div class="description-block">
-                      <h5 class="description-header">{{$inprogress_milestones_count}}</h5>
-                      <p style="color:rgb(255, 153, 0); font-size: 8px;">In Progress</p>
-                      <!-- <span class="description-text">In Progress</span> -->
-                    </div>
-                    <!-- /.description-block -->
-                  </div>
-                  <!-- /.col -->
-                  <div class="col-4">
-                    <div class="description-block">
-                      <h5 class="description-header">{{$overdue_milestones_count}}</h5>
-                      <p style="color:red; font-size: 9px;">Overdue</p>
-                      <!-- <span class="description-text">Overdue</span> -->
-                    </div>
-                    <!-- /.description-block -->
-                  </div>
-                  <!-- /.col -->
                 </div>
-              </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-light">
+                        <div class="inner">
+                            <h3>{{ $teachers_count }}</h3>
 
-            <!-- <div class="row">
-            <div class="small-box bg-light">
-              <div class="inner">
-                <h3>{{$my_milestones_count}}</h3>
+                            <p>Mentors</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-android-people"></i>
+                        </div>
+                        <a href="{{ route('student.tutors') }}" class="small-box-footer">More info <i
+                                class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-light">
+                        <div class="inner">
+                            <h3>{{ $subject_count }}</h3>
 
-                <p>Completed</p>
-              </div>
-          </div>
-          <div class="small-box bg-light">
-              <div class="inner">
-                <h3>{{$my_milestones_count}}</h3>
+                            <p>Mentoring Topics/Professions</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-ios-book"></i>
+                        </div>
+                        <a href="{{ route('student.tutors') }}" class="small-box-footer">More info <i
+                                class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-light">
 
-                <p>In Progess</p>
-              </div>
-          </div>
-          <div class="small-box bg-light">
-              <div class="inner">
-                <h3>{{$my_milestones_count}}</h3>
+                        <div class="inner">
+                            <p style="margin-bottom: 3px;">My Development</p>
+                            <div class="row">
+                                <div class="col-4 border-right">
+                                    <div class="description-block">
+                                        <h5 class="description-header">{{ $completed_milestones_count }}</h5>
+                                        <p style="color:green; font-size: 9px;">Completed</p>
+                                        <!-- <span class="description-text">Completed</span> -->
+                                    </div>
+                                    <!-- /.description-block -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-4 border-right">
+                                    <div class="description-block">
+                                        <h5 class="description-header">{{ $inprogress_milestones_count }}</h5>
+                                        <p style="color:rgb(255, 153, 0); font-size: 8px;">In Progress</p>
+                                        <!-- <span class="description-text">In Progress</span> -->
+                                    </div>
+                                    <!-- /.description-block -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-4">
+                                    <div class="description-block">
+                                        <h5 class="description-header">{{ $overdue_milestones_count }}</h5>
+                                        <p style="color:red; font-size: 9px;">Overdue</p>
+                                        <!-- <span class="description-text">Overdue</span> -->
+                                    </div>
+                                    <!-- /.description-block -->
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                        </div>
 
-                <p>Overdue</p>
+                        <!-- <div class="row">
+                <div class="small-box bg-light">
+                  <div class="inner">
+                    <h3>{{ $my_milestones_count }}</h3>
+
+                    <p>Completed</p>
+                  </div>
               </div>
-          </div>
-          </div> -->
-              <!-- <div class="icon">
-                <i class="fas fa-flag"></i>
+              <div class="small-box bg-light">
+                  <div class="inner">
+                    <h3>{{ $my_milestones_count }}</h3>
+
+                    <p>In Progess</p>
+                  </div>
+              </div>
+              <div class="small-box bg-light">
+                  <div class="inner">
+                    <h3>{{ $my_milestones_count }}</h3>
+
+                    <p>Overdue</p>
+                  </div>
+              </div>
               </div> -->
-              <a href="{{route('user.milestone')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <!-- <div class="icon">
+                    <i class="fas fa-flag"></i>
+                  </div> -->
+                        <a href="{{ route('user.milestone') }}" class="small-box-footer">More info <i
+                                class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
             </div>
-          </div>
-          <!-- ./col -->
-        </div>
 
+            <div class="row">
+                <img id='Layer_1' src='./../public/images/profile/dashboard-01.svg' alt="You2Mentor SVG">
+            </div>
 
-        {{-- <div class="row mb-2">
+            {{-- <div class="row mb-2">
             <div class="col-sm-12">
               <div style="font-size:14px; text-align: center;" class="card">
                 (Welcome to your You2Mentor dashboard. What you need to do when you first login:
@@ -215,7 +229,7 @@
             </div>
           </div> --}}
 
-         {{-- <div class="card p-3">
+            {{-- <div class="card p-3">
             <div class="container">
                 <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
                 <p class="text-justify">
@@ -238,9 +252,9 @@
               </div>
          </div> --}}
 
-          <!-- /.row -->
-              <!-- Default box -->
-      {{-- <div class="card">
+            <!-- /.row -->
+            <!-- Default box -->
+            {{-- <div class="card">
         <div class="card-header">
           <h3 class="card-title">Current Premium Details</h3>
 
@@ -423,8 +437,7 @@
         </div>
         <!-- /.card-body -->
       </div> --}}
-      <!-- /.card -->
-      </div><!-- /.container-fluid -->
+            <!-- /.card -->
+        </div><!-- /.container-fluid -->
     </section>
-
 @endsection
