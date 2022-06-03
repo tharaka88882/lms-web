@@ -208,7 +208,7 @@
                                 <p>Find Mentors</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-android-people"></i>
+                                <i class="ion ion-android-search"></i>
                             </div>
                             <a href="{{ route('teacher.mentors') }}" class="small-box-footer">More info <i
                                     class="fas fa-arrow-circle-right"></i></a>
@@ -339,10 +339,38 @@
                 <div class="row">
 
                     {{-- <img src="/dashboard-01.svg" alt="Kiwi standing on oval"> --}}
-                    <img id='Layer_1' src='./../public/images/profile/dashboard-01.svg' alt="You2Mentor SVG">
-
+                    {{-- <img id='Layer_1' src='./../public/images/profile/dashboard-01.svg' alt="You2Mentor SVG" style="width: 100%;"> --}}
+                    <div class="row mb-2">
+                        <div class="col-md-4 mb-2">
+                            <img src='./../public/images/profile/First row 1.PNG' alt="You2Mentor" width="350px;"/>
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <img src='./../public/images/profile/First row 2.PNG' alt="You2Mentor" width="350px;"/>
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <img src='./../public/images/profile/First row 3.PNG' alt="You2Mentor" width="350px;"/>
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <img src='./../public/images/profile/Second row 1.PNG' alt="You2Mentor" width="350px;"/>
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <img src='./../public/images/profile/Second row 2.PNG' alt="You2Mentor" width="350px;"/>
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <img src='./../public/images/profile/Second row 3.PNG' alt="You2Mentor" width="350px;"/>
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <img src='./../public/images/profile/Third row 1.PNG' alt="You2Mentor" width="350px;"/>
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <img src='./../public/images/profile/Third row 2.PNG' alt="You2Mentor" width="350px;"/>
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <img src='./../public/images/profile/Third row 3.PNG' alt="You2Mentor" width="350px;"/>
+                        </div>
+                      </div>
                     {{-- <div
-                        style="background-image: url('{{ url('public') }}/images/profile/dashboard-01.svg') !important;">
+                      id="Layer_1"  style="background-image: url('./../public/images/profile/dashboard-01.svg') !important;">
 
                     </div> --}}
 

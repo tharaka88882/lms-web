@@ -193,7 +193,22 @@
     <div class="row">
         <div class="col-md-12">
             <div class="page-header" style="border-bottom: 0px;margin: 0px; !important">
-              {{-- <h3>Upcoming Milestones</h3> --}}
+                @php
+                    $flag = false;
+                @endphp
+              @foreach ($milestones as $milestone)
+              @php
+              $date_facturation = \Carbon\Carbon::parse($milestone->due_date);
+              @endphp
+              @if (!$date_facturation->isPast() && $milestone->status != 0)
+                @php
+                    $flag = true;
+                @endphp
+              @endif
+              @endforeach
+             @if ($flag)
+             <h3>Upcoming Milestones</h3>
+             @endif
             </div>
             <div style="display:inline-block;width:100%;overflow-y:auto;">
             <ul class="timeline timeline-horizontal" style="margin-bottom: 0px; !important">

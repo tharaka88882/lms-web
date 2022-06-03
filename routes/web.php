@@ -137,6 +137,7 @@ Route::prefix('user')->middleware('check.user')->group(function () {
     Route::post('/milestone/create', 'App\Http\Controllers\MilestoneController@create')->name('user.milestone_create');
     Route::delete('/milestone/delete/{id}', 'App\Http\Controllers\MilestoneController@destroy')->name('user.milestone_delete');
     Route::put('/milestone/add-stikey', 'App\Http\Controllers\MilestoneController@add_s_note')->name('user.add_s_note');
+    Route::delete('/milestone/delete-stikey', 'App\Http\Controllers\MilestoneController@distory_s_note')->name('user.distory_s_note');
 
 
      Route::put('/milestone/update', 'App\Http\Controllers\MilestoneController@update')->name('user.update_milestone');

@@ -15,7 +15,7 @@ class CreateStikeyNoteMenteesTable extends Migration
     {
         Schema::create('stikey_note_mentees', function (Blueprint $table) {
             $table->id();
-            $table->String('note')->nullable();
+            $table->String('note',2048)->nullable();
             $table->unsignedBigInteger('student_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Milestone;
+use App\Models\StikeyMilestone;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -94,10 +95,23 @@ class MilestoneController extends Controller
     }
     public function add_s_note(Request $request)
     {
-        $milestone = Milestone::findOrFail($request->get('id'));
-        $milestone->stikey = $request->get('stikey');
+        $stikey_milestone =  new StikeyMilestone();
+        $stikey_milestone->s_note = $request->get('s_note');
+        $stikey_milestone->user_id = Auth()->user()->id;
+        $stikey_milestone->milestone_id = $request->get('id');
 
-        $milestone->save();
+        $stikey_milestone->save();
+      //  Toastr::success('Milestone is update successfully :)', 'Updated');
+        return array(
+            'success'=>true
+        );
+    }
+    public function distory_s_note(Request $request)
+    {
+        $stikey_milestone =   StikeyMilestone::findOrFail($request->get('id'));
+        $stikey_milestone->delete();
+
+        //$stikey_milestone->save();
       //  Toastr::success('Milestone is update successfully :)', 'Updated');
         return array(
             'success'=>true

@@ -97,5 +97,9 @@ class User extends Authenticatable
         return $this->hasMany(StikeyNoteMentee::class);
     }
 
+    public function stikey_m(){
+        return $this->hasMany(StikeyMilestone::class);
+    }
+
 
 }

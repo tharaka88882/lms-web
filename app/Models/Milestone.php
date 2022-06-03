@@ -18,4 +18,8 @@ class Milestone extends Model
     public function notes(){
         return $this->hasMany(Note::class);
     }
+
+    public function m_stikey(){
+        return $this->hasMany(StikeyMilestone::class);
+    }
 }

@@ -433,7 +433,7 @@ class TeacherController extends Controller
             $tutor_convversation = MentorConversation::where('mentor_id', $tutors[$i]['id'])->where('mentee_id', Auth()->user()->userable->id)->first();
             $tutor_convversation = json_decode($tutor_convversation, true);
             $tutors[$i]['conversation'] = $tutor_convversation;
-            $tutors[$i]['avg_time'] =round(1,5);
+            $tutors[$i]['avg_time'] =rand(1,5);
 
         }
 
@@ -588,7 +588,7 @@ class TeacherController extends Controller
             $tutor_convversation = MentorConversation::where('mentor_id', $conversations[$i]['mentor_id'])->where('mentee_id', Auth()->user()->userable->id)->first();
             $tutor_convversation = json_decode($tutor_convversation, true);
             $conversations[$i]['conversation'] = $tutor_convversation;
-            $conversations[$i]['avg_time'] =round(1,5);
+            $conversations[$i]['avg_time'] =rand(1,5);
 
         }
 

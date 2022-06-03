@@ -223,23 +223,63 @@
 
                                        <!-- /.modal -->
                                        <div class="modal fade" id="modal-md1">
-                                        <div class="modal-dialog modal-sm">
-                                        <div class="modal-content" style="background-color: rgb(255, 251, 0);">
+                                        <div class="modal-dialog modal-md">
+                                        <div class="modal-content">
                                             <div class="modal-header">
-                                            <h4 class="modal-title" style="text-transform: capitalize">Add Note</h4>
-                                            <button onclick="location.reload();" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <h4 class="modal-title" style="text-transform: capitalize">stikey Notes</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                             </div>
                                                 @csrf
+                                                <div class="modal-body">
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="form-group col-sm-9">
+                                                                {{-- <label>Any Comments</label> --}}
+                                                                <input id="stikey_"  name="question3" class="form-control" required/>
 
-                                                <div class="row">
-                                                    <div class="form-group col-md-12">
-                                                        {{-- <label>Any Comments</label> --}}
-                                                        <textarea onkeyup="saveSNote('{{$milestone->id}}');" id="stikey_" style="background-color: rgb(255, 251, 0);"  name="question3" class="form-control" rows="6">{{$milestone->stikey;}} </textarea>
-                                                        <!-- <input type="test" name="due_date" class="form-control" placeholder="Enter ..."> -->
-                                            </div>
+                                                            </div>
+                                                            <div class="form-group col-sm-3">
+                                                                {{-- <label>Any Comments</label> --}}
+                                                                <button onclick="saveSNote('{{$milestone->id}}');" class="btn btn-success">Save</button>
+
+                                                            </div>
+                                                        </div>
+                                                            <div class="table-responsive">
+                                                                <table class="table ">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>#</th>
+                                                                            <th>Stikey Note</th>
+                                                                            <th>Date Added</th>
+                                                                            <th>Actions</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @php
+                                                                            $i = 1;
+                                                                        @endphp
+                                                                       @foreach ($milestone->m_stikey as $m_stikey)
+                                                                       <tr>
+                                                                        <td>{{$i}}</td>
+                                                                        <td>{{$m_stikey->s_note}}</td>
+                                                                        <td>{{date('Y/m/d | H:i', strtotime($m_stikey->updated_at))}}</td>
+                                                                        <td >
+                                                                              {{-- <a href="" class="btn btn-sm btn-warning" id="goal">Update</a> --}}
+                                                                              <button type="button" onclick="del_stikey('{{$m_stikey->id}}');" class="btn btn-sm btn-danger" id="del_">Delete</button>
+                                                                        </td>
+                                                                    </tr>
+                                                                    @php
+                                                                        $i++;
+                                                                    @endphp
+                                                                    @endforeach
+                                                                    </tbody>
+                                                                </table>
+                                                              </div>
+                                                           </div>
                                                 </div>
+
                                             {{-- <div class="modal-footer justify-content-between btn-group">
                                             <button  type="submit" class="btn btn-primary">Save</button>
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -287,16 +327,35 @@ function saveSNote(id){
     $.post("{{route('user.add_s_note')}}",
     {
         id: id,
-        stikey: $('#stikey_').val(),
+        s_note: $('#stikey_').val(),
         _method: "put",
         _token: "{{ csrf_token() }}"
     },
     function(data, status){
         if(data.success==true){
             console.log('success');
-           // window.location="{{route('user.notes',$milestone->id)}}";
+            window.location="{{route('user.notes',$milestone->id)}}";
         }
     });
+
+}
+
+function del_stikey(id){
+
+    if (confirm("Are you sure?") == true) {
+        $.post("{{route('user.distory_s_note')}}",
+        {
+            id: id,
+            _method: "delete",
+            _token: "{{ csrf_token() }}"
+        },
+        function(data, status){
+            if(data.success==true){
+                console.log('success');
+                window.location="{{route('user.notes',$milestone->id)}}";
+            }
+        });
+    }
 
 }
 //}
