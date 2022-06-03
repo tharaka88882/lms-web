@@ -210,7 +210,7 @@
                                                 <div class="row">
                                                     <div class="form-group col-md-9">
                                                         {{-- <label>Any Comments</label> --}}
-                                                        <input id="stikey_{{$conversation['ar_index']}}"  name="question3" class="form-control"/>
+                                                        <input id="stikey_{{$conversation['ar_index']}}"  name="question3" class="form-control" required/>
                                                             {{-- @foreach ($conversation->mentor->stikey as $stikey)
                                                             @if ($stikey->user_id==Auth()->user()->id && $stikey->teacher_id==$conversation->mentor->id)
                                                             {{$stikey->note}}
@@ -304,6 +304,7 @@
 <script>
 function saveNote(id,user,ar_index){
 
+   if( $('#stikey_'+ar_index).val()!=""){
     $.post("{{route('user.update_mentee_stikey')}}",
         {
             id: id,
@@ -318,6 +319,9 @@ function saveNote(id,user,ar_index){
                 window.location="{{route('teacher.conversation_list')}}";
             }
         });
+   }else{
+    alert("Stikey note can't be null !");
+   }
     //alert('test');
 }
 

@@ -352,7 +352,7 @@
                                                                                                 <div class="row">
                                                                                                     <div class="form-group col-sm-9">
                                                                                                         {{-- <label>Any Comments</label> --}}
-                                                                                                        <input id="stikey_{{$conversation->mentor->id}}"  name="question3" class="form-control"/>
+                                                                                                        <input id="stikey_{{$conversation->mentor->id}}"  name="question3" class="form-control" required/>
                                                                                                             {{-- @foreach ($conversation->mentor->stikey as $stikey)
                                                                                                             @if ($stikey->user_id==Auth()->user()->id && $stikey->teacher_id==$conversation->mentor->id)
                                                                                                             {{$stikey->note}}
@@ -465,6 +465,7 @@ function del_stikey(id){
 function saveNote1(id){
     // var n = new Date();
     // $('#stikey_'+id).val( n+" "+$('#stikey_'+id).val());
+  if($('#stikey_'+id).val() !=""){
     $.post("{{route('user.update_stikey')}}",
         {
             id: id,
@@ -478,6 +479,9 @@ function saveNote1(id){
                 window.location="{{route('teacher.mentor_conversation_list')}}";
             }
         });
+  }else{
+    alert("Stikey note can't be null !");
+  }
    // alert('saved');
 
 }
