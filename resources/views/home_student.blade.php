@@ -209,31 +209,31 @@
 
             <div class="row mb-2">
             <div class="col-md-4 mb-2">
-                <img src='./../public/images/profile/First row 1.PNG' alt="You2Mentor" width="350px;"/>
+                <img src='{{url('public')}}/images/profile/First1.png' alt="You2Mentor" width="350px;"/>
             </div>
             <div class="col-md-4 mb-2">
-                <img src='./../public/images/profile/First row 2.PNG' alt="You2Mentor" width="350px;"/>
+                <img src='{{url('public')}}/images/profile/First2.png' alt="You2Mentor" width="350px;"/>
             </div>
             <div class="col-md-4 mb-2">
-                <img src='./../public/images/profile/First row 3.PNG' alt="You2Mentor" width="350px;"/>
+                <img src='./../public/images/profile/First3.png' alt="You2Mentor" width="350px;"/>
             </div>
             <div class="col-md-4 mb-2">
-                <img src='./../public/images/profile/Second row 1.PNG' alt="You2Mentor" width="350px;"/>
+                <img src='./../public/images/profile/Second1.png' alt="You2Mentor" width="350px;"/>
             </div>
             <div class="col-md-4 mb-2">
-                <img src='./../public/images/profile/Second row 2.PNG' alt="You2Mentor" width="350px;"/>
+                <img src='./../public/images/profile/Second2.png' alt="You2Mentor" width="350px;"/>
             </div>
             <div class="col-md-4 mb-2">
-                <img src='./../public/images/profile/Second row 3.PNG' alt="You2Mentor" width="350px;"/>
+                <img src='./../public/images/profile/Second3.png' alt="You2Mentor" width="350px;"/>
             </div>
             <div class="col-md-4 mb-2">
-                <img src='./../public/images/profile/Third row 1.PNG' alt="You2Mentor" width="350px;"/>
+                <img src='./../public/images/profile/Third1.png' alt="You2Mentor" width="350px;"/>
             </div>
             <div class="col-md-4 mb-2">
-                <img src='./../public/images/profile/Third row 2.PNG' alt="You2Mentor" width="350px;"/>
+                <img src='./../public/images/profile/Third2.png' alt="You2Mentor" width="350px;"/>
             </div>
             <div class="col-md-4 mb-2">
-                <img src='./../public/images/profile/Third row 3.PNG' alt="You2Mentor" width="350px;"/>
+                <img src='./../public/images/profile/Third3.png' alt="You2Mentor" width="350px;"/>
             </div>
           </div>
 
