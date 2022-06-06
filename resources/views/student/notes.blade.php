@@ -333,7 +333,8 @@
         function saveSNote(id) {
 
             //if (confirm("Are you sure?") == true) {
-            $.post("{{ route('user.add_s_note') }}", {
+            if($('#stikey_').val() != ""){
+                $.post("{{ route('user.add_s_note') }}", {
                     id: id,
                     s_note: $('#stikey_').val(),
                     _method: "put",
@@ -345,6 +346,9 @@
                         window.location = "{{ route('user.notes', $milestone->id) }}";
                     }
                 });
+            }else{
+                alert("Stikey note can't be null !");
+            }
 
         }
 

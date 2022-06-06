@@ -207,7 +207,7 @@
               @endif
               @endforeach
              @if ($flag)
-             <h3>Upcoming Milestones</h3>
+             <h3>Upcoming Goals</h3>
              @endif
             </div>
             <div style="display:inline-block;width:100%;overflow-y:auto;">

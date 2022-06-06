@@ -87,5 +87,12 @@ class Teacher extends Model
         return $this->hasMany(StikeyNote::class);
     }
 
+    public function experience(){
+        return $this->hasMany(Experience::class);
+    }
+    public function qualification(){
+        return $this->hasMany(Qualification::class);
+    }
+
 }
 

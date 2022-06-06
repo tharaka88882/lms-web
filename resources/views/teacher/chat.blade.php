@@ -168,10 +168,103 @@
                              </div>
                           </div>
 
+                          <div class="card card-default">
+                            <div class="card-header">
+                              <button data-toggle="modal" data-target="#modal-md" class="btn btn-s btn-warning">Note</button>
+                             </div>
+                          </div>
+
                 </div>
             </div>
         </div>
     </section>
+
+      <!-- /.modal -->
+      <div class="modal fade" id="modal-md">
+        <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" style="text-transform: capitalize">{{$conversation->student->user->name}} Notes</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+                @csrf
+            <div class="modal-body">
+              <div class="container">
+                <div class="row">
+                    <div class="form-group col-md-9">
+                        {{-- <label>Any Comments</label> --}}
+                        <input id="stikey_"  name="question3" class="form-control" required/>
+                            {{-- @foreach ($conversation->mentor->stikey as $stikey)
+                            @if ($stikey->user_id==Auth()->user()->id && $stikey->teacher_id==$conversation->mentor->id)
+                            {{$stikey->note}}
+                            @endif
+                            @endforeach --}}
+                        <!-- <input type="test" name="due_date" class="form-control" placeholder="Enter ..."> -->
+                    </div>
+                    <div class="form-group col-md-3">
+                        {{-- <label>Any Comments</label> --}}
+                        <button onclick="saveNote('{{$conversation->student->id}}');" class="btn btn-success">Save</button>
+                            {{-- @foreach ($conversation->mentor->stikey as $stikey)
+                            @if ($stikey->user_id==Auth()->user()->id && $stikey->teacher_id==$conversation->mentor->id)
+                            {{$stikey->note}}
+                            @endif
+                            @endforeach --}}
+                        <!-- <input type="test" name="due_date" class="form-control" placeholder="Enter ..."> -->
+                    </div>
+                </div>
+                <div class="table-responsive">
+                        <table class="table ">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Stikey Note</th>
+                                    <th>Date Added</th>
+                                    <th >Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php
+                                    $i = 1;
+                                @endphp
+                               @foreach ($conversation->student->stikey as $stikey)
+
+                               <tr>
+                                <td>{{$i}}</td>
+                                <td>{{$stikey->note}}</td>
+                                <td>{{$stikey->updated_at}}</td>
+                                <td >
+
+                                      {{-- <a href="" class="btn btn-sm btn-warning" id="goal">Update</a> --}}
+
+
+                                      <button type="button" onclick="del_stikey('{{$stikey->id}}');" class="btn btn-sm btn-danger" id="del_">Delete</button>
+
+
+                                </td>
+                            </tr>
+                            @php
+                                $i++;
+                            @endphp
+                            @endforeach
+
+                            </tbody>
+                        </table>
+                      </div>
+                   </div>
+        </div>
+
+            {{-- <div class="modal-footer justify-content-between btn-group">
+            <button  type="submit" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div> --}}
+        </div>
+        <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
 @endsection
 
 @push('scripts')
@@ -286,6 +379,56 @@
             });
             }
         }
+function saveNote(id){
+
+if( $('#stikey_').val()!=""){
+ $.post("{{route('user.update_mentee_stikey')}}",
+     {
+         id: id,
+         note: $('#stikey_').val(),
+         user:'mentee',
+         _method: "PUT",
+         _token: "{{ csrf_token() }}"
+     },
+     function(data, status){
+         if(data.success==true){
+             console.log('success');
+             window.location="{{route('teacher.view_conversation',$id)}}";
+         }
+     });
+}else{
+ alert("Stikey note can't be null !");
+}
+ //alert('test');
+}
+
+function del_stikey(id){
+ //$(document).keyup(function (e) {
+    //  console.log(e.keyCode);
+    //alert(e.keyCode);
+// if(e.keyCode==13){
+ if (confirm("Are you sure?") == true) {
+     $.post("{{route('user.distory_mentor_stikey')}}",
+     {
+         id: id,
+         user: 'mentee',
+         _method: "delete",
+         _token: "{{ csrf_token() }}"
+     },
+     function(data, status){
+         if(data.success==true){
+             console.log('success');
+             window.location="{{route('teacher.view_conversation',$id)}}";
+         }
+     });
+ }
+ //alert('saved');
+
+// }
+  // });
+
+
+}
 
     </script>
 @endpush
