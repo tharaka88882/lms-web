@@ -341,9 +341,14 @@
                     {{-- <img src="/dashboard-01.svg" alt="Kiwi standing on oval"> --}}
                     {{-- <img id='Layer_1' src='./../public/images/profile/dashboard-01.svg' alt="You2Mentor SVG" style="width: 100%;"> --}}
                     <div class="row mb-2">
-                        <div class="col-md-12 col-xs-12 mb-2">
+                        <div class="col-md-12 mb-2">
                             <img src='{{url('public')}}/images/profile/Title.png' alt="You2Mentor" width="100%;"/>
                         </div>
+
+                        <div class="col-md-12 mb-2">
+                            <center><h5><b>What you need to do when your first login.</b></h5></center>
+                         </div>
+
                         <div class="col-md-4 mb-2">
                             <img src='{{url('public')}}/images/profile/First1.png' alt="You2Mentor" width="350px;"/>
                         </div>
@@ -353,6 +358,13 @@
                         <div class="col-md-4 mb-2">
                             <img src='{{url('public')}}/images/profile/First3.png' alt="You2Mentor" width="350px;"/>
                         </div>
+                        <div class="col-md-12 mb-2">
+                            <img src='{{url('public')}}/images/profile/Title 2.png' alt="You2Mentor" width="100%;"/>
+                        </div>
+
+                        <div class="col-md-12 mb-2">
+                            <center><h5><b>How to navigate if you are looking for a Mentors</b></h5></center>
+                         </div>
 
                         <div class="col-md-4 mb-2">
                             <img src='{{url('public')}}/images/profile/Second1.png' alt="You2Mentor" width="350px;"/>
@@ -364,6 +376,10 @@
                             <img src='{{url('public')}}/images/profile/Second3.png' alt="You2Mentor" width="350px;"/>
                         </div>
 
+                        <div class="col-md-12 mb-2">
+                           <center><h5><b>How to navigate if you are a Mentor</b></h5></center>
+                        </div>
+
                         <div class="col-md-4 mb-2">
                             <img src='{{url('public')}}/images/profile/Third1.png' alt="You2Mentor" width="350px;"/>
                         </div>
@@ -373,9 +389,7 @@
                         <div class="col-md-4 mb-2">
                             <img src='{{url('public')}}/images/profile/Third3.png' alt="You2Mentor" width="350px;"/>
                         </div>
-                        <div class="col-md-12 col-xs-12 mb-2">
-                            <img src='{{url('public')}}/images/profile/Title 2.png' alt="You2Mentor" width="100%;"/>
-                        </div>
+
                       </div>
                     {{-- <div
                       id="Layer_1"  style="background-image: url('./../public/images/profile/dashboard-01.svg') !important;">

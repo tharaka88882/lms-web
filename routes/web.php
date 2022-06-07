@@ -170,6 +170,13 @@ Route::prefix('user')->middleware('check.user')->group(function () {
 
     //Refer friends-----------------------------------------------------------------------------------
     Route::any('/refer-friend', 'App\Http\Controllers\UserController@refer')->name('user.refer_friend');
+
+
+    //Experience & Qualification----------------------------------------------------------------------------------------------------------
+    Route::post('/add-experience', 'App\Http\Controllers\UserController@store_experience')->name('user.add_experience');
+    Route::post('/add-qualification', 'App\Http\Controllers\UserController@store_qualification')->name('user.add_qualification');
+
+
 });
 
 Route::prefix('student')->middleware('check.user')->group(function () {
