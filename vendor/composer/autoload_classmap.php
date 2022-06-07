@@ -92,6 +92,7 @@ return array(
     'App\\Models\\Note' => $baseDir . '/app/Models/Note.php',
     'App\\Models\\Notification' => $baseDir . '/app/Models/Notification.php',
     'App\\Models\\PaymentPackage' => $baseDir . '/app/Models/PaymentPackage.php',
+    'App\\Models\\Position' => $baseDir . '/app/Models/Position.php',
     'App\\Models\\ProductName' => $baseDir . '/app/Models/ProductName.php',
     'App\\Models\\Qualification' => $baseDir . '/app/Models/Qualification.php',
     'App\\Models\\Rating' => $baseDir . '/app/Models/Rating.php',

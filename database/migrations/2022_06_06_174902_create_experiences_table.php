@@ -21,10 +21,12 @@ class CreateExperiencesTable extends Migration
             $table->date('end_date')->nullable();
             $table->unsignedBigInteger('teacher_id');
             $table->unsignedBigInteger('institute_id');
+            $table->unsignedBigInteger('position_id');
             $table->timestamps();
 
             $table->foreign('teacher_id')->references('id')->on('teachers')->cascadeOnDelete();
             $table->foreign('institute_id')->references('id')->on('institutes')->cascadeOnDelete();
+            $table->foreign('position_id')->references('id')->on('positions')->cascadeOnDelete();
         });
     }
 

@@ -21,4 +21,7 @@ class Experience extends Model
     public function institute(){
         return $this->belongsTo(Institute::class,'institute_id','id','institutes');
     }
+    public function position(){
+        return $this->belongsTo(Position::class,'position_id','id','positions');
+    }
 }

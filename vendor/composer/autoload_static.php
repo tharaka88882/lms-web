@@ -735,6 +735,7 @@ class ComposerStaticInit24d43722947f657d1a46880f5ba77be8
         'App\\Models\\Note' => __DIR__ . '/../..' . '/app/Models/Note.php',
         'App\\Models\\Notification' => __DIR__ . '/../..' . '/app/Models/Notification.php',
         'App\\Models\\PaymentPackage' => __DIR__ . '/../..' . '/app/Models/PaymentPackage.php',
+        'App\\Models\\Position' => __DIR__ . '/../..' . '/app/Models/Position.php',
         'App\\Models\\ProductName' => __DIR__ . '/../..' . '/app/Models/ProductName.php',
         'App\\Models\\Qualification' => __DIR__ . '/../..' . '/app/Models/Qualification.php',
         'App\\Models\\Rating' => __DIR__ . '/../..' . '/app/Models/Rating.php',
