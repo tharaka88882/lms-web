@@ -16,7 +16,7 @@ class CreateExperiencesTable extends Migration
         Schema::create('experiences', function (Blueprint $table) {
             $table->id();
             $table->string('text',2048)->nullable();
-            $table->string('location',2048);
+            $table->string('location',2048)->nullable();
             $table->date('start_date');
             $table->date('end_date')->nullable();
             $table->unsignedBigInteger('teacher_id');

@@ -26,7 +26,6 @@ class AddExperienceRequest extends FormRequest
         return [
            'position'=>'required',
            'institute'=>'required',
-           'location'=>'required',
            'start_date'=>'required'
         ];
     }
