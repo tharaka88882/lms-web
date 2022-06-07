@@ -24,9 +24,9 @@ class AddQualificationRequest extends FormRequest
     public function rules()
     {
         return [
+            'qualification'=>'required',
             'institute'=>'required',
-            'location'=>'required',
-            'start_date'=>'required'
+            'date'=>'required'
          ];
     }
 }

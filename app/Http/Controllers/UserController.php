@@ -11,6 +11,7 @@ use App\Models\Industry;
 use App\Models\Position;
 use App\Models\Institute;
 use App\Models\Experience;
+use App\Models\Qualification;
 use App\Models\Rating;
 use App\Models\StikeyNote;
 use App\Models\StikeyNoteMentee;
@@ -33,6 +34,10 @@ class UserController extends Controller
     {
         $user =  Auth::user();
         $industries = Industry::all();
+        $institutes = Institute::all();
+        $position = Position::all();
+
+
 
         $ratings = Rating::where('teacher_id',Auth()->user()->userable_id)->get();
         $rator_count = count(json_decode( $ratings,true));
@@ -50,7 +55,7 @@ class UserController extends Controller
         // return get_class($user);
         if (get_class($user->userable) == 'App\Models\Teacher') {
             if (Auth()->user()->userable->status == 1) {
-                return view('teacher.profile', compact('user', 'industries','round_mediation'));
+                return view('teacher.profile', compact('user', 'industries','round_mediation','institutes','position'));
             } else {
                 return abort(403, 'You not approved yet');
             }
@@ -319,19 +324,18 @@ class UserController extends Controller
 
     public function store_experience(AddExperienceRequest $request)
     {
-        $po = $request->get('position_id');
-        $ins = $request->get('institute_id');
-        if($po==null){
+        $position =Position::where('text',$request->get('position'))->first();
+        $institute =Institute::where('text',$request->get('institute'))->first();
+        //dd("");
+        if($position==null){
             $position = new Position();
             $position->text = $request->get('position');
             $position->save();
-            $po = $position->id;
         }
-        if($ins == null){
+        if($institute == null){
             $institute = new Institute();
             $institute->text = $request->get('institute');
             $institute->save();
-            $ins = $institute->id;
         }
 
         $experience = new Experience();
@@ -340,8 +344,8 @@ class UserController extends Controller
         $experience->start_date = $request->get('start_date');
         $experience->end_date = $request->get('end_date');
         $experience->teacher_id = Auth()->user()->userable->id;
-        $experience->institute_id = $ins;
-        $experience->position_id =$po;
+        $experience->institute_id = $institute->id;
+        $experience->position_id =$position->id;
         $experience->save();
 
 
@@ -351,22 +355,21 @@ class UserController extends Controller
 
     public function store_qualification(AddQualificationRequest $request)
     {
-        $ins = $request->get('institute_id');
-
-        if($ins == null){
+        $institute = Institute::where('text',$request->get('institute'))->first();
+       // dd( $institute );
+        if($institute == null){
             $institute = new Institute();
             $institute->text = $request->get('institute');
             $institute->save();
-            $ins = $institute->id;
         }
 
         $qualification = new Qualification();
-        $qualification->text = $request->get('text');
-        $qualification->location = $request->get('location');
-        $qualification->start_date = $request->get('start_date');
-        $qualification->end_date = $request->get('end_date');
+        $qualification->text = $request->get('qualification');
+        // $qualification->location = $request->get('location');
+        $qualification->start_date = $request->get('date');
+        // $qualification->end_date = $request->get('end_date');
         $qualification->teacher_id = Auth()->user()->userable->id;
-        $qualification->institute_id = $ins;
+        $qualification->institute_id = $institute->id;
         $qualification->save();
 
 

@@ -190,7 +190,7 @@
                                             @endif
                                         </div>
 
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <label for="exampleInputEmail1">Qualifications</label>
                                             <textarea name="qualification" class="form-control @if ($errors->has('qualification')) {{ 'is-invalid' }} @endif"
                                                 rows="3">{{ $user->userable->qualification }}</textarea>
@@ -200,7 +200,7 @@
                                                     <strong>{{ $errors->first('qualification') }}</strong>
                                                 </span>
                                             @endif
-                                        </div>
+                                        </div> --}}
 
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Linkedin Profile Link <small> (Please copy &
@@ -360,7 +360,7 @@
                                             @endif
                                         </div>
 
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <label for="exampleInputEmail1">Experience</label>
                                             <textarea name="experience" class="form-control @if ($errors->has('experience')) {{ 'is-invalid' }} @endif"
                                                 rows="3">{{ $user->userable->experience }}</textarea>
@@ -370,7 +370,7 @@
                                                     <strong>{{ $errors->first('experience') }}</strong>
                                                 </span>
                                             @endif
-                                        </div>
+                                        </div> --}}
 
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Job Title</label>
@@ -426,14 +426,15 @@
                             <h3 class="card-title">Qualifications</h3>
                         </div>
                         <!--Make sure the form has the autocomplete function switched off:-->
-                        <form autocomplete="off" action="/action_page.php">
+                        <form autocomplete="off" action="{{route("user.add_qualification")}}" method="POST">
+                            @csrf
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Degree/Certificate</label>
                                             <input name="qualification"
-                                                class="form-control @if ($errors->has('qualification')) {{ 'is-invalid' }} @endif">{{ $user->userable->qualification }}</input>
+                                                class="form-control @if ($errors->has('qualification')) {{ 'is-invalid' }} @endif" type="text"/>
 
                                             @if ($errors->has('qualification'))
                                                 <span class="invalid-feedback" role="alert">
@@ -444,22 +445,22 @@
                                         <div class="form-group">
                                             <div class="autocomplete" style="width:100%;">
                                                 <label for="exampleInputEmail1">Institute</label>
-                                                <input id="myInput" type="text" name="myCountry" placeholder="Country">
+                                                <input id="myInput" type="text" name="institute" placeholder="">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Year</label>
-                                            <input name="qualification"
-                                                class="form-control @if ($errors->has('qualification')) {{ 'is-invalid' }} @endif">{{ $user->userable->qualification }}</input>
+                                            <input name="date"
+                                                class="form-control @if ($errors->has('date')) {{ 'is-invalid' }} @endif" type="date"/>
 
-                                            @if ($errors->has('qualification'))
+                                            @if ($errors->has('date'))
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('qualification') }}</strong>
+                                                    <strong>{{ $errors->first('date') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
                                         <hr>
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <label for="exampleInputEmail1">Your Qualifications</label>
                                             <textarea disabled name="skills" class="form-control @if ($errors->has('skills')) {{ 'is-invalid' }} @endif"
                                                 rows="3">{{ $user->userable->skills }}</textarea>
@@ -469,7 +470,7 @@
                                                     <strong>{{ $errors->first('skills') }}</strong>
                                                 </span>
                                             @endif
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>
@@ -488,20 +489,21 @@
                             <h3 class="card-title">Experience</h3>
                         </div>
                         <!--Make sure the form has the autocomplete function switched off:-->
-                        <form autocomplete="off" action="/action_page.php">
+                        <form autocomplete="off" action="{{route('user.add_experience')}}"  method="POST">
+                            @csrf
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <div class="autocomplete" style="width:100%;">
                                                 <label for="exampleInputEmail1">Position</label>
-                                                <input id="myInput" type="text" name="myCountry" placeholder="Job Position">
+                                                <input id="position" type="text" name="position" placeholder="">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="autocomplete" style="width:100%;">
                                                 <label for="exampleInputEmail1">Institute</label>
-                                                <input id="myInput" type="text" name="myCountry" placeholder="Institute">
+                                                <input id="ins" type="text" name="institute" placeholder="">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -509,12 +511,12 @@
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Start</label>
-                                                    <input name="qualification" placeholder="Start Year"
-                                                        class="form-control @if ($errors->has('qualification')) {{ 'is-invalid' }} @endif">{{ $user->userable->qualification }}</input>
+                                                    <input name="start_date" placeholder="Start Year"
+                                                        class="form-control @if ($errors->has('start_date')) {{ 'is-invalid' }} @endif" type="date"/>
 
-                                                    @if ($errors->has('qualification'))
+                                                    @if ($errors->has('start_date'))
                                                         <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $errors->first('qualification') }}</strong>
+                                                            <strong>{{ $errors->first('start_date') }}</strong>
                                                         </span>
                                                     @endif
                                                 </div>
@@ -522,19 +524,19 @@
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">End</label>
-                                                    <input name="qualification" placeholder="End Year"
-                                                        class="form-control @if ($errors->has('qualification')) {{ 'is-invalid' }} @endif">{{ $user->userable->qualification }}</input>
+                                                    <input name="end_date" placeholder="End Year"
+                                                        class="form-control @if ($errors->has('end_date')) {{ 'is-invalid' }} @endif" type="date"/>
 
-                                                    @if ($errors->has('qualification'))
+                                                    @if ($errors->has('end_date'))
                                                         <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $errors->first('qualification') }}</strong>
+                                                            <strong>{{ $errors->first('end_date') }}</strong>
                                                         </span>
                                                     @endif
                                                 </div>
                                             </div>
                                         </div>
                                         <hr>
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <label for="exampleInputEmail1">Your Experiences</label>
                                             <textarea disabled name="skills" class="form-control @if ($errors->has('skills')) {{ 'is-invalid' }} @endif"
                                                 rows="3">{{ $user->userable->skills }}</textarea>
@@ -544,7 +546,7 @@
                                                     <strong>{{ $errors->first('skills') }}</strong>
                                                 </span>
                                             @endif
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>
@@ -1055,37 +1057,47 @@
 
 
         /*An array containing all the country names in the world:*/
-        var countries = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Anguilla", "Antigua & Barbuda",
-            "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh",
-            "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia & Herzegovina",
-            "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia",
-            "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central Arfrican Republic", "Chad", "Chile", "China",
-            "Colombia", "Congo", "Cook Islands", "Costa Rica", "Cote D Ivoire", "Croatia", "Cuba", "Curacao", "Cyprus",
-            "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt",
-            "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands", "Faroe Islands",
-            "Fiji", "Finland", "France", "French Polynesia", "French West Indies", "Gabon", "Gambia", "Georgia",
-            "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guam", "Guatemala", "Guernsey",
-            "Guinea", "Guinea Bissau", "Guyana", "Haiti", "Honduras", "Hong Kong", "Hungary", "Iceland", "India",
-            "Indonesia", "Iran", "Iraq", "Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey",
-            "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon",
-            "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia",
-            "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania",
-            "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco",
-            "Mozambique", "Myanmar", "Namibia", "Nauro", "Nepal", "Netherlands", "Netherlands Antilles",
-            "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "Norway", "Oman",
-            "Pakistan", "Palau", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland",
-            "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russia", "Rwanda", "Saint Pierre & Miquelon",
-            "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles",
-            "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa",
-            "South Korea", "South Sudan", "Spain", "Sri Lanka", "St Kitts & Nevis", "St Lucia", "St Vincent", "Sudan",
-            "Suriname", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand",
-            "Timor L'Este", "Togo", "Tonga", "Trinidad & Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks & Caicos",
-            "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States of America",
-            "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Virgin Islands (US)", "Yemen",
-            "Zambia", "Zimbabwe"
-        ];
+        // var countries = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Anguilla", "Antigua & Barbuda",
+        //     "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh",
+        //     "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia & Herzegovina",
+        //     "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia",
+        //     "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central Arfrican Republic", "Chad", "Chile", "China",
+        //     "Colombia", "Congo", "Cook Islands", "Costa Rica", "Cote D Ivoire", "Croatia", "Cuba", "Curacao", "Cyprus",
+        //     "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt",
+        //     "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands", "Faroe Islands",
+        //     "Fiji", "Finland", "France", "French Polynesia", "French West Indies", "Gabon", "Gambia", "Georgia",
+        //     "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guam", "Guatemala", "Guernsey",
+        //     "Guinea", "Guinea Bissau", "Guyana", "Haiti", "Honduras", "Hong Kong", "Hungary", "Iceland", "India",
+        //     "Indonesia", "Iran", "Iraq", "Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey",
+        //     "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon",
+        //     "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia",
+        //     "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania",
+        //     "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco",
+        //     "Mozambique", "Myanmar", "Namibia", "Nauro", "Nepal", "Netherlands", "Netherlands Antilles",
+        //     "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "Norway", "Oman",
+        //     "Pakistan", "Palau", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland",
+        //     "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russia", "Rwanda", "Saint Pierre & Miquelon",
+        //     "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles",
+        //     "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa",
+        //     "South Korea", "South Sudan", "Spain", "Sri Lanka", "St Kitts & Nevis", "St Lucia", "St Vincent", "Sudan",
+        //     "Suriname", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand",
+        //     "Timor L'Este", "Togo", "Tonga", "Trinidad & Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks & Caicos",
+        //     "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States of America",
+        //     "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Virgin Islands (US)", "Yemen",
+        //     "Zambia", "Zimbabwe"
+        // ];
+        var ins =[];
+        @foreach ($institutes as $in)
+        ins.push('{{$in->text}}');
+        @endforeach
+        var pos =[];
+        @foreach ($position as $po)
+        pos.push('{{$po->text}}');
+        @endforeach
 
         /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-        autocomplete(document.getElementById("myInput"), countries);
+        autocomplete(document.getElementById("myInput"),ins);
+        autocomplete(document.getElementById("ins"),ins);
+        autocomplete(document.getElementById("position"),pos);
     </script>
 @endpush
