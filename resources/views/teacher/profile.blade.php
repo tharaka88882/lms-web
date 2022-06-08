@@ -11,12 +11,12 @@
 
     <style>
         /* * {
-                                                                                                                    box-sizing: border-box;
-                                                                                                                }
+                                                                                                                                box-sizing: border-box;
+                                                                                                                            }
 
-                                                                                                                body {
-                                                                                                                    font: 16px Arial;
-                                                                                                                } */
+                                                                                                                            body {
+                                                                                                                                font: 16px Arial;
+                                                                                                                            } */
 
         /*the container must be positioned relative:*/
         .autocomplete {
@@ -765,11 +765,30 @@
                                     <dl>
                                         <dt>Qualifications</dt>
                                         <dd>
-                                            {{ Auth()->user()->userable->qualification }}
+                                            <ul>
+                                                <li><strong>SCQF Level 8 & EQF Level 5</strong>
+                                                    <ul>
+                                                        <span>SQA – Scottish Qualifications Authority
+                                                            <br>
+                                                            <small>Issued Jan 2019</small>
+                                                        </span>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                            {{-- {{$teacher->qualification}} --}}
                                         </dd>
                                         <dt>Experience</dt>
                                         <dd>
-                                            {{ Auth()->user()->userable->experience }}
+                                            <ul>
+                                                <li><strong>Software Engineer</strong>
+                                                    <ul>
+                                                        <span>SQA – Scottish Qualifications Authority
+                                                            <br>
+                                                            <small>Jan 2018 - Jan 2020</small>
+                                                        </span>
+                                                    </ul>
+                                                </li>
+                                            </ul>
                                         </dd>
                                         <dt>Skills</dt>
                                         <dd>
