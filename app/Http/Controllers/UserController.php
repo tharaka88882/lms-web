@@ -325,7 +325,7 @@ class UserController extends Controller
     public function store_experience(AddExperienceRequest $request)
     {
         $position =Position::where('text',$request->get('position'))->first();
-        $institute =Institute::where('text',$request->get('institute'))->first();
+        $institute =Institute::where('text',$request->get('company'))->first();
         //dd("");
         if($position==null){
             $position = new Position();
@@ -334,7 +334,7 @@ class UserController extends Controller
         }
         if($institute == null){
             $institute = new Institute();
-            $institute->text = $request->get('institute');
+            $institute->text = $request->get('company');
             $institute->save();
         }
 
@@ -355,11 +355,11 @@ class UserController extends Controller
 
     public function store_qualification(AddQualificationRequest $request)
     {
-        $institute = Institute::where('text',$request->get('institute'))->first();
+        $institute = Institute::where('text',$request->get('company'))->first();
        // dd( $institute );
         if($institute == null){
             $institute = new Institute();
-            $institute->text = $request->get('institute');
+            $institute->text = $request->get('company');
             $institute->save();
         }
 
@@ -379,11 +379,11 @@ class UserController extends Controller
 
     public function update_qualification(AddQualificationRequest $request)
     {
-        $institute = Institute::where('text',$request->get('institute'))->first();
+        $institute = Institute::where('text',$request->get('company'))->first();
        // dd( $institute );
         if($institute == null){
             $institute = new Institute();
-            $institute->text = $request->get('institute');
+            $institute->text = $request->get('company');
             $institute->save();
         }
 
@@ -404,7 +404,7 @@ class UserController extends Controller
     public function update_experience(AddExperienceRequest $request)
     {
         $position =Position::where('text',$request->get('position'))->first();
-        $institute =Institute::where('text',$request->get('institute'))->first();
+        $institute =Institute::where('text',$request->get('company'))->first();
         //dd("");
         if($position==null){
             $position = new Position();
@@ -413,7 +413,7 @@ class UserController extends Controller
         }
         if($institute == null){
             $institute = new Institute();
-            $institute->text = $request->get('institute');
+            $institute->text = $request->get('company');
             $institute->save();
         }
 

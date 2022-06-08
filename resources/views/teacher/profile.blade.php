@@ -325,7 +325,7 @@
                                                     @csrf
                                                     <div class="card-body">
                                                         <div class="form-group">
-                                                            <label for="exampleInputEmail1"> Mentoring Topics</label>
+                                                            <label for="exampleInputEmail1">Skills</label>
 
                                                             {{-- <select class="form-control" name="subject_id">
                                                                 @foreach ($subjects as $subject)
@@ -454,8 +454,8 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="autocomplete" style="width:100%;">
-                                                <label for="exampleInputEmail1">Institute</label>
-                                                <input id="myInput" type="text" name="institute" placeholder="">
+                                                <label for="exampleInputEmail1">Company</label>
+                                                <input id="myInput" type="text" name="company" placeholder="">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -494,12 +494,13 @@
                             <h3 class="card-title">My Qualifications</h3>
                         </div>
                         <div class="card-body">
+                          <div class="table-responsive">
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th style="width: 10px">#</th>
                                         <th>Degree/Certificate</th>
-                                        <th>Institute</th>
+                                        <th>Company</th>
                                         <th style="width: 40px">Year</th>
                                         <th>Action</th>
                                     </tr>
@@ -527,6 +528,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                          </div>
                         </div>
                     </div>
                 </div>
@@ -551,10 +553,16 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <div class="autocomplete" style="width:100%;">
-                                                <label for="exampleInputEmail1">Institute</label>
-                                                <input id="ins" type="text" name="institute" placeholder="">
+                                            <div class="autocomplete @if ($errors->has('company')) {{ 'is-invalid' }} @endif" style="width:100%;">
+                                                <label for="exampleInputEmail1">Company</label>
+                                                <input id="ins" type="text" name="company" placeholder="">
                                             </div>
+
+                                            @if ($errors->has('company'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('company') }}</strong>
+                                            </span>
+                                        @endif
                                         </div>
                                         <div class="row">
                                             {{-- <label for="exampleInputEmail1">Time of work</label> --}}
@@ -611,41 +619,43 @@
                             <h3 class="card-title">My Experience</h3>
                         </div>
                         <div class="card-body">
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 10px">#</th>
-                                        <th>Position</th>
-                                        <th>Institute</th>
-                                        <th style="width: 40px">Work Period</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php
-                                        $i = 1;
-                                    @endphp
-                                    @foreach (Auth()->user()->userable->experiences as $experiences)
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
                                         <tr>
-                                            <td>{{ $i }}</td>
-                                            <td>{{ $experiences->position->text }}</td>
-                                            <td>{{ $experiences->institute->text }}</td>
-                                            <td><span
-                                                    class="badge">{{ explode('-', $experiences->start_date)[0] }}/{{ explode('-', $experiences->start_date)[1] }}
-                                                    @if ($experiences->end_date!=null) - {{ explode('-', $experiences->end_date)[0] }}/{{ explode('-', $experiences->end_date)[1] }}
-                                                    @endif</span>
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-block btn-outline-danger btn-xs"
-                                                    onclick="removeEx({{ $experiences->id }});">Remove</button>
-                                            </td>
+                                            <th style="width: 10px">#</th>
+                                            <th>Position</th>
+                                            <th>Company</th>
+                                            <th style="width: 40px">Work Period</th>
+                                            <th>Action</th>
                                         </tr>
+                                    </thead>
+                                    <tbody>
                                         @php
-                                            $i++;
+                                            $i = 1;
                                         @endphp
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                        @foreach (Auth()->user()->userable->experiences as $experiences)
+                                            <tr>
+                                                <td>{{ $i }}</td>
+                                                <td>{{ $experiences->position->text }}</td>
+                                                <td>{{ $experiences->institute->text }}</td>
+                                                <td><span
+                                                        class="badge">{{ explode('-', $experiences->start_date)[0] }}/{{ explode('-', $experiences->start_date)[1] }}
+                                                        @if ($experiences->end_date!=null) - {{ explode('-', $experiences->end_date)[0] }}/{{ explode('-', $experiences->end_date)[1] }}
+                                                        @endif</span>
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-block btn-outline-danger btn-xs"
+                                                        onclick="removeEx({{ $experiences->id }});">Remove</button>
+                                                </td>
+                                            </tr>
+                                            @php
+                                                $i++;
+                                            @endphp
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
