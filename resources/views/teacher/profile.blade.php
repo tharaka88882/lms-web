@@ -628,7 +628,7 @@
                                     <td>{{$i}}</td>
                                     <td>{{$experiences->position->text}}</td>
                                     <td>{{$experiences->institute->text}}</td>
-                                    <td><span class="badge">{{$experiences->start_date}}-{{$experiences->end_date}}</span></td>
+                                    <td><span class="badge">{{explode("-",$experiences->start_date)[1]}}-{{explode("-",$experiences->start_date)[0]}} - {{explode("-",$experiences->end_date)[1]}}-{{explode("-",$experiences->end_date)[0]}}</span></td>
                                     <td>
                                         <button type="button"
                                             class="btn btn-block btn-outline-danger btn-xs" onclick="removeEx({{$experiences->id}});" >Remove</button>
@@ -789,11 +789,33 @@
                                     <dl>
                                         <dt>Qualifications</dt>
                                         <dd>
-                                            {{ Auth()->user()->userable->qualification }}
+                                            <ul>
+                                                @foreach (Auth()->user()->userable->qualifications as $qualification)
+                                                <li><strong>{{$qualification->text}}</strong>
+                                                    <ul>
+                                                        <span>{{$qualification->institute->text}}
+                                                            <br>
+                                                            <small>Issued {{explode("-",$qualification->start_date)[1]}}-{{explode("-",$qualification->start_date)[0]}}</small>
+                                                        </span>
+                                                    </ul>
+                                                </li>
+                                                @endforeach
+                                                </ul>
                                         </dd>
                                         <dt>Experience</dt>
                                         <dd>
-                                            {{ Auth()->user()->userable->experience }}
+                                            <ul>
+                                                @foreach (Auth()->user()->userable->experiences as $experience)
+                                                <li><strong>{{$experience->position->text}}</strong>
+                                                   <ul>
+                                                       <span>{{$experience->institute->text}}
+                                                           <br>
+                                                           <small>{{explode("-",$experience->start_date)[1]}}-{{explode("-",$experience->start_date)[0]}} - {{explode("-",$experience->end_date)[1]}}-{{explode("-",$experience->end_date)[0]}}</small>
+                                                       </span>
+                                                   </ul>
+                                               </li>
+                                                @endforeach
+                                               </ul>
                                         </dd>
                                         <dt>Skills</dt>
                                         <dd>
