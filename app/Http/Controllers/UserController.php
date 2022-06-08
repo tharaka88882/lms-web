@@ -377,4 +377,82 @@ class UserController extends Controller
         return  redirect()->route('user.profile');
     }
 
+    public function update_qualification(AddQualificationRequest $request)
+    {
+        $institute = Institute::where('text',$request->get('institute'))->first();
+       // dd( $institute );
+        if($institute == null){
+            $institute = new Institute();
+            $institute->text = $request->get('institute');
+            $institute->save();
+        }
+
+        $qualification = Qualification::findOrFail($request->get('id'));
+        $qualification->text = $request->get('qualification');
+        // $qualification->location = $request->get('location');
+        $qualification->start_date = $request->get('date');
+        // $qualification->end_date = $request->get('end_date');
+        $qualification->teacher_id = Auth()->user()->userable->id;
+        $qualification->institute_id = $institute->id;
+        $qualification->save();
+
+
+        Toastr::success('Qualification Updated..! :)', 'Success');
+        return  redirect()->route('user.profile');
+    }
+
+    public function update_experience(AddExperienceRequest $request)
+    {
+        $position =Position::where('text',$request->get('position'))->first();
+        $institute =Institute::where('text',$request->get('institute'))->first();
+        //dd("");
+        if($position==null){
+            $position = new Position();
+            $position->text = $request->get('position');
+            $position->save();
+        }
+        if($institute == null){
+            $institute = new Institute();
+            $institute->text = $request->get('institute');
+            $institute->save();
+        }
+
+        $experience = Experience::findOrFail($request->get('id'));
+        $experience->text = '';
+        $experience->location = $request->get('location');
+        $experience->start_date = $request->get('start_date');
+        $experience->end_date = $request->get('end_date');
+        $experience->teacher_id = Auth()->user()->userable->id;
+        $experience->institute_id = $institute->id;
+        $experience->position_id =$position->id;
+        $experience->save();
+
+
+        Toastr::success('Experience Updated..! :)', 'Success');
+        return  redirect()->route('user.profile');
+    }
+
+    public function delete_qualification(Request $request)
+    {
+
+        $qualification = Qualification::findOrFail($request->get('id'));
+        $qualification->delete();
+
+        Toastr::success('Deleted..! :)', 'Success');
+        return array(
+            'data'=>'success'
+        );
+    }
+
+    public function delete_experience(Request $request)
+    {
+        $qualification = Experience::findOrFail($request->get('id'));
+        $qualification->delete();
+
+        Toastr::success('Deleted..! :)', 'Success');
+        return array(
+            'data'=>'success'
+        );
+    }
+
 }
