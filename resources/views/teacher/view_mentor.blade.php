@@ -18,7 +18,6 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
-
             <div class="row mb-2">
                 <div class="col-sm-7">
                     <!-- Widget: user widget style 1 -->
@@ -145,16 +144,17 @@
                                 <dt>Qualifications</dt>
                                 <dd>
                                     <ul>
-                                    @foreach ($teacher->qualifications as $qualification)
-                                    <li><strong>{{$qualification->text}}</strong>
-                                        <ul>
-                                            <span>{{$qualification->institute->text}}
-                                                <br>
-                                                <small>Issued {{explode("-",$qualification->start_date)[1]}}/{{explode("-",$qualification->start_date)[0]}}</small>
-                                            </span>
-                                        </ul>
-                                    </li>
-                                    @endforeach
+                                        @foreach ($teacher->qualifications as $qualification)
+                                            <li><strong>{{ $qualification->text }}</strong>
+                                                <ul>
+                                                    <span>{{ $qualification->institute->text }}
+                                                        <br>
+                                                        <small>Issued
+                                                            {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }}</small>
+                                                    </span>
+                                                </ul>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                     {{-- {{$teacher->qualification}} --}}
                                 </dd>
@@ -234,7 +234,6 @@
                 </div>
             </div>
         </div><!-- /.container-fluid -->
-
     </section>
 
 
@@ -286,517 +285,518 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
-        <!-- /.modal -->
-    @endsection
+    </div>
+    <!-- /.modal -->
+@endsection
 
 
 
 
 
-    @push('scripts')
-        <script>
-            $(function() {
+@push('scripts')
+    <script>
+        $(function() {
 
 
 
-                /* initialize the external events
+            /* initialize the external events
 
-                 -----------------------------------------------------------------*/
+             -----------------------------------------------------------------*/
 
-                function ini_events(ele) {
+            function ini_events(ele) {
 
-                    ele.each(function() {
+                ele.each(function() {
 
 
 
-                        // create an Event Object (https://fullcalendar.io/docs/event-object)
+                    // create an Event Object (https://fullcalendar.io/docs/event-object)
 
-                        // it doesn't need to have a start or end
+                    // it doesn't need to have a start or end
 
-                        var eventObject = {
+                    var eventObject = {
 
-                            title: $.trim($(this).text()) // use the element's text as the event title
-
-                        }
-
-
-
-                        // store the Event Object in the DOM element so we can get to it later
-
-                        $(this).data('eventObject', eventObject)
-
-
-
-                        // // make the event draggable using jQuery UI
-
-                        // $(this).draggable({
-
-                        //   zIndex        : 1070,
-
-                        //   revert        : true, // will cause the event to go back to its
-
-                        //   revertDuration: 0  //  original position after the drag
-
-                        // })
-
-
-
-                    })
-
-                }
-
-
-
-                ini_events($('#external-events div.external-event'))
-
-
-
-                /* initialize the calendar
-
-                 -----------------------------------------------------------------*/
-
-                //Date for the calendar events (dummy data)
-
-                var date = new Date()
-
-                var d = date.getDate(),
-
-                    m = date.getMonth(),
-
-                    y = date.getFullYear()
-
-
-
-                var Calendar = FullCalendar.Calendar;
-
-                //  var Draggable = FullCalendar.Draggable;
-
-
-
-                var containerEl = document.getElementById('external-events');
-
-                var checkbox = document.getElementById('drop-remove');
-
-                var calendarEl = document.getElementById('calendar');
-
-                // initialize the external events
-
-                // -----------------------------------------------------------------
-
-
-
-                // new Draggable(containerEl, {
-
-                //   itemSelector: '.external-event',
-
-                //   eventData: function(eventEl) {
-
-                //     return {
-
-                //       title: eventEl.innerText,
-
-                //       backgroundColor: window.getComputedStyle( eventEl ,null).getPropertyValue('background-color'),
-
-                //       borderColor: window.getComputedStyle( eventEl ,null).getPropertyValue('background-color'),
-
-                //       textColor: window.getComputedStyle( eventEl ,null).getPropertyValue('color'),
-
-                //     };
-
-                //   }
-
-                // });
-
-
-
-                var calendar = new Calendar(calendarEl, {
-
-                    headerToolbar: {
-
-                        left: 'prev,next today',
-
-                        center: 'title',
-
-                        right: 'dayGridMonth,timeGridWeek,timeGridDay'
-
-                    },
-
-                    themeSystem: 'bootstrap',
-
-                    //Random default events
-
-                    events: [
-
-                        @foreach ($schedules as $schedule)
-
-                            @php
-
-                                $date_s = explode('-', $schedule->schedule_date);
-
-                                $time_s = explode(':', $schedule->start_time);
-
-                                $time_e = explode(':', $schedule->end_time);
-
-                            @endphp
-
-                            {
-
-                                title: '{{ $schedule->name }}',
-
-                                start: new Date(
-                                    '{{ $date_s[0] . '-' . $date_s[1] . '-' . $date_s[2] . ' ' . $time_s[0] . ':' . $time_s[1] . ':' . $time_s[2] }}'
-                                ), //{{ $date_s[0] . ' ' . $date_s[1] . ' ' . $date_s[2] }}
-
-                                end: new Date(
-                                    '{{ $date_s[0] . '-' . $date_s[1] . '-' . $date_s[2] . ' ' . $time_e[0] . ':' . $time_e[1] . ':' . $time_e[2] }}'
-                                ), //{{ $date_s[0] . ' ' . $date_s[1] . ' ' . $date_s[2] }}                backgroundColor: '#00a65a', //green
-
-                                borderColor: '#00a65a', //green
-
-                                url: "#",
-
-                                allDay: false
-
-                            },
-                        @endforeach
-
-                        // ,{
-
-                        //   title          : 'Long Event',
-
-                        //   start          : new Date(y, m, d - 5),
-
-                        //   end            : new Date(y, m, d - 2),
-
-                        //   backgroundColor: '#f39c12', //yellow
-
-                        //   borderColor    : '#f39c12' //yellow
-
-                        // },
-
-                        // {
-
-                        //   title          : 'Meeting',
-
-                        //   start          : new Date(y, m, d, 10, 30),
-
-                        //   allDay         : false,
-
-                        //   backgroundColor: '#0073b7', //Blue
-
-                        //   borderColor    : '#0073b7' //Blue
-
-                        // },
-
-                        // {
-
-                        //   title          : 'Lunch',
-
-                        //   start          : new Date(y, m, d, 12, 0),
-
-                        //   end            : new Date(y, m, d, 14, 0),
-
-                        //   allDay         : false,
-
-                        //   backgroundColor: '#00c0ef', //Info (aqua)
-
-                        //   borderColor    : '#00c0ef' //Info (aqua)
-
-                        // },
-
-                        // {
-
-                        //   title          : 'Birthday Party',
-
-                        //   start          : new Date(y, m, d + 1, 19, 0),
-
-                        //   end            : new Date(y, m, d + 1, 22, 30),
-
-                        //   allDay         : false,
-
-                        //   backgroundColor: '#00a65a', //Success (green)
-
-                        //   borderColor    : '#00a65a' //Success (green)
-
-                        // },
-
-                        // {
-
-                        //   title          : 'Click for Google',
-
-                        //   start          : new Date(y, m, 28),
-
-                        //   end            : new Date(y, m, 29),
-
-                        //   url            : 'https://www.google.com/',
-
-                        //   backgroundColor: '#3c8dbc', //Primary (light-blue)
-
-                        //   borderColor    : '#3c8dbc' //Primary (light-blue)
-
-                        // }
-
-                    ],
-
-                    editable: false,
-
-                    droppable: false, // this allows things to be dropped onto the calendar !!!
-
-                    drop: function(info) {
-
-                        // is the "remove after drop" checkbox checked?
-
-                        if (checkbox.checked) {
-
-                            // if so, remove the element from the "Draggable Events" list
-
-                            info.draggedEl.parentNode.removeChild(info.draggedEl);
-
-                        }
+                        title: $.trim($(this).text()) // use the element's text as the event title
 
                     }
 
-                });
-
-                calendar.render();
-
-                // $('#calendar').fullCalendar()
 
 
+                    // store the Event Object in the DOM element so we can get to it later
 
-                /* ADDING EVENTS */
+                    $(this).data('eventObject', eventObject)
 
-                var currColor = '#3c8dbc' //Red by default
 
-                // Color chooser button
 
-                $('#color-chooser > li > a').click(function(e) {
+                    // // make the event draggable using jQuery UI
 
-                    e.preventDefault()
+                    // $(this).draggable({
 
-                    // Save color
+                    //   zIndex        : 1070,
 
-                    currColor = $(this).css('color')
+                    //   revert        : true, // will cause the event to go back to its
 
-                    // Add color effect to button
+                    //   revertDuration: 0  //  original position after the drag
 
-                    $('#add-new-event').css({
+                    // })
 
-                        'background-color': currColor,
 
-                        'border-color': currColor
-
-                    })
 
                 })
 
-                $('#add-new-event').click(function(e) {
+            }
 
-                    e.preventDefault()
 
-                    // Get value and make sure it is not null
 
-                    var val = $('#new-event').val()
+            ini_events($('#external-events div.external-event'))
 
-                    if (val.length == 0) {
 
-                        return
+
+            /* initialize the calendar
+
+             -----------------------------------------------------------------*/
+
+            //Date for the calendar events (dummy data)
+
+            var date = new Date()
+
+            var d = date.getDate(),
+
+                m = date.getMonth(),
+
+                y = date.getFullYear()
+
+
+
+            var Calendar = FullCalendar.Calendar;
+
+            //  var Draggable = FullCalendar.Draggable;
+
+
+
+            var containerEl = document.getElementById('external-events');
+
+            var checkbox = document.getElementById('drop-remove');
+
+            var calendarEl = document.getElementById('calendar');
+
+            // initialize the external events
+
+            // -----------------------------------------------------------------
+
+
+
+            // new Draggable(containerEl, {
+
+            //   itemSelector: '.external-event',
+
+            //   eventData: function(eventEl) {
+
+            //     return {
+
+            //       title: eventEl.innerText,
+
+            //       backgroundColor: window.getComputedStyle( eventEl ,null).getPropertyValue('background-color'),
+
+            //       borderColor: window.getComputedStyle( eventEl ,null).getPropertyValue('background-color'),
+
+            //       textColor: window.getComputedStyle( eventEl ,null).getPropertyValue('color'),
+
+            //     };
+
+            //   }
+
+            // });
+
+
+
+            var calendar = new Calendar(calendarEl, {
+
+                headerToolbar: {
+
+                    left: 'prev,next today',
+
+                    center: 'title',
+
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+
+                },
+
+                themeSystem: 'bootstrap',
+
+                //Random default events
+
+                events: [
+
+                    @foreach ($schedules as $schedule)
+
+                        @php
+
+                            $date_s = explode('-', $schedule->schedule_date);
+
+                            $time_s = explode(':', $schedule->start_time);
+
+                            $time_e = explode(':', $schedule->end_time);
+
+                        @endphp
+
+                        {
+
+                            title: '{{ $schedule->name }}',
+
+                            start: new Date(
+                                '{{ $date_s[0] . '-' . $date_s[1] . '-' . $date_s[2] . ' ' . $time_s[0] . ':' . $time_s[1] . ':' . $time_s[2] }}'
+                            ), //{{ $date_s[0] . ' ' . $date_s[1] . ' ' . $date_s[2] }}
+
+                            end: new Date(
+                                '{{ $date_s[0] . '-' . $date_s[1] . '-' . $date_s[2] . ' ' . $time_e[0] . ':' . $time_e[1] . ':' . $time_e[2] }}'
+                            ), //{{ $date_s[0] . ' ' . $date_s[1] . ' ' . $date_s[2] }}                backgroundColor: '#00a65a', //green
+
+                            borderColor: '#00a65a', //green
+
+                            url: "#",
+
+                            allDay: false
+
+                        },
+                    @endforeach
+
+                    // ,{
+
+                    //   title          : 'Long Event',
+
+                    //   start          : new Date(y, m, d - 5),
+
+                    //   end            : new Date(y, m, d - 2),
+
+                    //   backgroundColor: '#f39c12', //yellow
+
+                    //   borderColor    : '#f39c12' //yellow
+
+                    // },
+
+                    // {
+
+                    //   title          : 'Meeting',
+
+                    //   start          : new Date(y, m, d, 10, 30),
+
+                    //   allDay         : false,
+
+                    //   backgroundColor: '#0073b7', //Blue
+
+                    //   borderColor    : '#0073b7' //Blue
+
+                    // },
+
+                    // {
+
+                    //   title          : 'Lunch',
+
+                    //   start          : new Date(y, m, d, 12, 0),
+
+                    //   end            : new Date(y, m, d, 14, 0),
+
+                    //   allDay         : false,
+
+                    //   backgroundColor: '#00c0ef', //Info (aqua)
+
+                    //   borderColor    : '#00c0ef' //Info (aqua)
+
+                    // },
+
+                    // {
+
+                    //   title          : 'Birthday Party',
+
+                    //   start          : new Date(y, m, d + 1, 19, 0),
+
+                    //   end            : new Date(y, m, d + 1, 22, 30),
+
+                    //   allDay         : false,
+
+                    //   backgroundColor: '#00a65a', //Success (green)
+
+                    //   borderColor    : '#00a65a' //Success (green)
+
+                    // },
+
+                    // {
+
+                    //   title          : 'Click for Google',
+
+                    //   start          : new Date(y, m, 28),
+
+                    //   end            : new Date(y, m, 29),
+
+                    //   url            : 'https://www.google.com/',
+
+                    //   backgroundColor: '#3c8dbc', //Primary (light-blue)
+
+                    //   borderColor    : '#3c8dbc' //Primary (light-blue)
+
+                    // }
+
+                ],
+
+                editable: false,
+
+                droppable: false, // this allows things to be dropped onto the calendar !!!
+
+                drop: function(info) {
+
+                    // is the "remove after drop" checkbox checked?
+
+                    if (checkbox.checked) {
+
+                        // if so, remove the element from the "Draggable Events" list
+
+                        info.draggedEl.parentNode.removeChild(info.draggedEl);
 
                     }
 
+                }
 
+            });
 
-                    // Create events
+            calendar.render();
 
-                    var event = $('<div />')
-
-                    event.css({
-
-                        'background-color': currColor,
-
-                        'border-color': currColor,
-
-                        'color': '#fff'
-
-                    }).addClass('external-event')
-
-                    event.text(val)
-
-                    $('#external-events').prepend(event)
+            // $('#calendar').fullCalendar()
 
 
 
-                    // Add draggable funtionality
+            /* ADDING EVENTS */
 
-                    ini_events(event)
+            var currColor = '#3c8dbc' //Red by default
 
+            // Color chooser button
 
+            $('#color-chooser > li > a').click(function(e) {
 
-                    // Remove event from text input
+                e.preventDefault()
 
-                    $('#new-event').val('')
+                // Save color
+
+                currColor = $(this).css('color')
+
+                // Add color effect to button
+
+                $('#add-new-event').css({
+
+                    'background-color': currColor,
+
+                    'border-color': currColor
 
                 })
 
             })
 
+            $('#add-new-event').click(function(e) {
 
+                e.preventDefault()
 
+                // Get value and make sure it is not null
 
+                var val = $('#new-event').val()
 
+                if (val.length == 0) {
 
-
-
-
-
-
-
-
-
-
-            var loadImage = function(event) {
-
-                var reader = new FileReader();
-
-                reader.onload = function() {
-
-                    var output = document.getElementById('image-output');
-
-                    output.src = reader.result;
-
-                    output.style.display = "block";
+                    return
 
                 }
 
-                reader.readAsDataURL(event.target.files[0]);
+
+
+                // Create events
+
+                var event = $('<div />')
+
+                event.css({
+
+                    'background-color': currColor,
+
+                    'border-color': currColor,
+
+                    'color': '#fff'
+
+                }).addClass('external-event')
+
+                event.text(val)
+
+                $('#external-events').prepend(event)
+
+
+
+                // Add draggable funtionality
+
+                ini_events(event)
+
+
+
+                // Remove event from text input
+
+                $('#new-event').val('')
+
+            })
+
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        var loadImage = function(event) {
+
+            var reader = new FileReader();
+
+            reader.onload = function() {
+
+                var output = document.getElementById('image-output');
+
+                output.src = reader.result;
+
+                output.style.display = "block";
 
             }
 
+            reader.readAsDataURL(event.target.files[0]);
 
-
-            $('#ratingInp').change(function() {
-
-                $('#changeRatings').submit();
-
-            });
+        }
 
 
 
+        $('#ratingInp').change(function() {
 
-            // Star Ratings
-            var rating_count = 0;
+            $('#changeRatings').submit();
 
-            $(document).ready(function() {
-                var st1 = true;
-                $("#st1").click(function() {
-                    if (st1) {
-                        $("#st1").css("color", "rgb(255, 153, 0)");
-                        rating_count = 1;
-                        st1 = false;
-                    } else {
-                        $(".fa-star").css("color", "black");
-                        rating_count = 0;
-                        st1 = true;
-                    }
-
-
-                    //console.log(rating_count);
-
-                });
-                var st2 = true;
-                $("#st2").click(function() {
-                    if (st2) {
-                        $("#st1, #st2").css("color", "rgb(255, 153, 0)");
-                        rating_count = 2;
-                        st2 = false;
-                    } else {
-                        $(".fa-star").css("color", "black");
-                        rating_count = 0;
-                        st2 = true;
-                    }
-
-
-                    // console.log(rating_count);
-
-                });
-                var st3 = true;
-                $("#st3").click(function() {
-                    if (st3) {
-                        $("#st1, #st2, #st3").css("color", "rgb(255, 153, 0)");
-                        rating_count = 3;
-                        st3 = false;
-                    } else {
-                        $(".fa-star").css("color", "black")
-                        rating_count = 0;
-                        st3 = true;
-                    }
-
-
-                    // console.log(rating_count);
-
-                });
-
-                var st4 = true;
-                $("#st4").click(function() {
-                    if (st4) {
-                        $("#st1, #st2, #st3, #st4").css("color", "rgb(255, 153, 0)");
-                        rating_count = 4;
-                        st4 = false;
-                    } else {
-                        $(".fa-star").css("color", "black");
-                        rating_count = 0;
-                        st4 = true;
-                    }
-                    // console.log(rating_count);
-
-                });
-
-
-                var st5 = true;
-                $("#st5").click(function() {
-                    if (st5) {
-                        $("#st1, #st2, #st3, #st4, #st5").css("color", "rgb(255, 153, 0)");
-                        rating_count = 5;
-                        st5 = false;
-                    } else {
-                        $(".fa-star").css("color", "black");
-                        rating_count = 0;
-                        st5 = true;
-                    }
-
-
-                    //  console.log(rating_count);
-
-                });
+        });
 
 
 
 
-            });
+        // Star Ratings
+        var rating_count = 0;
 
-            function store_rating(id) {
-                // console.log("test");
-                var q2 = 1;
-                if ($('#radio1').is(":checked")) {
-                    q2 = 1;
-
+        $(document).ready(function() {
+            var st1 = true;
+            $("#st1").click(function() {
+                if (st1) {
+                    $("#st1").css("color", "rgb(255, 153, 0)");
+                    rating_count = 1;
+                    st1 = false;
                 } else {
-                    q2 = 0;
+                    $(".fa-star").css("color", "black");
+                    rating_count = 0;
+                    st1 = true;
                 }
 
-                $.post("{{ route('user.store_rates') }}", {
-                        rating: rating_count,
-                        question_2: q2,
-                        question_3: $('#question3').val(),
-                        teacher_id: id,
-                        _token: "{{ csrf_token() }}"
-                    },
-                    function(data, status) {
-                        if (data.success == true) {
-                            window.location = "{{ route('teacher.view_mentor', $teacher->id) }}";
-                        }
-                    });
 
+                //console.log(rating_count);
+
+            });
+            var st2 = true;
+            $("#st2").click(function() {
+                if (st2) {
+                    $("#st1, #st2").css("color", "rgb(255, 153, 0)");
+                    rating_count = 2;
+                    st2 = false;
+                } else {
+                    $(".fa-star").css("color", "black");
+                    rating_count = 0;
+                    st2 = true;
+                }
+
+
+                // console.log(rating_count);
+
+            });
+            var st3 = true;
+            $("#st3").click(function() {
+                if (st3) {
+                    $("#st1, #st2, #st3").css("color", "rgb(255, 153, 0)");
+                    rating_count = 3;
+                    st3 = false;
+                } else {
+                    $(".fa-star").css("color", "black")
+                    rating_count = 0;
+                    st3 = true;
+                }
+
+
+                // console.log(rating_count);
+
+            });
+
+            var st4 = true;
+            $("#st4").click(function() {
+                if (st4) {
+                    $("#st1, #st2, #st3, #st4").css("color", "rgb(255, 153, 0)");
+                    rating_count = 4;
+                    st4 = false;
+                } else {
+                    $(".fa-star").css("color", "black");
+                    rating_count = 0;
+                    st4 = true;
+                }
+                // console.log(rating_count);
+
+            });
+
+
+            var st5 = true;
+            $("#st5").click(function() {
+                if (st5) {
+                    $("#st1, #st2, #st3, #st4, #st5").css("color", "rgb(255, 153, 0)");
+                    rating_count = 5;
+                    st5 = false;
+                } else {
+                    $(".fa-star").css("color", "black");
+                    rating_count = 0;
+                    st5 = true;
+                }
+
+
+                //  console.log(rating_count);
+
+            });
+
+
+
+
+        });
+
+        function store_rating(id) {
+            // console.log("test");
+            var q2 = 1;
+            if ($('#radio1').is(":checked")) {
+                q2 = 1;
+
+            } else {
+                q2 = 0;
             }
-        </script>
-    @endpush
+
+            $.post("{{ route('user.store_rates') }}", {
+                    rating: rating_count,
+                    question_2: q2,
+                    question_3: $('#question3').val(),
+                    teacher_id: id,
+                    _token: "{{ csrf_token() }}"
+                },
+                function(data, status) {
+                    if (data.success == true) {
+                        window.location = "{{ route('teacher.view_mentor', $teacher->id) }}";
+                    }
+                });
+
+        }
+    </script>
+@endpush
