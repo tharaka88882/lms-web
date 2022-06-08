@@ -16,7 +16,6 @@
 
 @section('content')
     <!-- Content Header (Page header) -->
-
     <section class="content-header">
         <div class="container-fluid">
 
@@ -146,32 +145,38 @@
                                 <dt>Qualifications</dt>
                                 <dd>
                                     <ul>
-                                    @foreach ($teacher->qualifications as $qualification)
-                                    <li><strong>{{$qualification->text}}</strong>
-                                        <ul>
-                                            <span>{{$qualification->institute->text}}
-                                                <br>
-                                                <small>Issued {{explode("-",$qualification->start_date)[1]}}-{{explode("-",$qualification->start_date)[0]}}</small>
-                                            </span>
-                                        </ul>
-                                    </li>
-                                    @endforeach
+                                        @foreach ($teacher->qualifications as $qualification)
+                                            <li><strong>{{ $qualification->text }}</strong>
+                                                <ul>
+                                                    <span>{{ $qualification->institute->text }}
+                                                        <br>
+                                                        <small>Issued
+                                                            {{ explode('-', $qualification->start_date)[1] }}-{{ explode('-', $qualification->start_date)[0] }}</small>
+                                                    </span>
+                                                </ul>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                     {{-- {{$teacher->qualification}} --}}
                                 </dd>
                                 <dt>Experience</dt>
                                 <dd>
                                     <ul>
-                                     @foreach ($teacher->experiences as $experience)
-                                     <li><strong>{{$experience->position->text}}</strong>
-                                        <ul>
-                                            <span>{{$experience->institute->text}}
-                                                <br>
-                                                <small>{{explode("-",$experience->start_date)[1]}}/{{explode("-",$experience->start_date)[0]}} @if ($experience->end_date!=null) - {{explode("-",$experience->end_date)[1]}}/{{explode("-",$experience->end_date)[0]}} @endif</small>
-                                            </span>
-                                        </ul>
-                                    </li>
-                                     @endforeach
+                                        @foreach ($teacher->experiences as $experience)
+                                            <li><strong>{{ $experience->position->text }}</strong>
+                                                <ul>
+                                                    <span>{{ $experience->institute->text }}
+                                                        <br>
+                                                        <small>{{ explode('-', $experience->start_date)[1] }}/{{ explode('-', $experience->start_date)[0] }}
+                                                            @if ($experience->end_date != null)
+                                                                -
+                                                                {{ explode('-', $experience->end_date)[1] }}/{{ explode('-', $experience->end_date)[0] }}
+                                                            @endif
+                                                        </small>
+                                                    </span>
+                                                </ul>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                 </dd>
                                 <dt>Skills</dt>
@@ -190,11 +195,10 @@
                 </div>
 
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-sm-7">
-                {{-- <div class="card">
+            <div class="row">
+                <div class="col-sm-7">
+                    {{-- <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">
                               <i class="fas fa-tasks"></i>
@@ -207,29 +211,29 @@
                         </div>
                         <!-- /.card-body -->
                     </div> --}}
-            </div>
+                </div>
 
-            <div class="col-md-5">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="fas fa-book-open"></i>
-                            Mentoring Topics
-                        </h3>
-                    </div>
-                    <!-- /.card-header -->
+                <div class="col-md-5">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-book-open"></i>
+                                Mentoring Topics
+                            </h3>
+                        </div>
+                        <!-- /.card-header -->
 
-                    <div class="card-body">
-                        <ul>
-                            @foreach ($subjects as $subject)
-                                <li>{{ $subject->name }}</li>
-                            @endforeach
-                        </ul>
+                        <div class="card-body">
+                            <ul>
+                                @foreach ($subjects as $subject)
+                                    <li>{{ $subject->name }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        <!-- /.card-body -->
                     </div>
-                    <!-- /.card-body -->
                 </div>
             </div>
-        </div>
         </div><!-- /.container-fluid -->
 
     </section>
