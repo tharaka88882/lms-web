@@ -7,11 +7,13 @@
 @endsection
 
 @push('script')
-<script type="text/javascript">
-    $(function() {
-       $( "#dpic" ).datepicker({dateFormat: 'yy'});
-    });
- </script>
+    <script type="text/javascript">
+        $(function() {
+            $("#dpic").datepicker({
+                dateFormat: 'yy'
+            });
+        });
+    </script>
 @endpush
 
 @push('styles')
@@ -19,12 +21,12 @@
 
     <style>
         /* * {
-                                                                                                                                box-sizing: border-box;
-                                                                                                                            }
+                                                                                                                                                                            box-sizing: border-box;
+                                                                                                                                                                        }
 
-                                                                                                                            body {
-                                                                                                                                font: 16px Arial;
-                                                                                                                            } */
+                                                                                                                                                                        body {
+                                                                                                                                                                            font: 16px Arial;
+                                                                                                                                                                        } */
 
         /*the container must be positioned relative:*/
         .autocomplete {
@@ -468,7 +470,6 @@
                                                 </span>
                                             @endif
                                         </div>
-                                        <hr>
                                         {{-- <div class="form-group">
                                             <label for="exampleInputEmail1">Your Qualifications</label>
                                             <textarea disabled name="skills" class="form-control @if ($errors->has('skills')) {{ 'is-invalid' }} @endif"
@@ -507,21 +508,23 @@
                                     @php
                                         $i = 1;
                                     @endphp
-                                   @foreach (Auth()->user()->userable->qualifications as $qualification)
-                                   <tr>
-                                    <td>{{$i}}</td>
-                                    <td>{{$qualification->text}}</td>
-                                    <td>{{$qualification->institute->text}}</td>
-                                    <td><span class="badge">{{explode("-",$qualification->start_date)[0]}}-{{explode("-",$qualification->start_date)[1]}}</span></td>
-                                    <td>
-                                        <button type="button"
-                                            class="btn btn-block btn-outline-danger btn-xs" onclick="removeQua('{{$qualification->id}}');">Remove</button>
-                                    </td>
-                                </tr>
-                                @php
-                                    $i++;
-                                @endphp
-                                   @endforeach
+                                    @foreach (Auth()->user()->userable->qualifications as $qualification)
+                                        <tr>
+                                            <td>{{ $i }}</td>
+                                            <td>{{ $qualification->text }}</td>
+                                            <td>{{ $qualification->institute->text }}</td>
+                                            <td><span
+                                                    class="badge">{{ explode('-', $qualification->start_date)[0] }}/{{ explode('-', $qualification->start_date)[1] }}</span>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-block btn-outline-danger btn-xs"
+                                                    onclick="removeQua('{{ $qualification->id }}');">Remove</button>
+                                            </td>
+                                        </tr>
+                                        @php
+                                            $i++;
+                                        @endphp
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -584,7 +587,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <hr>
                                         {{-- <div class="form-group">
                                             <label for="exampleInputEmail1">Your Experiences</label>
                                             <textarea disabled name="skills" class="form-control @if ($errors->has('skills')) {{ 'is-invalid' }} @endif"
@@ -623,21 +625,25 @@
                                     @php
                                         $i = 1;
                                     @endphp
-                                  @foreach (Auth()->user()->userable->experiences as $experiences)
-                                  <tr>
-                                    <td>{{$i}}</td>
-                                    <td>{{$experiences->position->text}}</td>
-                                    <td>{{$experiences->institute->text}}</td>
-                                    <td><span class="badge">{{explode("-",$experiences->start_date)[1]}}-{{explode("-",$experiences->start_date)[0]}} - {{explode("-",$experiences->end_date)[1]}}-{{explode("-",$experiences->end_date)[0]}}</span></td>
-                                    <td>
-                                        <button type="button"
-                                            class="btn btn-block btn-outline-danger btn-xs" onclick="removeEx({{$experiences->id}});" >Remove</button>
-                                    </td>
-                                </tr>
-                                @php
-                                    $i++;
-                                @endphp
-                                  @endforeach
+                                    @foreach (Auth()->user()->userable->experiences as $experiences)
+                                        <tr>
+                                            <td>{{ $i }}</td>
+                                            <td>{{ $experiences->position->text }}</td>
+                                            <td>{{ $experiences->institute->text }}</td>
+                                            <td><span
+                                                    class="badge">{{ str_replace('-', '/', $experiences->start_date) }}
+                                                    -
+                                                    {{ str_replace('-', '/', $experiences->end_date) }}</span>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-block btn-outline-danger btn-xs"
+                                                    onclick="removeEx({{ $experiences->id }});">Remove</button>
+                                            </td>
+                                        </tr>
+                                        @php
+                                            $i++;
+                                        @endphp
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -1214,42 +1220,38 @@
         autocomplete(document.getElementById("position"), pos);
 
 
-       function removeEx(id){
-        if(confirm("Are you sure?") == true){
-            $.post("{{route('user.delete_experience')}}",
-        {
-            id: id,
-            _method: "delete",
-            _token: "{{ csrf_token() }}"
-        },
-        function(data, status){
-            if(data.success==true){
-                console.log('success');
-                window.location="{{route('user.profile')}}";
+        function removeEx(id) {
+            if (confirm("Are you sure?") == true) {
+                $.post("{{ route('user.delete_experience') }}", {
+                        id: id,
+                        _method: "delete",
+                        _token: "{{ csrf_token() }}"
+                    },
+                    function(data, status) {
+                        if (data.success == true) {
+                            console.log('success');
+                            window.location = "{{ route('user.profile') }}";
+                        }
+                    });
             }
-        });
-        }
 
         }
 
-       function removeQua(id){
-        if(confirm("Are you sure?") == true){
-            $.post("{{route('user.delete_qualification')}}",
-        {
-            id: id,
-            _method: "delete",
-            _token: "{{ csrf_token() }}"
-        },
-        function(data, status){
-            if(data.success==true){
-                console.log('success');
-                window.location="{{route('user.profile')}}";
+        function removeQua(id) {
+            if (confirm("Are you sure?") == true) {
+                $.post("{{ route('user.delete_qualification') }}", {
+                        id: id,
+                        _method: "delete",
+                        _token: "{{ csrf_token() }}"
+                    },
+                    function(data, status) {
+                        if (data.success == true) {
+                            console.log('success');
+                            window.location = "{{ route('user.profile') }}";
+                        }
+                    });
             }
-        });
-        }
 
         }
-
-
     </script>
 @endpush
