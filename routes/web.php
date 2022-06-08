@@ -117,6 +117,9 @@ Route::prefix('admin')->middleware('check.user')->group(function () {
 
     Route::get('/settings', 'App\Http\Controllers\PaymentController@settings')->name('admin.settings');
     Route::put('/settings', 'App\Http\Controllers\PaymentController@update_settings')->name('admin.update_settings');
+
+    //Add Experience & Qualification ------------------------------------------------------------------------------------------------
+    
 });
 
 Route::prefix('user')->middleware('check.user')->group(function () {
