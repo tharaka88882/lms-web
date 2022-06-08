@@ -6,6 +6,14 @@
     Update Mentor Profile
 @endsection
 
+@push('script')
+<script type="text/javascript">
+    $(function() {
+       $( "#dpic" ).datepicker({dateFormat: 'yy'});
+    });
+ </script>
+@endpush
+
 @push('styles')
     {{-- <style>h1 {background-color: red !important}</style> --}}
 
@@ -450,7 +458,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Year</label>
-                                            <input name="date"
+                                            <input id="dpic" name="date"
                                                 class="form-control @if ($errors->has('date')) {{ 'is-invalid' }} @endif"
                                                 type="date" />
 
@@ -496,16 +504,24 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1.</td>
-                                        <td>Php of sisasd asd</td>
-                                        <td>SQA International</td>
-                                        <td><span class="badge">2019</span></td>
-                                        <td>
-                                            <button type="button"
-                                                class="btn btn-block btn-outline-danger btn-xs">Remove</button>
-                                        </td>
-                                    </tr>
+                                    @php
+                                        $i = 1;
+                                    @endphp
+                                   @foreach (Auth()->user()->userable->qualifications as $qualification)
+                                   <tr>
+                                    <td>{{$i}}</td>
+                                    <td>{{$qualification->text}}</td>
+                                    <td>{{$qualification->institute->text}}</td>
+                                    <td><span class="badge">{{explode("-",$qualification->start_date)[0]}}-{{explode("-",$qualification->start_date)[1]}}</span></td>
+                                    <td>
+                                        <button type="button"
+                                            class="btn btn-block btn-outline-danger btn-xs" onclick="removeQua('{{$qualification->id}}');">Remove</button>
+                                    </td>
+                                </tr>
+                                @php
+                                    $i++;
+                                @endphp
+                                   @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -604,16 +620,24 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1.</td>
-                                        <td>Software Engineer</td>
-                                        <td>SQA International</td>
-                                        <td><span class="badge">2018-2020</span></td>
-                                        <td>
-                                            <button type="button"
-                                                class="btn btn-block btn-outline-danger btn-xs">Remove</button>
-                                        </td>
-                                    </tr>
+                                    @php
+                                        $i = 1;
+                                    @endphp
+                                  @foreach (Auth()->user()->userable->experiences as $experiences)
+                                  <tr>
+                                    <td>{{$i}}</td>
+                                    <td>{{$experiences->position->text}}</td>
+                                    <td>{{$experiences->institute->text}}</td>
+                                    <td><span class="badge">{{$experiences->start_date}}-{{$experiences->end_date}}</span></td>
+                                    <td>
+                                        <button type="button"
+                                            class="btn btn-block btn-outline-danger btn-xs" onclick="removeEx({{$experiences->id}});" >Remove</button>
+                                    </td>
+                                </tr>
+                                @php
+                                    $i++;
+                                @endphp
+                                  @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -1162,5 +1186,44 @@
         autocomplete(document.getElementById("myInput"), ins);
         autocomplete(document.getElementById("ins"), ins);
         autocomplete(document.getElementById("position"), pos);
+
+
+       function removeEx(id){
+        if(confirm("Are you sure?") == true){
+            $.post("{{route('user.delete_experience')}}",
+        {
+            id: id,
+            _method: "delete",
+            _token: "{{ csrf_token() }}"
+        },
+        function(data, status){
+            if(data.success==true){
+                console.log('success');
+                window.location="{{route('user.profile')}}";
+            }
+        });
+        }
+
+        }
+
+       function removeQua(id){
+        if(confirm("Are you sure?") == true){
+            $.post("{{route('user.delete_qualification')}}",
+        {
+            id: id,
+            _method: "delete",
+            _token: "{{ csrf_token() }}"
+        },
+        function(data, status){
+            if(data.success==true){
+                console.log('success');
+                window.location="{{route('user.profile')}}";
+            }
+        });
+        }
+
+        }
+
+
     </script>
 @endpush

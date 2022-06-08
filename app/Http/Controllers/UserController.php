@@ -440,7 +440,7 @@ class UserController extends Controller
 
         Toastr::success('Deleted..! :)', 'Success');
         return array(
-            'data'=>'success'
+            'success'=>true
         );
     }
 
@@ -451,7 +451,7 @@ class UserController extends Controller
 
         Toastr::success('Deleted..! :)', 'Success');
         return array(
-            'data'=>'success'
+            'success'=>true
         );
     }
 
