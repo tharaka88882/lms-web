@@ -164,9 +164,35 @@
                       <div class="card-body">
                             <dl>
                             <dt>Qualifications</dt>
-                            <dd>{{$teacher->qualification}}</dd>
+                            <dd>
+                                <ul>
+                                    @foreach ($teacher->qualifications as $qualification)
+                                    <li><strong>{{$qualification->text}}</strong>
+                                        <ul>
+                                            <span>{{$qualification->institute->text}}
+                                                <br>
+                                                <small>Issued {{explode("-",$qualification->start_date)[1]}}-{{explode("-",$qualification->start_date)[0]}}</small>
+                                            </span>
+                                        </ul>
+                                    </li>
+                                    @endforeach
+                                    </ul>
+                            </dd>
                             <dt>Experience</dt>
-                            <dd>{{$teacher->experience}}</dd>
+                            <dd>
+                                <ul>
+                                    @foreach ($teacher->experiences as $experience)
+                                    <li><strong>{{$experience->position->text}}</strong>
+                                       <ul>
+                                           <span>{{$experience->institute->text}}
+                                               <br>
+                                               <small>{{explode("-",$experience->start_date)[1]}}-{{explode("-",$experience->start_date)[0]}} - {{explode("-",$experience->end_date)[1]}}-{{explode("-",$experience->end_date)[0]}}</small>
+                                           </span>
+                                       </ul>
+                                   </li>
+                                    @endforeach
+                                   </ul>
+                            </dd>
                             <dt>Skills</dt>
                             <dd>{{$teacher->skills}}</dd>
                             <dt>Industry</dt>
