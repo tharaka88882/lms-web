@@ -171,7 +171,7 @@
                                         <ul>
                                             <span>{{$qualification->institute->text}}
                                                 <br>
-                                                <small>Issued {{explode("-",$qualification->start_date)[1]}}-{{explode("-",$qualification->start_date)[0]}}</small>
+                                                <small>Issued {{explode("-",$qualification->start_date)[1]}}/{{explode("-",$qualification->start_date)[0]}}</small>
                                             </span>
                                         </ul>
                                     </li>
@@ -186,7 +186,7 @@
                                        <ul>
                                            <span>{{$experience->institute->text}}
                                                <br>
-                                               <small>{{explode("-",$experience->start_date)[1]}}-{{explode("-",$experience->start_date)[0]}} @if ($experience->end_date != null) - {{explode("-",$experience->end_date)[1]}}-{{explode("-",$experience->end_date)[0]}} @endif</small>
+                                               <small>{{explode("-",$experience->start_date)[1]}}/{{explode("-",$experience->start_date)[0]}} @if ($experience->end_date != null) - {{explode("-",$experience->end_date)[1]}}-{{explode("-",$experience->end_date)[0]}} @endif</small>
                                            </span>
                                        </ul>
                                    </li>

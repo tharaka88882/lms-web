@@ -803,7 +803,7 @@
                                                             <span>{{ $qualification->institute->text }}
                                                                 <br>
                                                                 <small>Issued
-                                                                    {{ explode('-', $qualification->start_date)[1] }}-{{ explode('-', $qualification->start_date)[0] }}</small>
+                                                                    {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }}</small>
                                                             </span>
                                                         </ul>
                                                     </li>

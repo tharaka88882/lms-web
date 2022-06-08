@@ -151,7 +151,7 @@
                                         <ul>
                                             <span>{{$qualification->institute->text}}
                                                 <br>
-                                                <small>Issued {{explode("-",$qualification->start_date)[1]}}-{{explode("-",$qualification->start_date)[0]}}</small>
+                                                <small>Issued {{explode("-",$qualification->start_date)[1]}}/{{explode("-",$qualification->start_date)[0]}}</small>
                                             </span>
                                         </ul>
                                     </li>
