@@ -808,14 +808,14 @@
                                             <ul>
 
                                                 @foreach (Auth()->user()->userable->qualifications as $qualification)
-                                                    <li><strong>{{ $qualification->text }}</strong>
-                                                        <ul>
+                                                    <li><strong>{{ $qualification->text }}</strong><br>
+                                                        {{-- <ul> --}}
                                                             <span>{{ $qualification->institute->text }}
                                                                 <br>
                                                                 <small>Issued
                                                                     {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }}</small>
                                                             </span>
-                                                        </ul>
+                                                        {{-- </ul> --}}
                                                     </li>
                                                 @endforeach
                                             </ul>
@@ -826,24 +826,24 @@
                                             <ul>
 
                                                 @foreach (Auth()->user()->userable->experiences as $experience)
-                                                    <li><strong>{{ $experience->position->text }}</strong>
-                                                        <ul>
+                                                    <li><strong>{{ $experience->position->text }}</strong><br>
+                                                        {{-- <ul> --}}
                                                             <span>{{ $experience->institute->text }}
                                                                 <br>
                                                                 <small>{{ explode('-', $experience->start_date)[1] }}/{{ explode('-', $experience->start_date)[0] }}
                                                                    @if ($experience->end_date!=null) - {{ explode('-', $experience->end_date)[1] }}/{{ explode('-', $experience->end_date)[0] }}
                                                                    @endif </small>
                                                             </span>
-                                                        </ul>
+                                                        {{-- </ul> --}}
                                                     </li>
                                                 @endforeach
                                             </ul>
 
                                         </dd>
-                                        <dt>Skills</dt>
+                                        {{-- <dt>Skills</dt>
                                         <dd>
                                             {{ Auth()->user()->userable->skills }}
-                                        </dd>
+                                        </dd> --}}
                                         <dt>Industry</dt>
                                         <dd>
                                             {{ Auth()->user()->userable->industry }}
@@ -888,7 +888,7 @@
                                 <div class="card-header">
                                     <h3 class="card-title">
                                         <i class="fas fa-book-open"></i>
-                                        Mentoring Topics
+                                        Skils
                                     </h3>
                                 </div>
                                 <!-- /.card-header -->

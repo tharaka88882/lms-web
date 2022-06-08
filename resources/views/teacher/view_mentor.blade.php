@@ -145,14 +145,14 @@
                                 <dd>
                                     <ul>
                                         @foreach ($teacher->qualifications as $qualification)
-                                            <li><strong>{{ $qualification->text }}</strong>
-                                                <ul>
+                                            <li><strong>{{ $qualification->text }}</strong><br>
+                                                {{-- <ul> --}}
                                                     <span>{{ $qualification->institute->text }}
                                                         <br>
                                                         <small>Issued
                                                             {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }}</small>
                                                     </span>
-                                                </ul>
+                                                {{-- </ul> --}}
                                             </li>
                                         @endforeach
                                     </ul>
@@ -162,8 +162,8 @@
                                 <dd>
                                     <ul>
                                         @foreach ($teacher->experiences as $experience)
-                                            <li><strong>{{ $experience->position->text }}</strong>
-                                                <ul>
+                                            <li><strong>{{ $experience->position->text }}</strong><br>
+                                                {{-- <ul> --}}
                                                     <span>{{ $experience->institute->text }}
                                                         <br>
                                                         <small>{{ explode('-', $experience->start_date)[1] }}/{{ explode('-', $experience->start_date)[0] }}
@@ -173,7 +173,7 @@
                                                             @endif
                                                         </small>
                                                     </span>
-                                                </ul>
+                                                {{-- </ul> --}}
                                             </li>
                                         @endforeach
                                     </ul>
@@ -217,7 +217,7 @@
                         <div class="card-header">
                             <h3 class="card-title">
                                 <i class="fas fa-book-open"></i>
-                                Mentoring Topics
+                                Skills
                             </h3>
                         </div>
                         <!-- /.card-header -->
