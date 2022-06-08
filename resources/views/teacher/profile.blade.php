@@ -19,12 +19,12 @@
 
     <style>
         /* * {
-                                                                                                                    box-sizing: border-box;
-                                                                                                                }
+                                                                                                                                box-sizing: border-box;
+                                                                                                                            }
 
-                                                                                                                body {
-                                                                                                                    font: 16px Arial;
-                                                                                                                } */
+                                                                                                                            body {
+                                                                                                                                font: 16px Arial;
+                                                                                                                            } */
 
         /*the container must be positioned relative:*/
         .autocomplete {
@@ -790,6 +790,7 @@
                                         <dt>Qualifications</dt>
                                         <dd>
                                             <ul>
+
                                                 @foreach (Auth()->user()->userable->qualifications as $qualification)
                                                 <li><strong>{{$qualification->text}}</strong>
                                                     <ul>
@@ -801,10 +802,12 @@
                                                 </li>
                                                 @endforeach
                                                 </ul>
+
                                         </dd>
                                         <dt>Experience</dt>
                                         <dd>
                                             <ul>
+
                                                 @foreach (Auth()->user()->userable->experiences as $experience)
                                                 <li><strong>{{$experience->position->text}}</strong>
                                                    <ul>
@@ -816,6 +819,7 @@
                                                </li>
                                                 @endforeach
                                                </ul>
+
                                         </dd>
                                         <dt>Skills</dt>
                                         <dd>
