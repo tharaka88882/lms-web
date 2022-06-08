@@ -9,7 +9,6 @@
 @endpush
 
 @section('content')
-
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
@@ -42,8 +41,9 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Full Name</label>
-                                <input type="text" class="form-control  @if ($errors->has('name')) {{ 'is-invalid' }} @endif" name="name"
-                                    placeholder="Full Name" value="{{ $user->name }}">
+                                <input type="text"
+                                    class="form-control  @if ($errors->has('name')) {{ 'is-invalid' }} @endif"
+                                    name="name" placeholder="Full Name" value="{{ $user->name }}">
                                 <input type="hidden" value="Student" name="type">
 
                                 @if ($errors->has('name'))
@@ -54,7 +54,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Email Address</label>
-                                <input disabled="" type="email" name="email" class="form-control @if ($errors->has('email')) {{ 'is-invalid' }} @endif"
+                                <input disabled="" type="email" name="email"
+                                    class="form-control @if ($errors->has('email')) {{ 'is-invalid' }} @endif"
                                     placeholder="Enter Email" value="{{ $user->email }}">
 
                                 @if ($errors->has('email'))
@@ -65,7 +66,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Password</label>
-                                <input type="password" name="password" class="form-control @if ($errors->has('password')) {{ 'is-invalid' }} @endif"
+                                <input type="password" name="password"
+                                    class="form-control @if ($errors->has('password')) {{ 'is-invalid' }} @endif"
                                     placeholder="Password">
 
                                 @if ($errors->has('password'))
@@ -76,7 +78,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Password Confirmation</label>
-                                <input type="password" name="confirm_password" class="form-control @if ($errors->has('confirm_password')) {{ 'is-invalid' }} @endif"
+                                <input type="password" name="confirm_password"
+                                    class="form-control @if ($errors->has('confirm_password')) {{ 'is-invalid' }} @endif"
                                     placeholder="Password Confirmation">
 
                                 @if ($errors->has('confirm_password'))
@@ -97,7 +100,8 @@
                                         onerror=" this.src='{{ url('public') }}/theme/admin/dist/img/default-avatar.jpg'"
                                         @if ($user->image != null) src="{{ url('public') }}/images/profile/{{ $user->image }}" @else src="" @endif />
                                 </div>
-                                <input type="file" name="image" class="form-control @if ($errors->has('image')) {{ 'is-invalid' }} @endif"
+                                <input type="file" name="image"
+                                    class="form-control @if ($errors->has('image')) {{ 'is-invalid' }} @endif"
                                     id="profileImageInput" onchange="loadImage(event)">
 
 
@@ -110,20 +114,35 @@
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Grade</label>
-                                <select class="form-control  @if ($errors->has('grade')) {{ 'is-invalid' }} @endif" name="grade">
-                                    <option value="1" @if ($user->userable->grade == '1') {{ 'selected' }} @endif>1</option>
-                                    <option value="2" @if ($user->userable->grade == '2') {{ 'selected' }} @endif>2</option>
-                                    <option value="3" @if ($user->userable->grade == '3') {{ 'selected' }} @endif>3</option>
-                                    <option value="4" @if ($user->userable->grade == '4') {{ 'selected' }} @endif>4</option>
-                                    <option value="5" @if ($user->userable->grade == '5') {{ 'selected' }} @endif>5</option>
-                                    <option value="6" @if ($user->userable->grade == '6') {{ 'selected' }} @endif>6</option>
-                                    <option value="7" @if ($user->userable->grade == '7') {{ 'selected' }} @endif>7</option>
-                                    <option value="8" @if ($user->userable->grade == '8') {{ 'selected' }} @endif>8</option>
-                                    <option value="9" @if ($user->userable->grade == '9') {{ 'selected' }} @endif>9</option>
-                                    <option value="10" @if ($user->userable->grade == '10') {{ 'selected' }} @endif>10</option>
-                                    <option value="11" @if ($user->userable->grade == '11') {{ 'selected' }} @endif>11</option>
-                                    <option value="12" @if ($user->userable->grade == '12') {{ 'selected' }} @endif>12</option>
-                                    <option value="13" @if ($user->userable->grade == '13') {{ 'selected' }} @endif>13</option>
+                                <select
+                                    class="form-control  @if ($errors->has('grade')) {{ 'is-invalid' }} @endif"
+                                    name="grade">
+                                    <option value="1" @if ($user->userable->grade == '1') {{ 'selected' }} @endif>1
+                                    </option>
+                                    <option value="2" @if ($user->userable->grade == '2') {{ 'selected' }} @endif>2
+                                    </option>
+                                    <option value="3" @if ($user->userable->grade == '3') {{ 'selected' }} @endif>3
+                                    </option>
+                                    <option value="4" @if ($user->userable->grade == '4') {{ 'selected' }} @endif>4
+                                    </option>
+                                    <option value="5" @if ($user->userable->grade == '5') {{ 'selected' }} @endif>5
+                                    </option>
+                                    <option value="6" @if ($user->userable->grade == '6') {{ 'selected' }} @endif>6
+                                    </option>
+                                    <option value="7" @if ($user->userable->grade == '7') {{ 'selected' }} @endif>7
+                                    </option>
+                                    <option value="8" @if ($user->userable->grade == '8') {{ 'selected' }} @endif>8
+                                    </option>
+                                    <option value="9" @if ($user->userable->grade == '9') {{ 'selected' }} @endif>9
+                                    </option>
+                                    <option value="10" @if ($user->userable->grade == '10') {{ 'selected' }} @endif>10
+                                    </option>
+                                    <option value="11" @if ($user->userable->grade == '11') {{ 'selected' }} @endif>11
+                                    </option>
+                                    <option value="12" @if ($user->userable->grade == '12') {{ 'selected' }} @endif>12
+                                    </option>
+                                    <option value="13" @if ($user->userable->grade == '13') {{ 'selected' }} @endif>13
+                                    </option>
                                 </select>
 
                                 @if ($errors->has('grade'))
@@ -135,16 +154,13 @@
 
                         </div>
                     </div>
-                </div>
-
-                <!-- /.card-body -->
+                </div><!-- /.card-body -->
 
                 <div class="card-footer">
                     <button type="submit" class="btn btn-success pull-right">Save</button>
                 </div>
             </form>
-        </div>
-        <!-- /.card -->
+        </div><!-- /.card -->
     </section>
 @endsection
 
