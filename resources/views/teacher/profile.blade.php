@@ -11,12 +11,12 @@
 
     <style>
         /* * {
-                                                                        box-sizing: border-box;
-                                                                    }
+                                                                                                                    box-sizing: border-box;
+                                                                                                                }
 
-                                                                    body {
-                                                                        font: 16px Arial;
-                                                                    } */
+                                                                                                                body {
+                                                                                                                    font: 16px Arial;
+                                                                                                                } */
 
         /*the container must be positioned relative:*/
         .autocomplete {
@@ -71,7 +71,6 @@
             background-color: DodgerBlue !important;
             color: #ffffff;
         }
-
     </style>
 @endpush
 
@@ -426,7 +425,7 @@
                             <h3 class="card-title">Qualifications</h3>
                         </div>
                         <!--Make sure the form has the autocomplete function switched off:-->
-                        <form autocomplete="off" action="{{route("user.add_qualification")}}" method="POST">
+                        <form autocomplete="off" action="{{ route('user.add_qualification') }}" method="POST">
                             @csrf
                             <div class="card-body">
                                 <div class="row">
@@ -434,7 +433,8 @@
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Degree/Certificate</label>
                                             <input name="qualification"
-                                                class="form-control @if ($errors->has('qualification')) {{ 'is-invalid' }} @endif" type="text"/>
+                                                class="form-control @if ($errors->has('qualification')) {{ 'is-invalid' }} @endif"
+                                                type="text" />
 
                                             @if ($errors->has('qualification'))
                                                 <span class="invalid-feedback" role="alert">
@@ -451,7 +451,8 @@
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Year</label>
                                             <input name="date"
-                                                class="form-control @if ($errors->has('date')) {{ 'is-invalid' }} @endif" type="date"/>
+                                                class="form-control @if ($errors->has('date')) {{ 'is-invalid' }} @endif"
+                                                type="date" />
 
                                             @if ($errors->has('date'))
                                                 <span class="invalid-feedback" role="alert">
@@ -479,6 +480,36 @@
                             </div>
                         </form>
                     </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">My Qualifications</h3>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 10px">#</th>
+                                        <th>Degree/Certificate</th>
+                                        <th>Institute</th>
+                                        <th style="width: 40px">Year</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1.</td>
+                                        <td>Php of sisasd asd</td>
+                                        <td>SQA International</td>
+                                        <td><span class="badge">2019</span></td>
+                                        <td>
+                                            <button type="button"
+                                                class="btn btn-block btn-outline-danger btn-xs">Remove</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
                 {{-- End of Qualifications Card --}}
 
@@ -489,7 +520,7 @@
                             <h3 class="card-title">Experience</h3>
                         </div>
                         <!--Make sure the form has the autocomplete function switched off:-->
-                        <form autocomplete="off" action="{{route('user.add_experience')}}"  method="POST">
+                        <form autocomplete="off" action="{{ route('user.add_experience') }}" method="POST">
                             @csrf
                             <div class="card-body">
                                 <div class="row">
@@ -512,7 +543,8 @@
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Start</label>
                                                     <input name="start_date" placeholder="Start Year"
-                                                        class="form-control @if ($errors->has('start_date')) {{ 'is-invalid' }} @endif" type="date"/>
+                                                        class="form-control @if ($errors->has('start_date')) {{ 'is-invalid' }} @endif"
+                                                        type="date" />
 
                                                     @if ($errors->has('start_date'))
                                                         <span class="invalid-feedback" role="alert">
@@ -525,7 +557,8 @@
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">End</label>
                                                     <input name="end_date" placeholder="End Year"
-                                                        class="form-control @if ($errors->has('end_date')) {{ 'is-invalid' }} @endif" type="date"/>
+                                                        class="form-control @if ($errors->has('end_date')) {{ 'is-invalid' }} @endif"
+                                                        type="date" />
 
                                                     @if ($errors->has('end_date'))
                                                         <span class="invalid-feedback" role="alert">
@@ -554,6 +587,36 @@
                                 <button type="submit" class="btn btn-success pull-right">Add</button>
                             </div>
                         </form>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">My Experience</h3>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 10px">#</th>
+                                        <th>Position</th>
+                                        <th>Institute</th>
+                                        <th style="width: 40px">Work Period</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1.</td>
+                                        <td>Software Engineer</td>
+                                        <td>SQA International</td>
+                                        <td><span class="badge">2018-2020</span></td>
+                                        <td>
+                                            <button type="button"
+                                                class="btn btn-block btn-outline-danger btn-xs">Remove</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 {{-- End of Qualifications Card --}}
@@ -1086,18 +1149,18 @@
         //     "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Virgin Islands (US)", "Yemen",
         //     "Zambia", "Zimbabwe"
         // ];
-        var ins =[];
+        var ins = [];
         @foreach ($institutes as $in)
-        ins.push('{{$in->text}}');
+            ins.push('{{ $in->text }}');
         @endforeach
-        var pos =[];
+        var pos = [];
         @foreach ($position as $po)
-        pos.push('{{$po->text}}');
+            pos.push('{{ $po->text }}');
         @endforeach
 
         /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-        autocomplete(document.getElementById("myInput"),ins);
-        autocomplete(document.getElementById("ins"),ins);
-        autocomplete(document.getElementById("position"),pos);
+        autocomplete(document.getElementById("myInput"), ins);
+        autocomplete(document.getElementById("ins"), ins);
+        autocomplete(document.getElementById("position"), pos);
     </script>
 @endpush
