@@ -632,8 +632,8 @@
                                             <td>{{ $experiences->institute->text }}</td>
                                             <td><span
                                                     class="badge">{{ explode('-', $experiences->start_date)[0] }}/{{ explode('-', $experiences->start_date)[1] }}
-                                                    -
-                                                    {{ explode('-', $experiences->end_date)[0] }}/{{ explode('-', $experiences->end_date)[1] }}</span>
+                                                    @if ($experiences->end_date!=null) - {{ explode('-', $experiences->end_date)[0] }}/{{ explode('-', $experiences->end_date)[1] }}
+                                                    @endif</span>
                                             </td>
                                             <td>
                                                 <button type="button" class="btn btn-block btn-outline-danger btn-xs"
@@ -820,9 +820,9 @@
                                                         <ul>
                                                             <span>{{ $experience->institute->text }}
                                                                 <br>
-                                                                <small>{{ explode('-', $experience->start_date)[1] }}-{{ explode('-', $experience->start_date)[0] }}
-                                                                    -
-                                                                    {{ explode('-', $experience->end_date)[1] }}-{{ explode('-', $experience->end_date)[0] }}</small>
+                                                                <small>{{ explode('-', $experience->start_date)[1] }}/{{ explode('-', $experience->start_date)[0] }}
+                                                                   @if ($experience->end_date!=null) - {{ explode('-', $experience->end_date)[1] }}/{{ explode('-', $experience->end_date)[0] }}
+                                                                   @endif </small>
                                                             </span>
                                                         </ul>
                                                     </li>
