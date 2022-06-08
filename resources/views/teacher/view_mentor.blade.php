@@ -145,17 +145,16 @@
                                 <dt>Qualifications</dt>
                                 <dd>
                                     <ul>
-                                        @foreach ($teacher->qualifications as $qualification)
-                                            <li><strong>{{ $qualification->text }}</strong>
-                                                <ul>
-                                                    <span>{{ $qualification->institute->text }}
-                                                        <br>
-                                                        <small>Issued
-                                                            {{ explode('-', $qualification->start_date)[1] }}-{{ explode('-', $qualification->start_date)[0] }}</small>
-                                                    </span>
-                                                </ul>
-                                            </li>
-                                        @endforeach
+                                    @foreach ($teacher->qualifications as $qualification)
+                                    <li><strong>{{$qualification->text}}</strong>
+                                        <ul>
+                                            <span>{{$qualification->institute->text}}
+                                                <br>
+                                                <small>Issued {{explode("-",$qualification->start_date)[1]}}/{{explode("-",$qualification->start_date)[0]}}</small>
+                                            </span>
+                                        </ul>
+                                    </li>
+                                    @endforeach
                                     </ul>
                                     {{-- {{$teacher->qualification}} --}}
                                 </dd>
