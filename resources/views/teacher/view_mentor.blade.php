@@ -167,7 +167,7 @@
                                         <ul>
                                             <span>{{$experience->institute->text}}
                                                 <br>
-                                                <small>{{explode("-",$experience->start_date)[1]}}-{{explode("-",$experience->start_date)[0]}} - {{explode("-",$experience->end_date)[1]}}-{{explode("-",$experience->end_date)[0]}}</small>
+                                                <small>{{explode("-",$experience->start_date)[1]}}/{{explode("-",$experience->start_date)[0]}} @if ($experience->end_date!=null) - {{explode("-",$experience->end_date)[1]}}/{{explode("-",$experience->end_date)[0]}} @endif</small>
                                             </span>
                                         </ul>
                                     </li>
