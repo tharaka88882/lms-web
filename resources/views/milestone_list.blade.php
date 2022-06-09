@@ -207,7 +207,7 @@
               @endif
               @endforeach
              @if ($flag)
-             <h3>Upcoming Goals</h3>
+             <h3>Timeline</h3>
              @endif
             </div>
             <div style="display:inline-block;width:100%;overflow-y:auto;">
@@ -327,8 +327,8 @@
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="Milestone">Goal Name</label>
-                        <input type="text" class="form-control @if($errors->has('note')) {{'is-invalid'}} @endif" id="note" name="note" placeholder="Milestone Name">
+                        <label for="Milestone">Name</label>
+                        <input type="text" class="form-control @if($errors->has('note')) {{'is-invalid'}} @endif" id="note" name="note" placeholder="Name">
 
                         @if($errors->has('note'))
                             <span class="invalid-feedback" role="alert">
