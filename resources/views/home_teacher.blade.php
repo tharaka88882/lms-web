@@ -346,7 +346,7 @@
                         </div> --}}
 
                         <div class="col-md-12 mb-2">
-                            <center><h5><b>What you need to do when your first login.</b></h5></center>
+                            <center><h5><b>What you need to do when your first sign up</b></h5></center>
                          </div>
 
                         <div class="col-md-4 mb-2">

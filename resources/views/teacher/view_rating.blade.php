@@ -52,7 +52,7 @@ My Ratings
             <div class="small-box bg-light">
               <div class="inner">
                   @if ($mediation==0)
-                  <h3 style="color: red;"><small>No Rating</small></h3>
+                  <h3 style="color: red;"><small>Not rated</small></h3>
                   @else
                         @if ($mediation<=1)
                         <h3 style="color: red;">{{$mediation}}</h3>
@@ -79,16 +79,20 @@ My Ratings
             <!-- small card -->
             <div class="small-box bg-light">
               <div class="inner">
-                  @if ($relevance<=25)
-                  <h3 style="color: red;">{{$relevance}}<sup style="font-size: 20px">%</sup></h3>
+                  @if ($relevance == 0)
+                  <h3 style="color: red;"><small>Not rated</small></h3>
+                @else
+                    @if ($relevance<=25)
+                    <h3 style="color: red;">{{$relevance}}<sup style="font-size: 20px">%</sup></h3>
 
-                  @elseif ($relevance>25 && $relevance<65)
-                  <h3 style="color: rgb(255, 174, 0);">{{$relevance}}<sup style="font-size: 20px">%</sup></h3>
+                    @elseif ($relevance>25 && $relevance<65)
+                    <h3 style="color: rgb(255, 174, 0);">{{$relevance}}<sup style="font-size: 20px">%</sup></h3>
 
-                  @else
-                  <h3 style="color: green;">{{$relevance}}<sup style="font-size: 20px">%</sup></h3>
+                    @else
+                    <h3 style="color: green;">{{$relevance}}<sup style="font-size: 20px">%</sup></h3>
 
-                  @endif
+                    @endif
+                @endif
 
                 <p>Relevance</p>
               </div>

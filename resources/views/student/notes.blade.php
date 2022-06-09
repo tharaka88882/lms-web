@@ -29,7 +29,7 @@
                         <div class="row">
                             <div class="col-sm-6 border-right">
                                 <div class="description-block">
-                                    <h5 class="description-header">Goal Name</h5>
+                                    <h5 class="description-header">Name of Goal</h5>
                                     <span class="description-text">{{ $milestone->note }}</span>
                                 </div>
                                 <!-- /.description-block -->
@@ -237,7 +237,7 @@
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" style="text-transform: capitalize">stikey Notes</h4>
+                    <h4 class="modal-title" style="text-transform: capitalize">Notes</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

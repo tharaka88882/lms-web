@@ -149,7 +149,7 @@
                         <div class="card-header">
                           <h3 class="card-title">
                             <i class="fas fa-bullhorn"></i>
-                                Warning!
+                            Notice!
                          </h3>
                        </div>
                         <!-- /.card-header -->
