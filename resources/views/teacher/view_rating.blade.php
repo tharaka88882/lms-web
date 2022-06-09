@@ -114,7 +114,7 @@ My Ratings
                   @endif
 
 
-                <p>Average responce time</p>
+                <p>Average Responce Time</p>
               </div>
               <!-- <div class="icon">
                 <i class="ion ion-stats-bars"></i>

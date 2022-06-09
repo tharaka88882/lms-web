@@ -310,7 +310,7 @@
     </div>
     <div class="col-md-6">
         <div class="callout callout-warning">
-            <p>Please note development goals are appeared in your profile and, however actions within goals are private.</p>
+            <p>Development goals appears on your profile, however actions within goals are private.</p>
           </div>
     </div>
   </div>

@@ -112,6 +112,8 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Profile</h3>
+                            <button type="button" data-target="#modal-md" data-toggle="modal"
+                            class="btn btn-warning pull-right">View Profile</button>
                         </div>
                         <!-- /.card-header -->
 
@@ -252,7 +254,7 @@
                                                     480PX)</small></label>
                                             <div style="padding: 10px;">
                                                 <img id="cover-image-output"
-                                                    style="max-width: 480px; max-height:120px; border: 1px solid rgb(187, 187, 187)"
+                                                    style="max-width: 100%; max-height:120px; border: 1px solid rgb(187, 187, 187)"
                                                     class="img-fluid"
                                                     onerror="this.src='{{ url('public') }}/images/download.jpg'"
                                                     @if ($user->cover_image != null) src="{{ url('public') }}/images/profile/{{ $user->cover_image }}" @else src="" @endif />
@@ -418,8 +420,8 @@
 
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-success pull-right">Save</button>
-                                <button type="button" data-target="#modal-md" data-toggle="modal"
-                                    class="btn btn-warning pull-right  mr-2">View Profile</button>
+                                {{-- <button type="button" data-target="#modal-md" data-toggle="modal"
+                                    class="btn btn-warning pull-right  mr-2">View Profile</button> --}}
                             </div>
                         </form>
                     </div>
@@ -564,6 +566,11 @@
                                             </span>
                                         @endif
                                         </div>
+
+                                        {{-- <div class="col-xs-12">
+                                         <input id="present" class="form-control mr-8" type="checkbox" /></label>
+                                        </div> --}}
+
                                         <div class="row">
                                             {{-- <label for="exampleInputEmail1">Time of work</label> --}}
                                             <div class="col-sm-4">
@@ -580,10 +587,11 @@
                                                     @endif
                                                 </div>
                                             </div>
+
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">End</label>
-                                                    <input name="end_date" placeholder="End Year"
+                                                    <input id="end_y" name="end_date" placeholder="End Year"
                                                         class="form-control @if ($errors->has('end_date')) {{ 'is-invalid' }} @endif"
                                                         type="date" />
 
@@ -641,7 +649,7 @@
                                                 <td>{{ $experiences->institute->text }}</td>
                                                 <td><span
                                                         class="badge">{{ explode('-', $experiences->start_date)[0] }}/{{ explode('-', $experiences->start_date)[1] }}
-                                                        @if ($experiences->end_date!=null) - {{ explode('-', $experiences->end_date)[0] }}/{{ explode('-', $experiences->end_date)[1] }}
+                                                        @if ($experiences->end_date!=null) - {{ explode('-', $experiences->end_date)[0] }}/{{ explode('-', $experiences->end_date)[1] }} @else - Present
                                                         @endif</span>
                                                 </td>
                                                 <td>
@@ -752,10 +760,10 @@
                                         {{-- <div class="col-sm-2">
                                     <a class="btn btn-success" href="{{ route('student.view_conversation', $query->id) }}">Complaint</a>
                                 </div> --}}
-                                        <div class="col-sm-4" style="text-align: left">
+                                        <div class="col-xm-4 mr-2" style="text-align: left">
                                             <a class="btn btn-success">Connect</a>
                                         </div>
-                                        <div class="col-sm-4" style="text-align: center">
+                                        <div class="col-xm-4" style="text-align: center">
                                             <button class="btn btn-warning"><i class="fa fa-star"></i>Rate
                                                 Now</button>
                                             {{-- <form action="{{ route('student.rate_teacher') }}" method="POST" class="form-inline" style="float: right" id="changeRatings">
@@ -831,7 +839,7 @@
                                                             <span>{{ $experience->institute->text }}
                                                                 <br>
                                                                 <small>{{ explode('-', $experience->start_date)[1] }}/{{ explode('-', $experience->start_date)[0] }}
-                                                                   @if ($experience->end_date!=null) - {{ explode('-', $experience->end_date)[1] }}/{{ explode('-', $experience->end_date)[0] }}
+                                                                   @if ($experience->end_date!=null) - {{ explode('-', $experience->end_date)[1] }}/{{ explode('-', $experience->end_date)[0] }}@else - Present
                                                                    @endif </small>
                                                             </span>
                                                         {{-- </ul> --}}
@@ -1266,5 +1274,15 @@
             }
 
         }
+
+        $('#present').click(function(){
+       if( $('#present').is(':checked')){
+       // alert("t");
+        $('#end_y').prop('disabled', true);
+    }else{
+           //alert("tjio");
+        $('#end_y').prop('disabled', false);
+    }
+      });
     </script>
 @endpush

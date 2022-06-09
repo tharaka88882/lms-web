@@ -208,9 +208,9 @@
             </div> --}}
 
             <div class="row mb-2">
-            <div class="col-md-12 mb-2">
+            {{-- <div class="col-md-12 mb-2">
                 <img src='{{url('public')}}/images/profile/Title.png' alt="You2Mentor" width="100%;"/>
-            </div>
+            </div> --}}
 
             <div class="col-md-12 mb-2">
                 <center><h5><b>What you need to do when your first login.</b></h5></center>

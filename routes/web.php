@@ -119,7 +119,7 @@ Route::prefix('admin')->middleware('check.user')->group(function () {
     Route::get('/settings', 'App\Http\Controllers\PaymentController@settings')->name('admin.settings');
     Route::put('/settings', 'App\Http\Controllers\PaymentController@update_settings')->name('admin.update_settings');
 
-    //Add Experience & Qualification ------------------------------------------------------------------------------------------------
+    //Add Position & Company ------------------------------------------------------------------------------------------------
     Route::get('/add-position',[AdminController::class, 'add_position'])->name('admin.add_position');
     Route::get('/add-company',[AdminController::class, 'add_company'])->name('admin.add_company');
     Route::post('/add-company',[AdminController::class, 'store_company'])->name('admin.store_company');

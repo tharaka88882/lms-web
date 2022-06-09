@@ -151,8 +151,8 @@
                             <br>
 
                             @if ($teacher->linkedin_link != null)
-                                <a href="{{ $teacher->linkedin_link }}" target="_blank">View Linkedin Profile
-                                    <i class="fas fa-angle-double-right"></i></a>
+                                {{-- <a href="{{ $teacher->linkedin_link }}" target="_blank">View Linkedin Profile
+                                    <i class="fas fa-angle-double-right"></i></a> --}}
                             @endif
                         </div>
                         <!-- /.card-header -->
@@ -182,7 +182,7 @@
                                        {{-- <ul> --}}
                                            <span>{{$experience->institute->text}}
                                                <br>
-                                               <small>{{explode("-",$experience->start_date)[1]}}/{{explode("-",$experience->start_date)[0]}} @if ($experience->end_date != null) - {{explode("-",$experience->end_date)[1]}}-{{explode("-",$experience->end_date)[0]}} @endif</small>
+                                               <small>{{explode("-",$experience->start_date)[1]}}/{{explode("-",$experience->start_date)[0]}} @if ($experience->end_date != null) - {{explode("-",$experience->end_date)[1]}}-{{explode("-",$experience->end_date)[0]}}@else - Present @endif</small>
                                            </span>
                                        {{-- </ul> --}}
                                    </li>
