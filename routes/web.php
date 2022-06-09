@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\AdminController;
 use App\Mail\WelcomeMail;
 
 /*
@@ -119,7 +120,17 @@ Route::prefix('admin')->middleware('check.user')->group(function () {
     Route::put('/settings', 'App\Http\Controllers\PaymentController@update_settings')->name('admin.update_settings');
 
     //Add Experience & Qualification ------------------------------------------------------------------------------------------------
-    
+    Route::get('/add-position',[AdminController::class, 'add_position'])->name('admin.add_position');
+    Route::get('/add-company',[AdminController::class, 'add_company'])->name('admin.add_company');
+    Route::post('/add-company',[AdminController::class, 'store_company'])->name('admin.store_company');
+    Route::post('/add-position',[AdminController::class, 'store_position'])->name('admin.store_position');
+    Route::get('/edit-company/{id}',[AdminController::class, 'edit_company'])->name('admin.edit_company');
+    Route::get('/edit-position/{id}',[AdminController::class, 'edit_position'])->name('admin.edit_position');
+    Route::put('/edit-company/{id}',[AdminController::class, 'update_company'])->name('admin.update_company');
+    Route::put('/edit-position/{id}',[AdminController::class, 'update_position'])->name('admin.update_position');
+    Route::delete('/delete-company',[AdminController::class, 'destory_company'])->name('admin.destory_company');
+    Route::delete('/delete-position',[AdminController::class, 'destory_position'])->name('admin.destory_position');
+
 });
 
 Route::prefix('user')->middleware('check.user')->group(function () {
