@@ -190,6 +190,54 @@
  <section class="content">
     <div class="container-fluid">
 {{-- <div class="container"> --}}
+
+{{-- <section class="content-header"> --}}
+    <div class="row" style="margin-top: 10px; !important">
+        <div class="col-md-6">
+            <!-- small box -->
+            <div class="small-box bg-light">
+                <div class="inner">
+                <p style="margin-bottom: 3px; font-size: 14px;">My Development</p>
+                  <div class="row">
+                    <div class="col-4 border-right">
+                      <div class="description-block">
+                        <h5 class="description-header">{{$completed_milestones_count}}</h5>
+                        <p style="color:green; font-size: 11px;">Completed</p>
+                        <!-- <span class="description-text">Completed</span> -->
+                      </div>
+                      <!-- /.description-block -->
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-4 border-right">
+                      <div class="description-block">
+                        <h5 class="description-header">{{$inprogress_milestones_count}}</h5>
+                        <p style="color:rgb(255, 153, 0); font-size: 11px;">In Progress</p>
+                        <!-- <span class="description-text">In Progress</span> -->
+                      </div>
+                      <!-- /.description-block -->
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-4">
+                      <div class="description-block">
+                        <h5 class="description-header">{{$overdue_milestones_count}}</h5>
+                        <p style="color:red; font-size: 11px;">Overdue</p>
+                        <!-- <span class="description-text">Overdue</span> -->
+                      </div>
+                      <!-- /.description-block -->
+                    </div>
+                    <!-- /.col -->
+                  </div>
+                </div>
+                {{-- <a href="{{route('user.milestone')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> --}}
+              </div>
+        </div>
+        <div class="col-md-6">
+            <div class="callout callout-warning">
+                <p>Development goals appears on your profile, however actions within goals are private.</p>
+              </div>
+        </div>
+      </div>
+
     <div class="row">
         <div class="col-md-12">
             <div class="page-header" style="border-bottom: 0px;margin: 0px; !important">
@@ -200,7 +248,7 @@
               @php
               $date_facturation = \Carbon\Carbon::parse($milestone->due_date);
               @endphp
-              @if (!$date_facturation->isPast() && $milestone->status != 0)
+              @if ($milestone->status != 0)
                 @php
                     $flag = true;
                 @endphp
@@ -216,16 +264,20 @@
               @php
               $date_facturation = \Carbon\Carbon::parse($milestone->due_date);
               @endphp
-            @if (!$date_facturation->isPast() && $milestone->status != 0)
+            @if ($milestone->status != 0)
             <li class="timeline-item">
                 <div  class="timeline-badge  @if ($milestone->status==1)
                     success
                     @elseif ($milestone->status==2)
                     warning
+                    @else
+                    danger
                 @endif"><i  class="glyphicon @if ($milestone->status==1)
                     glyphicon-check
                     @elseif ($milestone->status==2)
                     glyphicon-edit
+                    @else
+                    glyphicon-share
                 @endif"></i></div>
                 <div class="timeline-panel">
                     <div class="timeline-heading">
@@ -268,52 +320,7 @@
     </div>
 {{-- </div> --}}
 
-{{-- <section class="content-header"> --}}
-  <div class="row" style="margin-top: 10px; !important">
-    <div class="col-md-6">
-        <!-- small box -->
-        <div class="small-box bg-light">
-            <div class="inner">
-            <p style="margin-bottom: 3px; font-size: 14px;">My Development</p>
-              <div class="row">
-                <div class="col-4 border-right">
-                  <div class="description-block">
-                    <h5 class="description-header">{{$completed_milestones_count}}</h5>
-                    <p style="color:green; font-size: 11px;">Completed</p>
-                    <!-- <span class="description-text">Completed</span> -->
-                  </div>
-                  <!-- /.description-block -->
-                </div>
-                <!-- /.col -->
-                <div class="col-4 border-right">
-                  <div class="description-block">
-                    <h5 class="description-header">{{$inprogress_milestones_count}}</h5>
-                    <p style="color:rgb(255, 153, 0); font-size: 11px;">In Progress</p>
-                    <!-- <span class="description-text">In Progress</span> -->
-                  </div>
-                  <!-- /.description-block -->
-                </div>
-                <!-- /.col -->
-                <div class="col-4">
-                  <div class="description-block">
-                    <h5 class="description-header">{{$overdue_milestones_count}}</h5>
-                    <p style="color:red; font-size: 11px;">Overdue</p>
-                    <!-- <span class="description-text">Overdue</span> -->
-                  </div>
-                  <!-- /.description-block -->
-                </div>
-                <!-- /.col -->
-              </div>
-            </div>
-            {{-- <a href="{{route('user.milestone')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> --}}
-          </div>
-    </div>
-    <div class="col-md-6">
-        <div class="callout callout-warning">
-            <p>Development goals appears on your profile, however actions within goals are private.</p>
-          </div>
-    </div>
-  </div>
+
 
   <div class="row">
     <div class="col-md-6">
@@ -418,7 +425,11 @@
                                 @if ($date_facturation->isPast())
                                     <span class="badge" style="background-color: red;">
                                 @else
-                                    <span class="badge" style="background-color: green;">
+                                   @if ($milestone->status==1)
+                                   <span class="badge" style="background-color: green;">
+                                    @else
+                                    <span class="badge" style="background-color: rgb(255, 153, 0);">
+                                   @endif
                                 @endif
                                 {{ \Carbon\Carbon::parse($milestone->due_date)->format('d-m-Y')}}</span>
 
