@@ -193,7 +193,7 @@
 
 {{-- <section class="content-header"> --}}
     <div class="row" style="margin-top: 10px; !important">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <!-- small box -->
             <div class="small-box bg-light">
                 <div class="inner">
@@ -231,7 +231,7 @@
                 {{-- <a href="{{route('user.milestone')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> --}}
               </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="callout callout-warning">
                 <p>Development goals appears on your profile, however actions within goals are private.</p>
               </div>
@@ -442,7 +442,8 @@
                                  <option {{$milestone->status==0?'selected="true"':''}} value="0">Cancelled</option>
                              </select>
                           </td>
-                          <td style="float: center;">
+                          <td >
+                           <div class="row ml-4">
                             <div class="col-xs-6 p-1">
                                 <a href="{{route('user.notes',$milestone->id)}}" class="btn btn-sm btn-success float-right" id="goal">Tasks</a>
                             </div>
@@ -453,6 +454,7 @@
                                     @method('delete')
                                 </form>
                             </div>
+                           </div>
                           </td>
                       </tr>
                       @php

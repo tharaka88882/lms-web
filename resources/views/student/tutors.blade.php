@@ -318,7 +318,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <span class="users-list-date text-right">Timely Responce - {{ $tutor->avg_time }} hour</span>
+                                            <span class="users-list-date text-right">Average Responce Time - {{ $tutor->avg_time }} hour</span>
                                         </div>
                                     </div>
                                 @endforeach

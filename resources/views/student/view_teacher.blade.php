@@ -154,6 +154,10 @@
                                 {{-- <a href="{{ $teacher->linkedin_link }}" target="_blank">View Linkedin Profile
                                     <i class="fas fa-angle-double-right"></i></a> --}}
                             @endif
+                            @if ($teacher->user->about != null)
+                            <span>{{$teacher->user->about}}
+                                </span>
+                        @endif
                         </div>
                         <!-- /.card-header -->
 
@@ -167,7 +171,7 @@
                                         {{-- <ul> --}}
                                             <span>{{$qualification->institute->text}}
                                                 <br>
-                                                <small>Issued {{explode("-",$qualification->start_date)[1]}}/{{explode("-",$qualification->start_date)[0]}}</small>
+                                                <small>@if ($qualification->start_date!=null)Completed {{explode("-",$qualification->start_date)[1]}}/{{explode("-",$qualification->start_date)[0]}} @else Still studying @endif</small>
                                             </span>
                                         {{-- </ul> --}}
                                     </li>

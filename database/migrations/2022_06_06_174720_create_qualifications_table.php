@@ -17,7 +17,7 @@ class CreateQualificationsTable extends Migration
             $table->id();
             $table->string('text',2048)->nullable();
             $table->string('location',2048)->nullable();
-            $table->date('start_date');
+            $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->unsignedBigInteger('teacher_id');
             $table->unsignedBigInteger('institute_id');

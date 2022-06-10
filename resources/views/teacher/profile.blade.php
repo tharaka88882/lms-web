@@ -200,6 +200,18 @@
                                                 </span>
                                             @endif
                                         </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">About Me</label>
+                                            <textarea  name="about" class="form-control" rows="3">
+                                                {{ $user->about}}
+                                            </textarea>
+
+                                            @if ($errors->has('country'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('country') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
 
                                         {{-- <div class="form-group">
                                             <label for="exampleInputEmail1">Qualifications</label>
@@ -463,7 +475,7 @@
                                         <div class="form-group">
                                             <div class="form-check">
                                                 <input id="undergrad" class="form-check-input" type="checkbox">
-                                                <label class="form-check-label">Undergraduate</label>
+                                                <label class="form-check-label">Still studying</label>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -523,7 +535,7 @@
                                                 <td>{{ $qualification->text }}</td>
                                                 <td>{{ $qualification->institute->text }}</td>
                                                 <td><span
-                                                        class="badge">{{ explode('-', $qualification->start_date)[0] }}/{{ explode('-', $qualification->start_date)[1] }}</span>
+                                                        class="badge">@if ($qualification->start_date!=null) {{ explode('-', $qualification->start_date)[0] }}/{{ explode('-', $qualification->start_date)[1] }} @else Still studying @endif</span>
                                                 </td>
                                                 <td>
                                                     <button type="button" class="btn btn-block btn-outline-danger btn-xs"
@@ -770,15 +782,18 @@
                                     </div>
                                     <!-- /.row -->
 
-                                    <div class="row">
+                                    <div class="row ml-5">
 
                                         {{-- <div class="col-sm-2">
                                     <a class="btn btn-success" href="{{ route('student.view_conversation', $query->id) }}">Complaint</a>
                                 </div> --}}
-                                        <div class="col-xm-4 mr-2" style="text-align: left">
+                                        <div class="col-xs-2">
+                                            {{-- <a class="btn btn-warning" href="{{route('student.complaint',$teacher->id)}}">Complaint Mentor</a> --}}
+                                        </div>
+                                        <div class="col-xs-4 mr-2" style="text-align: left">
                                             <a class="btn btn-success">Connect</a>
                                         </div>
-                                        <div class="col-xm-4" style="text-align: center">
+                                        <div class="col-xs-4 ml-6" style="text-align: center">
                                             <button class="btn btn-warning"><i class="fa fa-star"></i>Rate
                                                 Now</button>
                                             {{-- <form action="{{ route('student.rate_teacher') }}" method="POST" class="form-inline" style="float: right" id="changeRatings">
@@ -797,7 +812,7 @@
                                     </form> --}}
                                         </div>
 
-                                        <div class="col-sm-4" style="text-align: right">
+                                        <div class="col-x-2">
                                             {{-- <a class="btn btn-warning" href="{{route('student.complaint',$teacher->id)}}">Complaint Mentor</a> --}}
                                         </div>
 
@@ -817,10 +832,14 @@
                                     <br>
 
                                     @if (Auth()->user()->userable->linkedin_link != null)
-                                        <a href="{{ Auth()->user()->userable->linkedin_link }}" target="_blank">View
+                                        {{-- <a href="{{ Auth()->user()->userable->linkedin_link }}" target="_blank">View
                                             Linkedin Profile
-                                            <i class="fas fa-angle-double-right"></i></a>
+                                            <i class="fas fa-angle-double-right"></i></a> --}}
                                     @endif
+                                    @if (Auth()->user()->about != null)
+                                    <span>{{Auth()->user()->about}}
+                                        <i class="fas fa-angle-double-right"></i></span>
+                                @endif
                                 </div>
                                 <!-- /.card-header -->
 
@@ -835,8 +854,8 @@
                                                         {{-- <ul> --}}
                                                         <span>{{ $qualification->institute->text }}
                                                             <br>
-                                                            <small>Issued
-                                                                {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }}</small>
+                                                            <small>@if ($qualification->start_date!= null)Completed
+                                                                {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }} @else Still studying @endif</small>
                                                         </span>
                                                         {{-- </ul> --}}
                                                     </li>
