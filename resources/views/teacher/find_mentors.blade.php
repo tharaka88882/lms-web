@@ -328,7 +328,7 @@
                                                 </div>
                                             </div>
                                             {{-- <div class="card-footer text-right"> --}}
-                                            <span class="users-list-date text-right">Timely Responce -
+                                            <span class="users-list-date text-right">Average Responce Time -
                                                 {{ $tutor->avg_time }} hour</span>
                                             {{-- </div> --}}
                                         </div>
