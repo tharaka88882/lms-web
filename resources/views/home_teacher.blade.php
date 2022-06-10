@@ -234,7 +234,7 @@
                         <!-- small box -->
                         <div class="small-box bg-light">
 
-                            <div class="inner">
+                            <div class="inner" style="padding-bottom: 16px; !important">
                                 <p style="margin-bottom: 3px;">My Development</p>
                                 <div class="row">
                                     <div class="col-4 border-right">
@@ -268,31 +268,31 @@
                             </div>
 
                             <!-- <div class="row">
-                                                                                                                                <div class="small-box bg-light">
-                                                                                                                                  <div class="inner">
-                                                                                                                                    <h3>{{ $my_milestones_count }}</h3>
+                                                                                                                                    <div class="small-box bg-light">
+                                                                                                                                      <div class="inner">
+                                                                                                                                        <h3>{{ $my_milestones_count }}</h3>
 
-                                                                                                                                    <p>Completed</p>
+                                                                                                                                        <p>Completed</p>
+                                                                                                                                      </div>
                                                                                                                                   </div>
-                                                                                                                              </div>
-                                                                                                                              <div class="small-box bg-light">
-                                                                                                                                  <div class="inner">
-                                                                                                                                    <h3>{{ $my_milestones_count }}</h3>
+                                                                                                                                  <div class="small-box bg-light">
+                                                                                                                                      <div class="inner">
+                                                                                                                                        <h3>{{ $my_milestones_count }}</h3>
 
-                                                                                                                                    <p>In Progess</p>
+                                                                                                                                        <p>In Progess</p>
+                                                                                                                                      </div>
                                                                                                                                   </div>
-                                                                                                                              </div>
-                                                                                                                              <div class="small-box bg-light">
-                                                                                                                                  <div class="inner">
-                                                                                                                                    <h3>{{ $my_milestones_count }}</h3>
+                                                                                                                                  <div class="small-box bg-light">
+                                                                                                                                      <div class="inner">
+                                                                                                                                        <h3>{{ $my_milestones_count }}</h3>
 
-                                                                                                                                    <p>Overdue</p>
+                                                                                                                                        <p>Overdue</p>
+                                                                                                                                      </div>
                                                                                                                                   </div>
-                                                                                                                              </div>
-                                                                                                                              </div> -->
-                            <!-- <div class="icon">
-                                                                                                                                    <i class="fas fa-flag"></i>
                                                                                                                                   </div> -->
+                            <!-- <div class="icon">
+                                                                                                                                        <i class="fas fa-flag"></i>
+                                                                                                                                      </div> -->
                             <a href="{{ route('user.milestone') }}" class="small-box-footer">More info <i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
@@ -346,51 +346,57 @@
                         </div> --}}
 
                         <div class="col-md-12 mb-2">
-                            <center><h5><b>What you need to do when your first sign up</b></h5></center>
-                         </div>
+                            <center>
+                                <h5><b>What you need to do when your first sign up</b></h5>
+                            </center>
+                        </div>
 
                         <div class="col-md-4 mb-2">
-                            <img src='{{url('public')}}/images/profile/First1.png' alt="You2Mentor" width="350px;"/>
+                            <img src='{{ url('public') }}/images/profile/First1.png' alt="You2Mentor" width="350px;" />
                         </div>
                         <div class="col-md-4 mb-2">
-                            <img src='{{url('public')}}/images/profile/First2.png' alt="You2Mentor" width="350px;"/>
+                            <img src='{{ url('public') }}/images/profile/First2.png' alt="You2Mentor" width="350px;" />
                         </div>
                         <div class="col-md-4 mb-2">
-                            <img src='{{url('public')}}/images/profile/First3.png' alt="You2Mentor" width="350px;"/>
+                            <img src='{{ url('public') }}/images/profile/First3.png' alt="You2Mentor" width="350px;" />
                         </div>
                         <div class="col-md-12 mb-2">
-                            <img src='{{url('public')}}/images/profile/Title 2.png' alt="You2Mentor" width="100%;"/>
-                        </div>
-
-                        <div class="col-md-12 mb-2">
-                            <center><h5><b>How to navigate if you are looking for a Mentors</b></h5></center>
-                         </div>
-
-                        <div class="col-md-4 mb-2">
-                            <img src='{{url('public')}}/images/profile/Second1.png' alt="You2Mentor" width="350px;"/>
-                        </div>
-                        <div class="col-md-4 mb-2">
-                            <img src='{{url('public')}}/images/profile/Second2.png' alt="You2Mentor" width="350px;"/>
-                        </div>
-                        <div class="col-md-4 mb-2">
-                            <img src='{{url('public')}}/images/profile/Second3.png' alt="You2Mentor" width="350px;"/>
+                            <img src='{{ url('public') }}/images/profile/Title 2.png' alt="You2Mentor" width="100%;" />
                         </div>
 
                         <div class="col-md-12 mb-2">
-                           <center><h5><b>How to navigate if you are a Mentor</b></h5></center>
+                            <center>
+                                <h5><b>How to navigate if you are looking for a Mentors</b></h5>
+                            </center>
                         </div>
 
                         <div class="col-md-4 mb-2">
-                            <img src='{{url('public')}}/images/profile/Third1.png' alt="You2Mentor" width="350px;"/>
+                            <img src='{{ url('public') }}/images/profile/Second1.png' alt="You2Mentor" width="350px;" />
                         </div>
                         <div class="col-md-4 mb-2">
-                            <img src='{{url('public')}}/images/profile/Third2.png' alt="You2Mentor" width="350px;"/>
+                            <img src='{{ url('public') }}/images/profile/Second2.png' alt="You2Mentor" width="350px;" />
                         </div>
                         <div class="col-md-4 mb-2">
-                            <img src='{{url('public')}}/images/profile/Third3.png' alt="You2Mentor" width="350px;"/>
+                            <img src='{{ url('public') }}/images/profile/Second3.png' alt="You2Mentor" width="350px;" />
                         </div>
 
-                      </div>
+                        <div class="col-md-12 mb-2">
+                            <center>
+                                <h5><b>How to navigate if you are a Mentor</b></h5>
+                            </center>
+                        </div>
+
+                        <div class="col-md-4 mb-2">
+                            <img src='{{ url('public') }}/images/profile/Third1.png' alt="You2Mentor" width="350px;" />
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <img src='{{ url('public') }}/images/profile/Third2.png' alt="You2Mentor" width="350px;" />
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <img src='{{ url('public') }}/images/profile/Third3.png' alt="You2Mentor" width="350px;" />
+                        </div>
+
+                    </div>
                     {{-- <div
                       id="Layer_1"  style="background-image: url('./../public/images/profile/dashboard-01.svg') !important;">
 

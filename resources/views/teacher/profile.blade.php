@@ -21,12 +21,12 @@
 
     <style>
         /* * {
-                                                                                                                                                                                box-sizing: border-box;
-                                                                                                                                                                            }
+                                                                                                                                                                                                                        box-sizing: border-box;
+                                                                                                                                                                                                                    }
 
-                                                                                                                                                                            body {
-                                                                                                                                                                                font: 16px Arial;
-                                                                                                                                                                            } */
+                                                                                                                                                                                                                    body {
+                                                                                                                                                                                                                        font: 16px Arial;
+                                                                                                                                                                                                                    } */
 
         /*the container must be positioned relative:*/
         .autocomplete {
@@ -113,7 +113,7 @@
                         <div class="card-header">
                             <h3 class="card-title">Profile</h3>
                             <button type="button" data-target="#modal-md" data-toggle="modal"
-                            class="btn btn-warning pull-right">View Profile</button>
+                                class="btn btn-warning pull-right">View Profile</button>
                         </div>
                         <!-- /.card-header -->
 
@@ -456,8 +456,14 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="autocomplete" style="width:100%;">
-                                                <label for="exampleInputEmail1">Company</label>
+                                                <label for="exampleInputEmail1">Institute</label>
                                                 <input id="myInput" type="text" name="company" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="form-check">
+                                                <input id="undergrad" class="form-check-input" type="checkbox">
+                                                <label class="form-check-label">Undergraduate</label>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -496,41 +502,41 @@
                             <h3 class="card-title">My Qualifications</h3>
                         </div>
                         <div class="card-body">
-                          <div class="table-responsive">
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 10px">#</th>
-                                        <th>Degree/Certificate</th>
-                                        <th>Company</th>
-                                        <th style="width: 40px">Year</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php
-                                        $i = 1;
-                                    @endphp
-                                    @foreach (Auth()->user()->userable->qualifications as $qualification)
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
                                         <tr>
-                                            <td>{{ $i }}</td>
-                                            <td>{{ $qualification->text }}</td>
-                                            <td>{{ $qualification->institute->text }}</td>
-                                            <td><span
-                                                    class="badge">{{ explode('-', $qualification->start_date)[0] }}/{{ explode('-', $qualification->start_date)[1] }}</span>
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-block btn-outline-danger btn-xs"
-                                                    onclick="removeQua('{{ $qualification->id }}');">Remove</button>
-                                            </td>
+                                            <th style="width: 10px">#</th>
+                                            <th>Degree/Certificate</th>
+                                            <th>Institute</th>
+                                            <th style="width: 40px">Year</th>
+                                            <th>Action</th>
                                         </tr>
+                                    </thead>
+                                    <tbody>
                                         @php
-                                            $i++;
+                                            $i = 1;
                                         @endphp
-                                    @endforeach
-                                </tbody>
-                            </table>
-                          </div>
+                                        @foreach (Auth()->user()->userable->qualifications as $qualification)
+                                            <tr>
+                                                <td>{{ $i }}</td>
+                                                <td>{{ $qualification->text }}</td>
+                                                <td>{{ $qualification->institute->text }}</td>
+                                                <td><span
+                                                        class="badge">{{ explode('-', $qualification->start_date)[0] }}/{{ explode('-', $qualification->start_date)[1] }}</span>
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-block btn-outline-danger btn-xs"
+                                                        onclick="removeQua('{{ $qualification->id }}');">Remove</button>
+                                                </td>
+                                            </tr>
+                                            @php
+                                                $i++;
+                                            @endphp
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -555,21 +561,25 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <div class="autocomplete @if ($errors->has('company')) {{ 'is-invalid' }} @endif" style="width:100%;">
+                                            <div class="autocomplete @if ($errors->has('company')) {{ 'is-invalid' }} @endif"
+                                                style="width:100%;">
                                                 <label for="exampleInputEmail1">Company</label>
                                                 <input id="ins" type="text" name="company" placeholder="">
                                             </div>
 
                                             @if ($errors->has('company'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('company') }}</strong>
-                                            </span>
-                                        @endif
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('company') }}</strong>
+                                                </span>
+                                            @endif
                                         </div>
 
-                                        {{-- <div class="col-xs-12">
-                                         <input id="present" class="form-control mr-8" type="checkbox" /></label>
-                                        </div> --}}
+                                        <div class="form-group">
+                                            <div class="form-check">
+                                                <input id="present" class="form-check-input" type="checkbox">
+                                                <label class="form-check-label">I am currently working in this role</label>
+                                            </div>
+                                        </div>
 
                                         <div class="row">
                                             {{-- <label for="exampleInputEmail1">Time of work</label> --}}
@@ -649,8 +659,13 @@
                                                 <td>{{ $experiences->institute->text }}</td>
                                                 <td><span
                                                         class="badge">{{ explode('-', $experiences->start_date)[0] }}/{{ explode('-', $experiences->start_date)[1] }}
-                                                        @if ($experiences->end_date!=null) - {{ explode('-', $experiences->end_date)[0] }}/{{ explode('-', $experiences->end_date)[1] }} @else - Present
-                                                        @endif</span>
+                                                        @if ($experiences->end_date != null)
+                                                            -
+                                                            {{ explode('-', $experiences->end_date)[0] }}/{{ explode('-', $experiences->end_date)[1] }}
+                                                        @else
+                                                            - Present
+                                                        @endif
+                                                    </span>
                                                 </td>
                                                 <td>
                                                     <button type="button" class="btn btn-block btn-outline-danger btn-xs"
@@ -818,11 +833,11 @@
                                                 @foreach (Auth()->user()->userable->qualifications as $qualification)
                                                     <li><strong>{{ $qualification->text }}</strong><br>
                                                         {{-- <ul> --}}
-                                                            <span>{{ $qualification->institute->text }}
-                                                                <br>
-                                                                <small>Issued
-                                                                    {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }}</small>
-                                                            </span>
+                                                        <span>{{ $qualification->institute->text }}
+                                                            <br>
+                                                            <small>Issued
+                                                                {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }}</small>
+                                                        </span>
                                                         {{-- </ul> --}}
                                                     </li>
                                                 @endforeach
@@ -836,12 +851,17 @@
                                                 @foreach (Auth()->user()->userable->experiences as $experience)
                                                     <li><strong>{{ $experience->position->text }}</strong><br>
                                                         {{-- <ul> --}}
-                                                            <span>{{ $experience->institute->text }}
-                                                                <br>
-                                                                <small>{{ explode('-', $experience->start_date)[1] }}/{{ explode('-', $experience->start_date)[0] }}
-                                                                   @if ($experience->end_date!=null) - {{ explode('-', $experience->end_date)[1] }}/{{ explode('-', $experience->end_date)[0] }}@else - Present
-                                                                   @endif </small>
-                                                            </span>
+                                                        <span>{{ $experience->institute->text }}
+                                                            <br>
+                                                            <small>{{ explode('-', $experience->start_date)[1] }}/{{ explode('-', $experience->start_date)[0] }}
+                                                                @if ($experience->end_date != null)
+                                                                    -
+                                                                    {{ explode('-', $experience->end_date)[1] }}/{{ explode('-', $experience->end_date)[0] }}
+                                                                @else
+                                                                    - Present
+                                                                @endif
+                                                            </small>
+                                                        </span>
                                                         {{-- </ul> --}}
                                                     </li>
                                                 @endforeach
@@ -1275,14 +1295,24 @@
 
         }
 
-        $('#present').click(function(){
-       if( $('#present').is(':checked')){
-       // alert("t");
-        $('#end_y').prop('disabled', true);
-    }else{
-           //alert("tjio");
-        $('#end_y').prop('disabled', false);
-    }
-      });
+        $('#present').click(function() {
+            if ($('#present').is(':checked')) {
+                // alert("t");
+                $('#end_y').prop('disabled', true);
+            } else {
+                //alert("tjio");
+                $('#end_y').prop('disabled', false);
+            }
+        });
+
+        $('#undergrad').click(function() {
+            if ($('#undergrad').is(':checked')) {
+                // alert("t");
+                $('#dpic').prop('disabled', true);
+            } else {
+                //alert("tjio");
+                $('#dpic').prop('disabled', false);
+            }
+        });
     </script>
 @endpush
