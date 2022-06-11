@@ -11,74 +11,96 @@ use Brian2694\Toastr\Facades\Toastr;
 class AdminController extends Controller
 {
     public function add_position(){
-        dd("test");
+        $positions = Position::paginate(20);
+        return view('admin.position', compact('positions'));
     }
 
     public function add_company(){
-        dd("test");
+        $companies = Institute::paginate(20);
+        return view('admin.company', compact('companies'));
     }
 
     public function store_position(Request $request){
+
+        $validated = $request->validate([
+            'name' => 'required',
+        ]);
+
         $position = new Position();
-        $position->text = $request->get('position');
+        $position->text = $request->get('name');
         $position->save();
 
-        Toastr::success('New Position added successfully :)', 'Success');
+        Toastr::success('New position added successfully :)', 'Success');
         return redirect()->route('admin.add_position');
     }
 
     public function store_company(Request $request){
+
+        $validated = $request->validate([
+            'name' => 'required',
+        ]);
+
         $company = new Institute();
-        $company->text = $request->get('company');
+        $company->text = $request->get('name');
         $company->save();
 
-        Toastr::success('New Company added successfully :)', 'Success');
+        Toastr::success('New Institute/Company added successfully :)', 'Success');
         return redirect()->route('admin.add_company');
     }
 
-    public function edit_position(){
-        dd("test");
+    public function edit_position($id){
+        $position =  Position::findOrFail($id);
+
+        return view('admin.edit_position', compact('id', 'position'));
     }
 
-    public function edit_company(){
-        dd("test");
+    public function edit_company($id){
+        $company =  Institute::findOrFail($id);
+
+        return view('admin.edit_company', compact('id', 'company'));
     }
 
     public function update_position(Request $request,$id){
+
+        $validated = $request->validate([
+            'name' => 'required',
+        ]);
+
         $position = Position::findOrfail($id);
-        $position->text = $request->get('position');
+        $position->text = $request->get('name');
         $position->save();
 
-        Toastr::success('New Position updated successfully :)', 'Success');
-        return redirect()->route('admin.edit_position');
+        Toastr::success('Position updated successfully :)', 'Success');
+        return redirect()->route('admin.add_position');
     }
 
     public function update_company(Request $request,$id){
+
+        $validated = $request->validate([
+            'name' => 'required',
+        ]);
+
         $company = Institute::findOrFail($id);
-        $company->text = $request->get('company');
+        $company->text = $request->get('name');
         $company->save();
 
-        Toastr::success('New Company updated successfully :)', 'Success');
-        return redirect()->route('admin.edit_company');
+        Toastr::success('Institute/Company updated successfully :)', 'Success');
+        return redirect()->route('admin.add_company');
     }
 
-    public function destory_position(Request $request){
-        $position = Position::findOrfail($request->get('id'));
+    public function destory_position($id){
+        $position = Position::findOrFail($id);
         $position->delete();
 
         Toastr::success('New Position deleted successfully :)', 'Success');
-        return array(
-            'success'=>true
-        );
+        return redirect()->route('admin.add_position');
     }
 
-    public function destory_company(Request $request){
-        $company = Institute::findOrFail($request->get('id'));
+    public function destory_company($id){
+        $company = Institute::findOrFail($id);
         $company->delete();
 
-        Toastr::success('New Company deleted successfully :)', 'Success');
-        return array(
-            'success'=>true
-        );
+        Toastr::success('Institute/Company deleted successfully :)', 'Success');
+        return redirect()->route('admin.add_company');
     }
 }
