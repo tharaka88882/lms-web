@@ -9,9 +9,11 @@ class Qualification extends Model
 {
     protected $fillable = [
         'text',
+        'field',
         'location',
         'start_date',
-        'end_date'
+        'end_date',
+        'grade'
 
     ];
 

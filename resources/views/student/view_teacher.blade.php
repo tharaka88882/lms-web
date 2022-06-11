@@ -167,15 +167,20 @@
                             <dd>
                                 <ul>
                                     @foreach ($teacher->qualifications as $qualification)
-                                    <li><strong>{{$qualification->text}}</strong><br>
+                                    <li><strong>{{ $qualification->text }}</strong><br>
                                         {{-- <ul> --}}
-                                            <span>{{$qualification->institute->text}}
-                                                <br>
-                                                <small>@if ($qualification->start_date!=null)Completed {{explode("-",$qualification->start_date)[1]}}/{{explode("-",$qualification->start_date)[0]}} @else Still studying @endif</small>
-                                            </span>
+                                        <span>{{ $qualification->institute->text }}
+                                            <br>
+                                            {{ $qualification->field }}<br>
+                                            <small>@if ($qualification->end_date!= null)Completed
+                                                {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }}  -
+                                                {{ explode('-', $qualification->end_date)[1] }}/{{ explode('-', $qualification->end_date)[0] }} @else {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }} - Present <br> Grade-{{$qualification->grade}} @endif
+
+                                            </small>
+                                        </span>
                                         {{-- </ul> --}}
                                     </li>
-                                    @endforeach
+                                @endforeach
                                     </ul>
                             </dd>
                             <dt>Experience</dt>

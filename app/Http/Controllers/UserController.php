@@ -366,9 +366,11 @@ class UserController extends Controller
 
         $qualification = new Qualification();
         $qualification->text = $request->get('qualification');
+        $qualification->field = $request->get('field');
         // $qualification->location = $request->get('location');
-        $qualification->start_date = $request->get('date');
-        // $qualification->end_date = $request->get('end_date');
+        $qualification->start_date = $request->get('start_date');
+        $qualification->end_date = $request->get('end_date');
+        $qualification->grade = $request->get('grade');
         $qualification->teacher_id = Auth()->user()->userable->id;
         $qualification->institute_id = $institute->id;
         $qualification->save();

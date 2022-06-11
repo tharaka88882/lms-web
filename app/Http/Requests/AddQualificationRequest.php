@@ -25,7 +25,10 @@ class AddQualificationRequest extends FormRequest
     {
         return [
             'qualification'=>'required',
-            'company'=>'required'
+            'company'=>'required',
+            'start_date'=>'required',
+            'field'=>'required'
+
          ];
     }
 }

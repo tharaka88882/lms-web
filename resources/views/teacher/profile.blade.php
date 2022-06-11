@@ -455,6 +455,13 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
+                                            <div class="autocomplete" style="width:100%;">
+                                                <label for="exampleInputEmail1">Institute</label>
+                                                <input id="myInput" type="text" name="company" placeholder="">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
                                             <label for="exampleInputEmail1">Degree/Certificate</label>
                                             <input name="qualification"
                                                 class="form-control @if ($errors->has('qualification')) {{ 'is-invalid' }} @endif"
@@ -466,20 +473,29 @@
                                                 </span>
                                             @endif
                                         </div>
+
+
                                         <div class="form-group">
-                                            <div class="autocomplete" style="width:100%;">
-                                                <label for="exampleInputEmail1">Institute</label>
-                                                <input id="myInput" type="text" name="company" placeholder="">
-                                            </div>
+                                            <label for="exampleInputEmail1">Field of study</label>
+                                            <input name="field"
+                                                class="form-control @if ($errors->has('field')) {{ 'is-invalid' }} @endif"
+                                                type="text" />
+
+                                            @if ($errors->has('field'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('field') }}</strong>
+                                                </span>
+                                            @endif
                                         </div>
+
                                         <div class="form-group">
                                             <div class="form-check">
                                                 <input id="undergrad" class="form-check-input" type="checkbox">
                                                 <label class="form-check-label">Still studying</label>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Year</label>
+                                        {{-- <div class="form-group">
+                                            <label for="exampleInputEmail1">Sr</label>
                                             <input id="dpic" name="date"
                                                 class="form-control @if ($errors->has('date')) {{ 'is-invalid' }} @endif"
                                                 type="date" />
@@ -489,7 +505,54 @@
                                                     <strong>{{ $errors->first('date') }}</strong>
                                                 </span>
                                             @endif
+                                        </div> --}}
+
+                                        <div class="row">
+                                            {{-- <label for="exampleInputEmail1">Time of work</label> --}}
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Start</label>
+                                                    <input name="start_date" placeholder="Start Year"
+                                                        class="form-control @if ($errors->has('start_date')) {{ 'is-invalid' }} @endif"
+                                                        type="date" />
+
+                                                    @if ($errors->has('start_date'))
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $errors->first('start_date') }}</strong>
+                                                        </span>
+                                                    @endif
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">End</label>
+                                                    <input id="dpic" name="end_date" placeholder="End Year"
+                                                        class="form-control @if ($errors->has('end_date')) {{ 'is-invalid' }} @endif"
+                                                        type="date" />
+
+                                                    @if ($errors->has('end_date'))
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $errors->first('end_date') }}</strong>
+                                                        </span>
+                                                    @endif
+                                                </div>
+                                            </div>
                                         </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Grade (Optional)</label>
+                                            <input name="grade"
+                                                class="form-control @if ($errors->has('grade')) {{ 'is-invalid' }} @endif"
+                                                type="text" />
+
+                                            @if ($errors->has('grade'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('grade') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+
                                         {{-- <div class="form-group">
                                             <label for="exampleInputEmail1">Your Qualifications</label>
                                             <textarea disabled name="skills" class="form-control @if ($errors->has('skills')) {{ 'is-invalid' }} @endif"
@@ -519,9 +582,11 @@
                                     <thead>
                                         <tr>
                                             <th style="width: 10px">#</th>
-                                            <th>Degree/Certificate</th>
                                             <th>Institute</th>
-                                            <th style="width: 40px">Year</th>
+                                            <th>Degree/Certificate</th>
+                                            <th>Field of study</th>
+                                            <th style="width: 40px">Study Period</th>
+                                            <th>Grade</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -532,11 +597,21 @@
                                         @foreach (Auth()->user()->userable->qualifications as $qualification)
                                             <tr>
                                                 <td>{{ $i }}</td>
-                                                <td>{{ $qualification->text }}</td>
                                                 <td>{{ $qualification->institute->text }}</td>
+                                                <td>{{ $qualification->text }}</td>
+                                                <td>{{ $qualification->field }}</td>
                                                 <td><span
-                                                        class="badge">@if ($qualification->start_date!=null) {{ explode('-', $qualification->start_date)[0] }}/{{ explode('-', $qualification->start_date)[1] }} @else Still studying @endif</span>
-                                                </td>
+                                                    class="badge">{{ explode('-', $qualification->start_date)[0] }}/{{ explode('-', $qualification->start_date)[1] }}
+                                                    @if ($qualification->end_date != null)
+                                                        -
+                                                        {{ explode('-', $qualification->end_date)[0] }}/{{ explode('-', $qualification->end_date)[1] }}
+                                                    @else
+                                                        - Present
+                                                    @endif
+                                                </span>
+                                            </td>
+                                            <td>{{ $qualification->grade }}</td>
+
                                                 <td>
                                                     <button type="button" class="btn btn-block btn-outline-danger btn-xs"
                                                         onclick="removeQua('{{ $qualification->id }}');">Remove</button>
@@ -854,8 +929,12 @@
                                                         {{-- <ul> --}}
                                                         <span>{{ $qualification->institute->text }}
                                                             <br>
-                                                            <small>@if ($qualification->start_date!= null)Completed
-                                                                {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }} @else Still studying @endif</small>
+                                                            {{ $qualification->field }}<br>
+                                                            <small>@if ($qualification->end_date!= null)Completed
+                                                                {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }}  -
+                                                                {{ explode('-', $qualification->end_date)[1] }}/{{ explode('-', $qualification->end_date)[0] }} @else {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }} - Present <br> Grade-{{$qualification->grade}} @endif
+
+                                                            </small>
                                                         </span>
                                                         {{-- </ul> --}}
                                                     </li>
