@@ -77,8 +77,11 @@ class SubjectController extends Controller
      */
 
     public function store(Request $request)
-
     {
+
+        $validated = $request->validate([
+            'name' => 'required',
+        ]);
 
         $subject_list = Subject::all();
 
@@ -183,6 +186,10 @@ class SubjectController extends Controller
     public function update(Request $request, $id)
 
     {
+
+        $validated = $request->validate([
+            'name' => 'required',
+        ]);
 
         $subject = Subject::findOrFail($id);
 

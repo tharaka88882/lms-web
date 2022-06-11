@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Edit Mentoring Topics
+    Edit Mentor Institute/Company
 @endsection
 
 @push('styles')
@@ -30,35 +30,25 @@
         <div class="col-sm-6">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Edit Mentoring Topic</h3>
+                    <h3 class="card-title">Edit Mentor Institute/Company</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form action="{{ route('admin.update_subject', $id) }}" method="POST">
+                <form action="{{ route('admin.update_company', $id) }}" method="POST">
                     <div class="card-body">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
-                            <label for="SubjectName"> Mentoring Topic Name</label>
+                            <label for="PositionName">Institute/Company Name</label>
                             <input type="text"
-                                class="form-control @if ($errors->has('name')) {{ 'is-invalid' }} @endif"
-                                id="exampleInputEmail1" name="name" placeholder="Subject Name"
-                                value="{{ $subject->name }}">
+                                class="form-control @if ($errors->has('name')) {{ 'is-invalid' }} @endif" id="name"
+                                name="name" placeholder="Position Name" value="{{ $company->text }}">
 
                             @if ($errors->has('name'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('name') }}</strong>
                                 </span>
                             @endif
-                        </div>
-                        <!-- checkbox -->
-                        <div class="form-group">
-                            <label for="SubjectName">Status</label>
-                            <div class="form-check">
-                                <input class="form-check-input" name="status" type="checkbox"
-                                    {{ $subject->status == '1' ? 'Checked' : '' }}>
-                                <label class="form-check-label">Active</label>
-                            </div>
                         </div>
                     </div>
                     <!-- /.card-body -->
@@ -70,7 +60,7 @@
                         </div>
                     </div>
                 </form>
-                <form action="{{ route('admin.delete_subject', $id) }}" id="deleteform" method="POST">
+                <form action="{{ route('admin.destory_company', $id) }}" id="deleteform" method="POST">
                     @csrf
                     @method('delete')
                 </form>

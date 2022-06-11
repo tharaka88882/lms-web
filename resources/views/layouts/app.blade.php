@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title')</title>
-    <link rel="icon" href="{{ url('public/') }}/theme/admin/dist/img/logo/favi_logo.jpeg" type="image/x-icon"/>
+    <link rel="icon" href="{{ url('public/') }}/theme/admin/dist/img/logo/favi_logo.jpeg" type="image/x-icon" />
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -45,7 +45,8 @@
     <!-- Theme style -->
 
     <!-- Toastr Style-->
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
     <link rel="stylesheet" href="{{ url('public/') }}/theme/admin/select2/dist/css/select2.min.css">
 
@@ -62,10 +63,11 @@
     <!-- Site wrapper -->
     <div class="wrapper">
 
-  <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="{{ url('public/') }}/theme/admin/dist/img/dashboard_logo.png" alt="YOU2MENTOR_Logo" height="240" width="240">
-  </div>
+        <!-- Preloader -->
+        <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__shake" src="{{ url('public/') }}/theme/admin/dist/img/dashboard_logo.png"
+                alt="YOU2MENTOR_Logo" height="240" width="240">
+        </div>
 
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -76,7 +78,7 @@
                             class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="{{route('dashboard')}}" class="nav-link">Home</a>
+                    <a href="{{ route('dashboard') }}" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     {{-- <a href="{{route('student.payment_packages')}}" class="nav-link">Premium Packages</a> --}}
@@ -118,12 +120,14 @@
                         <span class="badge badge-warning navbar-badge" id="notification_icon_count"></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <span class="dropdown-item dropdown-header"><span id="notificaton_count">0</span> Notifications</span>
+                        <span class="dropdown-item dropdown-header"><span id="notificaton_count">0</span>
+                            Notifications</span>
                         <div class="dropdown-divider"></div>
                         <div id="notification_panel">
 
                         </div>
-                        <a href="{{route('user.notifications')}}" class="dropdown-item dropdown-footer">See All Notifications</a>
+                        <a href="{{ route('user.notifications') }}" class="dropdown-item dropdown-footer">See All
+                            Notifications</a>
                     </div>
                 </li>
                 <!-- User Account: style can be found in dropdown.less -->
@@ -133,8 +137,9 @@
                             <div class="user-panel">
                                 <img style="width: 25px; height: 25px; margin-top: 5px; vertical-align: top !important; margin-left: 15px;"
                                     onerror=" this.src='{{ url('public') }}/theme/admin/dist/img/default-avatar.jpg'"
-                                    @if (Auth()->user()->image != null) src="{{ url('public') }}/images/profile/{{ Auth()->user()->image }}" @else src="" @endif class="img-circle elevation-2" alt="User Image"
-                                    title="@if (Auth()->user()->image != null) {{ url('public/') }}/images/profile/{{Auth()->user()->image}} @endif" >
+                                    @if (Auth()->user()->image != null) src="{{ url('public') }}/images/profile/{{ Auth()->user()->image }}" @else src="" @endif
+                                    class="img-circle elevation-2" alt="User Image"
+                                    title="@if (Auth()->user()->image != null) {{ url('public/') }}/images/profile/{{ Auth()->user()->image }} @endif">
 
                                 <div class="info">
                                     <span style="text-transform: capitalize">{{ Auth()->user()->name }}</span>
@@ -151,19 +156,22 @@
                                         <li><a href="{{ route('user.profile') }}">Profile</a></li>
                                     </ul>
                                     <ul style="list-style: none; padding-left: 0px">
-                                        <li><a href="#!"  data-toggle="modal" data-target="#modal-md">Refer a Friend</a></li>
+                                        <li><a href="#!" data-toggle="modal" data-target="#modal-md">Refer a Friend</a>
+                                        </li>
                                     </ul>
                                     <ul style="list-style: none; padding-left: 0px">
                                         <li><a target="_blank" href="https://you2mentor.com/rss-2/">RSS Feed</a></li>
                                     </ul>
                                     <ul style="list-style: none; padding-left: 0px">
-                                        <li><a target="_blank" href="https://you2mentor.com/contact">Help and Support</a></li>
+                                        <li><a target="_blank" href="https://you2mentor.com/contact">Help and
+                                                Support</a></li>
                                     </ul>
                                     <ul style="list-style: none; padding-left: 0px">
-                                    <form action="{{ route('logout') }}" method="post">
-                                        @csrf @method('post')
-                                        <button class="btn btn-link btn-flat pt-0" style="padding-left: 0">Sign out</button>
-                                    </form>
+                                        <form action="{{ route('logout') }}" method="post">
+                                            @csrf @method('post')
+                                            <button class="btn btn-link btn-flat pt-0" style="padding-left: 0">Sign
+                                                out</button>
+                                        </form>
                                     </ul>
                                 </div>
                             </li>
@@ -187,16 +195,15 @@
         {{-- <aside class="main-sidebar sidebar-light-olive elevation-4" style="position: fixed; height: 100%;"> --}}
         <aside class="main-sidebar sidebar-light-blue elevation-4" style="position: fixed; height: 100%;">
             <!-- Brand Logo -->
-            <a href="{{route('dashboard')}}" class="brand-link">
+            <a href="{{ route('dashboard') }}" class="brand-link">
 
                 <img src="{{ url('public/') }}/theme/admin/dist/img/logo/you2logo.png" alt="AdminLTE Logo"
-
                     class="img-push elevation-1" style="margin-left: 75px; width: 100px; height: 100px;">
                 {{-- <span class="brand-text font-weight-light">YOU2MENTOR</span> --}}
             </a>
 
             <!-- Sidebar -->
-            <div class="sidebar">
+            <div class="sidebar" style="height: calc(85% - (3.5rem + 1px)); !important">
                 <!-- SidebarSearch Form -->
                 <div class="form-inline">
                     <div class="input-group pt-3" data-widget="sidebar-search">
@@ -251,39 +258,40 @@
 
     <!-- jQuery -->
 
-        <!-- SlimScroll -->
-           <!-- /.modal -->
-  <div class="modal fade" id="modal-md">
-    <div class="modal-dialog modal-md">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Refer to a Friend</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+    <!-- SlimScroll -->
+    <!-- /.modal -->
+    <div class="modal fade" id="modal-md">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Refer to a Friend</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route('user.refer_friend') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="milestone_id" value="" />
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Friend's Email</label>
+                            <input type="email" name="email" class="form-control" placeholder="Enter Email Here"
+                                required />
+                            <input type="hidden" name="username" value="{{ Auth()->user()->name }}" />
+                            <!-- <input type="test" name="due_date" class="form-control" placeholder="Enter ..."> -->
+                        </div>
+                        <div class="modal-footer justify-content-between btn-group">
+                            <button onclick="" type="submit" class="btn btn-primary">Send</button>
+                            {{-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> --}}
+                        </div>
+                    </div>
+                </form>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
         </div>
-        <form action="{{route('user.refer_friend')}}" method="POST">
-            @csrf
-            <input type="hidden" name="milestone_id" value=""/>
-        <div class="modal-body">
-              <div class="form-group">
-                        <label>Friend's Email</label>
-                        <input type="email" name="email" class="form-control" placeholder="Enter Email Here" required />
-                        <input type="hidden" name="username" value="{{ Auth()->user()->name }}"/>
-                        <!-- <input type="test" name="due_date" class="form-control" placeholder="Enter ..."> -->
-              </div>
-        <div class="modal-footer justify-content-between btn-group">
-          <button onclick="" type="submit" class="btn btn-primary">Send</button>
-          {{-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> --}}
-        </div>
-      </div>
-        </form>
-      <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
-  </div>
-  </div>
-  <!-- /.modal -->
+    <!-- /.modal -->
 
 
     <script src="{{ url('public/') }}/theme/admin/plugins/jquery/jquery.min.js"></script>
@@ -313,15 +321,15 @@
     {!! Toastr::message() !!}
 
     @stack('scripts')
- <!-- Select2 -->
+    <!-- Select2 -->
     <script src="{{ url('public/') }}/theme/admin/select2/dist/js/select2.full.min.js"></script>
 
     <script>
-        function check_notifications(){
+        function check_notifications() {
             console.log('checking notifications');
-            $.post("{{route('user.json.notifications')}}", {
+            $.post("{{ route('user.json.notifications') }}", {
                 _token: '{{ csrf_token() }}'
-            } ,function(data, status){
+            }, function(data, status) {
 
                 //alert("Data: " + data + "\nStatus: " + status);
 
@@ -330,10 +338,12 @@
                 $('#notificaton_count').html(json.data.length);
                 $('#notification_icon_count').html(json.data.length);
                 var notifications = '';
-                for(var i=0; i<json.data.length; i++){
-                    notifications += "<a href=\""+json.data[i].url+"\" class=\"dropdown-item\">";
-                    notifications += "    <i class=\"fas fa-envelope mr-2\"></i> "+json.data[i].message;
-                    notifications += "    <br><small class=\"float-right text-muted text-sm\" style=\"font-size:8px;\">"+json.data[i].created_at+"</small><br>";
+                for (var i = 0; i < json.data.length; i++) {
+                    notifications += "<a href=\"" + json.data[i].url + "\" class=\"dropdown-item\">";
+                    notifications += "    <i class=\"fas fa-envelope mr-2\"></i> " + json.data[i].message;
+                    notifications +=
+                        "    <br><small class=\"float-right text-muted text-sm\" style=\"font-size:8px;\">" + json
+                        .data[i].created_at + "</small><br>";
                     notifications += "</a>";
                     notifications += "<div class=\"dropdown-divider\"></div>";
                 }
@@ -342,7 +352,7 @@
             });
         }
         check_notifications();
-        setInterval( check_notifications,20000);
+        setInterval(check_notifications, 20000);
     </script>
 
 </body>

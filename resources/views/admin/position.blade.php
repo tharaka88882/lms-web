@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Mentor Working Industries
+    Mentor Positions
 @endsection
 
 @push('styles')
@@ -30,18 +30,18 @@
         <div class="col-sm-6">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Add Industry</h3>
+                    <h3 class="card-title">Add Positions</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form action="{{ route('admin.industry') }}" method="POST">
+                <form action="{{ route('admin.store_position') }}" method="POST">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="SubjectName"> Industry Name</label>
+                            <label for="SubjectName"> Positions Name</label>
                             <input type="text"
                                 class="form-control @if ($errors->has('name')) {{ 'is-invalid' }} @endif" id="name"
-                                name="name" placeholder="Mentoring Topic Name">
+                                name="name" placeholder="Positions Name">
 
                             @if ($errors->has('name'))
                                 <span class="invalid-feedback" role="alert">
@@ -53,7 +53,7 @@
                     <!-- /.card-body -->
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-success pull-right">Save</button>
+                        <button type="submit" class="btn btn-success pull-right">Add</button>
                     </div>
                 </form>
             </div>
@@ -64,10 +64,10 @@
     <section class="content">
 
         <!-- Default box -->
-        <div class="col-md-9">
+        <div class="col-md-7">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Industries List</h3>
+                    <h3 class="card-title">Positions List</h3>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -75,8 +75,7 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Name</th>
-                                    <th>Status</th>
+                                    <th>Position</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -84,23 +83,21 @@
                                 @php
                                     $i = 1;
                                 @endphp
-                                @foreach ($industries as $industry)
+                                @foreach ($positions as $position)
                                     <tr>
                                         <td>{{ $i }}</td>
-                                        <td>{{ $industry->name }}</td>
+                                        <td>{{ $position->text }}</td>
                                         <td>
-                                            <h5><span
-                                                    class="badge badge-secondary">{{ $industry->status == '1' ? 'Active' : 'Inactive' }}</span>
-                                                <h5>
-                                        </td>
-                                        <td>
-                                            <button type="button" class="btn btn-danger"
-                                                id="deleteBtn-{{ $industry->id }}">Delete</button>
-                                            <form action="{{ route('admin.delete_industry', $industry->id) }}"
-                                                id="deleteform-{{ $industry->id }}" method="POST">
+                                            <a class="btn btn-sm btn-warning"
+                                                href="{{ route('admin.edit_position', $position->id) }}"><i
+                                                    class="far fa-edit"></i> Edit</a>
+                                            {{-- <button type="button" class="btn btn-danger"
+                                                id="deleteBtn-{{ $position->id }}">Delete</button>
+                                            <form action="{{ route('admin.destory_position', $position->id) }}"
+                                                id="deleteform-{{ $position->id }}" method="POST">
                                                 @csrf
                                                 @method('delete')
-                                            </form>
+                                            </form> --}}
                                         </td>
                                     </tr>
                                     @php

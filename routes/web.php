@@ -120,7 +120,7 @@ Route::prefix('admin')->middleware('check.user')->group(function () {
     Route::put('/settings', 'App\Http\Controllers\PaymentController@update_settings')->name('admin.update_settings');
 
     //Add Position & Company ------------------------------------------------------------------------------------------------
-    Route::get('/add-position',[AdminController::class, 'add_position'])->name('admin.add_position');
+   Route::get('/add-position',[AdminController::class, 'add_position'])->name('admin.add_position');
     Route::get('/add-company',[AdminController::class, 'add_company'])->name('admin.add_company');
     Route::post('/add-company',[AdminController::class, 'store_company'])->name('admin.store_company');
     Route::post('/add-position',[AdminController::class, 'store_position'])->name('admin.store_position');
@@ -128,8 +128,8 @@ Route::prefix('admin')->middleware('check.user')->group(function () {
     Route::get('/edit-position/{id}',[AdminController::class, 'edit_position'])->name('admin.edit_position');
     Route::put('/edit-company/{id}',[AdminController::class, 'update_company'])->name('admin.update_company');
     Route::put('/edit-position/{id}',[AdminController::class, 'update_position'])->name('admin.update_position');
-    Route::delete('/delete-company',[AdminController::class, 'destory_company'])->name('admin.destory_company');
-    Route::delete('/delete-position',[AdminController::class, 'destory_position'])->name('admin.destory_position');
+    Route::delete('/delete-company/{id}',[AdminController::class, 'destory_company'])->name('admin.destory_company');
+    Route::delete('/delete-position/{id}',[AdminController::class, 'destory_position'])->name('admin.destory_position');
 
 });
 
