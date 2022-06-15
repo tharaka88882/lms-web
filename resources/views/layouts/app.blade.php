@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title')</title>
-    <link rel="icon" href="{{ url('public/') }}/theme/admin/dist/img/logo/favi_logo.jpeg" type="image/x-icon" />
+    <link rel="icon" href="{{ url('public/') }}/theme/admin/dist/img/logo/favnew.ico" type="image/x-icon" />
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -244,7 +244,8 @@
             <div class="float-right d-none d-sm-block">
                 <b>Version</b> 1.0.0
             </div>
-            <strong>Copyright &copy; 2022 You2Mentor<a href="#"></a>.</strong><a href="https://ceylonxcorp.com/"> Powered By CeylonX Corporation</a>
+            <strong>Copyright &copy; 2022 You2Mentor<a href="#"></a>.</strong><a href="https://ceylonxcorp.com/">
+                Powered By CeylonX Corporation</a>
         </footer>
 
         <!-- Control Sidebar -->
