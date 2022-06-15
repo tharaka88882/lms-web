@@ -6,6 +6,11 @@
 
 @push('styles')
     {{-- <style>h1 {background-color: red !important}</style> --}}
+     <style>
+        .eletest{
+            height: 37px !important;
+        }
+    </style>
 @endpush
 
 @section('content')
@@ -133,21 +138,6 @@
 
                                             <label> Mentoring Topics:</label>
 
-                                            {{-- <select class="select2 form-control" data-placeholder="Any"
-
-                                                style="width: 100%;" name="search_subject">
-
-                                                <option>Any</option>
-
-                                                @foreach ($subjects as $subject)
-
-                                                    <option value="{{ $subject->id }}" @if ($subject->id == $request->get('search_subject')) {{ 'selected' }} @endif>
-
-                                                        {{ $subject->name }}</option>
-
-                                                @endforeach
-
-                                            </select> --}}
 
                                              <select name="search_subject" class="form-control select22 @if($errors->has('search_subject')) {{'is-invalid'}} @endif" id="select2-echannel-doctor">
 
@@ -537,6 +527,13 @@ function saveNote1(id){
         });
     });
 
+
+    $( document ).ready(function() {
+        document.querySelectorAll('[role="combobox"]').forEach(function (el){
+        el.classList.add("eletest");
+        });
+        console.log( "ready!" );
+    });
 </script>
 @endpush
 

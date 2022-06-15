@@ -26,7 +26,8 @@ class AddExperienceRequest extends FormRequest
         return [
            'position'=>'required',
            'company'=>'required',
-           'start_date'=>'required'
+           'start_date'=>'required',
+           'location'=>'required'
         ];
     }
 }

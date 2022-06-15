@@ -244,7 +244,7 @@
             <div class="float-right d-none d-sm-block">
                 <b>Version</b> 1.0.0
             </div>
-            <strong>Copyright &copy; 2022 You2Mentor.<a href="#"></a>.</strong> All rights reserved.
+            <strong>Copyright &copy; 2022 You2Mentor<a href="#"></a>.</strong><a href="https://ceylonxcorp.com/"> Powered By CeylonX Corporation</a>
         </footer>
 
         <!-- Control Sidebar -->

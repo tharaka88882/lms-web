@@ -662,11 +662,26 @@
                                         </div>
 
                                         <div class="form-group">
+                                            <div class="autocomplete" style="width:100%;">
+                                                <label for="exampleInputEmail1">Location</label>
+                                                <input  type="text" name="location" class="@if ($errors->has('location')) {{ 'is-invalid' }} @endif">
+                                            </div>
+
+                                            @if ($errors->has('location'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('location') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
                                             <div class="form-check">
                                                 <input id="present" class="form-check-input" type="checkbox">
                                                 <label class="form-check-label">I am currently working in this role</label>
                                             </div>
                                         </div>
+
+
 
                                         <div class="row">
                                             {{-- <label for="exampleInputEmail1">Time of work</label> --}}
@@ -731,6 +746,7 @@
                                             <th style="width: 10px">#</th>
                                             <th>Position</th>
                                             <th>Company</th>
+                                            <th>Location</th>
                                             <th style="width: 40px">Work Period</th>
                                             <th>Action</th>
                                         </tr>
@@ -744,6 +760,7 @@
                                                 <td>{{ $i }}</td>
                                                 <td>{{ $experiences->position->text }}</td>
                                                 <td>{{ $experiences->institute->text }}</td>
+                                                <td>{{ $experiences->location }}</td>
                                                 <td><span
                                                         class="badge">{{ explode('-', $experiences->start_date)[0] }}/{{ explode('-', $experiences->start_date)[1] }}
                                                         @if ($experiences->end_date != null)
@@ -958,6 +975,8 @@
                                                                 @else
                                                                     - Present
                                                                 @endif
+                                                                <br>
+                                                                Location : {{$experience->location}}
                                                             </small>
                                                         </span>
                                                         {{-- </ul> --}}

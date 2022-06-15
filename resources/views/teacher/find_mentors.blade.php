@@ -10,6 +10,11 @@
 
 @push('styles')
     {{-- <style>h1 {background-color: red !important}</style> --}}
+    <style>
+        .eletest{
+            height: 37px !important;
+        }
+    </style>
 @endpush
 
 
@@ -64,26 +69,10 @@
 
                                         <div class="col-lg-3">
 
-                                            <div class="form-group" id="currentModal"
-                                                style="padding-bottom: 9px; !important">
+                                            <div class="form-group" id="currentModal">
 
-                                                <label style="padding-bottom: 2px !important;"> Mentoring Topics:</label>
+                                                <label> Mentoring Topics:</label>
 
-                                                {{-- <select class="select2 form-control" data-placeholder="Any"
-
-                                                    style="width: 100%;" name="search_subject">
-
-                                                    <option>Any</option>
-
-                                                    @foreach ($subjects as $subject)
-
-                                                        <option value="{{ $subject->id }}" @if ($subject->id == $request->get('search_subject')) {{ 'selected' }} @endif>
-
-                                                            {{ $subject->name }}</option>
-
-                                                    @endforeach
-
-                                                </select> --}}
 
                                                 <select name="search_subject"
                                                     class="form-control select22 @if ($errors->has('search_subject')) {{ 'is-invalid' }} @endif"
@@ -388,5 +377,12 @@
                 dropdownParent: $('#currentModal')
             });
         });
+
+        $( document ).ready(function() {
+        document.querySelectorAll('[role="combobox"]').forEach(function (el){
+        el.classList.add("eletest");
+        });
+        console.log( "ready!" );
+    });
     </script>
 @endpush

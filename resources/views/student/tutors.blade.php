@@ -13,6 +13,11 @@
 @push('styles')
 
     {{-- <style>h1 {background-color: red !important}</style> --}}
+    <style>
+        .eletest{
+            height: 37px !important;
+        }
+    </style>
 
 @endpush
 
@@ -79,29 +84,16 @@
 
                                         </div>
 
+
                                         <div class="col-lg-3">
 
                                             <div class="form-group" id="currentModal">
 
                                                 <label> Mentoring Topics:</label>
 
-                                                {{-- <select class="select2 form-control" data-placeholder="Any"
 
-                                                    style="width: 100%;" name="search_subject">
 
-                                                    <option>Any</option>
-
-                                                    @foreach ($subjects as $subject)
-
-                                                        <option value="{{ $subject->id }}" @if ($subject->id == $request->get('search_subject')) {{ 'selected' }} @endif>
-
-                                                            {{ $subject->name }}</option>
-
-                                                    @endforeach
-
-                                                </select> --}}
-
-                                                 <select name="search_subject" class="form-control select22 @if($errors->has('search_subject')) {{'is-invalid'}} @endif" id="select2-echannel-doctor">
+                                                 <select  name="search_subject" class="form-control select22 select2 @if($errors->has('search_subject')) {{'is-invalid'}} @endif" id="select2-echannel-doctor"  size="30">
 
                                                     {{-- <option>Any</option> --}}
 
@@ -117,7 +109,7 @@
 
                                                 <label>Sort Order:</label>
 
-                                                <select class="select2 form-control" style="width: 100%;">
+                                                <select class="form-control" style="width: 100%;">
 
                                                     <option selected>Rating ASC</option>
 
@@ -178,6 +170,8 @@
 
 
                                         </div>
+
+
                                         <div class="col-lg-3">
                                             <div class="form-group">
                                             <button class="btn btn-success" style="margin-top: 30px;">Find Mentor</button>
@@ -344,6 +338,12 @@
 
        $(function () {
 
+    //  var ele =    document.getElementsByClassName('select2-selection');
+    //  for(var i = 0;i<ele.leanth;i++){
+    //     ele[i].style.height = '50px';
+    //  }
+
+
    //Initialize Select2 Elements
 
         $('.select22').select2({
@@ -378,8 +378,16 @@
             },
             dropdownParent: $('#currentModal')
         });
+
     });
 
+
+    $( document ).ready(function() {
+        document.querySelectorAll('[role="combobox"]').forEach(function (el){
+        el.classList.add("eletest");
+        });
+        console.log( "ready!" );
+    });
   </script>
 
 @endpush

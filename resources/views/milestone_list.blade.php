@@ -460,7 +460,8 @@
                                                 <td>{{ \Carbon\Carbon::parse($milestone->created_at)->format('d-m-Y') }}
                                                 </td>
                                                 <td>
-                                                    @php($date_facturation = \Carbon\Carbon::parse($milestone->due_date))
+                                                    @php
+                                                    ($date_facturation = \Carbon\Carbon::parse($milestone->due_date))
                                                     @endphp
                                                     @if ($date_facturation->isPast())
                                                         <span class="badge" style="background-color: red;">

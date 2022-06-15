@@ -190,6 +190,8 @@
                                                                 -
                                                                 {{ explode('-', $experience->end_date)[1] }}/{{ explode('-', $experience->end_date)[0] }}@else - Present
                                                             @endif
+                                                            <br>
+                                                            Location : {{$experience->location}}
                                                         </small>
                                                     </span>
                                                 {{-- </ul> --}}

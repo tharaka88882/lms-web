@@ -24,6 +24,8 @@
 <div class="login-box">
   <div class="login-logo">
     <a href="https://you2mentor.com"><img height="200px" width="200px" src="{{url('public')}}/theme/admin/dist/img/logo/you2logo.png"/></a>
+    <button  data-toggle="modal" data-target="#modal-md" class="btn btn-xs btn-warning ml-2">btn</button>
+
   </div>
   <!-- /.login-logo -->
   <div class="card">
@@ -125,6 +127,41 @@
   </div>
 </div>
 
+
+<!-- /.modal -->
+<div class="modal fade" id="modal-md">
+    <div class="modal-dialog modal-md">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h4 class="modal-title" style="text-transform: capitalize"><b>How to add login screen to Home Screen</b></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+            @csrf
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="form-group col-sm-9">
+                            Click on settings button in web browser
+
+                            Select more tool
+
+                            Select create a shortcut on Desktop
+                        </div>
+
+                    </div>
+
+                       </div>
+            </div>
+
+
+    </div>
+    <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 
 <!-- jQuery -->
 <script src="{{url('public')}}/theme/admin/plugins/jquery/jquery.min.js"></script>

@@ -6,6 +6,11 @@
 
 @push('styles')
     {{-- <style>h1 {background-color: red !important}</style> --}}
+    <style>
+        .eletest{
+            height: 37px !important;
+        }
+    </style>
 @endpush
 
 @section('content')
@@ -405,10 +410,7 @@
                                                                                                    </div>
                                                                                         </div>
 
-                                                                                    {{-- <div class="modal-footer justify-content-between btn-group">
-                                                                                    <button  type="submit" class="btn btn-primary">Save</button>
-                                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                                                    </div> --}}
+                                                                                
                                                                                 </div>
                                                                                 <!-- /.modal-content -->
                                                                                 </div>
@@ -524,5 +526,11 @@ $(function () {
      });
  });
 
+ $( document ).ready(function() {
+        document.querySelectorAll('[role="combobox"]').forEach(function (el){
+        el.classList.add("eletest");
+        });
+        console.log( "ready!" );
+    });
 </script>
 @endpush

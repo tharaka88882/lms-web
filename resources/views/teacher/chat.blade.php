@@ -114,7 +114,7 @@
 
                           <div class="card-body">
                             <div class="callout callout-danger">
-                                <p>Don't share personal details etc.
+                                <p>Please do not share personal identifiable information such as credit card details, phone numbers and email addresses through chat for your online safety.
                                 </p>
                             </div>
 
