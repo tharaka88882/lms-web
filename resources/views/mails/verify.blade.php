@@ -1,7 +1,7 @@
 @component('mail::message')
 # Welcome to You2Mentor
 
-To verify your Email, please use the code below.
+To verify your email, please use the code below.
 
         {{ $code }}
 
