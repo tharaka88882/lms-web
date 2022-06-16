@@ -71,7 +71,7 @@
 
                     <i class="far fa-circle nav-icon"></i>
 
-                    <p>My Expertise</p>
+                    <p>My Skills</p>
 
                 </a>
 

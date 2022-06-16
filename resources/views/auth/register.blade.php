@@ -49,11 +49,11 @@
                                     </span>
                                 @enderror --}}
                 </div>
-                <div id="form_div">
-                    <form action="{{ route('auth.verify_mentee_email') }}" method="post">
+                <div>
+                    <form id="form_div" action="{{ route('auth.verify_mentee_email') }}" method="post">
                         @csrf
                         <input type="hidden" name="type" value="student" />
-                        <div id="name_div" class="input-group mb-3">
+                        <div id="name_div" class="input-group mb-3 se">
                             <input type="text"
                                 class="form-control @if ($errors->has('name')) {{ 'is-invalid' }} @endif"
                                 placeholder="Full name" name="name">
@@ -68,7 +68,7 @@
                                 </span>
                             @endif
                         </div>
-                        <div id="email_div" class="input-group mb-3">
+                        <div id="email_div" class="input-group mb-3 se">
                             <input type="email"
                                 class="form-control @if ($errors->has('email')) {{ 'is-invalid' }} @endif"
                                 name="email" placeholder="Email">
@@ -83,7 +83,7 @@
                                 </span>
                             @endif
                         </div>
-                        <div id="pass1_div" class="input-group mb-3">
+                        <div id="pass1_div" class="input-group mb-3 se">
                             <input type="password" name="password"
                                 class="form-control @if ($errors->has('password')) {{ 'is-invalid' }} @endif"
                                 placeholder="Password">
@@ -98,7 +98,7 @@
                                 </span>
                             @endif
                         </div>
-                        <div id="pass2_div" class="input-group mb-3">
+                        <div id="pass2_div" class="input-group mb-3 se">
                             <input type="password"
                                 class="form-control @if ($errors->has('password_confirmation')) {{ 'is-invalid' }} @endif"
                                 name="password_confirmation" placeholder="Retype password">
@@ -129,7 +129,7 @@
                                 </div>
                             </div>
                             <!-- /.col -->
-                            <div class="col-4">
+                            <div class="col-4 se">
                                 <button disabled id="registerBtn" type="submit" class="btn btn-primary btn-block">
                                     {{ __('Register') }}</button>
                             </div>
@@ -139,15 +139,15 @@
                 </div>
                 <div id="lilnedin_div" class="social-auth-links text-center">
                     {{-- <p>- OR -</p> --}}
-                    <a id="fbBtn" href="{{ url('auth/facebook') }}" class="btn btn-block btn-primary">
+                    <button disabled onclick="loadFb();" id="fbBtn"  class="btn btn-block btn-primary">
                         <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-                    </a>
-                    <a id="googleBtn" href="{{ url('auth/google') }}" class="btn btn-block btn-danger">
+                    </button>
+                    <button disabled onclick="loadGo();" id="googleBtn" class="btn btn-block btn-danger">
                         <i class="fab fa-google mr-2"></i> Sign in using Google
-                        </a-->
-                        <a id="lilnedinBtn" href="{{ url('auth/linkedin') }}" class="btn btn-block btn-primary">
+                    </button>
+                        <button disabled onclick="loadLin();" id="lilnedinBtn" class="btn btn-block btn-primary">
                             <i class="fab fa-linkedin mr-2"></i> Sign up using Liknedin
-                        </a>
+                        </button>
                 </div>
 
                 <a href="{{ url('') }}/login" class="text-center">I already have a membership</a>
@@ -170,7 +170,7 @@
         $('document').ready(function() {
             // alert('test');
 
-            $('#form_div').show();
+            $('.se').show();
             $('#lilnedinBtn').hide();
             $('#fbBtn').show();
             $('#googleBtn').show();
@@ -193,12 +193,12 @@
 
             $('#m_select').on('change', function() {
                 if ($('#m_select option:selected').val() == 'student') {
-                    $('#form_div').show();
+                    $('.se').show();
                     $('#lilnedinBtn').hide();
                     $('#fbBtn').show();
                     $('#googleBtn').show();
                 } else if ($('#m_select option:selected').val() == 'teacher') {
-                    $('#form_div').hide();
+                    $('.se').hide();
                     $('#lilnedinBtn').show();
                     $('#fbBtn').hide();
                     $('#googleBtn').hide();
@@ -210,9 +210,15 @@
                 if ($('#agreeTerms').is(':checked') && $('#disclaimerTerms').is(':checked')) {
                     // alert("t");
                     $('#registerBtn').prop('disabled', false);
+                    $('#fbBtn').prop('disabled', false);
+                    $('#googleBtn').prop('disabled', false);
+                    $('#lilnedinBtn').prop('disabled', false);
                 } else {
                     //alert("tjio");
                     $('#registerBtn').prop('disabled', true);
+                    $('#fbBtn').prop('disabled', true);
+                    $('#googleBtn').prop('disabled', true);
+                    $('#lilnedinBtn').prop('disabled', true);
                 }
             });
 
@@ -220,9 +226,15 @@
                 if ($('#disclaimerTerms').is(':checked') && $('#agreeTerms').is(':checked')) {
                     // alert("t");
                     $('#registerBtn').prop('disabled', false);
+                    $('#fbBtn').prop('disabled', false);
+                    $('#googleBtn').prop('disabled', false);
+                    $('#lilnedinBtn').prop('disabled', false);
                 } else {
                     //alert("tjio");
                     $('#registerBtn').prop('disabled', true);
+                    $('#fbBtn').prop('disabled', true);
+                    $('#googleBtn').prop('disabled', true);
+                    $('#lilnedinBtn').prop('disabled', true);
                 }
             });
 
@@ -233,6 +245,16 @@
         //         removeEvent();
         //     });
         // }
+
+        function loadFb(){
+            document.location = '{{ url('auth/facebook') }}';
+        }
+        function loadGo(){
+            document.location = '{{ url('auth/google') }}';
+        }
+        function loadLin(){
+            document.location = '{{ url('auth/linkedin') }}';
+        }
     </script>
 
 </body>

@@ -267,9 +267,25 @@
                                                         <span class="users-list-date">Industry -
                                                             {{ $tutor->user->industry }}</span>
                                                     @endif
-                                                    @if ($tutor->user->job != null)
+                                                    {{-- @if ($tutor->user->job != null)
                                                         <span class="users-list-date">Job Title -
                                                             {{ $tutor->user->job }}</span>
+                                                    @endif --}}
+
+                                                    @if (sizeof($tutor->experiences)>0)
+                                                    @php
+                                                       $sizeArr = sizeof($tutor->experiences);
+                                                       $i = 0;
+                                                    @endphp
+                                                    @foreach ($tutor->experiences as $experience)
+                                                   @php
+                                                        $i++;
+                                                   @endphp
+                                                   @if ($i == $sizeArr)
+                                                   <span class="users-list-date">Job Title - {{ $experience->position->text }}</span>
+                                                   @endif
+                                                    @endforeach
+
                                                     @endif
                                                     {{-- <span class="users-list-date">Timely Responce - {{ $tutor->avg_time }} hour</span> --}}
 

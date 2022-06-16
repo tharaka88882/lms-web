@@ -383,6 +383,7 @@
                         <div class="col-md-12 mb-2">
                             <center>
                                 <h5><b>How to navigate if you are a Mentor</b></h5>
+                               {{-- {{ini_get('date.timezone')}} --}}
                             </center>
                         </div>
 
