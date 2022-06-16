@@ -380,7 +380,7 @@ class UserController extends Controller
         return  redirect()->route('user.profile');
     }
 
-    public function update_qualification(AddQualificationRequest $request)
+    public function update_qualification(AddQualificationRequest $request,$id)
     {
         $institute = Institute::where('text',$request->get('company'))->first();
        // dd( $institute );
@@ -390,11 +390,13 @@ class UserController extends Controller
             $institute->save();
         }
 
-        $qualification = Qualification::findOrFail($request->get('id'));
+        $qualification = Qualification::findOrFail($id);
         $qualification->text = $request->get('qualification');
+        $qualification->field = $request->get('field');
         // $qualification->location = $request->get('location');
-        $qualification->start_date = $request->get('date');
-        // $qualification->end_date = $request->get('end_date');
+        $qualification->start_date = $request->get('start_date');
+        $qualification->end_date = $request->get('end_date');
+        $qualification->grade = $request->get('grade');
         $qualification->teacher_id = Auth()->user()->userable->id;
         $qualification->institute_id = $institute->id;
         $qualification->save();
@@ -404,7 +406,7 @@ class UserController extends Controller
         return  redirect()->route('user.profile');
     }
 
-    public function update_experience(AddExperienceRequest $request)
+    public function update_experience(AddExperienceRequest $request,$id)
     {
         $position =Position::where('text',$request->get('position'))->first();
         $institute =Institute::where('text',$request->get('company'))->first();
@@ -420,7 +422,7 @@ class UserController extends Controller
             $institute->save();
         }
 
-        $experience = Experience::findOrFail($request->get('id'));
+        $experience = Experience::findOrFail($id);
         $experience->text = '';
         $experience->location = $request->get('location');
         $experience->start_date = $request->get('start_date');
