@@ -61,7 +61,7 @@ class ChatController extends Controller
             // $headers = "From: info@you2mentor.com" . "\r\n";
 
            // mail($to,$subject,$txt,$headers);
-           //Mail::to($to)->send(new StartConversation($user_name));
+           Mail::to($to)->send(new StartConversation($user_name));
 
             DB::commit();
             Toastr::success('Conversation Started', 'Success');
@@ -238,7 +238,7 @@ class ChatController extends Controller
 
             $user_name = $teacher->user->name;
             //mail($to,$subject,$txt,$headers);
-            //Mail::to($to)->send(new StartConversation($user_name));
+            Mail::to($to)->send(new StartConversation($user_name));
 
             DB::commit();
             Toastr::success('Conversation Started', 'Success');
