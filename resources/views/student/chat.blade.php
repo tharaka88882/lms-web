@@ -235,7 +235,7 @@
                                <tr>
                                 <td>{{$i}}</td>
                                 <td>{{$stikey->note}}</td>
-                                <td>{{$stikey->updated_at}}</td>
+                                <td>@displayDate($stikey->updated_at)</td>
                                 <td >
                                       <button type="button" onclick="del_stikey('{{$stikey->id}}');" class="btn btn-sm btn-danger" id="del_{{$stikey->id}}">Delete</button>
                                 </td>

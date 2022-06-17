@@ -233,7 +233,7 @@
                                <tr>
                                 <td>{{$i}}</td>
                                 <td>{{$stikey->note}}</td>
-                                <td>{{$stikey->updated_at}}</td>
+                                <td>@displayDate($stikey->updated_at)</td>
                                 <td >
 
                                       {{-- <a href="" class="btn btn-sm btn-warning" id="goal">Update</a> --}}
