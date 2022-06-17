@@ -155,58 +155,72 @@
                                     <i class="fas fa-angle-double-right"></i></a> --}}
                             @endif
                             @if ($teacher->user->about != null)
-                            <span>{{$teacher->user->about}}
+                                <span>{{ $teacher->user->about }}
                                 </span>
-                        @endif
+                            @endif
                         </div>
                         <!-- /.card-header -->
 
                         <div class="card-body">
                             <dl>
-                            <dt>Qualifications</dt>
-                            <dd>
-                                <ul>
-                                    @foreach ($teacher->qualifications as $qualification)
-                                    <li><strong>{{ $qualification->text }}</strong><br>
-                                        {{-- <ul> --}}
-                                        <span>{{ $qualification->institute->text }}
-                                            <br>
-                                            {{ $qualification->field }}<br>
-                                            <small>@if ($qualification->end_date!= null)Completed
-                                                {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }}  -
-                                                {{ explode('-', $qualification->end_date)[1] }}/{{ explode('-', $qualification->end_date)[0] }} @else {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }} - Present <br> Grade-{{$qualification->grade}} @endif
+                                <dt>Qualifications</dt>
+                                <dd>
+                                    <ul>
+                                        @foreach ($teacher->qualifications as $qualification)
+                                            <li><strong>{{ $qualification->text }}</strong><br>
+                                                {{-- <ul> --}}
+                                                <span>{{ $qualification->institute->text }}
+                                                    <br>
+                                                    {{ $qualification->field }}<br>
+                                                    <small>
+                                                        @if ($qualification->end_date != null)
+                                                            Completed
+                                                            {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }}
+                                                            -
+                                                            {{ explode('-', $qualification->end_date)[1] }}/{{ explode('-', $qualification->end_date)[0] }}
+                                                        @else
+                                                            {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }}
+                                                            - Present
+                                                            <br> Grade-{{ $qualification->grade }}
+                                                        @endif
 
-                                            </small>
-                                        </span>
-                                        {{-- </ul> --}}
-                                    </li>
-                                @endforeach
+                                                    </small>
+                                                </span>
+                                                {{-- </ul> --}}
+                                            </li>
+                                        @endforeach
                                     </ul>
-                            </dd>
-                            <dt>Experience</dt>
-                            <dd>
-                                <ul>
-                                    @foreach ($teacher->experiences as $experience)
-                                    <li><strong>{{$experience->position->text}}</strong><br>
-                                       {{-- <ul> --}}
-                                           <span>{{$experience->institute->text}}
-                                               <br>
-                                               <small>{{explode("-",$experience->start_date)[1]}}/{{explode("-",$experience->start_date)[0]}} @if ($experience->end_date != null) - {{explode("-",$experience->end_date)[1]}}-{{explode("-",$experience->end_date)[0]}}@else - Present @endif
-                                                <br>
-                                                Location : {{$experience->location}}
-                                            </small>
-                                           </span>
-                                       {{-- </ul> --}}
-                                   </li>
-                                    @endforeach
-                                   </ul>
-                            </dd>
-                            <dt>Skills</dt>
-                            <dd>{{$teacher->skills}}</dd>
-                            <dt>Industry</dt>
-                            <dd>{{$teacher->industry}}</dd>
-                            <dt>Job Title</dt>
-                            <dd>{{$teacher->job}}</dd>
+                                </dd>
+                                <dt>Experience</dt>
+                                <dd>
+                                    <ul>
+                                        @foreach ($teacher->experiences as $experience)
+                                            <li><strong>{{ $experience->position->text }}</strong><br>
+                                                {{-- <ul> --}}
+                                                <span>{{ $experience->institute->text }}
+                                                    <br>
+                                                    <small>{{ explode('-', $experience->start_date)[1] }}/{{ explode('-', $experience->start_date)[0] }}
+                                                        @if ($experience->end_date != null)
+                                                            -
+                                                            {{ explode('-', $experience->end_date)[1] }}-{{ explode('-', $experience->end_date)[0] }}
+                                                        @else
+                                                            - Present
+                                                        @endif
+                                                        <br>
+                                                        Location : {{ $experience->location }}
+                                                    </small>
+                                                </span>
+                                                {{-- </ul> --}}
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </dd>
+                                <dt>Skills</dt>
+                                <dd>{{ $teacher->skills }}</dd>
+                                <dt>Industry</dt>
+                                <dd>{{ $teacher->industry }}</dd>
+                                <dt>Job Title</dt>
+                                <dd>{{ $teacher->job }}</dd>
                             </dl>
                         </div>
                         <!-- /.card-body -->
@@ -243,7 +257,7 @@
                         <div class="card-header">
                             <h3 class="card-title">
                                 <i class="fas fa-book-open"></i>
-                               Skills
+                                Skills
                             </h3>
                         </div>
                         <!-- /.card-header -->
