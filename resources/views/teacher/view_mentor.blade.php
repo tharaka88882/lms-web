@@ -201,6 +201,8 @@
                                 </dd>
                                 <dt>Skills</dt>
                                 <dd>{{ $teacher->skills }}</dd>
+                                <dt>Industry</dt>
+                            <dd>{{$teacher->industry}}</dd>
                             </dl>
                         </div>
                         <!-- /.card-body -->

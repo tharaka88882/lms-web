@@ -93,7 +93,7 @@
                         <div class="inner">
                             <h3>{{ $convo_count }}</h3>
 
-                            <p>Conversations</p>
+                            <p>My Mentors</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-chatbubbles"></i>

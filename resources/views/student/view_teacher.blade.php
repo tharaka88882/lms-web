@@ -214,13 +214,31 @@
                                             </li>
                                         @endforeach
                                     </ul>
-                                </dd>
-                                <dt>Skills</dt>
-                                <dd>{{ $teacher->skills }}</dd>
-                                <dt>Industry</dt>
-                                <dd>{{ $teacher->industry }}</dd>
-                                <dt>Job Title</dt>
-                                <dd>{{ $teacher->job }}</dd>
+                            </dd>
+                            <dt>Experience</dt>
+                            <dd>
+                                <ul>
+                                    @foreach ($teacher->experiences as $experience)
+                                    <li><strong>{{$experience->position->text}}</strong><br>
+                                       {{-- <ul> --}}
+                                           <span>{{$experience->institute->text}}
+                                               <br>
+                                               <small>{{explode("-",$experience->start_date)[1]}}/{{explode("-",$experience->start_date)[0]}} @if ($experience->end_date != null) - {{explode("-",$experience->end_date)[1]}}-{{explode("-",$experience->end_date)[0]}}@else - Present @endif
+                                                <br>
+                                                Location : {{$experience->location}}
+                                            </small>
+                                           </span>
+                                       {{-- </ul> --}}
+                                   </li>
+                                    @endforeach
+                                   </ul>
+                            </dd>
+                            <dt>Skills</dt>
+                            <dd>{{$teacher->skills}}</dd>
+                            <dt>Industry</dt>
+                            <dd>{{$teacher->industry}}</dd>
+                            {{-- <dt>Job Title</dt>
+                            <dd>{{$teacher->job}}</dd> --}}
                             </dl>
                         </div>
                         <!-- /.card-body -->

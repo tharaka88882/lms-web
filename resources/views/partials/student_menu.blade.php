@@ -55,7 +55,7 @@
             <li class="nav-item">
                 <a href="{{route('student.conversation_list')}}" class="nav-link {{ request()->is('student/conversation*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Conversations</p>
+                    <p>My Mentor</p>
                 </a>
             </li>
         </ul>

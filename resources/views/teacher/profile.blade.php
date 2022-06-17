@@ -413,7 +413,7 @@
                                             <select class="select2 form-control" data-placeholder="Any" style="width: 100%;"
                                                 name="industry">
                                                 @foreach ($industries as $industry)
-                                                    <option value="{{ $industry->id }}">
+                                                    <option>
                                                         {{ $industry->name }}
                                                     </option>
                                                 @endforeach
