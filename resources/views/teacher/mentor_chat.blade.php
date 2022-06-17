@@ -323,7 +323,7 @@
                                        <tr>
                                         <td>{{$i}}</td>
                                         <td>{{$stikey->note}}</td>
-                                        <td>{{date('Y/m/d | H:i', strtotime($stikey->updated_at))}}</td>
+                                        <td>@displayDate($stikey->updated_at)</td>
                                         <td >
                                               {{-- <a href="" class="btn btn-sm btn-warning" id="goal">Update</a> --}}
                                               <button type="button" onclick="del_stikey1('{{$stikey->id}}');" class="btn btn-sm btn-danger" id="del_{{$stikey->id}}">Delete</button>
@@ -403,7 +403,7 @@
                                        <tr>
                                         <td>{{$i}}</td>
                                         <td>{{$stikey->note}}</td>
-                                        <td>{{date('Y/m/d | H:i', strtotime($stikey->updated_at))}}</td>
+                                        <td>@displayDate($stikey->updated_at)</td>
                                         <td >
                                               {{-- <a href="" class="btn btn-sm btn-warning" id="goal">Update</a> --}}
                                               <button type="button" onclick="del_stikey2('{{$stikey->id}}');" class="btn btn-sm btn-danger" id="del_{{$stikey->id}}">Delete</button>

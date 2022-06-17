@@ -409,7 +409,9 @@
                                                                                                                <tr>
                                                                                                                 <td>{{$i}}</td>
                                                                                                                 <td>{{$stikey->note}}</td>
-                                                                                                                <td>{{date('Y/m/d | H:i', strtotime($stikey->updated_at))}}</td>
+                                                                                                                {{-- <td>{{date('Y/m/d | H:i', strtotime($stikey->updated_at))}}</td> --}}
+                                                                                                                {{-- <td>{{ Timezone::convertToLocal($stikey->updated_at, 'Y/m/d | H:i', true) }}</td> --}}
+                                                                                                                <td>@displayDate($stikey->updated_at)</td>
                                                                                                                 <td >
                                                                                                                       {{-- <a href="" class="btn btn-sm btn-warning" id="goal">Update</a> --}}
                                                                                                                       <button type="button" onclick="del_stikey('{{$stikey->id}}');" class="btn btn-sm btn-danger" id="del_{{$stikey->id}}">Delete</button>

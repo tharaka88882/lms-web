@@ -10,6 +10,7 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "intervention/image": "^2.7",
+        "jamesmills/laravel-timezone": "^1.11",
         "laravel/framework": "^8.65",
         "laravel/jetstream": "^2.5",
         "laravel/sanctum": "^2.11",
@@ -63,7 +64,10 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "treeware/plant": true
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true
