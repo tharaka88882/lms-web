@@ -20,207 +20,112 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-7">
-                    <!-- Widget: user widget style 1 -->
-                    <div class="card card-widget widget-user">
-                        <!-- Add the bg color to the header using any of the bg-* classes -->
-                        <div class="widget-user-header bg-olive"
-                            @if ($teacher->user->cover_image != null) style="background-image: url('{{ url('public') }}/images/profile/{{ $teacher->user->cover_image }}') !important;" @endif>
-                            <h3 class="widget-user-username" style="text-transform: uppercase">{{ $teacher->user->name }}
-                            </h3>
-                            {{-- <a href="{{route('user.view_rating')}}"> --}}
-                            @php
-                                $i = 0;
-                                //$r = intval(Auth()->user()->userable->level);
-                                $r = (int) $mediation;
-                            @endphp
-                            @while ($i < 5)
-                                @if ($r > 0)
-                                    <span class="fa fa-star checked"></span>
-                                @else
-                                    <span class="fa fa-star"></span>
-                                @endif
-                                @php
-                                    $i += 1;
-                                    $r -= 1;
-                                @endphp
-                            @endwhile
-                            {{-- </a> --}}
-                        </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!-- Widget: user widget style 1 -->
+                            <div class="card card-widget widget-user">
+                                <!-- Add the bg color to the header using any of the bg-* classes -->
+                                <div class="widget-user-header bg-olive"
+                                    @if ($teacher->user->cover_image != null) style="background-image: url('{{ url('public') }}/images/profile/{{ $teacher->user->cover_image }}') !important;" @endif>
+                                    <h3 class="widget-user-username" style="text-transform: uppercase">
+                                        {{ $teacher->user->name }}
+                                    </h3>
+                                    {{-- <a href="{{route('user.view_rating')}}"> --}}
+                                    @php
+                                        $i = 0;
+                                        //$r = intval(Auth()->user()->userable->level);
+                                        $r = (int) $mediation;
+                                    @endphp
+                                    @while ($i < 5)
+                                        @if ($r > 0)
+                                            <span class="fa fa-star checked"></span>
+                                        @else
+                                            <span class="fa fa-star"></span>
+                                        @endif
+                                        @php
+                                            $i += 1;
+                                            $r -= 1;
+                                        @endphp
+                                    @endwhile
+                                    {{-- </a> --}}
+                                </div>
 
-                        <div class="widget-user-image">
-                            <img class="img-circle elevation-2"
-                                onerror="this.src='{{ url('public') }}/theme/admin/dist/img/default-avatar.jpg'"
-                                @if ($teacher->user->image != null) src="{{ url('public') }}/images/profile/{{ $teacher->user->image }}" @else src="" @endif
-                                alt="User Avatar">
-                        </div>
+                                <div class="widget-user-image">
+                                    <img class="img-circle elevation-2"
+                                        onerror="this.src='{{ url('public') }}/theme/admin/dist/img/default-avatar.jpg'"
+                                        @if ($teacher->user->image != null) src="{{ url('public') }}/images/profile/{{ $teacher->user->image }}" @else src="" @endif
+                                        alt="User Avatar">
+                                </div>
 
-                        <div class="card-footer">
-                            <div class="row">
-                                <div class="col-sm-4 border-right">
-                                    <div class="description-block">
-                                        {{-- <h5 class="description-header">3,200</h5>
+                                <div class="card-footer">
+                                    <div class="row">
+                                        <div class="col-sm-4 border-right">
+                                            <div class="description-block">
+                                                {{-- <h5 class="description-header">3,200</h5>
                                         <span class="description-text">SALES</span> --}}
-                                    </div>
-                                    <!-- /.description-block -->
-                                </div>
-                                <!-- /.col -->
+                                            </div>
+                                            <!-- /.description-block -->
+                                        </div>
+                                        <!-- /.col -->
 
-                                <div class="col-sm-4 border-right">
-                                    <div class="description-block">
-                                        <h5 class="description-header"></h5>
-                                        <span class="description-text"></span>
-                                    </div>
-                                    <!-- /.description-block -->
-                                </div>
+                                        <div class="col-sm-4 border-right">
+                                            <div class="description-block">
+                                                <h5 class="description-header"></h5>
+                                                <span class="description-text"></span>
+                                            </div>
+                                            <!-- /.description-block -->
+                                        </div>
 
-                                <!-- /.col -->
-                                <div class="col-sm-4">
-                                    <div class="description-block">
-                                        {{-- <h5 class="description-header">35</h5>
+                                        <!-- /.col -->
+                                        <div class="col-sm-4">
+                                            <div class="description-block">
+                                                {{-- <h5 class="description-header">35</h5>
                                         <span class="description-text">PRODUCTS</span> --}}
+                                            </div>
+                                            <!-- /.description-block -->
+                                        </div>
+                                        <!-- /.col -->
                                     </div>
-                                    <!-- /.description-block -->
+                                    <!-- /.row -->
+
+                                    <div class="row">
+                                        @if (sizeof($conversations) > 0)
+                                            <div class="col-sm-4" style="text-align: left">
+                                                <a class="btn btn-success"
+                                                    href="{{ route('teacher.view_mentor_conversation', $query->id) }}">Connect</a>
+                                            </div>
+
+                                            <div class="col-sm-4" style="text-align: center">
+                                                <button {{ sizeof($old_ratings) > 0 ? 'disabled' : '' }}
+                                                    data-toggle="modal" data-target="#modal-md" class="btn btn-warning"><i
+                                                        class="fa fa-star"></i>Rate Now</button>
+                                            </div>
+
+                                            <div class="col-sm-4" style="text-align: right">
+                                                {{-- <a class="btn btn-warning" href="{{route('teacher.complaint',$teacher->id)}}">Complaint Mentor</a> --}}
+                                            </div>
+                                        @elseif ($query != null)
+                                            <div class="col-sm-12" style="text-align: center">
+                                                <a class="btn btn-success"
+                                                    href="{{ route('teacher.view_mentor_conversation', $query->id) }}">Connect</a>
+                                            </div>
+                                        @else
+                                            <div class="col-sm-12" style="text-align: center">
+                                                <form action="{{ route('teacher.store_mentor_conversation') }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="student_id"
+                                                        value="{{ Auth()->user()->userable->id }}">
+                                                    <input type="hidden" name="teacher_id" value="{{ $teacher->id }}">
+                                                    <button class="btn btn-success" type="submit">Connect</button>
+                                                </form>
+                                            </div>
+                                        @endif
+                                    </div>
                                 </div>
-                                <!-- /.col -->
                             </div>
-                            <!-- /.row -->
-
-                            <div class="row">
-                                @if (sizeof($conversations) > 0)
-                                    <div class="col-sm-4" style="text-align: left">
-                                        <a class="btn btn-success"
-                                            href="{{ route('teacher.view_mentor_conversation', $query->id) }}">Connect</a>
-                                    </div>
-
-                                    <div class="col-sm-4" style="text-align: center">
-                                        <button {{ sizeof($old_ratings) > 0 ? 'disabled' : '' }} data-toggle="modal"
-                                            data-target="#modal-md" class="btn btn-warning"><i
-                                                class="fa fa-star"></i>Rate Now</button>
-                                    </div>
-
-                                    <div class="col-sm-4" style="text-align: right">
-                                        {{-- <a class="btn btn-warning" href="{{route('teacher.complaint',$teacher->id)}}">Complaint Mentor</a> --}}
-                                    </div>
-                                @elseif ($query != null)
-                                    <div class="col-sm-12" style="text-align: center">
-                                        <a class="btn btn-success"
-                                            href="{{ route('teacher.view_mentor_conversation', $query->id) }}">Connect</a>
-                                    </div>
-                                @else
-                                    <div class="col-sm-12" style="text-align: center">
-                                        <form action="{{ route('teacher.store_mentor_conversation') }}" method="POST">
-                                            @csrf
-                                            <input type="hidden" name="student_id"
-                                                value="{{ Auth()->user()->userable->id }}">
-                                            <input type="hidden" name="teacher_id" value="{{ $teacher->id }}">
-                                            <button class="btn btn-success" type="submit">Connect</button>
-                                        </form>
-                                    </div>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.widget-user -->
-                </div>
-
-                <div class="col-md-5">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">
-                                <i class="fas fa-angle-double-down"></i>
-                                About me
-                            </h3>
-                            <br>
-
-                            @if ($teacher->linkedin_link != null)
-                                {{-- <a href="{{ $teacher->linkedin_link }}" target="_blank">View Linkedin Profile
-                                    <i class="fas fa-angle-double-right"></i></a> --}}
-                            @endif
-                            @if ($teacher->user->about != null)
-                                <span>{{$teacher->user->about}}
-                                  </span>
-                            @endif
-                        </div>
-                        <!-- /.card-header -->
-
-                        <div class="card-body">
-                            <dl>
-                                <dt>Qualifications</dt>
-                                <dd>
-                                    <ul>
-
-                                        @foreach ($teacher->qualifications as $qualification)
-                                        <li><strong>{{ $qualification->text }}</strong><br>
-                                            {{-- <ul> --}}
-                                            <span>{{ $qualification->institute->text }}
-                                                <br>
-                                                {{ $qualification->field }}<br>
-                                                <small>@if ($qualification->end_date!= null)Completed
-                                                    {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }}  -
-                                                    {{ explode('-', $qualification->end_date)[1] }}/{{ explode('-', $qualification->end_date)[0] }} @else {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }} - Present <br> Grade-{{$qualification->grade}} @endif
-
-                                                </small>
-                                            </span>
-                                            {{-- </ul> --}}
-                                        </li>
-                                    @endforeach
-
-                                        {{-- @foreach ($teacher->qualifications as $qualification)
-                                            <li><strong>{{ $qualification->text }}</strong><br>
-                                                    <span>{{ $qualification->institute->text }}
-                                                        <br>
-                                                        <small>@if ($qualification->start_date!=null) Completed
-                                                            {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }} @else Still studying @endif</small>
-                                                    </span>
-                                            </li>
-                                        @endforeach --}}
-                                    </ul>
-                                    {{-- {{$teacher->qualification}} --}}
-                                </dd>
-                                <dt>Experience</dt>
-                                <dd>
-                                    <ul>
-                                        @foreach ($teacher->experiences as $experience)
-                                            <li><strong>{{ $experience->position->text }}</strong><br>
-                                                {{-- <ul> --}}
-                                                    <span>{{ $experience->institute->text }}
-                                                        <br>
-                                                        <small>{{ explode('-', $experience->start_date)[1] }}/{{ explode('-', $experience->start_date)[0] }}
-                                                            @if ($experience->end_date != null)
-                                                                -
-                                                                {{ explode('-', $experience->end_date)[1] }}/{{ explode('-', $experience->end_date)[0] }}@else - Present
-                                                            @endif
-                                                            <br>
-                                                            Location : {{$experience->location}}
-                                                        </small>
-                                                    </span>
-                                                {{-- </ul> --}}
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </dd>
-                                <dt>Skills</dt>
-                                <dd>{{ $teacher->skills }}</dd>
-                                <dt>Industry</dt>
-                            <dd>{{$teacher->industry}}</dd>
-                            </dl>
-                        </div>
-                        <!-- /.card-body -->
-
-                        <div class="card-footer">
-                            <div class="float-right">
-                                <b>Average Responce time: </b> {{ $time_total_array }}hrs
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.card -->
-                </div>
-
-            </div>
-
-            <div class="row">
-                <div class="col-sm-7">
-                    {{-- <div class="card">
+                            <!-- /.widget-user -->
+                            {{-- <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">
                               <i class="fas fa-tasks"></i>
@@ -233,28 +138,197 @@
                         </div>
                         <!-- /.card-body -->
                     </div> --}}
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-md-5">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">
-                                <i class="fas fa-book-open"></i>
-                                Skills
-                            </h3>
-                        </div>
-                        <!-- /.card-header -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="fas fa-angle-double-down"></i>
+                                        About me
+                                    </h3>
+                                    <br>
 
-                        <div class="card-body">
-                            <ul>
-                                @foreach ($subjects as $subject)
-                                    <li>{{ $subject->name }}</li>
-                                @endforeach
-                            </ul>
+                                    @if ($teacher->linkedin_link != null)
+                                        {{-- <a href="{{ $teacher->linkedin_link }}" target="_blank">View Linkedin Profile
+                                    <i class="fas fa-angle-double-right"></i></a> --}}
+                                    @endif
+                                    {{-- @if ($teacher->user->about != null)
+                                        <span>{{ $teacher->user->about }}
+                                        </span>
+                                    @endif --}}
+                                </div>
+                                <!-- /.card-header -->
+
+                                <div class="card-body">
+                                    <dl>
+                                        @if ($teacher->user->about != null)
+                                            <dd>{{ $teacher->user->about }}
+                                            </dd>
+                                        @endif
+                                        {{-- <dt>Qualifications</dt>
+                                        <dd>
+                                            <ul>
+
+                                                @foreach ($teacher->qualifications as $qualification)
+                                                    <li><strong>{{ $qualification->text }}</strong><br>
+                                                        <span>{{ $qualification->institute->text }}
+                                                            <br>
+                                                            {{ $qualification->field }}<br>
+                                                            <small>
+                                                                @if ($qualification->end_date != null)
+                                                                    Completed
+                                                                    {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }}
+                                                                    -
+                                                                    {{ explode('-', $qualification->end_date)[1] }}/{{ explode('-', $qualification->end_date)[0] }}
+                                                                @else
+                                                                    {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }}
+                                                                    - Present
+                                                                    <br> Grade-{{ $qualification->grade }}
+                                                                @endif
+
+                                                            </small>
+                                                        </span>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </dd>
+                                        <dt>Experience</dt>
+                                        <dd>
+                                            <ul>
+                                                @foreach ($teacher->experiences as $experience)
+                                                    <li><strong>{{ $experience->position->text }}</strong><br>
+                                                        <span>{{ $experience->institute->text }}
+                                                            <br>
+                                                            <small>{{ explode('-', $experience->start_date)[1] }}/{{ explode('-', $experience->start_date)[0] }}
+                                                                @if ($experience->end_date != null)
+                                                                    -
+                                                                    {{ explode('-', $experience->end_date)[1] }}/{{ explode('-', $experience->end_date)[0] }}
+                                                                @else
+                                                                    - Present
+                                                                @endif
+                                                                <br>
+                                                                Location : {{ $experience->location }}
+                                                            </small>
+                                                        </span>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </dd>
+                                        <dt>Skills</dt>
+                                        <dd>{{ $teacher->skills }}</dd> --}}
+                                        <dt>Industry</dt>
+                                        <dd>{{ $teacher->industry }}</dd>
+                                    </dl>
+                                </div>
+                                <!-- /.card-body -->
+
+                                <div class="card-footer">
+                                    <div class="float-right">
+                                        <b>Average Responce time: </b> {{ $time_total_array }}hrs
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card -->
+                            {{-- Qualifications Card --}}
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="fas fa-bookmark"></i>
+                                        Qualifications
+                                    </h3>
+                                </div>
+                                <!-- /.card-header -->
+
+                                <div class="card-body">
+                                    @foreach ($teacher->qualifications as $qualification)
+                                        <strong>{{ $qualification->text }}</strong><br>
+                                        {{-- <ul> --}}
+                                        <span>{{ $qualification->institute->text }}
+                                            <br>
+                                            {{ $qualification->field }}<br>
+                                            <small>
+                                                @if ($qualification->end_date != null)
+                                                    Completed
+                                                    {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }}
+                                                    -
+                                                    {{ explode('-', $qualification->end_date)[1] }}/{{ explode('-', $qualification->end_date)[0] }}
+                                                @else
+                                                    {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }}
+                                                    - Present
+                                                    <br> Grade-{{ $qualification->grade }}
+                                                @endif
+
+                                            </small>
+                                        </span>
+                                        <hr>
+                                        {{-- </ul> --}}
+                                    @endforeach
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            {{-- End of Qualifications Card --}}
+
+                            {{-- Experience Card --}}
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="fas fa-briefcase"></i>
+                                        Experience
+                                    </h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    @foreach ($teacher->experiences as $experience)
+                                        <strong>{{ $experience->position->text }}</strong><br>
+                                        {{-- <ul> --}}
+                                        <span>{{ $experience->institute->text }}
+                                            <br>
+                                            <small>{{ explode('-', $experience->start_date)[1] }}/{{ explode('-', $experience->start_date)[0] }}
+                                                @if ($experience->end_date != null)
+                                                    -
+                                                    {{ explode('-', $experience->end_date)[1] }}-{{ explode('-', $experience->end_date)[0] }}
+                                                @else
+                                                    - Present
+                                                @endif
+                                                <br>
+                                                Location : {{ $experience->location }}
+                                            </small>
+                                        </span>
+                                        <hr>
+                                        {{-- </ul> --}}
+                                    @endforeach
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            {{-- Experience Card --}}
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="fas fa-book-open"></i>
+                                        Skills
+                                    </h3>
+                                </div>
+                                <!-- /.card-header -->
+
+                                <div class="card-body">
+                                    <ul>
+                                        @foreach ($subjects as $subject)
+                                            <li>{{ $subject->name }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
                         </div>
-                        <!-- /.card-body -->
                     </div>
                 </div>
+
             </div>
         </div><!-- /.container-fluid -->
     </section>
@@ -287,9 +361,11 @@
                     <div class="form-group">
                         <label>Was your Question answered?</label>
                         <div class="form-check">
-                            <input id="radio1" class="form-check-input" type="radio" name="radio1" value="1" checked="">
+                            <input id="radio1" class="form-check-input" type="radio" name="radio1" value="1"
+                                checked="">
                             <label class="form-check-label">Yes</label><br>
-                            <input id="radio2" class="form-check-input" type="radio" value="0" name="radio1">
+                            <input id="radio2" class="form-check-input" type="radio" value="0"
+                                name="radio1">
                             <label class="form-check-label">No</label>
                         </div>
                     </div>
