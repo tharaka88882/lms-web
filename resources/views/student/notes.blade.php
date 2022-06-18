@@ -274,7 +274,7 @@
                                     <tr>
                                         <td>{{ $i }}</td>
                                         <td>{{ $m_stikey->s_note }}</td>
-                                        <td>{{ date('Y/m/d | H:i', strtotime($m_stikey->updated_at)) }}</td>
+                                        <td>@displayDate($m_stikey->updated_at)</td>
                                         <td>
                                             {{-- <a href="" class="btn btn-sm btn-warning" id="goal">Update</a> --}}
                                             <button type="button" onclick="del_stikey('{{ $m_stikey->id }}');"
