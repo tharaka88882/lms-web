@@ -21,12 +21,12 @@
 
     <style>
         /* * {
-                                                                                                                                                                                                                                            box-sizing: border-box;
-                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                                box-sizing: border-box;
+                                                                                                                                                                                                                                            }
 
-                                                                                                                                                                                                                                        body {
-                                                                                                                                                                                                                                            font: 16px Arial;
-                                                                                                                                                                                                                                        } */
+                                                                                                                                                                                                                                            body {
+                                                                                                                                                                                                                                                font: 16px Arial;
+                                                                                                                                                                                                                                            } */
 
         /*the container must be positioned relative:*/
         .autocomplete {
@@ -1404,10 +1404,10 @@
                                                 <dd>
                                                     {{ Auth()->user()->userable->industry }}
                                                 </dd>
-                                                <dt>Job Title</dt>
+                                                {{-- <dt>Job Title</dt>
                                                 <dd>
                                                     {{ Auth()->user()->userable->job }}
-                                                </dd>
+                                                </dd> --}}
                                             </dl>
                                         </div>
                                         <!-- /.card-body -->
