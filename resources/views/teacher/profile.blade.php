@@ -21,12 +21,12 @@
 
     <style>
         /* * {
-                                                                                                                                                                                                                        box-sizing: border-box;
-                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                            box-sizing: border-box;
+                                                                                                                                                                                                                                        }
 
-                                                                                                                                                                                                                    body {
-                                                                                                                                                                                                                        font: 16px Arial;
-                                                                                                                                                                                                                    } */
+                                                                                                                                                                                                                                        body {
+                                                                                                                                                                                                                                            font: 16px Arial;
+                                                                                                                                                                                                                                        } */
 
         /*the container must be positioned relative:*/
         .autocomplete {
@@ -202,8 +202,8 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">About Me</label>
-                                            <textarea  name="about" class="form-control" rows="3">
-                                                {{ $user->about}}
+                                            <textarea name="about" class="form-control" rows="3">
+                                                {{ $user->about }}
                                             </textarea>
 
                                             @if ($errors->has('country'))
@@ -373,8 +373,8 @@
                                             <!-- /.card -->
 
                                             <label for="exampleInputEmail1">Skills</label>
-                                            <textarea disabled name="skills" class="form-control @if ($errors->has('skills')) {{ 'is-invalid' }} @endif"
-                                                rows="3">{{ $user->userable->skills }}</textarea>
+                                            <textarea disabled name="skills"
+                                                class="form-control @if ($errors->has('skills')) {{ 'is-invalid' }} @endif" rows="3">{{ $user->userable->skills }}</textarea>
 
                                             @if ($errors->has('skills'))
                                                 <span class="invalid-feedback" role="alert">
@@ -410,8 +410,8 @@
 
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Working Industry</label>
-                                            <select class="select2 form-control" data-placeholder="Any" style="width: 100%;"
-                                                name="industry">
+                                            <select class="select2 form-control" data-placeholder="Any"
+                                                style="width: 100%;" name="industry">
                                                 @foreach ($industries as $industry)
                                                     <option>
                                                         {{ $industry->name }}
@@ -601,19 +601,22 @@
                                                 <td>{{ $qualification->text }}</td>
                                                 <td>{{ $qualification->field }}</td>
                                                 <td><span
-                                                    class="badge">{{ explode('-', $qualification->start_date)[0] }}/{{ explode('-', $qualification->start_date)[1] }}
-                                                    @if ($qualification->end_date != null)
-                                                        -
-                                                        {{ explode('-', $qualification->end_date)[0] }}/{{ explode('-', $qualification->end_date)[1] }}
-                                                    @else
-                                                        - Present
-                                                    @endif
-                                                </span>
-                                            </td>
-                                            <td>{{ $qualification->grade }}</td>
+                                                        class="badge">{{ explode('-', $qualification->start_date)[0] }}/{{ explode('-', $qualification->start_date)[1] }}
+                                                        @if ($qualification->end_date != null)
+                                                            -
+                                                            {{ explode('-', $qualification->end_date)[0] }}/{{ explode('-', $qualification->end_date)[1] }}
+                                                        @else
+                                                            - Present
+                                                        @endif
+                                                    </span>
+                                                </td>
+                                                <td>{{ $qualification->grade }}</td>
 
                                                 <td>
-                                                    <button type="button" class="btn btn-block btn-outline-warning btn-xs" data-target="#modal-mdq{{$qualification->id}}" data-toggle="modal">Update</button>
+                                                    <button type="button"
+                                                        class="btn btn-block btn-outline-warning btn-xs"
+                                                        data-target="#modal-mdq{{ $qualification->id }}"
+                                                        data-toggle="modal">Update</button>
                                                     <button type="button" class="btn btn-block btn-outline-danger btn-xs"
                                                         onclick="removeQua('{{ $qualification->id }}');">Remove</button>
                                                 </td>
@@ -622,65 +625,85 @@
                                                 $i++;
                                             @endphp
 
-<div class="modal fade" id="modal-mdq{{$qualification->id}}">
-    <div class="modal-dialog modal-md">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" style="text-transform: capitalize">Update qualification</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
+                                            <div class="modal fade" id="modal-mdq{{ $qualification->id }}">
+                                                <div class="modal-dialog modal-md">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title" style="text-transform: capitalize">
+                                                                Update qualification</h4>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
 
-                    <!--Make sure the form has the autocomplete function switched off:-->
-                    <form autocomplete="off" action="{{ route('user.edit_qualification',$qualification->id) }}" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <div class="autocomplete" style="width:100%;">
-                                            <label for="exampleInputEmail1">Institute</label>
-                                            <input id="myInput1" type="text" name="company" value="{{$qualification->institute->text}}" placeholder="">
-                                        </div>
-                                    </div>
+                                                            <!--Make sure the form has the autocomplete function switched off:-->
+                                                            <form autocomplete="off"
+                                                                action="{{ route('user.edit_qualification', $qualification->id) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <div class="card-body">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <div class="form-group">
+                                                                                <div class="autocomplete"
+                                                                                    style="width:100%;">
+                                                                                    <label
+                                                                                        for="exampleInputEmail1">Institute</label>
+                                                                                    <input id="myInput1" type="text"
+                                                                                        name="company"
+                                                                                        value="{{ $qualification->institute->text }}"
+                                                                                        placeholder="">
+                                                                                </div>
+                                                                            </div>
 
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Degree/Certificate</label>
-                                        <input name="qualification"
-                                            class="form-control @if ($errors->has('qualification')) {{ 'is-invalid' }} @endif"
-                                            type="text" value="{{$qualification->text}}" />
+                                                                            <div class="form-group">
+                                                                                <label
+                                                                                    for="exampleInputEmail1">Degree/Certificate</label>
+                                                                                <input name="qualification"
+                                                                                    class="form-control @if ($errors->has('qualification')) {{ 'is-invalid' }} @endif"
+                                                                                    type="text"
+                                                                                    value="{{ $qualification->text }}" />
 
-                                        @if ($errors->has('qualification'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('qualification') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
+                                                                                @if ($errors->has('qualification'))
+                                                                                    <span class="invalid-feedback"
+                                                                                        role="alert">
+                                                                                        <strong>{{ $errors->first('qualification') }}</strong>
+                                                                                    </span>
+                                                                                @endif
+                                                                            </div>
 
 
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Field of study</label>
-                                        <input name="field"
-                                            class="form-control @if ($errors->has('field')) {{ 'is-invalid' }} @endif"
-                                            type="text" value="{{$qualification->field}}"/>
+                                                                            <div class="form-group">
+                                                                                <label for="exampleInputEmail1">Field of
+                                                                                    study</label>
+                                                                                <input name="field"
+                                                                                    class="form-control @if ($errors->has('field')) {{ 'is-invalid' }} @endif"
+                                                                                    type="text"
+                                                                                    value="{{ $qualification->field }}" />
 
-                                        @if ($errors->has('field'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('field') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
+                                                                                @if ($errors->has('field'))
+                                                                                    <span class="invalid-feedback"
+                                                                                        role="alert">
+                                                                                        <strong>{{ $errors->first('field') }}</strong>
+                                                                                    </span>
+                                                                                @endif
+                                                                            </div>
 
-                                    <div class="form-group">
-                                        <div class="form-check">
-                                            <input id="undergrad{{$qualification->id}}" {{$qualification->end_date!=null?'':'checked'}} class="form-check-input" type="checkbox">
-                                            <label class="form-check-label">Still studying</label>
-                                        </div>
-                                    </div>
-                                    {{-- <div class="form-group">
+                                                                            <div class="form-group">
+                                                                                <div class="form-check">
+                                                                                    <input
+                                                                                        id="undergrad{{ $qualification->id }}"
+                                                                                        {{ $qualification->end_date != null ? '' : 'checked' }}
+                                                                                        class="form-check-input"
+                                                                                        type="checkbox">
+                                                                                    <label class="form-check-label">Still
+                                                                                        studying</label>
+                                                                                </div>
+                                                                            </div>
+                                                                            {{-- <div class="form-group">
                                         <label for="exampleInputEmail1">Sr</label>
                                         <input id="dpic" name="date"
                                             class="form-control @if ($errors->has('date')) {{ 'is-invalid' }} @endif"
@@ -693,53 +716,67 @@
                                         @endif
                                     </div> --}}
 
-                                    <div class="row">
-                                        {{-- <label for="exampleInputEmail1">Time of work</label> --}}
-                                        <div class="col-sm-4">
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Start</label>
-                                                <input name="start_date" placeholder="Start Year"
-                                                    class="form-control @if ($errors->has('start_date')) {{ 'is-invalid' }} @endif"
-                                                    type="date" value="{{$qualification->start_date}}"/>
+                                                                            <div class="row">
+                                                                                {{-- <label for="exampleInputEmail1">Time of work</label> --}}
+                                                                                <div class="col-sm-4">
+                                                                                    <div class="form-group">
+                                                                                        <label
+                                                                                            for="exampleInputEmail1">Start</label>
+                                                                                        <input name="start_date"
+                                                                                            placeholder="Start Year"
+                                                                                            class="form-control @if ($errors->has('start_date')) {{ 'is-invalid' }} @endif"
+                                                                                            type="date"
+                                                                                            value="{{ $qualification->start_date }}" />
 
-                                                @if ($errors->has('start_date'))
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $errors->first('start_date') }}</strong>
-                                                    </span>
-                                                @endif
-                                            </div>
-                                        </div>
+                                                                                        @if ($errors->has('start_date'))
+                                                                                            <span class="invalid-feedback"
+                                                                                                role="alert">
+                                                                                                <strong>{{ $errors->first('start_date') }}</strong>
+                                                                                            </span>
+                                                                                        @endif
+                                                                                    </div>
+                                                                                </div>
 
-                                        <div class="col-sm-4">
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">End</label>
-                                                <input id="dpic{{$qualification->id}}" name="end_date" placeholder="End Year"
-                                                    class="form-control @if ($errors->has('end_date')) {{ 'is-invalid' }} @endif"
-                                                    type="date" value="{{$qualification->end_date}}"/>
+                                                                                <div class="col-sm-4">
+                                                                                    <div class="form-group">
+                                                                                        <label
+                                                                                            for="exampleInputEmail1">End</label>
+                                                                                        <input
+                                                                                            id="dpic{{ $qualification->id }}"
+                                                                                            name="end_date"
+                                                                                            placeholder="End Year"
+                                                                                            class="form-control @if ($errors->has('end_date')) {{ 'is-invalid' }} @endif"
+                                                                                            type="date"
+                                                                                            value="{{ $qualification->end_date }}" />
 
-                                                @if ($errors->has('end_date'))
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $errors->first('end_date') }}</strong>
-                                                    </span>
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
+                                                                                        @if ($errors->has('end_date'))
+                                                                                            <span class="invalid-feedback"
+                                                                                                role="alert">
+                                                                                                <strong>{{ $errors->first('end_date') }}</strong>
+                                                                                            </span>
+                                                                                        @endif
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
 
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Grade (Optional)</label>
-                                        <input name="grade"
-                                            class="form-control @if ($errors->has('grade')) {{ 'is-invalid' }} @endif"
-                                            type="text"  value="{{$qualification->grade}}"/>
+                                                                            <div class="form-group">
+                                                                                <label for="exampleInputEmail1">Grade
+                                                                                    (Optional)
+                                                                                </label>
+                                                                                <input name="grade"
+                                                                                    class="form-control @if ($errors->has('grade')) {{ 'is-invalid' }} @endif"
+                                                                                    type="text"
+                                                                                    value="{{ $qualification->grade }}" />
 
-                                        @if ($errors->has('grade'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('grade') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
+                                                                                @if ($errors->has('grade'))
+                                                                                    <span class="invalid-feedback"
+                                                                                        role="alert">
+                                                                                        <strong>{{ $errors->first('grade') }}</strong>
+                                                                                    </span>
+                                                                                @endif
+                                                                            </div>
 
-                                    {{-- <div class="form-group">
+                                                                            {{-- <div class="form-group">
                                         <label for="exampleInputEmail1">Your Qualifications</label>
                                         <textarea disabled name="skills" class="form-control @if ($errors->has('skills')) {{ 'is-invalid' }} @endif"
                                             rows="3">{{ $user->userable->skills }}</textarea>
@@ -750,44 +787,44 @@
                                             </span>
                                         @endif
                                     </div> --}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <button type="submit" class="btn btn-warning pull-right">Update</button>
-                        </div>
-                    </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="card-footer">
+                                                                    <button type="submit"
+                                                                        class="btn btn-warning pull-right">Update</button>
+                                                                </div>
+                                                            </form>
 
 
 
-            </div>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
-@push('scripts')
-<script>
-     if ($('#undergrad{{$qualification->id}}').is(':checked')) {
-          // alert("t");
-          $('#dpic{{$qualification->id}}').prop('disabled', true);
-      } else {
-          //alert("tjio");
-          $('#dpic{{$qualification->id}}').prop('disabled', false);
-      }
-  $('#undergrad{{$qualification->id}}').click(function() {
-      if ($('#undergrad{{$qualification->id}}').is(':checked')) {
-          // alert("t");
-          $('#dpic{{$qualification->id}}').prop('disabled', true);
-      } else {
-          //alert("tjio");
-          $('#dpic{{$qualification->id}}').prop('disabled', false);
-      }
-  });
-</script>
-@endpush
-
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.modal-content -->
+                                                </div>
+                                                <!-- /.modal-dialog -->
+                                            </div>
+                                            <!-- /.modal -->
+                                            @push('scripts')
+                                                <script>
+                                                    if ($('#undergrad{{ $qualification->id }}').is(':checked')) {
+                                                        // alert("t");
+                                                        $('#dpic{{ $qualification->id }}').prop('disabled', true);
+                                                    } else {
+                                                        //alert("tjio");
+                                                        $('#dpic{{ $qualification->id }}').prop('disabled', false);
+                                                    }
+                                                    $('#undergrad{{ $qualification->id }}').click(function() {
+                                                        if ($('#undergrad{{ $qualification->id }}').is(':checked')) {
+                                                            // alert("t");
+                                                            $('#dpic{{ $qualification->id }}').prop('disabled', true);
+                                                        } else {
+                                                            //alert("tjio");
+                                                            $('#dpic{{ $qualification->id }}').prop('disabled', false);
+                                                        }
+                                                    });
+                                                </script>
+                                            @endpush
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -835,7 +872,8 @@
                                         <div class="form-group">
                                             <div class="autocomplete" style="width:100%;">
                                                 <label for="exampleInputEmail1">Location</label>
-                                                <input  type="text" name="location" class="@if ($errors->has('location')) {{ 'is-invalid' }} @endif">
+                                                <input type="text" name="location"
+                                                    class="@if ($errors->has('location')) {{ 'is-invalid' }} @endif">
                                             </div>
 
                                             @if ($errors->has('location'))
@@ -943,8 +981,11 @@
                                                     </span>
                                                 </td>
                                                 <td style="width: 80px">
-                                                        <button type="button" class="btn btn-block btn-outline-warning btn-xs" data-target="#modal-mdx{{ $experiences->id }}" data-toggle="modal">Update</button>
-                                                        <button type="button" class="btn btn-block btn-outline-danger btn-xs"
+                                                    <button type="button"
+                                                        class="btn btn-block btn-outline-warning btn-xs"
+                                                        data-target="#modal-mdx{{ $experiences->id }}"
+                                                        data-toggle="modal">Update</button>
+                                                    <button type="button" class="btn btn-block btn-outline-danger btn-xs"
                                                         onclick="removeEx({{ $experiences->id }});">Remove</button>
 
                                                 </td>
@@ -954,146 +995,182 @@
                                             @endphp
 
 
-      <!-- /.view profile modal -->
-      <div class="modal fade" id="modal-mdx{{ $experiences->id }}">
-        <div class="modal-dialog modal-md">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" style="text-transform: capitalize">Update experience</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
+                                            <!-- /.view profile modal -->
+                                            <div class="modal fade" id="modal-mdx{{ $experiences->id }}">
+                                                <div class="modal-dialog modal-md">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title" style="text-transform: capitalize">
+                                                                Update experience</h4>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
 
-                    <!--Make sure the form has the autocomplete function switched off:-->
-                    <form autocomplete="off" action="{{ route('user.edit_experience',$experiences->id) }}" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <div class="autocomplete" style="width:100%;">
-                                            <label for="exampleInputEmail1">Position</label>
-                                            <input id="position1" type="text" name="position" value="{{$experiences->position->text}}" placeholder="">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="autocomplete @if ($errors->has('company')) {{ 'is-invalid' }} @endif"
-                                            style="width:100%;">
-                                            <label for="exampleInputEmail1">Company</label>
-                                            <input id="ins2" type="text" name="company" value="{{$experiences->institute->text}}" placeholder="">
-                                        </div>
+                                                            <!--Make sure the form has the autocomplete function switched off:-->
+                                                            <form autocomplete="off"
+                                                                action="{{ route('user.edit_experience', $experiences->id) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <div class="card-body">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <div class="form-group">
+                                                                                <div class="autocomplete"
+                                                                                    style="width:100%;">
+                                                                                    <label
+                                                                                        for="exampleInputEmail1">Position</label>
+                                                                                    <input id="position1" type="text"
+                                                                                        name="position"
+                                                                                        value="{{ $experiences->position->text }}"
+                                                                                        placeholder="">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <div class="autocomplete @if ($errors->has('company')) {{ 'is-invalid' }} @endif"
+                                                                                    style="width:100%;">
+                                                                                    <label
+                                                                                        for="exampleInputEmail1">Company</label>
+                                                                                    <input id="ins2" type="text"
+                                                                                        name="company"
+                                                                                        value="{{ $experiences->institute->text }}"
+                                                                                        placeholder="">
+                                                                                </div>
 
-                                        @if ($errors->has('company'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('company') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
+                                                                                @if ($errors->has('company'))
+                                                                                    <span class="invalid-feedback"
+                                                                                        role="alert">
+                                                                                        <strong>{{ $errors->first('company') }}</strong>
+                                                                                    </span>
+                                                                                @endif
+                                                                            </div>
 
-                                    <div class="form-group">
-                                        <div class="autocomplete" style="width:100%;">
-                                            <label for="exampleInputEmail1">Location</label>
-                                            <input  type="text" name="location" value="{{$experiences->location}}" class="@if ($errors->has('location')) {{ 'is-invalid' }} @endif">
-                                        </div>
+                                                                            <div class="form-group">
+                                                                                <div class="autocomplete"
+                                                                                    style="width:100%;">
+                                                                                    <label
+                                                                                        for="exampleInputEmail1">Location</label>
+                                                                                    <input type="text" name="location"
+                                                                                        value="{{ $experiences->location }}"
+                                                                                        class="@if ($errors->has('location')) {{ 'is-invalid' }} @endif">
+                                                                                </div>
 
-                                        @if ($errors->has('location'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('location') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
+                                                                                @if ($errors->has('location'))
+                                                                                    <span class="invalid-feedback"
+                                                                                        role="alert">
+                                                                                        <strong>{{ $errors->first('location') }}</strong>
+                                                                                    </span>
+                                                                                @endif
+                                                                            </div>
 
-                                    <div class="form-group">
-                                        <div class="form-check">
-                                            <input id="present{{$experiences->id}}" class="form-check-input" {{$experiences->end_date!=null?'':'checked'}} type="checkbox">
-                                            <label class="form-check-label">I am currently working in this role</label>
-                                        </div>
-                                    </div>
+                                                                            <div class="form-group">
+                                                                                <div class="form-check">
+                                                                                    <input
+                                                                                        id="present{{ $experiences->id }}"
+                                                                                        class="form-check-input"
+                                                                                        {{ $experiences->end_date != null ? '' : 'checked' }}
+                                                                                        type="checkbox">
+                                                                                    <label class="form-check-label">I am
+                                                                                        currently working in this
+                                                                                        role</label>
+                                                                                </div>
+                                                                            </div>
 
 
 
-                                    <div class="row">
-                                        {{-- <label for="exampleInputEmail1">Time of work</label> --}}
-                                        <div class="col-sm-4">
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Start</label>
-                                                <input name="start_date" placeholder="Start Year"
-                                                    class="form-control @if ($errors->has('start_date')) {{ 'is-invalid' }} @endif"
-                                                    type="date" value="{{$experiences->start_date}}"/>
+                                                                            <div class="row">
+                                                                                {{-- <label for="exampleInputEmail1">Time of work</label> --}}
+                                                                                <div class="col-sm-4">
+                                                                                    <div class="form-group">
+                                                                                        <label
+                                                                                            for="exampleInputEmail1">Start</label>
+                                                                                        <input name="start_date"
+                                                                                            placeholder="Start Year"
+                                                                                            class="form-control @if ($errors->has('start_date')) {{ 'is-invalid' }} @endif"
+                                                                                            type="date"
+                                                                                            value="{{ $experiences->start_date }}" />
 
-                                                @if ($errors->has('start_date'))
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $errors->first('start_date') }}</strong>
-                                                    </span>
-                                                @endif
+                                                                                        @if ($errors->has('start_date'))
+                                                                                            <span class="invalid-feedback"
+                                                                                                role="alert">
+                                                                                                <strong>{{ $errors->first('start_date') }}</strong>
+                                                                                            </span>
+                                                                                        @endif
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-sm-4">
+                                                                                    <div class="form-group">
+                                                                                        <label
+                                                                                            for="exampleInputEmail1">End</label>
+                                                                                        <input
+                                                                                            id="end_y{{ $experiences->id }}"
+                                                                                            name="end_date"
+                                                                                            placeholder="End Year"
+                                                                                            class="form-control @if ($errors->has('end_date')) {{ 'is-invalid' }} @endif"
+                                                                                            type="date"
+                                                                                            value="{{ $experiences->end_date }}" />
+
+                                                                                        @if ($errors->has('end_date'))
+                                                                                            <span class="invalid-feedback"
+                                                                                                role="alert">
+                                                                                                <strong>{{ $errors->first('end_date') }}</strong>
+                                                                                            </span>
+                                                                                        @endif
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="card-footer">
+                                                                    <button type="submit"
+                                                                        class="btn btn-warning pull-right">Update</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                                <!-- /.modal-content -->
                                             </div>
-                                        </div>
-
-                                        <div class="col-sm-4">
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">End</label>
-                                                <input id="end_y{{$experiences->id}}" name="end_date" placeholder="End Year"
-                                                    class="form-control @if ($errors->has('end_date')) {{ 'is-invalid' }} @endif"
-                                                    type="date" value="{{$experiences->end_date}}" />
-
-                                                @if ($errors->has('end_date'))
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $errors->first('end_date') }}</strong>
-                                                    </span>
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
+                                            <!-- /.modal-dialog -->
                             </div>
-                        </div>
-                        <div class="card-footer">
-                            <button type="submit" class="btn btn-warning pull-right">Update</button>
-                        </div>
-                    </form>
-                </div>
-
-
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
-  @push('scripts')
-  <script>
-      if ($('#present{{$experiences->id}}').is(':checked')) {
-                // alert("t");
-                $('#end_y{{$experiences->id}}').prop('disabled', true);
-            } else {
-                //alert("tjio");
-                $('#end_y{{$experiences->id}}').prop('disabled', false);
-            }
-     $('#present{{$experiences->id}}').click(function() {
-            if ($('#present{{$experiences->id}}').is(':checked')) {
-                // alert("t");
-                $('#end_y{{$experiences->id}}').prop('disabled', true);
-            } else {
-                //alert("tjio");
-                $('#end_y{{$experiences->id}}').prop('disabled', false);
-            }
-        });
-</script>
-  @endpush
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
+                            <!-- /.modal -->
+                            @push('scripts')
+                                <script>
+                                    if ($('#present{{ $experiences->id }}').is(':checked')) {
+                                        // alert("t");
+                                        $('#end_y{{ $experiences->id }}').prop('disabled', true);
+                                    } else {
+                                        //alert("tjio");
+                                        $('#end_y{{ $experiences->id }}').prop('disabled', false);
+                                    }
+                                    $('#present{{ $experiences->id }}').click(function() {
+                                        if ($('#present{{ $experiences->id }}').is(':checked')) {
+                                            // alert("t");
+                                            $('#end_y{{ $experiences->id }}').prop('disabled', true);
+                                        } else {
+                                            //alert("tjio");
+                                            $('#end_y{{ $experiences->id }}').prop('disabled', false);
+                                        }
+                                    });
+                                </script>
+                            @endpush
+                            @endforeach
+                            </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-                {{-- End of Qualifications Card --}}
             </div>
+            {{-- End of Qualifications Card --}}
+        </div>
         </div>
     </section>
 
@@ -1114,87 +1191,90 @@
                 <div class="modal-body">
                     <div class="row mb-2">
                         <div class="col-sm-7">
-                            <!-- Widget: user widget style 1 -->
-                            <div class="card card-widget widget-user">
-                                <!-- Add the bg color to the header using any of the bg-* classes -->
-                                <div class="widget-user-header bg-olive"
-                                    @if ($user->cover_image != null) style="background-image: url('{{ url('public') }}/images/profile/{{ $user->cover_image }}') !important;" @endif>
-                                    <h3 class="widget-user-username" style="text-transform: uppercase">{{ $user->name }}
-                                    </h3>
-                                    {{-- <a href="{{route('user.view_rating')}}"> --}}
-                                    @php
-                                        $i = 0;
-                                        //$r = intval(Auth()->user()->userable->level);
-                                        $r = (int) $round_mediation;
-                                    @endphp
-                                    @while ($i < 5)
-                                        @if ($r > 0)
-                                            <span class="fa fa-star checked"></span>
-                                        @else
-                                            <span class="fa fa-star"></span>
-                                        @endif
-                                        @php
-                                            $i += 1;
-                                            $r -= 1;
-                                        @endphp
-                                    @endwhile
-                                    {{-- </a> --}}
-                                </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <!-- Widget: user widget style 1 -->
+                                    <div class="card card-widget widget-user">
+                                        <!-- Add the bg color to the header using any of the bg-* classes -->
+                                        <div class="widget-user-header bg-olive"
+                                            @if ($user->cover_image != null) style="background-image: url('{{ url('public') }}/images/profile/{{ $user->cover_image }}') !important;" @endif>
+                                            <h3 class="widget-user-username" style="text-transform: uppercase">
+                                                {{ $user->name }}
+                                            </h3>
+                                            {{-- <a href="{{route('user.view_rating')}}"> --}}
+                                            @php
+                                                $i = 0;
+                                                //$r = intval(Auth()->user()->userable->level);
+                                                $r = (int) $round_mediation;
+                                            @endphp
+                                            @while ($i < 5)
+                                                @if ($r > 0)
+                                                    <span class="fa fa-star checked"></span>
+                                                @else
+                                                    <span class="fa fa-star"></span>
+                                                @endif
+                                                @php
+                                                    $i += 1;
+                                                    $r -= 1;
+                                                @endphp
+                                            @endwhile
+                                            {{-- </a> --}}
+                                        </div>
 
-                                <div class="widget-user-image">
-                                    <img class="img-circle elevation-2"
-                                        onerror="this.src='{{ url('public') }}/theme/admin/dist/img/default-avatar.jpg'"
-                                        @if (Auth()->user()->image != null) src="{{ url('public') }}/images/profile/{{ Auth()->user()->image }}" @else src="" @endif
-                                        alt="User Avatar">
-                                </div>
+                                        <div class="widget-user-image">
+                                            <img class="img-circle elevation-2"
+                                                onerror="this.src='{{ url('public') }}/theme/admin/dist/img/default-avatar.jpg'"
+                                                @if (Auth()->user()->image != null) src="{{ url('public') }}/images/profile/{{ Auth()->user()->image }}" @else src="" @endif
+                                                alt="User Avatar">
+                                        </div>
 
-                                <div class="card-footer">
-                                    <div class="row">
-                                        <div class="col-sm-4 border-right">
-                                            <div class="description-block">
-                                                {{-- <h5 class="description-header">3,200</h5>
+                                        <div class="card-footer">
+                                            <div class="row">
+                                                <div class="col-sm-4 border-right">
+                                                    <div class="description-block">
+                                                        {{-- <h5 class="description-header">3,200</h5>
                                         <span class="description-text">SALES</span> --}}
-                                            </div>
-                                            <!-- /.description-block -->
-                                        </div>
-                                        <!-- /.col -->
+                                                    </div>
+                                                    <!-- /.description-block -->
+                                                </div>
+                                                <!-- /.col -->
 
-                                        <div class="col-sm-4 border-right">
-                                            <div class="description-block">
-                                                <h5 class="description-header"></h5>
-                                                <span class="description-text"></span>
-                                            </div>
-                                            <!-- /.description-block -->
-                                        </div>
+                                                <div class="col-sm-4 border-right">
+                                                    <div class="description-block">
+                                                        <h5 class="description-header"></h5>
+                                                        <span class="description-text"></span>
+                                                    </div>
+                                                    <!-- /.description-block -->
+                                                </div>
 
-                                        <!-- /.col -->
+                                                <!-- /.col -->
 
-                                        <div class="col-sm-4">
-                                            <div class="description-block">
-                                                {{-- <h5 class="description-header">35</h5>
+                                                <div class="col-sm-4">
+                                                    <div class="description-block">
+                                                        {{-- <h5 class="description-header">35</h5>
                                         <span class="description-text">PRODUCTS</span> --}}
+                                                    </div>
+                                                    <!-- /.description-block -->
+                                                </div>
+                                                <!-- /.col -->
                                             </div>
-                                            <!-- /.description-block -->
-                                        </div>
-                                        <!-- /.col -->
-                                    </div>
-                                    <!-- /.row -->
+                                            <!-- /.row -->
 
-                                    <div class="row ml-5">
+                                            <div class="row ml-5">
 
-                                        {{-- <div class="col-sm-2">
+                                                {{-- <div class="col-sm-2">
                                     <a class="btn btn-success" href="{{ route('student.view_conversation', $query->id) }}">Complaint</a>
                                 </div> --}}
-                                        <div class="col-xs-2">
-                                            {{-- <a class="btn btn-warning" href="{{route('student.complaint',$teacher->id)}}">Complaint Mentor</a> --}}
-                                        </div>
-                                        <div class="col-xs-4 mr-2" style="text-align: left">
-                                            <a class="btn btn-success">Connect</a>
-                                        </div>
-                                        <div class="col-xs-4 ml-6" style="text-align: center">
-                                            <button class="btn btn-warning"><i class="fa fa-star"></i>Rate
-                                                Now</button>
-                                            {{-- <form action="{{ route('student.rate_teacher') }}" method="POST" class="form-inline" style="float: right" id="changeRatings">
+                                                <div class="col-xs-2">
+                                                    {{-- <a class="btn btn-warning" href="{{route('student.complaint',$teacher->id)}}">Complaint Mentor</a> --}}
+                                                </div>
+                                                <div class="col-xs-4 mr-2" style="text-align: left">
+                                                    <a class="btn btn-success">Connect</a>
+                                                </div>
+                                                <div class="col-xs-4 ml-6" style="text-align: center">
+                                                    <button class="btn btn-warning"><i class="fa fa-star"></i>Rate
+                                                        Now</button>
+                                                    {{-- <form action="{{ route('student.rate_teacher') }}" method="POST" class="form-inline" style="float: right" id="changeRatings">
                                         @csrf
                                         <label data-toggle="modal" data-target="#modal-md"><i class="fa fa-star"></i> Ratings:
                                             <select name="rating" class="form-control" style="max-width: 120px; margin-left: 5px;" id="ratingInp">
@@ -1208,113 +1288,209 @@
                                         </label>
                                         <input type="hidden" name="teacher_id" value="{{$teacher->id}}">
                                     </form> --}}
-                                        </div>
+                                                </div>
 
-                                        <div class="col-x-2">
-                                            {{-- <a class="btn btn-warning" href="{{route('student.complaint',$teacher->id)}}">Complaint Mentor</a> --}}
-                                        </div>
+                                                <div class="col-x-2">
+                                                    {{-- <a class="btn btn-warning" href="{{route('student.complaint',$teacher->id)}}">Complaint Mentor</a> --}}
+                                                </div>
 
+                                            </div>
+                                        </div>
                                     </div>
+                                    <!-- /.widget-user -->
+                                    {{-- <div class="card">
+                          <div class="card-header">
+                              <h3 class="card-title">
+                                <i class="fas fa-tasks"></i>
+                                Schedule
+                              </h3>
+                            </div>
+                          <div class="card-body p-2">
+                            <!-- THE CALENDAR -->
+                            <div id="calendar"></div>
+                          </div>
+                          <!-- /.card-body -->
+                      </div> --}}
                                 </div>
                             </div>
-                            <!-- /.widget-user -->
                         </div>
 
                         <div class="col-md-5">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">
-                                        <i class="fas fa-angle-double-down"></i>
-                                        About me
-                                    </h3>
-                                    <br>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h3 class="card-title">
+                                                <i class="fas fa-angle-double-down"></i>
+                                                About me
+                                            </h3>
+                                            <br>
 
-                                    @if (Auth()->user()->userable->linkedin_link != null)
-                                        {{-- <a href="{{ Auth()->user()->userable->linkedin_link }}" target="_blank">View
+                                            @if (Auth()->user()->userable->linkedin_link != null)
+                                                {{-- <a href="{{ Auth()->user()->userable->linkedin_link }}" target="_blank">View
                                             Linkedin Profile
                                             <i class="fas fa-angle-double-right"></i></a> --}}
-                                    @endif
-                                    @if (Auth()->user()->about != null)
-                                    <span>{{Auth()->user()->about}}
-                                        <i class="fas fa-angle-double-right"></i></span>
-                                @endif
-                                </div>
-                                <!-- /.card-header -->
+                                            @endif
+                                            {{-- @if (Auth()->user()->about != null)
+                                                <span>{{ Auth()->user()->about }}
+                                                    <i class="fas fa-angle-double-right"></i></span>
+                                            @endif --}}
+                                        </div>
+                                        <!-- /.card-header -->
 
-                                <div class="card-body">
-                                    <dl>
-                                        <dt>Qualifications</dt>
-                                        <dd>
-                                            <ul>
+                                        <div class="card-body">
+                                            <dl>
+                                                @if (Auth()->user()->about != null)
+                                                    <dd>{{ Auth()->user()->about }}
+                                                    </dd>
+                                                @endif
+                                                {{-- <dt>Qualifications</dt>
+                                                <dd>
+                                                    <ul>
 
-                                                @foreach (Auth()->user()->userable->qualifications as $qualification)
-                                                    <li><strong>{{ $qualification->text }}</strong><br>
-                                                        {{-- <ul> --}}
-                                                        <span>{{ $qualification->institute->text }}
-                                                            <br>
-                                                            {{ $qualification->field }}<br>
-                                                            <small>@if ($qualification->end_date!= null)Completed
-                                                                {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }}  -
-                                                                {{ explode('-', $qualification->end_date)[1] }}/{{ explode('-', $qualification->end_date)[0] }} @else {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }} - Present <br> Grade-{{$qualification->grade}} @endif
+                                                        @foreach (Auth()->user()->userable->qualifications as $qualification)
+                                                            <li><strong>{{ $qualification->text }}</strong><br>
+                                                                <span>{{ $qualification->institute->text }}
+                                                                    <br>
+                                                                    {{ $qualification->field }}<br>
+                                                                    <small>
+                                                                        @if ($qualification->end_date != null)
+                                                                            Completed
+                                                                            {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }}
+                                                                            -
+                                                                            {{ explode('-', $qualification->end_date)[1] }}/{{ explode('-', $qualification->end_date)[0] }}
+                                                                        @else
+                                                                            {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }}
+                                                                            - Present
+                                                                            <br> Grade-{{ $qualification->grade }}
+                                                                        @endif
 
-                                                            </small>
-                                                        </span>
-                                                        {{-- </ul> --}}
-                                                    </li>
-                                                @endforeach
-                                            </ul>
+                                                                    </small>
+                                                                </span>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
 
-                                        </dd>
-                                        <dt>Experience</dt>
-                                        <dd>
-                                            <ul>
+                                                </dd>
+                                                <dt>Experience</dt>
+                                                <dd>
+                                                    <ul>
 
-                                                @foreach (Auth()->user()->userable->experiences as $experience)
-                                                    <li><strong>{{ $experience->position->text }}</strong><br>
-                                                        {{-- <ul> --}}
-                                                        <span>{{ $experience->institute->text }}
-                                                            <br>
-                                                            <small>{{ explode('-', $experience->start_date)[1] }}/{{ explode('-', $experience->start_date)[0] }}
-                                                                @if ($experience->end_date != null)
-                                                                    -
-                                                                    {{ explode('-', $experience->end_date)[1] }}/{{ explode('-', $experience->end_date)[0] }}
-                                                                @else
-                                                                    - Present
-                                                                @endif
-                                                                <br>
-                                                                Location : {{$experience->location}}
-                                                            </small>
-                                                        </span>
-                                                        {{-- </ul> --}}
-                                                    </li>
-                                                @endforeach
-                                            </ul>
+                                                        @foreach (Auth()->user()->userable->experiences as $experience)
+                                                            <li><strong>{{ $experience->position->text }}</strong><br>
+                                                                <span>{{ $experience->institute->text }}
+                                                                    <br>
+                                                                    <small>{{ explode('-', $experience->start_date)[1] }}/{{ explode('-', $experience->start_date)[0] }}
+                                                                        @if ($experience->end_date != null)
+                                                                            -
+                                                                            {{ explode('-', $experience->end_date)[1] }}/{{ explode('-', $experience->end_date)[0] }}
+                                                                        @else
+                                                                            - Present
+                                                                        @endif
+                                                                        <br>
+                                                                        Location : {{ $experience->location }}
+                                                                    </small>
+                                                                </span>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
 
-                                        </dd>
-                                        {{-- <dt>Skills</dt>
+                                                </dd>
+                                                <dt>Skills</dt>
                                         <dd>
                                             {{ Auth()->user()->userable->skills }}
                                         </dd> --}}
-                                        <dt>Industry</dt>
-                                        <dd>
-                                            {{ Auth()->user()->userable->industry }}
-                                        </dd>
-                                        <dt>Job Title</dt>
-                                        <dd>
-                                            {{ Auth()->user()->userable->job }}
-                                        </dd>
-                                    </dl>
-                                </div>
-                                <!-- /.card-body -->
+                                                <dt>Industry</dt>
+                                                <dd>
+                                                    {{ Auth()->user()->userable->industry }}
+                                                </dd>
+                                                <dt>Job Title</dt>
+                                                <dd>
+                                                    {{ Auth()->user()->userable->job }}
+                                                </dd>
+                                            </dl>
+                                        </div>
+                                        <!-- /.card-body -->
 
-                                <div class="card-footer">
-                                    <div class="float-right">
-                                        <b>Average Responce time: </b> {{ round(1, 5) }}hrs
+                                        <div class="card-footer">
+                                            <div class="float-right">
+                                                <b>Average Responce time: </b> {{ round(1, 5) }}hrs
+                                            </div>
+                                        </div>
                                     </div>
+                                    <!-- /.card -->
+                                    {{-- Qualifications Card --}}
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h3 class="card-title">
+                                                <i class="fas fa-bookmark"></i>
+                                                Qualifications
+                                            </h3>
+                                        </div>
+                                        <!-- /.card-header -->
+
+                                        <div class="card-body">
+                                            @foreach (Auth()->user()->userable->qualifications as $qualification)
+                                                <strong>{{ $qualification->text }}</strong><br>
+                                                <span>{{ $qualification->institute->text }}
+                                                    <br>
+                                                    {{ $qualification->field }}<br>
+                                                    <small>
+                                                        @if ($qualification->end_date != null)
+                                                            Completed
+                                                            {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }}
+                                                            -
+                                                            {{ explode('-', $qualification->end_date)[1] }}/{{ explode('-', $qualification->end_date)[0] }}
+                                                        @else
+                                                            {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }}
+                                                            - Present
+                                                            <br> Grade-{{ $qualification->grade }}
+                                                        @endif
+
+                                                    </small>
+                                                </span>
+                                                <hr>
+                                            @endforeach
+                                        </div>
+                                        <!-- /.card-body -->
+                                    </div>
+                                    {{-- End of Qualifications Card --}}
+
+                                    {{-- Experience Card --}}
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h3 class="card-title">
+                                                <i class="fas fa-briefcase"></i>
+                                                Experience
+                                            </h3>
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <div class="card-body">
+                                            @foreach (Auth()->user()->userable->experiences as $experience)
+                                                <strong>{{ $experience->position->text }}</strong><br>
+                                                <span>{{ $experience->institute->text }}
+                                                    <br>
+                                                    <small>{{ explode('-', $experience->start_date)[1] }}/{{ explode('-', $experience->start_date)[0] }}
+                                                        @if ($experience->end_date != null)
+                                                            -
+                                                            {{ explode('-', $experience->end_date)[1] }}/{{ explode('-', $experience->end_date)[0] }}
+                                                        @else
+                                                            - Present
+                                                        @endif
+                                                        <br>
+                                                        Location : {{ $experience->location }}
+                                                    </small>
+                                                </span>
+                                                <hr>
+                                            @endforeach
+                                        </div>
+                                        <!-- /.card-body -->
+                                    </div>
+                                    {{-- Experience Card --}}
+
                                 </div>
                             </div>
                         </div>
-                        <!-- /.card -->
                     </div>
 
                     <div class="row">
@@ -1368,7 +1544,7 @@
 
 
 
-      <!-- /.view profile modal -->
+    <!-- /.view profile modal -->
 @endsection
 
 
@@ -1761,6 +1937,5 @@
                 $('#dpic').prop('disabled', false);
             }
         });
-
     </script>
 @endpush
