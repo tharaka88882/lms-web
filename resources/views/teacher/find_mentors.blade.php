@@ -312,7 +312,7 @@
                                                         </a>
                                                         @if ($tutor->conversation != null)
                                                             <a
-                                                                href="{{ route('teacher.view_mentor_conversation', $tutor->id) }}">
+                                                                href="{{ route('teacher.view_mentor_conversation', $tutor->conversation['id']) }}">
                                                                 <button
                                                                     class="btn btn-sm btn-primary w-100 ml-2">Message</button>
                                                             </a>

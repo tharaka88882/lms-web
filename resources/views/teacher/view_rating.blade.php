@@ -183,7 +183,9 @@
 
                         @foreach ($ratings as $rating)
                         <div class="row">
+
                                 <div class="col-12 col-sm-6 col-md-6 d-flex align-items-stretch flex-column">
+
                                     <div class="card bg-light d-flex flex-fill">
                                         <div class="card-header text-muted border-bottom-0" style="text-align: right;">
                                             <b>Date: </b> {{ explode(' ', $rating->created_at)[0] }}

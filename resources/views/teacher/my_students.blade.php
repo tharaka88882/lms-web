@@ -163,14 +163,16 @@
                                                 </a>
                                                 <div class="ml-3 w-100">
                                                     <h4 class="mb-0 mt-0"><a style="text-transform: capitalize" href="#">{{$conversation['name']}}</a></h4>
-                                                    <span>
-                                                    @foreach ($conversation['milestone'] as $milestone)
-                                                    <div class="p-2 mt-2 bg-light d-flex justify-content-between rounded text-white stats" style="font-size: 14px;">
 
+                                                    <div class="p-2 mt-2 bg-light d-flex justify-content-between rounded text-white stats" style="font-size: 14px;">
+                                                        <span>
+                                                        @foreach ($conversation['milestone'] as $milestone)
                                                             <span class="badge bg-gray">{{$milestone->note}}</span>
+                                                        @endforeach
+                                                    </span>
                                                     </div>
-                                                    @endforeach
-                                                </span>
+
+
 
 
                                                     <div class="button mt-2 d-flex flex-row align-items-center">
