@@ -37,41 +37,43 @@
                                     $last_id=$message->id;
                                     $i++;
                                     @endphp
-                                    @if ($message->sender_id==Auth()->user()->id)
+                                   @if ($message->seen == 1)
+                                   @if ($message->sender_id==Auth()->user()->id)
 
-                                        <!-- Message to the right -->
-                                        <div class="direct-chat-msg right">
-                                            <div class="direct-chat-info clearfix text-right">
-                                                <span class="direct-chat-name right">Me</span>
-                                                <small class="direct-chat-timestamp float-left">{{$message->created_at->format('y/m/d h:i')}}</small>
-                                            </div>
-                                            <!-- /.direct-chat-info -->
-                                            <img class="direct-chat-img"  onerror="this.src='{{url('public')}}/theme/admin/dist/img/default-avatar.jpg'"
-                                            @if (Auth()->user()->image != null) src="{{url('public')}}/images/profile/{{ Auth()->user()->image }}" @else src="" @endif onerror="this.src='https://login.you2mentor.com/public/images/def.jpg'"/>
+                                   <!-- Message to the right -->
+                                   <div class="direct-chat-msg right">
+                                       <div class="direct-chat-info clearfix text-right">
+                                           <span class="direct-chat-name right">Me</span>
+                                           <small class="direct-chat-timestamp float-left">{{$message->created_at->format('y/m/d h:i')}}</small>
+                                       </div>
+                                       <!-- /.direct-chat-info -->
+                                       <img class="direct-chat-img"  onerror="this.src='{{url('public')}}/theme/admin/dist/img/default-avatar.jpg'"
+                                       @if (Auth()->user()->image != null) src="{{url('public')}}/images/profile/{{ Auth()->user()->image }}" @else src="" @endif onerror="this.src='https://login.you2mentor.com/public/images/def.jpg'"/>
 
-                                            <!-- /.direct-chat-img -->
-                                            <div class="direct-chat-text" style="max-width:60%; float: right">
-                                                {{$message->message}} </div>
-                                            <!-- /.direct-chat-text -->
-                                        </div>
-                                        <!-- /.direct-chat-msg -->
-                                    @else
-                                        <!-- Message. Default to the left -->
-                                        <div class="direct-chat-msg">
-                                            <div class="direct-chat-info clearfix">
-                                                <span class="direct-chat-name pull-left">{{$message->sender->name}}</span>
-                                                <small class="direct-chat-timestamp float-right">{{$message->created_at->format('y/m/d h:i')}}</small>
-                                            </div>
-                                            <!-- /.direct-chat-info -->
-                                            <img class="direct-chat-img"
-                                                @if ($message->sender->image != null) src="{{url('public')}}/images/profile/{{ $message->sender->image }}" @else src="" @endif onerror="this.src='https://login.you2mentor.com/public/images/def.jpg'"/>
-                                            <!-- /.direct-chat-img -->
-                                            <div class="direct-chat-text" style="max-width:60%; float: left">
-                                                {{$message->message}} </div>
-                                            <!-- /.direct-chat-text -->
-                                        </div>
-                                        <!-- /.direct-chat-msg -->
-                                    @endif
+                                       <!-- /.direct-chat-img -->
+                                       <div class="direct-chat-text" style="max-width:60%; float: right">
+                                           {{$message->message}} </div>
+                                       <!-- /.direct-chat-text -->
+                                   </div>
+                                   <!-- /.direct-chat-msg -->
+                               @else
+                                   <!-- Message. Default to the left -->
+                                   <div class="direct-chat-msg">
+                                       <div class="direct-chat-info clearfix">
+                                           <span class="direct-chat-name pull-left">{{$message->sender->name}}</span>
+                                           <small class="direct-chat-timestamp float-right">{{$message->created_at->format('y/m/d h:i')}}</small>
+                                       </div>
+                                       <!-- /.direct-chat-info -->
+                                       <img class="direct-chat-img"
+                                           @if ($message->sender->image != null) src="{{url('public')}}/images/profile/{{ $message->sender->image }}" @else src="" @endif onerror="this.src='https://login.you2mentor.com/public/images/def.jpg'"/>
+                                       <!-- /.direct-chat-img -->
+                                       <div class="direct-chat-text" style="max-width:60%; float: left">
+                                           {{$message->message}} </div>
+                                       <!-- /.direct-chat-text -->
+                                   </div>
+                                   <!-- /.direct-chat-msg -->
+                               @endif
+                                   @endif
 
 
 

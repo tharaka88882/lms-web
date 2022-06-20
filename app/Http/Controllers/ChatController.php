@@ -44,9 +44,11 @@ class ChatController extends Controller
            // $conversation1 = Conversation::where('teacher_id',$request->get('teacher_id'))->where('student_id',$request->get('student_id'))->get();
 
             $message = new Message();
+           // $message->message=ucwords(Auth()->user()->name)." has started a conversation.";
             $message->message=ucwords(Auth()->user()->name)." has started a conversation.";
             $message->sender_id=Auth()->user()->id;
             $message->conversation_id= $conversation->id;
+            $message->seen = 0;
             $message->save();
             //DB::commit();
 
@@ -61,7 +63,7 @@ class ChatController extends Controller
             // $headers = "From: info@you2mentor.com" . "\r\n";
 
            // mail($to,$subject,$txt,$headers);
-          // Mail::to($to)->send(new StartConversation($user_name));
+           Mail::to($to)->send(new StartConversation($user_name));
 
             DB::commit();
             Toastr::success('Conversation Started', 'Success');
@@ -144,6 +146,7 @@ class ChatController extends Controller
         $messages = $query->get();
 
         foreach($messages as $message){
+          if($message->seen==1){
             if($message->sender_id==Auth()->user()->id){
                 $content .= "<!-- Message to the right -->";
                 $content .= "<div class=\"direct-chat-msg right\">";
@@ -189,6 +192,7 @@ class ChatController extends Controller
                 $content .= "</div>";
                 $content .= "<!-- /.direct-chat-msg -->";
             }
+          }
             $last_id = $message->id;
         }
         return json_encode(array(
@@ -225,6 +229,7 @@ class ChatController extends Controller
             $message->message=ucwords(Auth()->user()->name)." has started a conversation.";
             $message->sender_id=Auth()->user()->userable->id;
             $message->conversation_id= $conversation->id;
+            $message->seen = 0;
             $message->save();
 
             $teacher = Teacher::findOrFail($request->get('teacher_id'));
@@ -238,7 +243,7 @@ class ChatController extends Controller
 
             $user_name = $teacher->user->name;
             //mail($to,$subject,$txt,$headers);
-           // Mail::to($to)->send(new StartConversation($user_name));
+            Mail::to($to)->send(new StartConversation($user_name));
 
             DB::commit();
             Toastr::success('Conversation Started', 'Success');
@@ -309,50 +314,52 @@ class ChatController extends Controller
         $messages = $query->get();
 
         foreach($messages as $message){
-            if($message->sender_id==Auth()->user()->userable->id){
-                $content .= "<!-- Message to the right -->";
-                $content .= "<div class=\"direct-chat-msg right\">";
-                $content .= "    <div class=\"direct-chat-info clearfix text-right\">";
-                $content .= "        <span class=\"direct-chat-name right\">Me</span>";
-                $content .= "        <small class=\"direct-chat-timestamp float-left\">".$message->created_at->format('y/m/d h:i')."</small>";
-                $content .= "    </div>";
-                $content .= "    <!-- /.direct-chat-info -->";
-                $content .= "    <img class=\"direct-chat-img\"";
-                $content .= "        onerror=\"this.src='".url('public')."/theme/admin/dist/img/default-avatar.jpg'\"";
-                if (Auth()->user()->image != null) {
-                $content .= "        src=\"".url('public')."/images/profile/".Auth()->user()->image."\"";
-                }else {
-                $content .= "        src=\"\"";
+            if($message->seen == 1){
+                if($message->sender_id==Auth()->user()->userable->id){
+                    $content .= "<!-- Message to the right -->";
+                    $content .= "<div class=\"direct-chat-msg right\">";
+                    $content .= "    <div class=\"direct-chat-info clearfix text-right\">";
+                    $content .= "        <span class=\"direct-chat-name right\">Me</span>";
+                    $content .= "        <small class=\"direct-chat-timestamp float-left\">".$message->created_at->format('y/m/d h:i')."</small>";
+                    $content .= "    </div>";
+                    $content .= "    <!-- /.direct-chat-info -->";
+                    $content .= "    <img class=\"direct-chat-img\"";
+                    $content .= "        onerror=\"this.src='".url('public')."/theme/admin/dist/img/default-avatar.jpg'\"";
+                    if (Auth()->user()->image != null) {
+                    $content .= "        src=\"".url('public')."/images/profile/".Auth()->user()->image."\"";
+                    }else {
+                    $content .= "        src=\"\"";
+                    }
+                    $content .= "        alt=\"message user image\">";
+                    $content .= "    <!-- /.direct-chat-img -->";
+                    $content .= "    <div class=\"direct-chat-text\" style=\"max-width:60%; float: right\">";
+                    $content .= "        ".$message->message." </div>";
+                    $content .= "    <!-- /.direct-chat-text -->";
+                    $content .= "</div>";
+                    $content .= "<!-- /.direct-chat-msg -->";
+                }else{
+                    $content .= "<!-- Message. Default to the left -->";
+                    $content .= "<div class=\"direct-chat-msg\">";
+                    $content .= "    <div class=\"direct-chat-info clearfix\">";
+                    $content .= "        <span class=\"direct-chat-name pull-left\">".$message->sender->user->name."</span>";
+                    $content .= "        <small class=\"direct-chat-timestamp float-right\">".$message->created_at->format('y/m/d h:i')."</small>";
+                    $content .= "    </div>";
+                    $content .= "    <!-- /.direct-chat-info -->";
+                    $content .= "    <img class=\"direct-chat-img\"";
+                    $content .= "        onerror=\"this.src='".url('public')."/theme/admin/dist/img/default-avatar.jpg'\"";
+                    if ($message->sender->user->image != null) {
+                    $content .= "        src=\"".url('public')."/images/profile/".$message->sender->user->image."\"";
+                    }else {
+                    $content .= "        src=\"\"";
+                    }
+                    $content .= "        alt=\"message user image\">";
+                    $content .= "    <!-- /.direct-chat-img -->";
+                    $content .= "    <div class=\"direct-chat-text\" style=\"max-width:60%; float: left\">";
+                    $content .= "        ".$message->message." </div>";
+                    $content .= "    <!-- /.direct-chat-text -->";
+                    $content .= "</div>";
+                    $content .= "<!-- /.direct-chat-msg -->";
                 }
-                $content .= "        alt=\"message user image\">";
-                $content .= "    <!-- /.direct-chat-img -->";
-                $content .= "    <div class=\"direct-chat-text\" style=\"max-width:60%; float: right\">";
-                $content .= "        ".$message->message." </div>";
-                $content .= "    <!-- /.direct-chat-text -->";
-                $content .= "</div>";
-                $content .= "<!-- /.direct-chat-msg -->";
-            }else{
-                $content .= "<!-- Message. Default to the left -->";
-                $content .= "<div class=\"direct-chat-msg\">";
-                $content .= "    <div class=\"direct-chat-info clearfix\">";
-                $content .= "        <span class=\"direct-chat-name pull-left\">".$message->sender->user->name."</span>";
-                $content .= "        <small class=\"direct-chat-timestamp float-right\">".$message->created_at->format('y/m/d h:i')."</small>";
-                $content .= "    </div>";
-                $content .= "    <!-- /.direct-chat-info -->";
-                $content .= "    <img class=\"direct-chat-img\"";
-                $content .= "        onerror=\"this.src='".url('public')."/theme/admin/dist/img/default-avatar.jpg'\"";
-                if ($message->sender->user->image != null) {
-                $content .= "        src=\"".url('public')."/images/profile/".$message->sender->user->image."\"";
-                }else {
-                $content .= "        src=\"\"";
-                }
-                $content .= "        alt=\"message user image\">";
-                $content .= "    <!-- /.direct-chat-img -->";
-                $content .= "    <div class=\"direct-chat-text\" style=\"max-width:60%; float: left\">";
-                $content .= "        ".$message->message." </div>";
-                $content .= "    <!-- /.direct-chat-text -->";
-                $content .= "</div>";
-                $content .= "<!-- /.direct-chat-msg -->";
             }
             $last_id = $message->id;
         }
