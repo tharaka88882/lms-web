@@ -261,7 +261,7 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Stikey Note</th>
+                                    <th>Note</th>
                                     <th>Date Added</th>
                                     <th>Actions</th>
                                 </tr>
@@ -271,16 +271,18 @@
                                     $i = 1;
                                 @endphp
                                 @foreach ($milestone->m_stikey as $m_stikey)
-                                    <tr>
-                                        <td>{{ $i }}</td>
-                                        <td>{{ $m_stikey->s_note }}</td>
-                                        <td>{{ date('Y/m/d | H:i', strtotime($m_stikey->updated_at)) }}</td>
-                                        <td>
-                                            {{-- <a href="" class="btn btn-sm btn-warning" id="goal">Update</a> --}}
-                                            <button type="button" onclick="del_stikey('{{ $m_stikey->id }}');"
-                                                class="btn btn-sm btn-danger" id="del_">Delete</button>
-                                        </td>
-                                    </tr>
+                                  @if ($m_stikey->user_id == Auth()->user()->id)
+                                  <tr>
+                                    <td>{{ $i }}</td>
+                                    <td>{{ $m_stikey->s_note }}</td>
+                                    <td>{{ date('Y/m/d | H:i', strtotime($m_stikey->updated_at)) }}</td>
+                                    <td>
+                                        {{-- <a href="" class="btn btn-sm btn-warning" id="goal">Update</a> --}}
+                                        <button type="button" onclick="del_stikey('{{ $m_stikey->id }}');"
+                                            class="btn btn-sm btn-danger" id="del_">Delete</button>
+                                    </td>
+                                </tr>
+                                  @endif
                                     @php
                                         $i++;
                                     @endphp
@@ -347,7 +349,7 @@
                     }
                 });
             }else{
-                alert("Stikey note can't be null !");
+                alert("Note can't be null !");
             }
 
         }

@@ -44,7 +44,7 @@ class ChatController extends Controller
            // $conversation1 = Conversation::where('teacher_id',$request->get('teacher_id'))->where('student_id',$request->get('student_id'))->get();
 
             $message = new Message();
-            $message->message=lcfirst(Auth()->user()->name)." has started a conversation.";
+            $message->message=ucwords(Auth()->user()->name)." has started a conversation.";
             $message->sender_id=Auth()->user()->id;
             $message->conversation_id= $conversation->id;
             $message->save();
@@ -222,7 +222,7 @@ class ChatController extends Controller
 
 
             $message = new MentorMessage();
-            $message->message=lcfirst(Auth()->user()->name)." has started a conversation.";
+            $message->message=ucwords(Auth()->user()->name)." has started a conversation.";
             $message->sender_id=Auth()->user()->userable->id;
             $message->conversation_id= $conversation->id;
             $message->save();

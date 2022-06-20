@@ -36,8 +36,9 @@
                 <div class="col-sm-12">
                     <div style="font-size:15px; text-align:center;" class="alert alert-warning">
                         Thanks for signing up. We will be launching officially soon and will notify you once we are live. In
-                        the meantime our pilot is running, so update your profile, explore and check out the RSS feed
+                        the meantime our pilot is running, so update your profile, explore and check out the Knowledge Hub
                         curated for your development.
+                        <br />
                         <br />
                         We would love to hear feedback on how we can improve your experience, so drop us a note through <a
                             href="https://you2mentor.com/contact/" target="_blank">here</a>
@@ -49,6 +50,8 @@
                             &nbsp;&nbsp; <a href="https://www.instagram.com/You2Mentor/" target="_blank"><i
                                     class="bi bi-instagram"></i></a>&nbsp;&nbsp; <a href="https://www.tiktok.com/You2Mentor/"
                                 target="_blank"><i class="bi bi-tiktok"></i></a>
+                                &nbsp;&nbsp; <a
+                                href="#" target="_blank"><i class="bi bi-facebook"></i></a>
                         </span>
                     </div>
                 </div>

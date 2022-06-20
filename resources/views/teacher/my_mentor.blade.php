@@ -278,7 +278,7 @@
                                                     @endphp
                                                     @while ($i<5)
                                                         @if ($r>0)
-                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked" style="color:rgb(255, 153, 0);"></span>
                                                         @else
                                                         <span class="fa fa-star"></span>
 
@@ -299,7 +299,7 @@
                                                         $i++;
                                                    @endphp
                                                    @if ($i == $sizeArr)
-                                                   <span class="users-list-date">Job Title - {{ $experience->position->text }}</span>
+                                                   <span class="users-list-date">{{ $experience->position->text }}</span>
                                                    @endif
                                                     @endforeach
 
@@ -396,7 +396,7 @@
                                                                                                             <thead>
                                                                                                                 <tr>
                                                                                                                     <th>#</th>
-                                                                                                                    <th>Stikey Note</th>
+                                                                                                                    <th>Note</th>
                                                                                                                     <th>Date Added</th>
                                                                                                                     <th>Actions</th>
                                                                                                                 </tr>
@@ -406,17 +406,19 @@
                                                                                                                     $i = 1;
                                                                                                                 @endphp
                                                                                                                @foreach ($conversation->mentor->stikey as $stikey)
-                                                                                                               <tr>
-                                                                                                                <td>{{$i}}</td>
-                                                                                                                <td>{{$stikey->note}}</td>
-                                                                                                                {{-- <td>{{date('Y/m/d | H:i', strtotime($stikey->updated_at))}}</td> --}}
-                                                                                                                {{-- <td>{{ Timezone::convertToLocal($stikey->updated_at, 'Y/m/d | H:i', true) }}</td> --}}
-                                                                                                                <td>@displayDate($stikey->updated_at)</td>
-                                                                                                                <td >
-                                                                                                                      {{-- <a href="" class="btn btn-sm btn-warning" id="goal">Update</a> --}}
-                                                                                                                      <button type="button" onclick="del_stikey('{{$stikey->id}}');" class="btn btn-sm btn-danger" id="del_{{$stikey->id}}">Delete</button>
-                                                                                                                </td>
-                                                                                                            </tr>
+                                                                                                           @if ($stikey->user_id == Auth()->user()->id)
+                                                                                                           <tr>
+                                                                                                            <td>{{$i}}</td>
+                                                                                                            <td>{{$stikey->note}}</td>
+                                                                                                            {{-- <td>{{date('Y/m/d | H:i', strtotime($stikey->updated_at))}}</td> --}}
+                                                                                                            {{-- <td>{{ Timezone::convertToLocal($stikey->updated_at, 'Y/m/d | H:i', true) }}</td> --}}
+                                                                                                            <td>@displayDate($stikey->updated_at)</td>
+                                                                                                            <td >
+                                                                                                                  {{-- <a href="" class="btn btn-sm btn-warning" id="goal">Update</a> --}}
+                                                                                                                  <button type="button" onclick="del_stikey('{{$stikey->id}}');" class="btn btn-sm btn-danger" id="del_{{$stikey->id}}">Delete</button>
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                           @endif
                                                                                                             @php
                                                                                                                 $i++;
                                                                                                             @endphp
@@ -499,7 +501,7 @@ function saveNote1(id){
             }
         });
   }else{
-    alert("Stikey note can't be null !");
+    alert("Note can't be null !");
   }
    // alert('saved');
 

@@ -241,7 +241,7 @@
                                                             <thead>
                                                                 <tr>
                                                                     <th>#</th>
-                                                                    <th>Stikey Note</th>
+                                                                    <th>Note</th>
                                                                     <th>Date Added</th>
                                                                     <th >Actions</th>
                                                                 </tr>
@@ -252,7 +252,8 @@
                                                                 @endphp
                                                                @foreach ($conversation['stikey'] as $stikey)
 
-                                                               <tr>
+                                                              @if ($stikey->user_id == Auth()->user()->id)
+                                                              <tr>
                                                                 <td>{{$i}}</td>
                                                                 <td>{{$stikey->note}}</td>
                                                                 <td>@displayDate($stikey->updated_at)</td>
@@ -266,6 +267,7 @@
 
                                                                 </td>
                                                             </tr>
+                                                              @endif
                                                             @php
                                                                 $i++;
                                                             @endphp
@@ -327,7 +329,7 @@ function saveNote(id,user,ar_index){
             }
         });
    }else{
-    alert("Stikey note can't be null !");
+    alert("Note can't be null !");
    }
     //alert('test');
 }

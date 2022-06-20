@@ -310,7 +310,7 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Stikey Note</th>
+                                            <th>Note</th>
                                             <th>Date Added</th>
                                             <th>Actions</th>
                                         </tr>
@@ -320,7 +320,8 @@
                                             $i = 1;
                                         @endphp
                                        @foreach ($conversation->mentor->stikey as $stikey)
-                                       <tr>
+                                     @if ($stikey->user_id == Auth()->user()->id)
+                                     <tr>
                                         <td>{{$i}}</td>
                                         <td>{{$stikey->note}}</td>
                                         <td>@displayDate($stikey->updated_at)</td>
@@ -329,6 +330,7 @@
                                               <button type="button" onclick="del_stikey1('{{$stikey->id}}');" class="btn btn-sm btn-danger" id="del_{{$stikey->id}}">Delete</button>
                                         </td>
                                     </tr>
+                                     @endif
                                     @php
                                         $i++;
                                     @endphp
@@ -390,7 +392,7 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Stikey Note</th>
+                                            <th>Note</th>
                                             <th>Date Added</th>
                                             <th>Actions</th>
                                         </tr>
@@ -400,7 +402,8 @@
                                             $i = 1;
                                         @endphp
                                        @foreach ($conversation->mentee->stikey as $stikey)
-                                       <tr>
+                                     @if ($stikey->user_id == Auth()->user()->id)
+                                     <tr>
                                         <td>{{$i}}</td>
                                         <td>{{$stikey->note}}</td>
                                         <td>@displayDate($stikey->updated_at)</td>
@@ -409,6 +412,7 @@
                                               <button type="button" onclick="del_stikey2('{{$stikey->id}}');" class="btn btn-sm btn-danger" id="del_{{$stikey->id}}">Delete</button>
                                         </td>
                                     </tr>
+                                     @endif
                                     @php
                                         $i++;
                                     @endphp
@@ -603,7 +607,7 @@ if( $('#stikey_1').val()!=""){
          }
      });
 }else{
- alert("Stikey note can't be null !");
+ alert("Note can't be null !");
 }
  //alert('test');
 }
@@ -625,7 +629,7 @@ if( $('#stikey_2').val()!=""){
          }
      });
 }else{
- alert("Stikey note can't be null !");
+ alert("Note can't be null !");
 }
  //alert('test');
 }

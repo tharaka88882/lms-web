@@ -146,7 +146,7 @@
                         <i class="fab fa-google mr-2"></i> Sign in using Google
                     </button>
                         <button disabled onclick="loadLin();" id="lilnedinBtn" class="btn btn-block btn-primary">
-                            <i class="fab fa-linkedin mr-2"></i> Sign up using Liknedin
+                            <i class="fab fa-linkedin mr-2"></i> Sign up using Linkedin
                         </button>
                 </div>
 
