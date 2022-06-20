@@ -28,8 +28,8 @@
                                 <!-- Add the bg color to the header using any of the bg-* classes -->
                                 <div class="widget-user-header bg-olive"
                                     @if ($teacher->user->cover_image != null) style="background-image: url('{{ url('public') }}/images/profile/{{ $teacher->user->cover_image }}') !important;" @endif>
-                                    <h3 class="widget-user-username" style="text-transform: uppercase">
-                                        {{ $teacher->user->name }}
+                                    <h3 class="widget-user-username">
+                                        {{ ucwords($teacher->user->name) }}
                                     </h3>
                                     {{-- <a href="{{route('user.view_rating')}}"> --}}
                                     @php
@@ -39,7 +39,7 @@
                                     @endphp
                                     @while ($i < 5)
                                         @if ($r > 0)
-                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked" style="color:rgb(255, 153, 0);"></span>
                                         @else
                                             <span class="fa fa-star"></span>
                                         @endif
@@ -317,7 +317,9 @@
                                                     - Present
                                                 @endif
                                                 <br>
-                                                Location : {{ $experience->location }}
+                                               @if ($experience->location != null)
+                                               Location : {{ $experience->location }}
+                                               @endif
                                             </small>
                                         </span>
                                         <hr>

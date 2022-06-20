@@ -219,7 +219,7 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Stikey Note</th>
+                                    <th>Note</th>
                                     <th>Date Added</th>
                                     <th >Actions</th>
                                 </tr>
@@ -397,7 +397,7 @@ if( $('#stikey_').val()!=""){
          }
      });
 }else{
- alert("Stikey note can't be null !");
+ alert("Note can't be null !");
 }
  //alert('test');
 }

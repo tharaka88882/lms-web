@@ -139,7 +139,7 @@
           <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
         </a-->
                         <a id="linkedinBtn" href="{{ url('auth/linkedin') }}" class="btn btn-block btn-primary">
-                            <i class="fab fa-linkedin mr-2"></i> Sign in using Liknedin
+                            <i class="fab fa-linkedin mr-2"></i> Sign in using Linkedin
                         </a>
                         {{-- </div--> --}}
                         {{-- </.social-auth-links> --}}

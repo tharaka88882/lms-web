@@ -160,7 +160,7 @@
                                         </li>
                                     </ul>
                                     <ul style="list-style: none; padding-left: 0px">
-                                        <li><a target="_blank" href="https://you2mentor.com/rss-2/">RSS Feed</a></li>
+                                        <li><a target="_blank" href="https://you2mentor.com/knowledge_hub/">Knowledge Hub</a></li>
                                     </ul>
                                     <ul style="list-style: none; padding-left: 0px">
                                         <li><a target="_blank" href="https://you2mentor.com/contact">Help and

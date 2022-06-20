@@ -108,7 +108,8 @@
                             <!-- small card -->
                             <div class="small-box bg-light">
                                 <div class="inner">
-                                    @if ($avg_time = 1)
+                                  
+                                    @if ($avg_time == 1)
                                         <h3 style="color: green;">{{ $avg_time }} hour<sup
                                                 style="font-size: 20px"></sup></h3>
                                     @elseif ($avg_time > 1 && $avg_time < 4)

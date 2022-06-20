@@ -262,7 +262,7 @@
                                                     @endphp
                                                     @while ($i<5)
                                                         @if ($r>0)
-                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked" style="color:rgb(255, 153, 0);"></span>
                                                         @else
                                                         <span class="fa fa-star"></span>
 
@@ -289,7 +289,7 @@
                                                         $i++;
                                                    @endphp
                                                    @if ($i == $sizeArr)
-                                                   <span class="users-list-date">Job Title - {{ $experience->position->text }}</span>
+                                                   <span class="users-list-date">{{ $experience->position->text }}</span>
                                                    @endif
                                                     @endforeach
 
