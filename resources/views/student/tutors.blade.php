@@ -313,7 +313,7 @@
                                                             <button class="btn btn-sm btn-outline-primary w-100">View Profile</button>
                                                         </a>
                                                         @if ($tutor->conversation != null)
-                                                            <a href="{{ route('student.view_conversation', $tutor->id) }}">
+                                                            <a href="{{ route('student.view_conversation', $tutor->conversation['id']) }}">
                                                                 <button class="btn btn-sm btn-primary w-100 ml-2">Message</button>
                                                             </a>
                                                         @else

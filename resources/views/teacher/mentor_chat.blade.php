@@ -16,7 +16,7 @@
                     <!-- DIRECT CHAT -->
                     <div class="box box-warning direct-chat direct-chat-warning">
                         <div class="box-header with-border">
-                            <h3 class="box-title" style="text-transform: capitalize">Direct Chat -<a href="{{route('teacher.view_mentor',$conversation->mentor_id)}}"> {{($conversation->mentor->user->id==Auth()->user()->id)?$conversation->mentee->user->name:$conversation->mentor->user->name}}</a></h3>
+                            <h3 class="box-title" style="text-transform: capitalize">Direct Chat -<a @if ($conversation->mentee->user->id==Auth()->user()->id) href="{{route('teacher.view_mentor',$conversation->mentor_id)}}" @endif> {{($conversation->mentor->user->id==Auth()->user()->id)?$conversation->mentee->user->name:$conversation->mentor->user->name}}</a></h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -109,7 +109,7 @@
                       <div class="card-header">
                         <h3 class="card-title">
                           <i class="fas fa-bullhorn"></i>
-                          Notice.!
+                          Notice!
                          </h3>
                        </div>
                        <!-- /.card-header -->
@@ -125,7 +125,7 @@
                     <div class="card-header">
                         <h3 class="card-title">
                           <i class="fas fa-list"></i>
-                              Mentee developments goals
+                              Mentee development goals
                        </h3>
                        <div class="card-body">
                     <div class="p-2 mt-2 bg-light d-flex justify-content rounded text-white stats" style="font-size: 18px;">
