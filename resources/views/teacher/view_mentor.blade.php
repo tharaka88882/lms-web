@@ -27,9 +27,10 @@
                                 <!-- Add the bg color to the header using any of the bg-* classes -->
                                 <div class="widget-user-header bg-olive"
                                     @if ($teacher->user->cover_image != null) style="background-image: url('{{ url('public') }}/images/profile/{{ $teacher->user->cover_image }}') !important;" @endif>
-                                    <h3 class="widget-user-username">
+                                    <h3 class="widget-user-username" style="margin-top: -10px; margin-bottom:-10px; !important">
                                         {{ ucwords($teacher->user->name) }}
                                     </h3>
+                                    <span><small>Software Engineer</small></span><br>
                                     {{-- <a href="{{route('user.view_rating')}}"> --}}
                                     @php
                                         $i = 0;
