@@ -354,7 +354,7 @@
                                                       </div> --}}
                                                 </div>
                                             </div>
-                                            <span class="users-list-date text-right">Average Responce Time - {{ $conversation->avg_time }} hour</span>
+                                            <span class="users-list-date text-right">Average Responce Time - {{ $conversation->avg_time }} hour(s)</span>
                                         </div>
                                     </div>
 
