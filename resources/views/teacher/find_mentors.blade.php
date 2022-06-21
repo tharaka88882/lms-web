@@ -334,7 +334,7 @@
                                             </div>
                                             {{-- <div class="card-footer text-right"> --}}
                                             <span class="users-list-date text-right">Average Responce Time -
-                                                {{ $tutor->avg_time }} hour</span>
+                                                {{ $tutor->avg_time }} hour(s)</span>
                                             {{-- </div> --}}
                                         </div>
                                     </div>
