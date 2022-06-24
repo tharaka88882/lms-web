@@ -1,7 +1,7 @@
 @component('mail::message')
 # Registration Successful
 
-You successfully registered as a Mentor at You2Mentor.com.
+You successfully registered as a Mentor at You2Mentor.
 
 @component('mail::button', ['url' => 'https://login.you2mentor.com/'])
 Go to You2Mentor
