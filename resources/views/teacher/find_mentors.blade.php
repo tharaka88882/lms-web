@@ -295,7 +295,7 @@
                                                             <span>Skills -
                                                                 @foreach ($tutor->subjects as $subject)
                                                                     <span
-                                                                        class="badge bg-gray">{{ $subject['name'] }}</span>
+                                                                        class="badge" style="color: #564b4b; background-color: #868f976b; !important">{{ $subject['name'] }}</span>
                                                                 @endforeach
                                                             </span>
                                                         </div>

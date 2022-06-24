@@ -259,7 +259,7 @@
                 </div>
                 <div class="col-md-12">
                     <div class="callout callout-warning">
-                        <p>Development goals appears on your profile, however actions within goals are private.</p>
+                        <p>Development goals appear on your profile, however actions within goals are private.</p>
                     </div>
                 </div>
             </div>

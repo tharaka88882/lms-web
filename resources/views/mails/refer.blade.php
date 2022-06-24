@@ -1,13 +1,13 @@
 @component('mail::message')
-# Greetings!
+# Hello!
 
-{{ $username }} has refered you to join You2Mentor.com
+{{ $username }} has referred you to join You2Mentor, a platform for peer to peer mentoring and development
 
 @component('mail::button', ['url' => 'https://you2mentor.com/'])
 Go to You2Mentor
 @endcomponent
 
-If you are already a member, Ignore this.
+If you are already a member, please ignore this email.
 
 
 
