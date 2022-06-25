@@ -1201,8 +1201,21 @@
                                             <h3 class="widget-user-username" style="margin-top: -10px; margin-bottom:-10px; !important">
                                                 {{ ucwords($user->name) }}
                                             </h3>
-                                            <span><small>Software Engineer</small></span><br>
-                                            {{-- <a href="{{route('user.view_rating')}}"> --}}
+                                            @if (sizeof(Auth()->user()->userable->experiences)>0)
+                                            @php
+                                               $sizeArr = sizeof(Auth()->user()->userable->experiences);
+                                               $i = 0;
+                                            @endphp
+                                            @foreach (Auth()->user()->userable->experiences as $experience)
+                                           @php
+                                                $i++;
+                                           @endphp
+                                           @if ($i == $sizeArr)
+                                           <span><small>{{ $experience->position->text }}</small></span><br>
+                                           @endif
+                                            @endforeach
+
+                                            @endif
                                             @php
                                                 $i = 0;
                                                 //$r = intval(Auth()->user()->userable->level);
@@ -1401,10 +1414,12 @@
                                         <dd>
                                             {{ Auth()->user()->userable->skills }}
                                         </dd> --}}
-                                                <dt>Industry</dt>
-                                                <dd>
-                                                    {{ Auth()->user()->userable->industry }}
-                                                </dd>
+                                               @if (Auth()->user()->userable->industry != null)
+                                               <dt>Industry</dt>
+                                               <dd>
+                                                   {{ Auth()->user()->userable->industry }}
+                                               </dd>
+                                               @endif
                                                 {{-- <dt>Job Title</dt>
                                                 <dd>
                                                     {{ Auth()->user()->userable->job }}

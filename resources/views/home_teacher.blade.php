@@ -52,7 +52,7 @@
                                     class="bi bi-instagram"></i></a> &nbsp;&nbsp; <a
                                 href="https://www.tiktok.com/You2Mentor/" target="_blank"><i class="bi bi-tiktok"></i></a>
                                 &nbsp;&nbsp; <a
-                                href="#" target="_blank"><i class="bi bi-facebook"></i></a>
+                                href="https://www.facebook.com/You2mentor/" target="_blank"><i class="bi bi-facebook"></i></a>
                         </span>
                     </div>
                 </div>
