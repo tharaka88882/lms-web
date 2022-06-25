@@ -31,8 +31,21 @@
                                     <h3 class="widget-user-username" style="margin-top: -10px; margin-bottom:-10px; !important">
                                         {{ ucwords($teacher->user->name) }}
                                     </h3>
-                                    <span><small>Software Engineer</small></span><br>
-                                    {{-- <a href="{{route('user.view_rating')}}"> --}}
+                                    @if (sizeof($teacher->experiences)>0)
+                                    @php
+                                       $sizeArr = sizeof($teacher->experiences);
+                                       $i = 0;
+                                    @endphp
+                                    @foreach ($teacher->experiences as $experience)
+                                   @php
+                                        $i++;
+                                   @endphp
+                                   @if ($i == $sizeArr)
+                                   <span><small>{{ $experience->position->text }}</small></span><br>
+                                   @endif
+                                    @endforeach
+
+                                    @endif
                                     @php
                                         $i = 0;
                                         //$r = intval(Auth()->user()->userable->level);
@@ -238,8 +251,10 @@
                                         </dd>
                                         <dt>Skills</dt>
                                         <dd>{{ $teacher->skills }}</dd> --}}
+                                        @if ($teacher->industry != null)
                                         <dt>Industry</dt>
                                         <dd>{{ $teacher->industry }}</dd>
+                                        @endif
                                         {{-- <dt>Job Title</dt>
                             <dd>{{$teacher->job}}</dd> --}}
                                     </dl>
