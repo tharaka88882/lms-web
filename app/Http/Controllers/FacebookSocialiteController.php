@@ -55,7 +55,7 @@ class FacebookSocialiteController extends Controller
                 }
 
                 if($flag){
-                    Toastr::error('Email already used (:', 'Error');
+                    Toastr::error('Email already used', 'Error');
                     return redirect()->route('login');
                 }else{
 

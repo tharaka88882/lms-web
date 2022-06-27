@@ -100,7 +100,7 @@ class PayPalController extends Controller
 
                 $to = $user_order->user->email;
                 $subject = "Payment Status";
-                $txt = "Hi, your payment has Successfull..! Click Here : " . route('login') . " ";
+                $txt = "Hi, your payment has Successfull! Click Here : " . route('login') . " ";
                 $headers = "From: info@chamathkaara.com" . "\r\n";
 
                 mail($to, $subject, $txt, $headers);

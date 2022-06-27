@@ -76,7 +76,7 @@ class NoteController extends Controller
         $note->status = 2;
         $note->milestone_id = $request->get('milestone_id');
         $note->save();
-        Toastr::success('Task is added successfully :)', 'Added');
+        Toastr::success('Task added successfully', 'Added');
         return redirect()->route('user.notes',$request->get('milestone_id'));
     }
 
@@ -114,7 +114,7 @@ class NoteController extends Controller
         $note = Note::FindOrFail($request->get('id'));
         $note->status = $request->get('status');
         $note->save();
-        Toastr::success('Milestone is Update successfully :)', 'Updated');
+        Toastr::success('Milestone updated successfully', 'Updated');
         return array(
             'success'=>true
         );
@@ -130,7 +130,7 @@ class NoteController extends Controller
     {
         $note = Note::FindOrFail($request->get('id'));
         $note->delete();
-        Toastr::success('Milestone is deleted successfully :)', 'Deleted');
+        Toastr::success('Milestone deleted successfully', 'Deleted');
       //  return redirect()->route('user.notes',$request->get('milestone_id'));
       return array(
           'success'=>true

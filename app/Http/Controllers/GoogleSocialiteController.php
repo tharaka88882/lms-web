@@ -57,7 +57,7 @@ class GoogleSocialiteController extends Controller
                 }
 
                 if($flag){
-                    Toastr::error('Email already used (:', 'Error');
+                    Toastr::error('Email already used', 'Error');
                     return redirect()->route('login');
                 }else{
                     if ($user->avatar != null) {
@@ -117,7 +117,7 @@ class GoogleSocialiteController extends Controller
 
         } catch (Exception $e) {
             //dd($e->getMessage());
-            Toastr::error('Something went wrone (:', 'Error');
+            Toastr::error('Something went wrong', 'Error');
             return redirect()->route('login');
         }
     }

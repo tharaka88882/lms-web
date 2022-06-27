@@ -211,7 +211,7 @@ class DashboardController extends Controller
          }
        // return redirect('user/dashboard');
        }else{
-        Toastr::error("Linkedin link can't be empty :(", 'Error');
+        Toastr::error("Linkedin link can't be empty", 'Error');
         return redirect()->route('auth.view_linkedin');
        }
 

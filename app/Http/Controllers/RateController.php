@@ -85,7 +85,7 @@ class RateController extends Controller
         $rating->user_id = Auth()->user()->id;
         $rating->save();
 
-        Toastr::success('Rating is added successfully :)', 'Success');
+        Toastr::success('Rating is added successfully', 'Success');
 
         return array(
             'success'=>true

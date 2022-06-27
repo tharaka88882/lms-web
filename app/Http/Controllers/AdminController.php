@@ -30,7 +30,7 @@ class AdminController extends Controller
         $position->text = $request->get('name');
         $position->save();
 
-        Toastr::success('New position added successfully :)', 'Success');
+        Toastr::success('New position added successfully', 'Success');
         return redirect()->route('admin.add_position');
     }
 
@@ -44,7 +44,7 @@ class AdminController extends Controller
         $company->text = $request->get('name');
         $company->save();
 
-        Toastr::success('New Institute/Company added successfully :)', 'Success');
+        Toastr::success('New Institute/Company added successfully', 'Success');
         return redirect()->route('admin.add_company');
     }
 
@@ -70,7 +70,7 @@ class AdminController extends Controller
         $position->text = $request->get('name');
         $position->save();
 
-        Toastr::success('Position updated successfully :)', 'Success');
+        Toastr::success('Position updated successfully', 'Success');
         return redirect()->route('admin.add_position');
     }
 
@@ -84,7 +84,7 @@ class AdminController extends Controller
         $company->text = $request->get('name');
         $company->save();
 
-        Toastr::success('Institute/Company updated successfully :)', 'Success');
+        Toastr::success('Institute/Company updated successfully', 'Success');
         return redirect()->route('admin.add_company');
     }
 
@@ -92,7 +92,7 @@ class AdminController extends Controller
         $position = Position::findOrFail($id);
         $position->delete();
 
-        Toastr::success('New Position deleted successfully :)', 'Success');
+        Toastr::success('New Position deleted successfully', 'Success');
         return redirect()->route('admin.add_position');
     }
 
@@ -100,7 +100,7 @@ class AdminController extends Controller
         $company = Institute::findOrFail($id);
         $company->delete();
 
-        Toastr::success('Institute/Company deleted successfully :)', 'Success');
+        Toastr::success('Institute/Company deleted successfully', 'Success');
         return redirect()->route('admin.add_company');
     }
 }

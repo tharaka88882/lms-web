@@ -66,7 +66,7 @@ class MilestoneController extends Controller
         $milestone->due_date = $request->get('due_date');
         $milestone->user_id = $user->id;
         $milestone->save();
-        Toastr::success('Milestone is added successfully :)', 'Success');
+        Toastr::success('Milestone is added successfully', 'Success');
 
         return redirect()->route('user.milestone');
     }
@@ -75,7 +75,7 @@ class MilestoneController extends Controller
     {
         $milestone = Milestone::findOrFail($id);
         $milestone->delete();
-        Toastr::success('Milestone is deleted successfully :)', 'Deleted');
+        Toastr::success('Milestone is deleted successfully', 'Deleted');
         return redirect()->route('user.milestone');
     }
     public function update(Request $request)
@@ -88,7 +88,7 @@ class MilestoneController extends Controller
             $milestone->status=3;
         }
         $milestone->save();
-        Toastr::success('Milestone is update successfully :)', 'Updated');
+        Toastr::success('Milestone is update successfully', 'Updated');
         return array(
             'success'=>true
         );

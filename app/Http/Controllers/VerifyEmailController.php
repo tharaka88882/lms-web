@@ -58,7 +58,7 @@ class VerifyEmailController extends Controller
             return view('auth.verifi_register',compact('email','name','password','type'));
 
         }else{
-            Toastr::error('Invalid Code :(', 'Error');
+            Toastr::error('Invalid Code', 'Error');
             return view('student.verify_mentee_email',compact('email','en_code','name','password','type'));
         }
     }
