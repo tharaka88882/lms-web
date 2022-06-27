@@ -138,7 +138,7 @@ class ResetPasswordController extends Controller
         //  );
          return Redirect()->route('auth.verify_view',sha1($code)."-".$request->get('email'));
          }else{
-            Toastr::error("Can't Find Your Account  :(", "Can't Find");
+            Toastr::error("Can't Find Your Account", "Can't Find");
             return Redirect()->route('auth.find_account');
          }
         }catch(Exception $ex){
@@ -161,7 +161,7 @@ class ResetPasswordController extends Controller
         if($request->get('encrited_code')==sha1($request->get('veri_code'))){
             return redirect()->route('auth.edit_pass',$request->get('email'));
         }else{
-            Toastr::error("Invalid Code :(", "Invalid");
+            Toastr::error("Invalid Code", "Invalid");
             return Redirect()->route('auth.verify_view',$request->get('encrited_code')."-".$request->get('email'));
         }
 
@@ -177,7 +177,7 @@ class ResetPasswordController extends Controller
        if($user!=null){
         $user->password = bcrypt($request->get('password'));
         $user->save();
-        Toastr::success('Password Reset Successfull :)', 'Success');
+        Toastr::success('Password Reset Successfull', 'Success');
         return Redirect()->route('login');
        }else{
         Toastr::error('Error :)', 'Error');

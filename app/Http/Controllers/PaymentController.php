@@ -63,9 +63,9 @@ class PaymentController extends Controller
             $package->color = $request->get('color');
             $package->status = 1;
             $package->save();
-            Toastr::success('Package Added successfully :)', 'Success');
+            Toastr::success('Package added successfully', 'Success');
         } else {
-            Toastr::error('Duplicate Package Name :(', 'Error');
+            Toastr::error('Duplicate Package Name', 'Error');
             //return redirect()->route('admin.create_subject');
         }
         return redirect()->route('admin.create_package');
@@ -102,13 +102,13 @@ class PaymentController extends Controller
         $this->createNotification($user->id, explode(' ', Auth()->user()->name)[0] . ' has Approve Your Request..!.', route('teacher.payout_history'));
 
         $to = $user->email;
-        $subject = "Approve Payout.!";
+        $subject = "Approve Payout!";
         $txt = "Hi, YoutoMentor has Approved Your Payout Request..! Your payment will be transfered around 7 working days to your Paypal.
         /n Click Here : " . route('login') . " ";
         $headers = "From: info@you2mentor.com" . "\r\n";
          mail($to,$subject,$txt,$headers);
 
-        Toastr::success('Payment Approved :)', 'Success');
+        Toastr::success('Payment Approved', 'Success');
         return redirect()->route('admin.payouts');
     }
 
@@ -182,7 +182,7 @@ class PaymentController extends Controller
             $package->status = false;
         }
         $package->save();
-        Toastr::success('Payment Package Updated successfully :)', 'Success');
+        Toastr::success('Payment Package Updated successfully', 'Success');
 
         return redirect()->route('admin.edit_package', $id);
     }
@@ -191,7 +191,7 @@ class PaymentController extends Controller
     {
         $package = PaymentPackage::findOrFail($id);
         $package->delete();
-        Toastr::success('Payment Package Deleted successfully :)', 'Deleted');
+        Toastr::success('Payment Package Deleted successfully', 'Deleted');
         return redirect()->route('admin.packages_list');
     }
 
@@ -211,7 +211,7 @@ class PaymentController extends Controller
         $setting->streaming_amount = $request->get('streamprice');
         $setting->paid_level = $request->get('level');
         $setting->save();
-        Toastr::success('Settings Updated successfully :)', 'Success');
+        Toastr::success('Settings Updated successfully', 'Success');
         return redirect()->route('admin.settings');
     }
     public function payment_packages()

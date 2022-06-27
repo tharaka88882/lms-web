@@ -112,10 +112,10 @@ class LinkedinController extends Controller
 
               }else{
                   if(get_class($saved_user->userable) == 'App\Models\Student'){
-                    Toastr::error("You already have a Mentee account before this Email..! (" . $user->email. ")", 'Error..!');
+                    Toastr::error("You already have a Mentee account before this Email" . $user->email. ")", 'Error');
 
                   }else{
-                    Toastr::error("You already have a Mentor account before this Email..! (" . $user->email. ")", 'Error..!');
+                    Toastr::error("You already have a Mentor account before this Email" . $user->email. ")", 'Error');
                   }
                 return redirect()->route('login');
               }
@@ -124,7 +124,7 @@ class LinkedinController extends Controller
         } catch (Exception $e) {
             // DB::rollBack();
            // dd($e->getMessage());
-           Toastr::error("Please Relogin..!",'Error..!');
+           Toastr::error("Please Relogin",'Error');
            return redirect()->route('login');
         }
     }

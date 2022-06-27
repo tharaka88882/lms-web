@@ -12,7 +12,7 @@ class MailController extends Controller {
       $username = 'Dinesh';
         Mail::to('gaveenwick@gmail.com')->send(new WelcomeMail($username));
 
-        Toastr::success('sent:)', 'Success');
+        Toastr::success('sent', 'Success');
 
        // return redirect()->route('home');
         // return view('welcome');

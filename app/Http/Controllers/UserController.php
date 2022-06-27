@@ -90,7 +90,7 @@ class UserController extends Controller
                 $user->userable->grade = $request->get('grade');
                 $user->userable->save();
                 $user->save();
-                Toastr::success('Profile Updated successfully :)', 'Success');
+                Toastr::success('Profile Updated successfully', 'Success');
             } else if (get_class($user->userable) == 'App\Models\Admin') {
                 $user->name = $request->get('name');
                 if( $imageName!=null){
@@ -98,7 +98,7 @@ class UserController extends Controller
                 }
 
                 $user->save();
-                Toastr::success('Profile Updated successfully :)', 'Success');
+                Toastr::success('Profile Updated successfully', 'Success');
             }
             DB::commit();
         } catch (Exception $e) {
@@ -157,9 +157,9 @@ class UserController extends Controller
                 $user->userable->linkedin_link = $request->get('linkedin_link');
                 $user->userable->save();
                 $user->save();
-                Toastr::success('Profile Updated successfully :)', 'Success');
+                Toastr::success('Profile Updated successfully', 'Success');
             } else {
-                Toastr::success('Profile Update Unsuccessful :)', 'Error');
+                Toastr::success('Profile Updated Unsuccessful', 'Error');
             }
             DB::commit();
         } catch (Exception $e) {
@@ -321,7 +321,7 @@ class UserController extends Controller
         // To do email send code hear....
         Mail::to($email)->send(new ReferMail($username));
 
-        Toastr::success('Refered Successfully :)', 'Success');
+        Toastr::success('Refered Successfully', 'Success');
         return  redirect()->back();
     }
 
@@ -352,7 +352,7 @@ class UserController extends Controller
         $experience->save();
 
 
-        Toastr::success('New Experience Added..! :)', 'Success');
+        Toastr::success('New Experience Added', 'Success');
         return  redirect()->route('user.profile');
     }
 
@@ -378,7 +378,7 @@ class UserController extends Controller
         $qualification->save();
 
 
-        Toastr::success('New Qualification Added..! :)', 'Success');
+        Toastr::success('New Qualification Added', 'Success');
         return  redirect()->route('user.profile');
     }
 
@@ -404,7 +404,7 @@ class UserController extends Controller
         $qualification->save();
 
 
-        Toastr::success('Qualification Updated..! :)', 'Success');
+        Toastr::success('Qualification Updated', 'Success');
         return  redirect()->route('user.profile');
     }
 
@@ -435,7 +435,7 @@ class UserController extends Controller
         $experience->save();
 
 
-        Toastr::success('Experience Updated..! :)', 'Success');
+        Toastr::success('Experience Updated', 'Success');
         return  redirect()->route('user.profile');
     }
 
@@ -445,7 +445,7 @@ class UserController extends Controller
         $qualification = Qualification::findOrFail($request->get('id'));
         $qualification->delete();
 
-        Toastr::success('Deleted..! :)', 'Success');
+        Toastr::success('Deleted', 'Success');
         return array(
             'success'=>true
         );
@@ -456,7 +456,7 @@ class UserController extends Controller
         $qualification = Experience::findOrFail($request->get('id'));
         $qualification->delete();
 
-        Toastr::success('Deleted..! :)', 'Success');
+        Toastr::success('Deleted', 'Success');
         return array(
             'success'=>true
         );

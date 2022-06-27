@@ -105,7 +105,7 @@ class TeacherController extends Controller
 
             $teacher->save();
             $teacher->user()->save($user);
-            Toastr::success('Teacher Added successfully :)', 'Success');
+            Toastr::success('Teacher Added successfully', 'Success');
 
             DB::commit();
         } catch (Exception $e) {
@@ -178,7 +178,7 @@ class TeacherController extends Controller
         }
         $teacher->save();
         $teacher->user->save();
-        Toastr::success('Teacher Updated successfully :)', 'Success');
+        Toastr::success('Teacher Updated successfully', 'Success');
 
         return redirect()->route('admin.edit_teacher', $id);
     }
@@ -193,7 +193,7 @@ class TeacherController extends Controller
     {
         $teacher = Teacher::findOrFail($id);
         $teacher->delete();
-        Toastr::success('Teacher Deleted successfully :)', 'Deleted');
+        Toastr::success('Teacher Deleted successfully', 'Deleted');
         return redirect()->route('admin.teachers');
     }
     public function pending()
@@ -241,9 +241,9 @@ class TeacherController extends Controller
                 $teacher->skills  = $teacher_subject->subject->name;
             }
             $teacher->save();
-            Toastr::success('Mentoring Topic Added successfully :)', 'Success');
+            Toastr::success('Mentoring Topic Added successfully', 'Success');
         }else{
-            Toastr::warning('This Topic has already been taken. :)', 'Warning');
+            Toastr::warning('This Topic has already been taken', 'Warning');
             return redirect()->back();
         }
 
@@ -272,9 +272,9 @@ class TeacherController extends Controller
                 $teacher->skills  = $teacher_subject->subject->name;
             }
             $teacher->save();
-            Toastr::success('Mentoring Topic Added successfully :)', 'Success');
+            Toastr::success('Mentoring Topic Added successfully', 'Success');
         }else{
-            Toastr::warning('This Topic has already been taken. :)', 'Warning');
+            Toastr::warning('This Topic has already been taken', 'Warning');
             return array(
                 'error'=>true
             );
@@ -521,7 +521,7 @@ class TeacherController extends Controller
                     // dd('test');
                     return view('teacher.mentor_chat', compact('request', 'id', 'conversation', 'userTransaction', 'userMentorTransaction', 'teacher', 'setting','menteeDevs','teacherSubs'));
                 } else {
-                    Toastr::warning("Please rate Mentor..! (" . $user->user->name . ")", 'Warning');
+                    Toastr::warning("Please rate mentor (" . $user->user->name . ")", 'Warning');
                     return redirect()->route('teacher.view_mentor', $conver->sender_id);
                 }
                 // }
@@ -618,7 +618,7 @@ class TeacherController extends Controller
             }
 
             DB::commit();
-            Toastr::success('Ratings Added successfully :)', 'Success');
+            Toastr::success('Ratings Added successfully', 'Success');
             return redirect()->route('teacher.view_mentor', $request->get('teacher_id'));
         } catch (Exception $e) {
             DB::rollBack();
@@ -643,7 +643,7 @@ class TeacherController extends Controller
         $complaints->seen = 0;
         $complaints->save();
         $id = $request->get('mentor_id');
-        Toastr::success('Complaint Added successfully :)', 'Success');
+        Toastr::success('Complaint Added successfully', 'Success');
         return redirect()->route('teacher.view_mentor', compact('id'));
     }
 
@@ -684,12 +684,12 @@ class TeacherController extends Controller
 
             $to = $conversation->student->user->email;
             $subject = "Approved The Meeting Request";
-            $txt = "Hi, " . $conversation->teacher->user->name . "has Approve Your Request..! Click Here : " . route('login') . " ";
+            $txt = "Hi, " . $conversation->teacher->user->name . "has Approve Your Request! Click Here : " . route('login') . " ";
             $headers = "From: info@you2mentor.com" . "\r\n";
 
             mail($to,$subject,$txt,$headers);
             DB::commit();
-            Toastr::success('Approve :)', 'Success');
+            Toastr::success('Approve', 'Success');
 
             return  array(
                 'error' => false,
@@ -698,7 +698,7 @@ class TeacherController extends Controller
         } catch (Exception $e) {
             DB::rollBack();
             dd($e);
-            Toastr::error('Error :(', 'Error');
+            Toastr::error('Error', 'Error');
             return array(
                 'error' => true,
                 'flag' => false
@@ -742,7 +742,7 @@ class TeacherController extends Controller
 
             mail($to,$subject,$txt,$headers);
             DB::commit();
-            Toastr::success('Cancel :)', 'Success');
+            Toastr::success('Cancel', 'Success');
 
             return  array(
                 'error' => false
@@ -750,7 +750,7 @@ class TeacherController extends Controller
         } catch (Exception $e) {
             DB::rollBack();
             dd($e);
-            Toastr::error('Error :(', 'Error');
+            Toastr::error('Error', 'Error');
             return array(
                 'error' => true
             );
@@ -794,7 +794,7 @@ class TeacherController extends Controller
 
             mail($to,$subject,$txt,$headers);
             DB::commit();
-            Toastr::success('Requested :)', 'Success');
+            Toastr::success('Requested', 'Success');
 
             return  array(
                 'error' => false
@@ -802,7 +802,7 @@ class TeacherController extends Controller
         } catch (Exception $e) {
             DB::rollBack();
             // dd($e);
-            Toastr::error('Error :(', 'Error');
+            Toastr::error('Error', 'Error');
             return array(
                 'error' => true
             );
@@ -842,7 +842,7 @@ class TeacherController extends Controller
 
             mail($to,$subject,$txt,$headers);
             DB::commit();
-            Toastr::success('Canceled :)', 'Success');
+            Toastr::success('Canceled', 'Success');
 
             return  array(
                 'error' => false
@@ -850,7 +850,7 @@ class TeacherController extends Controller
         } catch (Exception $e) {
             DB::rollBack();
             // dd($e);
-            Toastr::error('Error :(', 'Error');
+            Toastr::error('Error', 'Error');
             return array(
                 'error' => true
             );
@@ -887,12 +887,12 @@ class TeacherController extends Controller
 
             $to = $conversation->mentee->user->email;
             $subject = "Approved Booking Request";
-            $txt = "Hi, " . $conversation->mentor->user->name . "has Approved Your Booking Request..! Click Here : " . route('login') . " ";
+            $txt = "Hi, " . $conversation->mentor->user->name . "has Approved Your Booking Request! Click Here : " . route('login') . " ";
             $headers = "From: info@you2mentor.com" . "\r\n";
 
             mail($to,$subject,$txt,$headers);
             DB::commit();
-            Toastr::success('Approve :)', 'Success');
+            Toastr::success('Approve', 'Success');
 
             return  array(
                 'error' => false,
@@ -901,7 +901,7 @@ class TeacherController extends Controller
         } catch (Exception $e) {
             DB::rollBack();
             dd($e);
-            Toastr::error('Error :(', 'Error');
+            Toastr::error('Error', 'Error');
             return array(
                 'error' => true,
                 'flag' => false
@@ -939,12 +939,12 @@ class TeacherController extends Controller
 
             $to = $conversation->mentee->user->email;
             $subject = "Canceled The Booking Request";
-            $txt = "Hi, " . $conversation->mentor->user->name . "has Cancled Your Booking Request..! Click Here : " . route('login') . " ";
+            $txt = "Hi, " . $conversation->mentor->user->name . "has Cancled Your Booking Request! Click Here : " . route('login') . " ";
             $headers = "From: info@you2mentor.com" . "\r\n";
 
             mail($to,$subject,$txt,$headers);
             DB::commit();
-            Toastr::success('Cancel :)', 'Success');
+            Toastr::success('Cancel', 'Success');
 
             return  array(
                 'error' => false
@@ -952,7 +952,7 @@ class TeacherController extends Controller
         } catch (Exception $e) {
             DB::rollBack();
             dd($e);
-            Toastr::error('Error :(', 'Error');
+            Toastr::error('Error', 'Error');
             return array(
                 'error' => true
             );
@@ -968,7 +968,7 @@ class TeacherController extends Controller
         $userTransaction->notes = "Payout Request : " . $request->get('paypal_email');
         $userTransaction->save();
 
-        $this->createNotification(3, explode(' ', Auth()->user()->name)[0] . ' is  Request Payout..!.', route('admin.payout_requests'));
+        $this->createNotification(3, explode(' ', Auth()->user()->name)[0] . ' is  Request Payout!', route('admin.payout_requests'));
 
         // $to = $conversation->mentee->user->email;
         // $subject = "Cancel a Meeting";
@@ -977,7 +977,7 @@ class TeacherController extends Controller
 
         // mail($to,$subject,$txt,$headers);
 
-        Toastr::success('Payout Request Sent Successfully  :)', 'Success');
+        Toastr::success('Payout Request Sent Successfully', 'Success');
         return redirect()->route('teacher.payout_history');
     }
 
@@ -989,7 +989,7 @@ class TeacherController extends Controller
         if (empty($userTransaction)) {
             return view('teacher.request_payout', compact('setting'));
         } else {
-            Toastr::warning('Payout Request is Processing  :)', 'Processing');
+            Toastr::warning('Payout Request is Processing', 'Processing');
             return redirect()->route('teacher.payout_history');
         }
     }

@@ -33,9 +33,9 @@ class IndustryController extends Controller
             $subject->name = $request->get('name');
             $subject->status = 1;
             $subject->save();
-            Toastr::success('Industry is added successfully :)', 'Success');
+            Toastr::success('Industry is added successfully', 'Success');
         } else {
-            Toastr::error('Duplicate Industry Name :(', 'Error');
+            Toastr::error('Duplicate Industry Name', 'Error');
         }
 
         return redirect()->route('admin.industry');
@@ -45,7 +45,7 @@ class IndustryController extends Controller
     {
         $indstry = Industry::findOrFail($id);
         $indstry->delete();
-        Toastr::success('Industry is deleted successfully :)', 'Deleted');
+        Toastr::success('Industry is deleted successfully', 'Deleted');
         return redirect()->route('admin.industry');
     }
 }

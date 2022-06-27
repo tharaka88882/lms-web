@@ -504,7 +504,7 @@ class StudentController extends Controller
 
                     } else {
 
-                        Toastr::warning("Please rate Mentor..! (" . $user->name . ")", 'Warning');
+                        Toastr::warning("Please rate mentor (" . $user->name . ")", 'Warning');
 
                         return redirect()->route('student.view_tutor', $user->userable->id);
 
@@ -582,7 +582,7 @@ class StudentController extends Controller
 
             DB::commit();
 
-            Toastr::success('Ratings Added successfully :)', 'Success');
+            Toastr::success('Ratings Added successfully', 'Success');
 
             return redirect()->route('student.view_tutor', $request->get('teacher_id'));
 
@@ -680,7 +680,7 @@ class StudentController extends Controller
 
             $id = $request->get('mentor_id');
 
-            Toastr::success('Complaint Added successfully :)', 'Success');
+            Toastr::success('Complaint Added successfully', 'Success');
 
             $this->createNotification('3', 'Mentee has filed a complaint', route('admin.complaints'));
 
@@ -780,7 +780,7 @@ class StudentController extends Controller
 
             DB::commit();
 
-            Toastr::success('Requested :)', 'Success');
+            Toastr::success('Requested', 'Success');
 
 
 
@@ -796,7 +796,7 @@ class StudentController extends Controller
 
             // dd($e);
 
-            Toastr::error('Error :(', 'Error');
+            Toastr::error('Error', 'Error');
 
             return array(
 
@@ -876,7 +876,7 @@ class StudentController extends Controller
 
             DB::commit();
 
-            Toastr::success('Canceled :)', 'Success');
+            Toastr::success('Canceled', 'Success');
 
 
 
@@ -892,7 +892,7 @@ class StudentController extends Controller
 
             // dd($e);
 
-            Toastr::error('Error :(', 'Error');
+            Toastr::error('Error', 'Error');
 
             return array(
 
