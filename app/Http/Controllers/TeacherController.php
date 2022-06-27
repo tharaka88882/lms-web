@@ -1029,6 +1029,29 @@ class TeacherController extends Controller
         return json_encode($returnData);
     }
 
+    public function get_industry(Request $request)
+    {
+        $industrys = Industry::where('name', 'like', '%' . $request->get('search') . '%')->get();
+        $i = 0;
+        $result = array();
+        foreach ($industrys as $industry) {
+
+            $result[$i] = array(
+                'id' => $industry->id,
+                'text' => $industry->name
+            );
+            $i++;
+        }
+
+        $returnData = array(
+            'error' => false,
+            'msg' => 'Success!',
+            'results' => $result,
+        );
+
+        return json_encode($returnData);
+    }
+
     public function view_purchase_package($id)
     {
         $user_order = UserOrder::findOrFail($id);

@@ -136,13 +136,8 @@
                                         <div class="col-lg-3">
                                             <div class="form-group" id="currentModal">
                                                 <label>Industry :</label>
-                                                <select class="select2 form-control" data-placeholder="Any" style="width: 100%;" name="search_industry">
-                                                    <option>Any</option>
-                                                    @foreach ($industries as $industry)
-                                                        <option value="{{ $industry->id }}" @if ($industry->id == $request->get('search_industry')) {{ 'selected' }} @endif>
-                                                            {{ $industry->name }}
-                                                        </option>
-                                                    @endforeach
+                                                <select class="select22 form-control"  style="width: 100%;" name="search_industry" id="search_industry">
+
                                                 </select>
                                             </div>
                                         </div>
@@ -414,6 +409,56 @@
                 }
             },
             dropdownParent: $('#currentModal')
+        });
+
+     $('#search_industry').select2({
+
+        ajax: {
+
+            method: 'GET',
+
+            url: '{{ route('student.get_industry') }}',
+
+            contentType: "application/json; charset=utf-8",
+
+            dataType: 'json',
+
+            data: function(params) {
+
+                var query = {
+
+                    search: params.term,
+
+                    _method: "GET",
+
+                    // _token: "{{ csrf_token() }}",
+
+                    type: 'public'
+
+                };
+
+                // Query parameters will be ?search=[term]&type=public
+
+                return query;
+
+            },
+
+            processResults: function(data) {
+
+                // Transforms the top-level key of the response object from 'items' to 'results'
+
+                return {
+
+                    results: data.results
+
+                };
+
+            }
+
+        },
+
+        // dropdownParent: $('#currentModal')
+
         });
 
     });
