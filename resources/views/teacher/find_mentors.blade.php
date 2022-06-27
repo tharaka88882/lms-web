@@ -162,7 +162,7 @@
 
 
                                         </div>
-                                        <button class="btn btn-success" style="margin-top: 30px;">Find Mentor</button>
+                                        <button class="btn btn-success" style="margin-top: 30px;">Search</button>
 
 
                                         @csrf
@@ -205,7 +205,24 @@
 
                         <div class="card-body p-0">
                             <div class="row">
+
                                 @foreach ($tutors as $tutor)
+                                @php
+                                ($from_leave = \Carbon\Carbon::parse($tutor->user->from_leave));
+                                ($to_leave = \Carbon\Carbon::parse($tutor->user->to_leave));
+
+                               $period = \Carbon\CarbonPeriod::create($from_leave,$to_leave);
+                               $flag = true;
+                               @endphp
+
+                               @foreach ( $period as $date)
+                               @if ($date->isToday())
+                               @php
+                                    $flag = false;
+                               @endphp
+                               @endif
+                               @endforeach
+
                                     <div class="col-md-6">
                                         <div class="card p-3">
                                             <div class="d-flex align-items-center">
@@ -311,11 +328,16 @@
                                                                 Profile</button>
                                                         </a>
                                                         @if ($tutor->conversation != null)
-                                                            <a
-                                                                href="{{ route('teacher.view_mentor_conversation', $tutor->conversation['id']) }}">
-                                                                <button
-                                                                    class="btn btn-sm btn-primary w-100 ml-2">Message</button>
-                                                            </a>
+                                                           @if ($flag == false)
+                                                           <button
+                                                            class="btn btn-sm btn-primary ml-2" disabled >Message</button>
+                                                        @else
+                                                        <a
+                                                        href="{{ route('teacher.view_mentor_conversation', $tutor->conversation['id']) }}">
+                                                        <button
+                                                            class="btn btn-sm btn-primary w-100 ml-2">Message</button>
+                                                    </a>
+                                                           @endif
                                                         @else
                                                             <form
                                                                 action="{{ route('teacher.store_mentor_conversation') }}"
@@ -325,7 +347,7 @@
                                                                     value="{{ Auth()->user()->userable->id }}">
                                                                 <input type="hidden" name="teacher_id"
                                                                     value="{{ $tutor->id }}">
-                                                                <button class="btn btn-sm btn-primary w-100 ml-2"
+                                                                <button {{($flag == false)?'disabled':''}}   class="btn btn-sm btn-primary w-100 ml-2"
                                                                     type="submit">Message</button>
                                                             </form>
                                                         @endif

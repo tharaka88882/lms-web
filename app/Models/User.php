@@ -33,7 +33,9 @@ class User extends Authenticatable
         'image',
         'address',
         'city',
-        'streaming_count'
+        'streaming_count',
+        'from_leave',
+        'to_leave'
     ];
 
     /**

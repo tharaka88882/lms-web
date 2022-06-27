@@ -103,6 +103,21 @@
                                         <!-- /.col -->
                                     </div>
                                     <!-- /.row -->
+                                    @php
+                                    ($from_leave = \Carbon\Carbon::parse($teacher->user->from_leave));
+                                    ($to_leave = \Carbon\Carbon::parse($teacher->user->to_leave));
+
+                                   $period = \Carbon\CarbonPeriod::create($from_leave,$to_leave);
+                                   $flag = true;
+                                   @endphp
+
+                                   @foreach ( $period as $date)
+                                   @if ($date->isToday())
+                                   @php
+                                        $flag = false;
+                                   @endphp
+                                   @endif
+                                   @endforeach
 
                                     <div class="row">
                                         @if (sizeof($conversations) > 0)
@@ -110,8 +125,13 @@
                                     <a class="btn btn-success" href="{{ route('student.view_conversation', $query->id) }}">Complaint</a>
                                 </div> --}}
                                             <div class="col-sm-4" style="text-align: left">
+                                                @if ($flag == false)
+                                                <button disabled class="btn btn-success" type="submit">Connect</button>
+                                                @else
                                                 <a class="btn btn-success"
-                                                    href="{{ route('student.view_conversation', $query->id) }}">Connect</a>
+                                                href="{{ route('student.view_conversation', $query->id) }}">Connect</a>
+                                                @endif
+
                                             </div>
                                             <div class="col-sm-4" style="text-align: center">
                                                 <button {{ sizeof($old_ratings) > 0 ? 'disabled' : '' }}
@@ -134,12 +154,17 @@
                                             </div>
 
                                             <div class="col-sm-4" style="text-align: right">
-                                                {{-- <a class="btn btn-warning" href="{{route('student.complaint',$teacher->id)}}">Complaint Mentor</a> --}}
+                                                <a class="btn btn-warning" href="{{route('student.complaint',$teacher->id)}}"><i class="fa fa-flag"></i> Complaint</a>
                                             </div>
                                         @elseif ($query != null)
                                             <div class="col-sm-12" style="text-align: center">
+                                                @if ($flag == false)
+                                                <button disabled class="btn btn-success" type="submit">Connect</button>
+                                                @else
                                                 <a class="btn btn-success"
-                                                    href="{{ route('student.view_conversation', $query->id) }}">Connect</a>
+                                                href="{{ route('student.view_conversation', $query->id) }}">Connect</a>
+                                                @endif
+
                                             </div>
                                         @else
                                             <div class="col-sm-12" style="text-align: center">
@@ -148,7 +173,7 @@
                                                     <input type="hidden" name="student_id"
                                                         value="{{ Auth()->user()->userable->id }}">
                                                     <input type="hidden" name="teacher_id" value="{{ $teacher->id }}">
-                                                    <button class="btn btn-success" type="submit">Connect</button>
+                                                    <button {{($flag == false)?'disabled':''}} class="btn btn-success" type="submit">Connect</button>
                                                 </form>
                                             </div>
                                         @endif
@@ -293,9 +318,12 @@
                                                         -
                                                         {{ explode('-', $qualification->end_date)[1] }}/{{ explode('-', $qualification->end_date)[0] }}
                                                     @else
+                                                    Ongoing
                                                         {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }}
                                                         - Present
-                                                        <br> Grade-{{ $qualification->grade }}
+                                                        <br> @if ($qualification->grade !=null)
+                                                        Grade-{{ $qualification->grade }}
+                                                        @endif
                                                     @endif
 
                                                 </small>
@@ -324,7 +352,9 @@
                                         <strong>{{ $experience->position->text }}</strong><br>
                                         {{-- <ul> --}}
                                         <span>{{ $experience->institute->text }}
-                                            <br>
+                                            <br>@if ($experience->end_date ==null)
+                                            <small>Currently employed </small>
+                                             @endif
                                             <small>{{ explode('-', $experience->start_date)[1] }}/{{ explode('-', $experience->start_date)[0] }}
                                                 @if ($experience->end_date != null)
                                                     -

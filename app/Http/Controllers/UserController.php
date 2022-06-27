@@ -146,6 +146,8 @@ class UserController extends Controller
                 $user->city = $request->get('city');
                 $user->country = $request->get('country');
                 $user->about = $request->get('about');
+                $user->from_leave = $request->get('from_leave');
+                $user->to_leave = $request->get('to_leave');
               //  $user->userable->nic = $request->get('nic');
                 $user->userable->qualification = $request->get('qualification');
                 $user->userable->experience = $request->get('experience');
