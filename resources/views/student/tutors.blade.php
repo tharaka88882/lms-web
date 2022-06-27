@@ -174,7 +174,7 @@
 
                                         <div class="col-lg-3">
                                             <div class="form-group">
-                                            <button class="btn btn-success" style="margin-top: 30px;">Find Mentor</button>
+                                            <button class="btn btn-success" style="margin-top: 30px;">Search</button>
                                         </div>
                                         </div>
 
@@ -222,6 +222,23 @@
                         <div class="card-body p-0">
                             <div class="row">
                                 @foreach ($tutors as $tutor)
+
+                                @php
+                                ($from_leave = \Carbon\Carbon::parse($tutor->user->from_leave));
+                                ($to_leave = \Carbon\Carbon::parse($tutor->user->to_leave));
+
+                               $period = \Carbon\CarbonPeriod::create($from_leave,$to_leave);
+                               $flag = true;
+                               @endphp
+
+                               @foreach ( $period as $date)
+                               @if ($date->isToday())
+                               @php
+                                    $flag = false;
+                               @endphp
+                               @endif
+                               @endforeach
+
                                     <div class="col-md-6">
                                         <div class="card p-3">
                                             <div class="d-flex align-items-center">
@@ -313,15 +330,20 @@
                                                             <button class="btn btn-sm btn-outline-primary w-100">View Profile</button>
                                                         </a>
                                                         @if ($tutor->conversation != null)
-                                                            <a href="{{ route('student.view_conversation', $tutor->conversation['id']) }}">
-                                                                <button class="btn btn-sm btn-primary w-100 ml-2">Message</button>
-                                                            </a>
+                                                        @if ($flag == false)
+                                                        <button disabled class="btn btn-sm btn-primary ml-2">Message</button>
+                                                        @else
+                                                        <a href="{{ route('student.view_conversation', $tutor->conversation['id']) }}">
+                                                            <button class="btn btn-sm btn-primary w-100 ml-2">Message</button>
+                                                        </a>
+                                                        @endif
+
                                                         @else
                                                             <form action="{{ route('user.store_conversation') }}" method="POST">
                                                                 @csrf
                                                                 <input type="hidden" name="student_id" value="{{Auth()->user()->userable->id}}">
                                                                 <input type="hidden" name="teacher_id" value="{{$tutor->id}}">
-                                                                <button class="btn btn-sm btn-primary w-100 ml-2" type="submit">Message</button>
+                                                                <button {{($flag == false)?'disabled':''}} class="btn btn-sm btn-primary w-100 ml-2" type="submit">Message</button>
                                                             </form>
                                                         @endif
                                                     </div>

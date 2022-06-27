@@ -202,9 +202,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">About Me</label>
-                                            <textarea name="about" class="form-control" rows="3">
-                                                {{ $user->about }}
-                                            </textarea>
+                                            <textarea name="about" class="form-control" rows="3">{{ $user->about }}</textarea>
 
                                             @if ($errors->has('country'))
                                                 <span class="invalid-feedback" role="alert">
@@ -425,6 +423,26 @@
                                                 </span>
                                             @endif
                                         </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">From Date</label>
+                                            <input class="form-control" type="date" name="from_leave" value="{{$user->from_leave}}"/>
+
+                                            @if ($errors->has('from_leave'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('from_leave') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">To Date</label>
+                                            <input class="form-control" type="date" name="to_leave" value="{{$user->to_leave}}"/>
+
+                                            @if ($errors->has('to_leave'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('to_leave') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -491,7 +509,7 @@
                                         <div class="form-group">
                                             <div class="form-check">
                                                 <input id="undergrad" class="form-check-input" type="checkbox">
-                                                <label class="form-check-label">Still studying</label>
+                                                <label class="form-check-label">Ongoing</label>
                                             </div>
                                         </div>
                                         {{-- <div class="form-group">
@@ -1279,33 +1297,20 @@
                                                 {{-- <div class="col-sm-2">
                                     <a class="btn btn-success" href="{{ route('student.view_conversation', $query->id) }}">Complaint</a>
                                 </div> --}}
-                                                <div class="col-xs-2">
-                                                    {{-- <a class="btn btn-warning" href="{{route('student.complaint',$teacher->id)}}">Complaint Mentor</a> --}}
-                                                </div>
+                                                {{-- <div class="col-xs-2">
+                                                    <a class="btn btn-warning" href="{{route('student.complaint',$teacher->id)}}">Complaint Mentor</a>
+                                                </div> --}}
                                                 <div class="col-xs-4 mr-2" style="text-align: left">
                                                     <a class="btn btn-success">Connect</a>
                                                 </div>
                                                 <div class="col-xs-4 ml-6" style="text-align: center">
-                                                    <button class="btn btn-warning"><i class="fa fa-star"></i>Rate
+                                                    <button class="btn btn-warning"><i class="fa fa-star"></i> Rate
                                                         Now</button>
-                                                    {{-- <form action="{{ route('student.rate_teacher') }}" method="POST" class="form-inline" style="float: right" id="changeRatings">
-                                        @csrf
-                                        <label data-toggle="modal" data-target="#modal-md"><i class="fa fa-star"></i> Ratings:
-                                            <select name="rating" class="form-control" style="max-width: 120px; margin-left: 5px;" id="ratingInp">
-                                                <option value="">No Ratings Given</option>
-                                                <option value="1" @if (sizeof($rating) > 0 && $rating->first()->rating == 1) {{'selected'}} @endif>1</option>
-                                                <option value="2" @if (sizeof($rating) > 0 && $rating->first()->rating == 2) {{'selected'}} @endif>2</option>
-                                                <option value="3" @if (sizeof($rating) > 0 && $rating->first()->rating == 3) {{'selected'}} @endif>3</option>
-                                                <option value="4" @if (sizeof($rating) > 0 && $rating->first()->rating == 4) {{'selected'}} @endif>4</option>
-                                                <option value="5" @if (sizeof($rating) > 0 && $rating->first()->rating == 5) {{'selected'}} @endif>5</option>
-                                            </select>
-                                        </label>
-                                        <input type="hidden" name="teacher_id" value="{{$teacher->id}}">
-                                    </form> --}}
+
                                                 </div>
 
-                                                <div class="col-x-2">
-                                                    {{-- <a class="btn btn-warning" href="{{route('student.complaint',$teacher->id)}}">Complaint Mentor</a> --}}
+                                                <div class="col-xs-4 ml-2" style="text-align: right">
+                                                    <a class="btn btn-warning"><i class="fa fa-flag"></i> Complaint</a>
                                                 </div>
 
                                             </div>
@@ -1453,14 +1458,15 @@
                                                     {{ $qualification->field }}<br>
                                                     <small>
                                                         @if ($qualification->end_date != null)
-                                                            Completed
-                                                            {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }}
+                                                            Completed {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }}
                                                             -
                                                             {{ explode('-', $qualification->end_date)[1] }}/{{ explode('-', $qualification->end_date)[0] }}
                                                         @else
-                                                            {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }}
+                                                           Ongoing {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }}
                                                             - Present
-                                                            <br> Grade-{{ $qualification->grade }}
+                                                            <br> @if ($qualification->grade !=null)
+                                                            Grade-{{ $qualification->grade }}
+                                                            @endif
                                                         @endif
 
                                                     </small>
@@ -1485,7 +1491,9 @@
                                             @foreach (Auth()->user()->userable->experiences as $experience)
                                                 <strong>{{ $experience->position->text }}</strong><br>
                                                 <span>{{ $experience->institute->text }}
-                                                    <br>
+                                                    <br>@if ($experience->end_date ==null)
+                                                   <small>Currently employed </small>
+                                                    @endif
                                                     <small>{{ explode('-', $experience->start_date)[1] }}/{{ explode('-', $experience->start_date)[0] }}
                                                         @if ($experience->end_date != null)
                                                             -

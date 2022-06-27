@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\SubjectsExport;
 use App\Imports\SubjectsImport;
+use App\Imports\IndustryImport;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -20,6 +21,8 @@ class ExcelController extends Controller
        return view('excel.excel');
     }
 
+   
+
     /**
     * @return \Illuminate\Support\Collection
     */
@@ -28,6 +31,7 @@ class ExcelController extends Controller
         Excel::import(new SubjectsImport, $request->file('file')->store('temp'));
         return back();
     }
+
 
     /**
     * @return \Illuminate\Support\Collection

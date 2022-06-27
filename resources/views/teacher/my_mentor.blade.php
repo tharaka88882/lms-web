@@ -233,6 +233,21 @@
 
             </div>
             @foreach($conversations as $conversation)
+            @php
+            ($from_leave = \Carbon\Carbon::parse($conversation->mentor->user->from_leave));
+            ($to_leave = \Carbon\Carbon::parse($conversation->mentor->user->to_leave));
+
+           $period = \Carbon\CarbonPeriod::create($from_leave,$to_leave);
+           $flag = true;
+           @endphp
+
+           @foreach ( $period as $date)
+           @if ($date->isToday())
+           @php
+                $flag = false;
+           @endphp
+           @endif
+           @endforeach
                                     <div class="col-md-6">
                                         <div class="card p-2">
                                             <div class="d-flex align-items-center">
@@ -336,9 +351,13 @@
                                                                 </a>
                                                             </div>
                                                               <div class="col-xs-12">
+                                                                @if ($flag == false)
+                                                                <button disabled class="btn btn-xs btn-primary ml-1">Conversation</button>
+                                                                @else
                                                                 <a href="{{route('teacher.view_mentor_conversation', $conversation->id)}}">
                                                                     <button class="btn btn-xs btn-primary w-100 ml-1">Conversation</button>
                                                                 </a>
+                                                                @endif
                                                               </div>
                                                               <div class="col-xs-12">
                                                                 <a>
