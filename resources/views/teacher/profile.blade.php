@@ -408,20 +408,12 @@
 
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Working Industry</label>
-                                            <select class="select2 form-control" data-placeholder="Any"
-                                                style="width: 100%;" name="industry">
-                                                @foreach ($industries as $industry)
-                                                    <option>
-                                                        {{ $industry->name }}
-                                                    </option>
-                                                @endforeach
+                                            <select class="select2 form-control" 
+                                                style="width: 100%;" name="industry" id="industry">
+
                                             </select>
 
-                                            @if ($errors->has('industry'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('industry') }}</strong>
-                                                </span>
-                                            @endif
+
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">From Date</label>
@@ -1654,6 +1646,56 @@
                     method: 'GET',
 
                     url: '{{ route('teacher.get_topics') }}',
+
+                    contentType: "application/json; charset=utf-8",
+
+                    dataType: 'json',
+
+                    data: function(params) {
+
+                        var query = {
+
+                            search: params.term,
+
+                            _method: "GET",
+
+                            // _token: "{{ csrf_token() }}",
+
+                            type: 'public'
+
+                        };
+
+                        // Query parameters will be ?search=[term]&type=public
+
+                        return query;
+
+                    },
+
+                    processResults: function(data) {
+
+                        // Transforms the top-level key of the response object from 'items' to 'results'
+
+                        return {
+
+                            results: data.results
+
+                        };
+
+                    }
+
+                },
+
+                // dropdownParent: $('#currentModal')
+
+            });
+
+            $('#industry').select2({
+
+                ajax: {
+
+                    method: 'GET',
+
+                    url: '{{ route('teacher.get_industry') }}',
 
                     contentType: "application/json; charset=utf-8",
 

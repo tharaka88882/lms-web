@@ -216,6 +216,7 @@ Route::prefix('student')->middleware('check.user')->group(function () {
     Route::post('/meeting/cancel', 'App\Http\Controllers\StudentController@cancel_meeting')->name('student.cancel_meeting');
     Route::get('/payment/packages/view/{id}', 'App\Http\Controllers\StudentController@view_purchase_package')->name('student.view_purchase_package');
     Route::get('/get-topics', 'App\Http\Controllers\TeacherController@get_topics')->name('student.get_topics');
+    Route::get('/get-industry', 'App\Http\Controllers\TeacherController@get_industry')->name('student.get_industry');
 
 });
 
@@ -282,6 +283,7 @@ Route::prefix('teacher')->middleware(['check.tutor', 'check.user'])->group(funct
 
 
     Route::get('/get-topics', 'App\Http\Controllers\TeacherController@get_topics')->name('teacher.get_topics');
+    Route::get('/get-industry', 'App\Http\Controllers\TeacherController@get_industry')->name('teacher.get_industry');
 });
 
 
