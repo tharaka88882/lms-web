@@ -408,7 +408,7 @@
 
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Working Industry</label>
-                                            <select class="select2 form-control" 
+                                            <select class="select2 form-control"
                                                 style="width: 100%;" name="industry" id="industry">
 
                                             </select>
@@ -1208,7 +1208,7 @@
                                         <!-- Add the bg color to the header using any of the bg-* classes -->
                                         <div class="widget-user-header bg-olive"
                                             @if ($user->cover_image != null) style="background-image: url('{{ url('public') }}/images/profile/{{ $user->cover_image }}') !important;" @endif>
-                                            <h3 class="widget-user-username" style="margin-top: -10px; margin-bottom:-10px; !important">
+                                            <h3 class="widget-user-username" style="margin-top: -10px; margin-bottom:0px; !important">
                                                 {{ ucwords($user->name) }}
                                             </h3>
                                             @if (sizeof(Auth()->user()->userable->experiences)>0)
@@ -1284,27 +1284,27 @@
                                             </div>
                                             <!-- /.row -->
 
-                                            <div class="row ml-5">
-
+                                            <div class="col-md-12">
+                                            <div class="row text-center">
                                                 {{-- <div class="col-sm-2">
                                     <a class="btn btn-success" href="{{ route('student.view_conversation', $query->id) }}">Complaint</a>
                                 </div> --}}
                                                 {{-- <div class="col-xs-2">
                                                     <a class="btn btn-warning" href="{{route('student.complaint',$teacher->id)}}">Complaint Mentor</a>
                                                 </div> --}}
-                                                <div class="col-xs-4 mr-2" style="text-align: left">
+                                                <div class="col-sm-12 col-md-4 mb-1">
                                                     <a class="btn btn-success">Connect</a>
                                                 </div>
-                                                <div class="col-xs-4 ml-6" style="text-align: center">
+                                                <div class="col-sm-12 col-md-4 mb-1">
                                                     <button class="btn btn-warning"><i class="fa fa-star"></i> Rate
                                                         Now</button>
 
                                                 </div>
 
-                                                <div class="col-xs-4 ml-2" style="text-align: right">
+                                                <div class="col-sm-12 col-md-4 mb-1">
                                                     <a class="btn btn-warning"><i class="fa fa-flag"></i> Complaint</a>
                                                 </div>
-
+                                            </div>
                                             </div>
                                         </div>
                                     </div>
