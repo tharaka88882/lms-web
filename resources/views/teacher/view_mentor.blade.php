@@ -125,6 +125,7 @@
                                             <div class="col-sm-4" style="text-align: left">
                                                 @if ($flag==false)
                                                 <button disabled class="btn btn-success" type="submit">Connect</button>
+                                                <br><small>I'm away till {{ date('d/m/Y', strtotime($to_leave)); }}</small>
                                                 @else
                                                 <a class="btn btn-success"
                                                 href="{{ route('teacher.view_mentor_conversation', $query->id) }}">Connect</a>
@@ -145,6 +146,7 @@
                                             <div class="col-sm-12" style="text-align: center">
                                                 @if ($flag==false)
                                                 <button disabled class="btn btn-success" type="submit">Connect</button>
+                                                <br><small>I'm away till {{ date('d/m/Y', strtotime($to_leave)); }}</small>
                                                 @else
                                                 <a class="btn btn-success"
                                                 href="{{ route('teacher.view_mentor_conversation', $query->id) }}">Connect</a>
@@ -162,6 +164,11 @@
                                                     <input type="hidden" name="teacher_id" value="{{ $teacher->id }}">
 
                                                     <button {{($flag==false)?'disabled ':''}} class="btn btn-success" type="submit">Connect</button>
+                                                    @if ($flag==false)
+                                                    <br><small>I'm away till {{ date('d/m/Y', strtotime($to_leave)); }}</small>
+                                                    @else
+
+                                                    @endif
                                                 </form>
                                             </div>
                                         @endif
