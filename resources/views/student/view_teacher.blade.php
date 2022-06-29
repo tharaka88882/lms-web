@@ -119,12 +119,12 @@
                                    @endif
                                    @endforeach
 
-                                    <div class="row">
+                                    <div class="row text-center">
                                         @if (sizeof($conversations) > 0)
                                             {{-- <div class="col-sm-2">
                                     <a class="btn btn-success" href="{{ route('student.view_conversation', $query->id) }}">Complaint</a>
                                 </div> --}}
-                                            <div class="col-sm-4" style="text-align: left">
+                                            <div class="col-xm-12 col-md-4 mb-1">
                                                 @if ($flag == false)
                                                 <button disabled class="btn btn-success" type="submit">Connect</button>
                                                 <br><small>I'm away till {{ date('d/m/Y', strtotime($to_leave)); }}</small>
@@ -134,28 +134,15 @@
                                                 @endif
 
                                             </div>
-                                            <div class="col-sm-4" style="text-align: center">
+                                            <div class="col-xm-12 col-md-4 mb-1">
                                                 <button {{ sizeof($old_ratings) > 0 ? 'disabled' : '' }}
                                                     data-toggle="modal" data-target="#modal-md" class="btn btn-warning"><i
                                                         class="fa fa-star"></i>Rate Now</button>
-                                                {{-- <form action="{{ route('student.rate_teacher') }}" method="POST" class="form-inline" style="float: right" id="changeRatings">
-                                        @csrf
-                                        <label data-toggle="modal" data-target="#modal-md"><i class="fa fa-star"></i> Ratings:
-                                            <select name="rating" class="form-control" style="max-width: 120px; margin-left: 5px;" id="ratingInp">
-                                                <option value="">No Ratings Given</option>
-                                                <option value="1" @if (sizeof($rating) > 0 && $rating->first()->rating == 1) {{'selected'}} @endif>1</option>
-                                                <option value="2" @if (sizeof($rating) > 0 && $rating->first()->rating == 2) {{'selected'}} @endif>2</option>
-                                                <option value="3" @if (sizeof($rating) > 0 && $rating->first()->rating == 3) {{'selected'}} @endif>3</option>
-                                                <option value="4" @if (sizeof($rating) > 0 && $rating->first()->rating == 4) {{'selected'}} @endif>4</option>
-                                                <option value="5" @if (sizeof($rating) > 0 && $rating->first()->rating == 5) {{'selected'}} @endif>5</option>
-                                            </select>
-                                        </label>
-                                        <input type="hidden" name="teacher_id" value="{{$teacher->id}}">
-                                    </form> --}}
+
                                             </div>
 
-                                            <div class="col-sm-4" style="text-align: right">
-                                                <a class="btn btn-warning" href="{{route('student.complaint',$teacher->id)}}"><i class="fa fa-flag"></i> Complaint</a>
+                                            <div class="col-xm-12 col-md-4 mb-1">
+                                                <a class="btn btn-warning" href="{{route('student.complaint',$teacher->id)}}"><i class="fa fa-flag" style="color: red;"></i> Flag</a>
                                             </div>
                                         @elseif ($query != null)
                                             <div class="col-sm-12" style="text-align: center">
