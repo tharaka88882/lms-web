@@ -1302,7 +1302,7 @@
                                                 </div>
 
                                                 <div class="col-sm-12 col-md-4 mb-1">
-                                                    <a class="btn btn-warning"><i class="fa fa-flag"></i> Complaint</a>
+                                                    <a class="btn btn-warning"><i class="fa fa-flag" style="color: red;"></i> Flag</a>
                                                 </div>
                                             </div>
                                             </div>

@@ -31,7 +31,7 @@
   <div class="col-sm-6">
     <div class="card">
         <div class="card-header">
-        <h3 class="card-title">Add Complaint</h3>
+        <h3 class="card-title">Flag profile for inappropriate content or behaviour</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
@@ -39,8 +39,8 @@
             @csrf
             <div class="card-body">
                 <div class="form-group">
-                    <label for="SubjectName">Complaint</label>
-                    <textarea class="form-control" id="name" name="complaint" placeholder="Complaint"></textarea>
+                    <label for="SubjectName">Details</label>
+                    <textarea class="form-control" id="name" name="complaint" placeholder="Add details"></textarea>
                     @if($errors->has('complaint'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('complaint') }}</strong>

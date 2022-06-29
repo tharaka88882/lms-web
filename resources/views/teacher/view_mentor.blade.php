@@ -120,9 +120,9 @@
                                    @endif
                                    @endforeach
 
-                                    <div class="row">
+                                    <div class="row  text-center">
                                         @if (sizeof($conversations) > 0)
-                                            <div class="col-sm-4" style="text-align: left">
+                                            <div class="col-xm-12 col-md-4 mb-1">
                                                 @if ($flag==false)
                                                 <button disabled class="btn btn-success" type="submit">Connect</button>
                                                 <br><small>I'm away till {{ date('d/m/Y', strtotime($to_leave)); }}</small>
@@ -133,14 +133,14 @@
 
                                             </div>
 
-                                            <div class="col-sm-4" style="text-align: center">
+                                            <div class="col-xm-12 col-md-4 mb-1">
                                                 <button {{ sizeof($old_ratings) > 0 ? 'disabled' : '' }}
                                                     data-toggle="modal" data-target="#modal-md" class="btn btn-warning"><i
                                                         class="fa fa-star"></i>Rate Now</button>
                                             </div>
 
-                                            <div class="col-sm-4" style="text-align: right">
-                                                <a class="btn btn-warning" href="{{route('teacher.complaint',$teacher->id)}}"><i class="fa fa-flag"></i> Complaint</a>
+                                            <div class="col-xm-12 col-md-4 mb-1">
+                                                <a class="btn btn-warning" href="{{route('teacher.complaint',$teacher->id)}}"><i class="fa fa-flag" style="color: red;"></i> Flag</a>
                                             </div>
                                         @elseif ($query != null)
                                             <div class="col-sm-12" style="text-align: center">
