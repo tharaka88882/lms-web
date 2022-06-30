@@ -27,10 +27,7 @@
     style="background-image: url('{{ url('public') }}/theme/admin/dist/img/you2mentor_covers-01.jpg');background-repeat: no-repeat;background-attachment: fixed;background-size: cover;">
     {{-- <button style="position:absolute; top:10px; right:10px;" data-toggle="modal" data-target="#modal-md"
         class="btn btn-xs btn-warning ml-2">btn</button> --}}
-    <a class="btn btn-app" style="position:absolute; top:10px; right:10px; min-width:50px; height:50px; !important"
-        data-toggle="modal" data-target="#modal-md">
-        <i class="fa fa-external-link-alt"></i>
-    </a>
+
     {{-- <nav class="navbar navbar-expand navbar-white navbar-light mt-100px">
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
@@ -130,7 +127,7 @@
                     </a>
                     <a id="googleBtn" href="{{ url('auth/google') }}" class="btn btn-block btn-danger">
                         <i class="fab fa-google mr-2"></i> Sign in using Google
-                        </a-->
+                        </a>
                         {{-- <p>- OR -</p> --}}
                         <!--a href="{{ url('auth/linkedin') }}" class="btn btn-block btn-primary">
           <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
@@ -155,7 +152,13 @@
             </div>
         </div>
     </div>
+    <a class="btn btn-app" style="top:10px; bottom:10px; right:10px; min-width:50px; height:50px; !important"
+        data-toggle="modal" data-target="#modal-md">
+        <i class="fa fa-external-link-alt"></i>
+
+    </a>
     <!-- /.login-card-body>
+
   </div>
 </div>
 

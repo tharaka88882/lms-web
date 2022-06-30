@@ -129,9 +129,9 @@
 
                                             <select class="select2 form-control" style="width: 100%;">
 
-                                                <option selected>Rating ASC</option>
+                                                <option selected>Rating High to Low</option>
 
-                                                <option>Rating DESC</option>
+                                                <option>Rating Low to High</option>
 
                                             </select>
 
@@ -203,6 +203,7 @@
 
                                             <select placeholder="Enter Country" class="select2 form-control"
                                             name="country">
+                                            <option>Select Country</option>
                                             <option>AF|Afghanistan</option>
                                             <option>AL|Albania</option>
                                             <option>DZ|Algeria</option>
@@ -608,7 +609,13 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <span class="users-list-date text-right">Average Responce Time - {{ $conversation->avg_time }} hour(s)</span>
+                                            <span class="users-list-date text-right">Average Responce Time -
+                                            @if ($conversation->avg_time=='1')
+                                                {{ $conversation->avg_time }} hour
+                                            @else
+                                                {{ $conversation->avg_time }} hours
+                                            @endif
+                                            </span>
                                         </div>
                                     </div>
 

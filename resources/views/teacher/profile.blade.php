@@ -21,12 +21,12 @@
 
     <style>
         /* * {
-                                                                                                                                                                                                                                                box-sizing: border-box;
-                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                                                                            box-sizing: border-box;
+                                                                                                                                                                                                                                                                                                                        }
 
-                                                                                                                                                                                                                                            body {
-                                                                                                                                                                                                                                                font: 16px Arial;
-                                                                                                                                                                                                                                            } */
+                                                                                                                                                                                                                                                                                                                        body {
+                                                                                                                                                                                                                                                                                                                            font: 16px Arial;
+                                                                                                                                                                                                                                                                                                                        } */
 
         /*the container must be positioned relative:*/
         .autocomplete {
@@ -324,75 +324,6 @@
                                                 </span>
                                             @endif
                                         </div>
-
-                                        <div class="form-group">
-                                            <div class="col-sm-12">
-                                                <div class="card">
-                                                    {{-- <div class="card-header">
-                                    <h3 class="card-title">Add My  Mentoring Topics</h3>
-                                    </div> --}}
-                                                    <!-- /.card-header -->
-                                                    <!-- form start -->
-                                                    {{-- <form action="{{route('teacher.stor_subject')}}" method="POST"> --}}
-                                                    @csrf
-                                                    <div class="card-body">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">Skills</label>
-
-                                                            {{-- <select class="form-control" name="subject_id">
-                                                                @foreach ($subjects as $subject)
-                                                                <option value="{{$subject->id}}">{{$subject->name}}</option>
-                                        @endforeach
-                                        </select> --}}
-
-                                                            <select id="select2-echannel-doctor"
-                                                                style="width: 100% !important;padding: 12px 20px !important;margin: 8px 0 !important;display: inline-block !important;border: 1px solid #ccc !important;box-sizing: border-box !important;"
-                                                                name="subject"
-                                                                class="select2 @if ($errors->has('subject')) {{ 'is-invalid' }} @endif">
-
-                                                            </select>
-
-                                                            @if ($errors->has('subject'))
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $errors->first('subject') }}</strong>
-                                                                </span>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                    <!-- /.card-body -->
-
-                                                    <div class="card-footer">
-                                                        <button id="add_btn" type="button"
-                                                            class="btn btn-success pull-right">Add</button>
-                                                    </div>
-                                                    {{-- </form> --}}
-                                                </div>
-                                            </div>
-                                            <!-- /.card -->
-
-                                            <label for="exampleInputEmail1">Skills</label>
-                                            <textarea disabled name="skills"
-                                                class="form-control @if ($errors->has('skills')) {{ 'is-invalid' }} @endif" rows="3">{{ $user->userable->skills }}</textarea>
-
-                                            @if ($errors->has('skills'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('skills') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-
-                                        {{-- <div class="form-group">
-                                            <label for="exampleInputEmail1">Experience</label>
-                                            <textarea name="experience" class="form-control @if ($errors->has('experience')) {{ 'is-invalid' }} @endif"
-                                                rows="3">{{ $user->userable->experience }}</textarea>
-
-                                            @if ($errors->has('experience'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('experience') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div> --}}
-
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Job Title</label>
                                             <input type="text" name="job"
@@ -408,32 +339,111 @@
 
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Working Industry</label>
-                                            <select class="select2 form-control"
-                                                style="width: 100%;" name="industry" id="industry">
+                                            <select class="select2 form-control" style="width: 100%;" name="industry"
+                                                id="industry">
 
                                             </select>
 
 
                                         </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">From Date</label>
-                                            <input class="form-control" type="date" name="from_leave" value="{{$user->from_leave}}"/>
 
-                                            @if ($errors->has('from_leave'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('from_leave') }}</strong>
-                                                </span>
-                                            @endif
+                                        <div class="form-group">
+                                            <div class="card border border-primary">
+                                                {{-- <div class="card-header">
+                                    <h3 class="card-title">Add My  Mentoring Topics</h3>
+                                    </div> --}}
+                                                <!-- /.card-header -->
+                                                <!-- form start -->
+                                                {{-- <form action="{{route('teacher.stor_subject')}}" method="POST"> --}}
+                                                @csrf
+                                                <div class="card-body">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Skills</label>
+                                                        <textarea disabled name="skills"
+                                                            class="form-control @if ($errors->has('skills')) {{ 'is-invalid' }} @endif" rows="3">{{ $user->userable->skills }}</textarea>
+
+                                                        @if ($errors->has('skills'))
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $errors->first('skills') }}</strong>
+                                                            </span>
+                                                        @endif
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Add to Skills</label>
+
+                                                        {{-- <select class="form-control" name="subject_id">
+                                                                @foreach ($subjects as $subject)
+                                                                <option value="{{$subject->id}}">{{$subject->name}}</option>
+                                        @endforeach
+                                        </select> --}}
+
+                                                        <select id="select2-echannel-doctor"
+                                                            style="width: 100% !important;padding: 12px 20px !important;margin: 8px 0 !important;display: inline-block !important;border: 1px solid #ccc !important;box-sizing: border-box !important;"
+                                                            name="subject"
+                                                            class="select2 @if ($errors->has('subject')) {{ 'is-invalid' }} @endif">
+
+                                                        </select>
+
+                                                        @if ($errors->has('subject'))
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $errors->first('subject') }}</strong>
+                                                            </span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <!-- /.card-body -->
+
+                                                <div class="card-footer">
+                                                    <button id="add_btn" type="button"
+                                                        class="btn btn-success pull-right">Add</button>
+                                                </div>
+                                                {{-- </form> --}}
+                                            </div>
+                                            <!-- /.card -->
                                         </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">To Date</label>
-                                            <input class="form-control" type="date" name="to_leave" value="{{$user->to_leave}}"/>
 
-                                            @if ($errors->has('to_leave'))
+                                        {{-- <div class="form-group">
+                                            <label for="exampleInputEmail1">Experience</label>
+                                            <textarea name="experience" class="form-control @if ($errors->has('experience')) {{ 'is-invalid' }} @endif"
+                                                rows="3">{{ $user->userable->experience }}</textarea>
+
+                                            @if ($errors->has('experience'))
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('to_leave') }}</strong>
+                                                    <strong>{{ $errors->first('experience') }}</strong>
                                                 </span>
                                             @endif
+                                        </div> --}}
+
+
+                                        <div class="card border border-danger">
+                                            <div class="card-header">
+                                                <h6><strong>My Leave</strong> <small>(Add the dates you won't available)</small></h6>
+
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">From Date</label>
+                                                    <input class="form-control" type="date" name="from_leave"
+                                                        value="{{ $user->from_leave }}" />
+
+                                                    @if ($errors->has('from_leave'))
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $errors->first('from_leave') }}</strong>
+                                                        </span>
+                                                    @endif
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">To Date</label>
+                                                    <input class="form-control" type="date" name="to_leave"
+                                                        value="{{ $user->to_leave }}" />
+
+                                                    @if ($errors->has('to_leave'))
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $errors->first('to_leave') }}</strong>
+                                                        </span>
+                                                    @endif
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -1181,7 +1191,6 @@
             </div>
             {{-- End of Qualifications Card --}}
         </div>
-        </div>
     </section>
 
 
@@ -1208,23 +1217,23 @@
                                         <!-- Add the bg color to the header using any of the bg-* classes -->
                                         <div class="widget-user-header bg-olive"
                                             @if ($user->cover_image != null) style="background-image: url('{{ url('public') }}/images/profile/{{ $user->cover_image }}') !important;" @endif>
-                                            <h3 class="widget-user-username" style="margin-top: -10px; margin-bottom:0px; !important">
+                                            <h3 class="widget-user-username"
+                                                style="margin-top: -10px; margin-bottom:0px; !important">
                                                 {{ ucwords($user->name) }}
                                             </h3>
-                                            @if (sizeof(Auth()->user()->userable->experiences)>0)
-                                            @php
-                                               $sizeArr = sizeof(Auth()->user()->userable->experiences);
-                                               $i = 0;
-                                            @endphp
-                                            @foreach (Auth()->user()->userable->experiences as $experience)
-                                           @php
-                                                $i++;
-                                           @endphp
-                                           @if ($i == $sizeArr)
-                                           <span><small>{{ $experience->position->text }}</small></span><br>
-                                           @endif
-                                            @endforeach
-
+                                            @if (sizeof(Auth()->user()->userable->experiences) > 0)
+                                                @php
+                                                    $sizeArr = sizeof(Auth()->user()->userable->experiences);
+                                                    $i = 0;
+                                                @endphp
+                                                @foreach (Auth()->user()->userable->experiences as $experience)
+                                                    @php
+                                                        $i++;
+                                                    @endphp
+                                                    @if ($i == $sizeArr)
+                                                        <span><small>{{ $experience->position->text }}</small></span><br>
+                                                    @endif
+                                                @endforeach
                                             @endif
                                             @php
                                                 $i = 0;
@@ -1233,7 +1242,8 @@
                                             @endphp
                                             @while ($i < 5)
                                                 @if ($r > 0)
-                                                    <span class="fa fa-star checked" style="color:rgb(255, 153, 0);"></span>
+                                                    <span class="fa fa-star checked"
+                                                        style="color:rgb(255, 153, 0);"></span>
                                                 @else
                                                     <span class="fa fa-star"></span>
                                                 @endif
@@ -1285,26 +1295,27 @@
                                             <!-- /.row -->
 
                                             <div class="col-md-12">
-                                            <div class="row text-center">
-                                                {{-- <div class="col-sm-2">
+                                                <div class="row text-center">
+                                                    {{-- <div class="col-sm-2">
                                     <a class="btn btn-success" href="{{ route('student.view_conversation', $query->id) }}">Complaint</a>
                                 </div> --}}
-                                                {{-- <div class="col-xs-2">
+                                                    {{-- <div class="col-xs-2">
                                                     <a class="btn btn-warning" href="{{route('student.complaint',$teacher->id)}}">Complaint Mentor</a>
                                                 </div> --}}
-                                                <div class="col-sm-12 col-md-4 mb-1">
-                                                    <a class="btn btn-success">Connect</a>
-                                                </div>
-                                                <div class="col-sm-12 col-md-4 mb-1">
-                                                    <button class="btn btn-warning"><i class="fa fa-star"></i> Rate
-                                                        Now</button>
+                                                    <div class="col-sm-12 col-md-4 mb-1">
+                                                        <a class="btn btn-success">Connect</a>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-4 mb-1">
+                                                        <button class="btn btn-warning"><i class="fa fa-star"></i> Rate
+                                                            Now</button>
 
-                                                </div>
+                                                    </div>
 
-                                                <div class="col-sm-12 col-md-4 mb-1">
-                                                    <a class="btn btn-warning"><i class="fa fa-flag" style="color: red;"></i> Flag</a>
+                                                    <div class="col-sm-12 col-md-4 mb-1">
+                                                        <a class="btn btn-warning"><i class="fa fa-flag"
+                                                                style="color: red;"></i> Flag</a>
+                                                    </div>
                                                 </div>
-                                            </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1411,12 +1422,12 @@
                                         <dd>
                                             {{ Auth()->user()->userable->skills }}
                                         </dd> --}}
-                                               @if (Auth()->user()->userable->industry != null)
-                                               <dt>Industry</dt>
-                                               <dd>
-                                                   {{ Auth()->user()->userable->industry }}
-                                               </dd>
-                                               @endif
+                                                @if (Auth()->user()->userable->industry != null)
+                                                    <dt>Industry</dt>
+                                                    <dd>
+                                                        {{ Auth()->user()->userable->industry }}
+                                                    </dd>
+                                                @endif
                                                 {{-- <dt>Job Title</dt>
                                                 <dd>
                                                     {{ Auth()->user()->userable->job }}
@@ -1450,14 +1461,17 @@
                                                     {{ $qualification->field }}<br>
                                                     <small>
                                                         @if ($qualification->end_date != null)
-                                                            Completed {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }}
+                                                            Completed
+                                                            {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }}
                                                             -
                                                             {{ explode('-', $qualification->end_date)[1] }}/{{ explode('-', $qualification->end_date)[0] }}
                                                         @else
-                                                           Ongoing {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }}
+                                                            Ongoing
+                                                            {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }}
                                                             - Present
-                                                            <br> @if ($qualification->grade !=null)
-                                                            Grade-{{ $qualification->grade }}
+                                                            <br>
+                                                            @if ($qualification->grade != null)
+                                                                Grade-{{ $qualification->grade }}
                                                             @endif
                                                         @endif
 
@@ -1483,8 +1497,9 @@
                                             @foreach (Auth()->user()->userable->experiences as $experience)
                                                 <strong>{{ $experience->position->text }}</strong><br>
                                                 <span>{{ $experience->institute->text }}
-                                                    <br>@if ($experience->end_date ==null)
-                                                   <small>Currently employed </small>
+                                                    <br>
+                                                    @if ($experience->end_date == null)
+                                                        <small>Currently employed </small>
                                                     @endif
                                                     <small>{{ explode('-', $experience->start_date)[1] }}/{{ explode('-', $experience->start_date)[0] }}
                                                         @if ($experience->end_date != null)
@@ -1494,9 +1509,9 @@
                                                             - Present
                                                         @endif
                                                         <br>
-                                                      @if ($experience->location != null)
-                                                      Location : {{ $experience->location }}
-                                                      @endif
+                                                        @if ($experience->location != null)
+                                                            Location : {{ $experience->location }}
+                                                        @endif
                                                     </small>
                                                 </span>
                                                 <hr>
