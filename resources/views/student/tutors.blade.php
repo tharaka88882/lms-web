@@ -111,9 +111,9 @@
 
                                                 <select class="form-control" style="width: 100%;">
 
-                                                    <option selected>Rating ASC</option>
+                                                    <option selected>Rating High to Low</option>
 
-                                                    <option>Rating DESC</option>
+                                                    <option>Rating Low to High</option>
 
                                                 </select>
 
@@ -587,7 +587,13 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <span class="users-list-date text-right">Average Responce Time - {{ $tutor->avg_time }} hour(s)</span>
+                                            <span class="users-list-date text-right">Average Responce Time -
+                                                @if ($tutor->avg_time=='1')
+                                                {{ $tutor->avg_time }} hour
+                                            @else
+                                                {{ $tutor->avg_time }} hours
+                                            @endif
+                                            </span>
                                         </div>
                                     </div>
                                 @endforeach

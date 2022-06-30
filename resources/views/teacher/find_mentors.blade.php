@@ -11,7 +11,7 @@
 @push('styles')
     {{-- <style>h1 {background-color: red !important}</style> --}}
     <style>
-        .eletest{
+        .eletest {
             height: 37px !important;
         }
     </style>
@@ -90,9 +90,9 @@
 
                                                 <select class="select2 form-control" style="width: 100%;">
 
-                                                    <option selected>Rating ASC</option>
+                                                    <option selected>Rating High to Low</option>
 
-                                                    <option>Rating DESC</option>
+                                                    <option>Rating Low to High</option>
 
                                                 </select>
 
@@ -135,8 +135,8 @@
 
                                             <div class="form-group" id="currentModal">
                                                 <label>Industry:</label>
-                                                <select class="select22 form-control"
-                                                    style="width: 100%;" name="search_industry" id="search_industry">
+                                                <select class="select22 form-control" style="width: 100%;"
+                                                    name="search_industry" id="search_industry">
 
                                                 </select>
                                             </div>
@@ -444,21 +444,21 @@
                             <div class="row">
 
                                 @foreach ($tutors as $tutor)
-                                @php
-                                ($from_leave = \Carbon\Carbon::parse($tutor->user->from_leave));
-                                ($to_leave = \Carbon\Carbon::parse($tutor->user->to_leave));
+                                    @php
+                                    ($from_leave = \Carbon\Carbon::parse($tutor->user->from_leave));
+                                    ($to_leave = \Carbon\Carbon::parse($tutor->user->to_leave));
 
-                               $period = \Carbon\CarbonPeriod::create($from_leave,$to_leave);
-                               $flag = true;
-                               @endphp
+                                    $period = \Carbon\CarbonPeriod::create($from_leave,$to_leave);
+                                    $flag = true;
+                                    @endphp
 
-                               @foreach ( $period as $date)
-                               @if ($date->isToday())
-                               @php
-                                    $flag = false;
-                               @endphp
-                               @endif
-                               @endforeach
+                                    @foreach ($period as $date)
+                                        @if ($date->isToday())
+                                            @php
+                                                $flag = false;
+                                            @endphp
+                                        @endif
+                                    @endforeach
 
                                     <div class="col-md-6">
                                         <div class="card p-3">
@@ -505,7 +505,8 @@
                                                     @endphp
                                                     @while ($i < 5)
                                                         @if ($r > 0)
-                                                            <span class="fa fa-star checked" style="color:rgb(255, 153, 0);"></span>
+                                                            <span class="fa fa-star checked"
+                                                                style="color:rgb(255, 153, 0);"></span>
                                                         @else
                                                             <span class="fa fa-star"></span>
                                                         @endif
@@ -526,20 +527,20 @@
                                                             {{ $tutor->user->job }}</span>
                                                     @endif --}}
 
-                                                    @if (sizeof($tutor->experiences)>0)
-                                                    @php
-                                                       $sizeArr = sizeof($tutor->experiences);
-                                                       $i = 0;
-                                                    @endphp
-                                                    @foreach ($tutor->experiences as $experience)
-                                                   @php
-                                                        $i++;
-                                                   @endphp
-                                                   @if ($i == $sizeArr)
-                                                   <span class="users-list-date">{{ $experience->position->text }}</span>
-                                                   @endif
-                                                    @endforeach
-
+                                                    @if (sizeof($tutor->experiences) > 0)
+                                                        @php
+                                                            $sizeArr = sizeof($tutor->experiences);
+                                                            $i = 0;
+                                                        @endphp
+                                                        @foreach ($tutor->experiences as $experience)
+                                                            @php
+                                                                $i++;
+                                                            @endphp
+                                                            @if ($i == $sizeArr)
+                                                                <span
+                                                                    class="users-list-date">{{ $experience->position->text }}</span>
+                                                            @endif
+                                                        @endforeach
                                                     @endif
                                                     {{-- <span class="users-list-date">Timely Responce - {{ $tutor->avg_time }} hour</span> --}}
 
@@ -548,8 +549,8 @@
                                                             style="font-size: 14px;">
                                                             <span>Skills -
                                                                 @foreach ($tutor->subjects as $subject)
-                                                                    <span
-                                                                        class="badge" style="color: #564b4b; background-color: #868f976b; !important">{{ $subject['name'] }}</span>
+                                                                    <span class="badge"
+                                                                        style="color: #564b4b; background-color: #868f976b; !important">{{ $subject['name'] }}</span>
                                                                 @endforeach
                                                             </span>
                                                         </div>
@@ -565,16 +566,16 @@
                                                                 Profile</button>
                                                         </a>
                                                         @if ($tutor->conversation != null)
-                                                           @if ($flag == false)
-                                                           <button
-                                                            class="btn btn-sm btn-primary ml-2" disabled >Message</button>
-                                                        @else
-                                                        <a
-                                                        href="{{ route('teacher.view_mentor_conversation', $tutor->conversation['id']) }}">
-                                                        <button
-                                                            class="btn btn-sm btn-primary w-100 ml-2">Message</button>
-                                                    </a>
-                                                           @endif
+                                                            @if ($flag == false)
+                                                                <button class="btn btn-sm btn-primary ml-2"
+                                                                    disabled>Message</button>
+                                                            @else
+                                                                <a
+                                                                    href="{{ route('teacher.view_mentor_conversation', $tutor->conversation['id']) }}">
+                                                                    <button
+                                                                        class="btn btn-sm btn-primary w-100 ml-2">Message</button>
+                                                                </a>
+                                                            @endif
                                                         @else
                                                             <form
                                                                 action="{{ route('teacher.store_mentor_conversation') }}"
@@ -584,7 +585,8 @@
                                                                     value="{{ Auth()->user()->userable->id }}">
                                                                 <input type="hidden" name="teacher_id"
                                                                     value="{{ $tutor->id }}">
-                                                                <button {{($flag == false)?'disabled':''}}   class="btn btn-sm btn-primary w-100 ml-2"
+                                                                <button {{ $flag == false ? 'disabled' : '' }}
+                                                                    class="btn btn-sm btn-primary w-100 ml-2"
                                                                     type="submit">Message</button>
                                                             </form>
                                                         @endif
@@ -593,7 +595,13 @@
                                             </div>
                                             {{-- <div class="card-footer text-right"> --}}
                                             <span class="users-list-date text-right">Average Responce Time -
-                                                {{ $tutor->avg_time }} hour(s)</span>
+                                                {{-- {{ $tutor->avg_time }} hour(s) --}}
+                                            @if ($tutor->avg_time=='1')
+                                                {{ $tutor->avg_time }} hour
+                                            @else
+                                                {{ $tutor->avg_time }} hours
+                                            @endif
+                                            </span>
                                             {{-- </div> --}}
                                         </div>
                                     </div>
@@ -658,60 +666,60 @@
 
             $('#search_industry').select2({
 
-            ajax: {
+                ajax: {
 
-                method: 'GET',
+                    method: 'GET',
 
-                url: '{{ route('teacher.get_industry') }}',
+                    url: '{{ route('teacher.get_industry') }}',
 
-                contentType: "application/json; charset=utf-8",
+                    contentType: "application/json; charset=utf-8",
 
-                dataType: 'json',
+                    dataType: 'json',
 
-                data: function(params) {
+                    data: function(params) {
 
-                    var query = {
+                        var query = {
 
-                        search: params.term,
+                            search: params.term,
 
-                        _method: "GET",
+                            _method: "GET",
 
-                        // _token: "{{ csrf_token() }}",
+                            // _token: "{{ csrf_token() }}",
 
-                        type: 'public'
+                            type: 'public'
 
-                    };
+                        };
 
-                    // Query parameters will be ?search=[term]&type=public
+                        // Query parameters will be ?search=[term]&type=public
 
-                    return query;
+                        return query;
+
+                    },
+
+                    processResults: function(data) {
+
+                        // Transforms the top-level key of the response object from 'items' to 'results'
+
+                        return {
+
+                            results: data.results
+
+                        };
+
+                    }
 
                 },
 
-                processResults: function(data) {
-
-                    // Transforms the top-level key of the response object from 'items' to 'results'
-
-                    return {
-
-                        results: data.results
-
-                    };
-
-                }
-
-            },
-
-            // dropdownParent: $('#currentModal')
+                // dropdownParent: $('#currentModal')
 
             });
         });
 
-        $( document ).ready(function() {
-        document.querySelectorAll('[role="combobox"]').forEach(function (el){
-        el.classList.add("eletest");
+        $(document).ready(function() {
+            document.querySelectorAll('[role="combobox"]').forEach(function(el) {
+                el.classList.add("eletest");
+            });
+            console.log("ready!");
         });
-        console.log( "ready!" );
-    });
     </script>
 @endpush
