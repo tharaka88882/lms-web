@@ -641,6 +641,7 @@ class TeacherController extends Controller
         $complaints->mentor_id = $request->get('mentor_id');
         $complaints->description = $request->get('complaint');
         $complaints->seen = 0;
+        $complaints->status =$request->get('status');
         $complaints->save();
         $id = $request->get('mentor_id');
         Toastr::success('Complaint Added successfully', 'Success');

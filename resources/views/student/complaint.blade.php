@@ -39,6 +39,20 @@
             @csrf
             <div class="card-body">
                 <div class="form-group">
+                    <label for="SubjectName">Choose</label>
+                    <select class="form-control" name="status">
+                        <option>Behaviour</option>
+                        <option>Content</option>
+                        <option>Other</option>
+                    </select>
+                    {{-- @if($errors->has('complaint'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('complaint') }}</strong>
+                        </span>
+                    @endif --}}
+                </div>
+
+                <div class="form-group">
                     <label for="SubjectName">Details</label>
                     <textarea class="form-control" id="name" name="complaint" placeholder="Add details"></textarea>
                     @if($errors->has('complaint'))

@@ -457,6 +457,12 @@
                                             @php
                                                 $flag = false;
                                             @endphp
+
+                                            @if ($tutor->user->leave_status == 0)
+                                            @php
+                                                $flag = true;
+                                            @endphp
+                                            @endif
                                         @endif
                                     @endforeach
 

@@ -35,7 +35,8 @@ class User extends Authenticatable
         'city',
         'streaming_count',
         'from_leave',
-        'to_leave'
+        'to_leave',
+        'leave_status'
     ];
 
     /**
