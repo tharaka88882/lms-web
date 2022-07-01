@@ -21,6 +21,7 @@ class CreateComplaintsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->boolean('seen')->default(0);
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

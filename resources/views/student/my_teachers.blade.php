@@ -488,8 +488,14 @@
                                @php
                                     $flag = false;
                                @endphp
+                                 @if ($conversation->teacher->user->leave_status == 0)
+                                 @php
+                                      $flag = true;
+                                 @endphp
+                                 @endif
                                @endif
                                @endforeach
+
                                     <div class="col-md-6">
                                         <div class="card p-2">
                                             <div class="d-flex align-items-center">
