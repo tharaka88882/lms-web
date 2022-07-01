@@ -309,12 +309,12 @@
 
                                 <div class="card-body">
                                     @foreach ($teacher->qualifications as $qualification)
-                                        <strong>{{ $qualification->text }}</strong><br>
+                                        <strong style="text-transform: capitalize">{{ $qualification->text }}</strong><br>
                                         {{-- <ul> --}}
-                                        <span>{{ $qualification->institute->text }}
+                                        <span style="text-transform: capitalize">{{ $qualification->institute->text }}
                                             <br>
                                             {{ $qualification->field }}<br>
-                                            <small>
+                                            <small style="text-transform: capitalize">
                                                 @if ($qualification->end_date != null)
                                                     Completed
                                                     {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }}
@@ -350,16 +350,16 @@
                                 <!-- /.card-header -->
                                 <div class="card-body">
                                     @foreach ($teacher->experiences as $experience)
-                                        <strong>{{ $experience->position->text }}</strong><br>
+                                        <strong style="text-transform: capitalize">{{ $experience->position->text }}</strong><br>
                                         {{-- <ul> --}}
-                                        <span>{{ $experience->institute->text }}
+                                        <span style="text-transform: capitalize">{{ $experience->institute->text }}
                                             <br>@if ($experience->end_date ==null)
                                             <small>Currently employed </small>
                                              @endif
-                                            <small>{{ explode('-', $experience->start_date)[1] }}/{{ explode('-', $experience->start_date)[0] }}
+                                            <small style="text-transform: capitalize">{{ explode('-', $experience->start_date)[1] }}/{{ explode('-', $experience->start_date)[0] }}
                                                 @if ($experience->end_date != null)
                                                     -
-                                                    {{ explode('-', $experience->end_date)[1] }}-{{ explode('-', $experience->end_date)[0] }}
+                                                    {{ explode('-', $experience->end_date)[1] }}/{{ explode('-', $experience->end_date)[0] }}
                                                 @else
                                                     - Present
                                                 @endif

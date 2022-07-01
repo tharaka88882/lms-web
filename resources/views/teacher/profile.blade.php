@@ -685,8 +685,8 @@
                                                     @endif
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">Status</label><br>
                                                     <input  type="checkbox" name="leave_status" {{ $user->leave_status == 0 ? '' : 'checked' }}/>
+                                                    <label for="exampleInputEmail1"> Active</label>
 
                                                 </div>
 
