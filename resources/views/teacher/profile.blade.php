@@ -880,10 +880,13 @@
                                                 <td>{{ $qualification->grade }}</td>
 
                                                 <td>
-                                                    <button type="button"
+                                                    <a type="button"
+                                                        class="btn btn-block btn-outline-primary btn-xs"
+                                                        href="{{route('user.view_qualification', $qualification->id)}}">View</a>
+                                                    {{-- <button type="button"
                                                         class="btn btn-block btn-outline-warning btn-xs"
                                                         data-target="#modal-mdq{{ $qualification->id }}"
-                                                        data-toggle="modal">Update</button>
+                                                        data-toggle="modal">Update</button> --}}
                                                     <button type="button" class="btn btn-block btn-outline-danger btn-xs"
                                                         onclick="removeQua('{{ $qualification->id }}');">Remove</button>
                                                 </td>
@@ -1248,10 +1251,13 @@
                                                     </span>
                                                 </td>
                                                 <td style="width: 80px">
-                                                    <button type="button"
+                                                    <a type="button"
+                                                        class="btn btn-block btn-outline-primary btn-xs"
+                                                        href="{{route('user.view_experience', $experiences->id)}}">View</a>
+                                                    {{-- <button type="button"
                                                         class="btn btn-block btn-outline-warning btn-xs"
                                                         data-target="#modal-mdx{{ $experiences->id }}"
-                                                        data-toggle="modal">Update</button>
+                                                        data-toggle="modal">Update</button> --}}
                                                     <button type="button" class="btn btn-block btn-outline-danger btn-xs"
                                                         onclick="removeEx({{ $experiences->id }});">Remove</button>
 

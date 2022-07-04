@@ -189,6 +189,8 @@ Route::prefix('user')->middleware('check.user')->group(function () {
     //Experience & Qualification----------------------------------------------------------------------------------------------------------
     Route::post('/add-experience', 'App\Http\Controllers\UserController@store_experience')->name('user.add_experience');
     Route::post('/add-qualification', 'App\Http\Controllers\UserController@store_qualification')->name('user.add_qualification');
+    Route::get('/view-qualification/{id}', 'App\Http\Controllers\UserController@edit_qualification')->name('user.view_qualification');
+    Route::get('/view-experience/{id}', 'App\Http\Controllers\UserController@edit_experience')->name('user.view_experience');
     Route::put('/edit-qualification/{id}', 'App\Http\Controllers\UserController@update_qualification')->name('user.edit_qualification');
     Route::put('/edit-experience/{id}', 'App\Http\Controllers\UserController@update_experience')->name('user.edit_experience');
     Route::delete('/delete-experience', 'App\Http\Controllers\UserController@delete_experience')->name('user.delete_experience');

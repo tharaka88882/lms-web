@@ -389,6 +389,29 @@ class UserController extends Controller
         return  redirect()->route('user.profile');
     }
 
+    public function edit_qualification($id)
+
+    {
+
+        $qualification =  Qualification::findOrFail($id);
+        $institutes = Institute::all();
+        $position = Position::all();
+
+        return view('teacher.edit_qualification', compact('id', 'qualification','institutes','position'));
+
+    }
+
+    public function edit_experience($id)
+
+    {
+
+        $experiences =  Experience::findOrFail($id);
+        $institutes = Institute::all();
+        $position = Position::all();
+        return view('teacher.edit_experience', compact('id', 'experiences','institutes','position'));
+
+    }
+
     public function update_qualification(AddQualificationRequest $request,$id)
     {
         $institute = Institute::where('text',$request->get('company'))->first();
