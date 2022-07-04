@@ -24,6 +24,7 @@ use App\Models\User;
 use App\Models\UserOrder;
 use App\Models\UserTransaction;
 use App\Models\Milestone;
+use App\Models\Institute;
 //use App\Traits\UserTrait;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\DB;
@@ -395,20 +396,24 @@ class TeacherController extends Controller
         $query = Teacher::query();
         $query = $query->where('teachers.id', '<>', Auth()->user()->userable->id);
 
-        if ($request->get('search_industry') != 'Any' && $request->get('search_industry')) {
+        if ($request->get('search_industry')!=null) {
+            //dd($request->get('search_industry'));
             $query->where('industry', $request->get('search_industry'));
         }
         else if ($request->get('m_name')!= null) {
             $query->select('teachers.*')->join('users','users.userable_id','=','teachers.id')->where('users.name','LIKE', $request->get('m_name').'%');
         }
         else if ($request->get('company') != null) {
-            $query->select('teachers.*')->join('users','users.userable_id','=','teachers.id')->where('users.company','LIKE', $request->get('company').'%');
-        }
-        else if ($request->get('search_subject') != 'Any' && $request->get('search_subject')) {
             $query->select('teachers.*')
-                    ->leftjoin('teacher_subjects', 'teacher_subjects.teacher_id', '=', 'teachers.id')
-                    ->join('subjects', 'subjects.id', '=', 'teacher_subjects.subject_id')
-                    ->where('subjects.id', $request->get('search_subject'));
+            ->leftjoin('experiences', 'experiences.teacher_id', '=', 'teachers.id')
+            ->join('institutes', 'institutes.id', '=', 'experiences.institute_id')
+            ->where('institutes.text', $request->get('company'));
+        }
+        else if ($request->get('search_subject') !=null) {
+            $query->select('teachers.*')
+            ->leftjoin('teacher_subjects', 'teacher_subjects.teacher_id', '=', 'teachers.id')
+            ->join('subjects', 'subjects.id', '=', 'teacher_subjects.subject_id')
+            ->where('subjects.id', $request->get('search_subject'));
         } else if ($request->get('city')) {
             // dd('test2');
             // dd($request->get('city'));
@@ -421,6 +426,7 @@ class TeacherController extends Controller
             //dd('test4');
           //  $query = Teacher::where('status', 1)->where('id', '<>', Auth()->user()->userable->id);
         }
+
 
 
         $tutors = $query->get();
@@ -440,9 +446,10 @@ class TeacherController extends Controller
 
         $subjects = Subject::all();
         $industries = Industry::all();
+        $institutes = Institute::all();
 
 
-        return view('teacher.find_mentors', compact('tutors', 'subjects', 'industries', 'request'));
+        return view('teacher.find_mentors', compact('tutors', 'subjects', 'industries','institutes','request'));
     }
 
     public function view_mentor(Request $request, $id)

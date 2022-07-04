@@ -14,6 +14,7 @@
         .eletest {
             height: 37px !important;
         }
+
     </style>
 @endpush
 
@@ -62,7 +63,7 @@
 
                             <div class="col-md-12">
 
-                                <form action="{{ route('teacher.mentors') }}">
+                                <form autocomplete="off" action="{{ route('teacher.mentors') }}">
 
                                     <div class="row">
 
@@ -114,8 +115,7 @@
 
                                                 <label> Company:</label>
 
-                                                <input placeholder="Enter Company" class="select2 form-control"
-                                                    data-placeholder="Any" name="company" />
+                                                <input placeholder="Enter Company" class="select2 form-control"  name="company" id="company"/>
 
                                             </div>
 
@@ -128,17 +128,15 @@
 
                                                 <label>City:</label>
 
-                                                <input placeholder="Enter City" class="select2 form-control"
-                                                    data-placeholder="Any" name="city" />
+                                                <input placeholder="Enter City" class="select2 form-control autocomplete"
+                                                    name="city" id="city" />
 
                                             </div>
 
-                                            <div class="form-group" id="currentModal">
+                                            <div class="form-group" id="">
                                                 <label>Industry:</label>
-                                                <select class="select22 form-control" style="width: 100%;"
-                                                    name="search_industry" id="search_industry">
-
-                                                </select>
+                                                <input type="text" class="form-control" style="width: 100%;"
+                                                    name="search_industry" id="search_industry"/>
                                             </div>
 
                                         </div>
@@ -149,251 +147,8 @@
 
                                                 <label> Country:</label>
 
-                                                <select placeholder="Enter Country" class="select2 form-control"
-                                                    name="country">
-                                                    <option>AF|Afghanistan</option>
-                                                    <option>AL|Albania</option>
-                                                    <option>DZ|Algeria</option>
-                                                    <option>AS|American Samoa</option>
-                                                    <option>AD|Andorra</option>
-                                                    <option>AO|Angola</option>
-                                                    <option>AI|Anguilla</option>
-                                                    <option>AQ|Antarctica</option>
-                                                    <option>AG|Antigua And Barbuda</option>
-                                                    <option>AR|Argentina</option>
-                                                    <option>AM|Armenia</option>
-                                                    <option>AW|Aruba</option>
-                                                    <option>AU|Australia</option>
-                                                    <option>AT|Austria</option>
-                                                    <option>AZ|Azerbaijan</option>
-                                                    <option>BS|Bahamas</option>
-                                                    <option>BH|Bahrain</option>
-                                                    <option>BD|Bangladesh</option>
-                                                    <option>BB|Barbados</option>
-                                                    <option>BY|Belarus</option>
-                                                    <option>BE|Belgium</option>
-                                                    <option>BZ|Belize</option>
-                                                    <option>BJ|Benin</option>
-                                                    <option>BM|Bermuda</option>
-                                                    <option>BT|Bhutan</option>
-                                                    <option>BO|Bolivia</option>
-                                                    <option>BA|Bosnia And Herzegovina</option>
-                                                    <option>BW|Botswana</option>
-                                                    <option>BV|Bouvet Island</option>
-                                                    <option>BR|Brazil</option>
-                                                    <option>IO|British Indian Ocean Territory</option>
-                                                    <option>BN|Brunei Darussalam</option>
-                                                    <option>BG|Bulgaria</option>
-                                                    <option>BF|Burkina Faso</option>
-                                                    <option>BI|Burundi</option>
-                                                    <option>KH|Cambodia</option>
-                                                    <option>CM|Cameroon</option>
-                                                    <option>CA|Canada</option>
-                                                    <option>CV|Cape Verde</option>
-                                                    <option>KY|Cayman Islands</option>
-                                                    <option>CF|Central African Republic</option>
-                                                    <option>TD|Chad</option>
-                                                    <option>CL|Chile</option>
-                                                    <option>CN|China</option>
-                                                    <option>CX|Christmas Island</option>
-                                                    <option>CC|Cocos (keeling) Islands</option>
-                                                    <option>CO|Colombia</option>
-                                                    <option>KM|Comoros</option>
-                                                    <option>CG|Congo</option>
-                                                    <option>CD|Congo, The Democratic Republic Of The</option>
-                                                    <option>CK|Cook Islands</option>
-                                                    <option>CR|Costa Rica</option>
-                                                    <option>CI|Cote D'ivoire</option>
-                                                    <option>HR|Croatia</option>
-                                                    <option>CU|Cuba</option>
-                                                    <option>CY|Cyprus</option>
-                                                    <option>CZ|Czech Republic</option>
-                                                    <option>DK|Denmark</option>
-                                                    <option>DJ|Djibouti</option>
-                                                    <option>DM|Dominica</option>
-                                                    <option>DO|Dominican Republic</option>
-                                                    <option>TP|East Timor</option>
-                                                    <option>EC|Ecuador</option>
-                                                    <option>EG|Egypt</option>
-                                                    <option>SV|El Salvador</option>
-                                                    <option>GQ|Equatorial Guinea</option>
-                                                    <option>ER|Eritrea</option>
-                                                    <option>EE|Estonia</option>
-                                                    <option>ET|Ethiopia</option>
-                                                    <option>FK|Falkland Islands (malvinas)</option>
-                                                    <option>FO|Faroe Islands</option>
-                                                    <option>FJ|Fiji</option>
-                                                    <option>FI|Finland</option>
-                                                    <option>FR|France</option>
-                                                    <option>GF|French Guiana</option>
-                                                    <option>PF|French Polynesia</option>
-                                                    <option>TF|French Southern Territories</option>
-                                                    <option>GA|Gabon</option>
-                                                    <option>GM|Gambia</option>
-                                                    <option>GE|Georgia</option>
-                                                    <option>DE|Germany</option>
-                                                    <option>GH|Ghana</option>
-                                                    <option>GI|Gibraltar</option>
-                                                    <option>GR|Greece</option>
-                                                    <option>GL|Greenland</option>
-                                                    <option>GD|Grenada</option>
-                                                    <option>GP|Guadeloupe</option>
-                                                    <option>GU|Guam</option>
-                                                    <option>GT|Guatemala</option>
-                                                    <option>GN|Guinea</option>
-                                                    <option>GW|Guinea-bissau</option>
-                                                    <option>GY|Guyana</option>
-                                                    <option>HT|Haiti</option>
-                                                    <option>HM|Heard Island And Mcdonald Islands</option>
-                                                    <option>VA|Holy See (vatican City State)</option>
-                                                    <option>HN|Honduras</option>
-                                                    <option>HK|Hong Kong</option>
-                                                    <option>HU|Hungary</option>
-                                                    <option>IS|Iceland</option>
-                                                    <option>IN|India</option>
-                                                    <option>ID|Indonesia</option>
-                                                    <option>IR|Iran, Islamic Republic Of</option>
-                                                    <option>IQ|Iraq</option>
-                                                    <option>IE|Ireland</option>
-                                                    <option>IL|Israel</option>
-                                                    <option>IT|Italy</option>
-                                                    <option>JM|Jamaica</option>
-                                                    <option>JP|Japan</option>
-                                                    <option>JO|Jordan</option>
-                                                    <option>KZ|Kazakstan</option>
-                                                    <option>KE|Kenya</option>
-                                                    <option>KI|Kiribati</option>
-                                                    <option>KP|Korea, Democratic People's Republic Of</option>
-                                                    <option>KR|Korea, Republic Of</option>
-                                                    <option>KV|Kosovo</option>
-                                                    <option>KW|Kuwait</option>
-                                                    <option>KG|Kyrgyzstan</option>
-                                                    <option>LA|Lao People's Democratic Republic</option>
-                                                    <option>LV|Latvia</option>
-                                                    <option>LB|Lebanon</option>
-                                                    <option>LS|Lesotho</option>
-                                                    <option>LR|Liberia</option>
-                                                    <option>LY|Libyan Arab Jamahiriya</option>
-                                                    <option>LI|Liechtenstein</option>
-                                                    <option>LT|Lithuania</option>
-                                                    <option>LU|Luxembourg</option>
-                                                    <option>MO|Macau</option>
-                                                    <option>MK|Macedonia, The Former Yugoslav Republic Of</option>
-                                                    <option>MG|Madagascar</option>
-                                                    <option>MW|Malawi</option>
-                                                    <option>MY|Malaysia</option>
-                                                    <option>MV|Maldives</option>
-                                                    <option>ML|Mali</option>
-                                                    <option>MT|Malta</option>
-                                                    <option>MH|Marshall Islands</option>
-                                                    <option>MQ|Martinique</option>
-                                                    <option>MR|Mauritania</option>
-                                                    <option>MU|Mauritius</option>
-                                                    <option>YT|Mayotte</option>
-                                                    <option>MX|Mexico</option>
-                                                    <option>FM|Micronesia, Federated States Of</option>
-                                                    <option>MD|Moldova, Republic Of</option>
-                                                    <option>MC|Monaco</option>
-                                                    <option>MN|Mongolia</option>
-                                                    <option>MS|Montserrat</option>
-                                                    <option>ME|Montenegro</option>
-                                                    <option>MA|Morocco</option>
-                                                    <option>MZ|Mozambique</option>
-                                                    <option>MM|Myanmar</option>
-                                                    <option>NA|Namibia</option>
-                                                    <option>NR|Nauru</option>
-                                                    <option>NP|Nepal</option>
-                                                    <option>NL|Netherlands</option>
-                                                    <option>AN|Netherlands Antilles</option>
-                                                    <option>NC|New Caledonia</option>
-                                                    <option>NZ|New Zealand</option>
-                                                    <option>NI|Nicaragua</option>
-                                                    <option>NE|Niger</option>
-                                                    <option>NG|Nigeria</option>
-                                                    <option>NU|Niue</option>
-                                                    <option>NF|Norfolk Island</option>
-                                                    <option>MP|Northern Mariana Islands</option>
-                                                    <option>NO|Norway</option>
-                                                    <option>OM|Oman</option>
-                                                    <option>PK|Pakistan</option>
-                                                    <option>PW|Palau</option>
-                                                    <option>PS|Palestinian Territory, Occupied</option>
-                                                    <option>PA|Panama</option>
-                                                    <option>PG|Papua New Guinea</option>
-                                                    <option>PY|Paraguay</option>
-                                                    <option>PE|Peru</option>
-                                                    <option>PH|Philippines</option>
-                                                    <option>PN|Pitcairn</option>
-                                                    <option>PL|Poland</option>
-                                                    <option>PT|Portugal</option>
-                                                    <option>PR|Puerto Rico</option>
-                                                    <option>QA|Qatar</option>
-                                                    <option>RE|Reunion</option>
-                                                    <option>RO|Romania</option>
-                                                    <option>RU|Russian Federation</option>
-                                                    <option>RW|Rwanda</option>
-                                                    <option>SH|Saint Helena</option>
-                                                    <option>KN|Saint Kitts And Nevis</option>
-                                                    <option>LC|Saint Lucia</option>
-                                                    <option>PM|Saint Pierre And Miquelon</option>
-                                                    <option>VC|Saint Vincent And The Grenadines</option>
-                                                    <option>WS|Samoa</option>
-                                                    <option>SM|San Marino</option>
-                                                    <option>ST|Sao Tome And Principe</option>
-                                                    <option>SA|Saudi Arabia</option>
-                                                    <option>SN|Senegal</option>
-                                                    <option>RS|Serbia</option>
-                                                    <option>SC|Seychelles</option>
-                                                    <option>SL|Sierra Leone</option>
-                                                    <option>SG|Singapore</option>
-                                                    <option>SK|Slovakia</option>
-                                                    <option>SI|Slovenia</option>
-                                                    <option>SB|Solomon Islands</option>
-                                                    <option>SO|Somalia</option>
-                                                    <option>ZA|South Africa</option>
-                                                    <option>GS|South Georgia And The South Sandwich Islands</option>
-                                                    <option>ES|Spain</option>
-                                                    <option>LK|Sri Lanka</option>
-                                                    <option>SD|Sudan</option>
-                                                    <option>SR|Suriname</option>
-                                                    <option>SJ|Svalbard And Jan Mayen</option>
-                                                    <option>SZ|Swaziland</option>
-                                                    <option>SE|Sweden</option>
-                                                    <option>CH|Switzerland</option>
-                                                    <option>SY|Syrian Arab Republic</option>
-                                                    <option>TW|Taiwan, Province Of China</option>
-                                                    <option>TJ|Tajikistan</option>
-                                                    <option>TZ|Tanzania, United Republic Of</option>
-                                                    <option>TH|Thailand</option>
-                                                    <option>TG|Togo</option>
-                                                    <option>TK|Tokelau</option>
-                                                    <option>TO|Tonga</option>
-                                                    <option>TT|Trinidad And Tobago</option>
-                                                    <option>TN|Tunisia</option>
-                                                    <option>TR|Turkey</option>
-                                                    <option>TM|Turkmenistan</option>
-                                                    <option>TC|Turks And Caicos Islands</option>
-                                                    <option>TV|Tuvalu</option>
-                                                    <option>UG|Uganda</option>
-                                                    <option>UA|Ukraine</option>
-                                                    <option>AE|United Arab Emirates</option>
-                                                    <option>GB|United Kingdom</option>
-                                                    <option>US|United States</option>
-                                                    <option>UM|United States Minor Outlying Islands</option>
-                                                    <option>UY|Uruguay</option>
-                                                    <option>UZ|Uzbekistan</option>
-                                                    <option>VU|Vanuatu</option>
-                                                    <option>VE|Venezuela</option>
-                                                    <option>VN|Viet Nam</option>
-                                                    <option>VG|Virgin Islands, British</option>
-                                                    <option>VI|Virgin Islands, U.s.</option>
-                                                    <option>WF|Wallis And Futuna</option>
-                                                    <option>EH|Western Sahara</option>
-                                                    <option>YE|Yemen</option>
-                                                    <option>ZM|Zambia</option>
-                                                    <option>ZW|Zimbabwe</option>
-
-                                                </select>
+                                                <input autocomplete="off" id="country" placeholder="Enter Country" class="select2 form-control autocomplete"
+                                                    name="country"/>
 
                                             </div>
 
@@ -670,55 +425,55 @@
             });
 
 
-            $('#search_industry').select2({
+            // $('#search_industry').select2({
 
-                ajax: {
+            //     ajax: {
 
-                    method: 'GET',
+            //         method: 'GET',
 
-                    url: '{{ route('teacher.get_industry') }}',
+            //         url: '{{ route('teacher.get_industry') }}',
 
-                    contentType: "application/json; charset=utf-8",
+            //         contentType: "application/json; charset=utf-8",
 
-                    dataType: 'json',
+            //         dataType: 'json',
 
-                    data: function(params) {
+            //         data: function(params) {
 
-                        var query = {
+            //             var query = {
 
-                            search: params.term,
+            //                 search: params.term,
 
-                            _method: "GET",
+            //                 _method: "GET",
 
-                            // _token: "{{ csrf_token() }}",
+            //                 // _token: "{{ csrf_token() }}",
 
-                            type: 'public'
+            //                 type: 'public'
 
-                        };
+            //             };
 
-                        // Query parameters will be ?search=[term]&type=public
+            //             // Query parameters will be ?search=[term]&type=public
 
-                        return query;
+            //             return query;
 
-                    },
+            //         },
 
-                    processResults: function(data) {
+            //         processResults: function(data) {
 
-                        // Transforms the top-level key of the response object from 'items' to 'results'
+            //             // Transforms the top-level key of the response object from 'items' to 'results'
 
-                        return {
+            //             return {
 
-                            results: data.results
+            //                 results: data.results
 
-                        };
+            //             };
 
-                    }
+            //         }
 
-                },
+            //     },
 
-                // dropdownParent: $('#currentModal')
+            //     // dropdownParent: $('#currentModal')
 
-            });
+            // });
         });
 
         $(document).ready(function() {
@@ -727,5 +482,158 @@
             });
             console.log("ready!");
         });
+
+
+         // Qualifications Auto Complete
+         function autocomplete(inp, arr) {
+            /*the autocomplete function takes two arguments,
+            the text field element and an array of possible autocompleted values:*/
+            var currentFocus;
+            /*execute a function when someone writes in the text field:*/
+            inp.addEventListener("input", function(e) {
+                var a, b, i, val = this.value;
+                /*close any already open lists of autocompleted values*/
+                closeAllLists();
+                if (!val) {
+                    return false;
+                }
+                currentFocus = -1;
+                /*create a DIV element that will contain the items (values):*/
+                a = document.createElement("DIV");
+                a.setAttribute("id", this.id + "autocomplete-list");
+                a.setAttribute("class", "autocomplete-items");
+                /*append the DIV element as a child of the autocomplete container:*/
+                this.parentNode.appendChild(a);
+                /*for each item in the array...*/
+                for (i = 0; i < arr.length; i++) {
+                    /*check if the item starts with the same letters as the text field value:*/
+                    if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                        /*create a DIV element for each matching element:*/
+                        b = document.createElement("DIV");
+                        /*make the matching letters bold:*/
+                        b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+                        b.innerHTML += arr[i].substr(val.length);
+                        /*insert a input field that will hold the current array item's value:*/
+                        b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+                        /*execute a function when someone clicks on the item value (DIV element):*/
+                        b.addEventListener("click", function(e) {
+                            /*insert the value for the autocomplete text field:*/
+                            inp.value = this.getElementsByTagName("input")[0].value;
+                            /*close the list of autocompleted values,
+                            (or any other open lists of autocompleted values:*/
+                            closeAllLists();
+                        });
+                        a.appendChild(b);
+                    }
+                }
+            });
+            /*execute a function presses a key on the keyboard:*/
+            inp.addEventListener("keydown", function(e) {
+                var x = document.getElementById(this.id + "autocomplete-list");
+                if (x) x = x.getElementsByTagName("div");
+                if (e.keyCode == 40) {
+                    /*If the arrow DOWN key is pressed,
+                    increase the currentFocus variable:*/
+                    currentFocus++;
+                    /*and and make the current item more visible:*/
+                    addActive(x);
+                } else if (e.keyCode == 38) { //up
+                    /*If the arrow UP key is pressed,
+                    decrease the currentFocus variable:*/
+                    currentFocus--;
+                    /*and and make the current item more visible:*/
+                    addActive(x);
+                } else if (e.keyCode == 13) {
+                    /*If the ENTER key is pressed, prevent the form from being submitted,*/
+                    e.preventDefault();
+                    if (currentFocus > -1) {
+                        /*and simulate a click on the "active" item:*/
+                        if (x) x[currentFocus].click();
+                    }
+                }
+            });
+
+            function addActive(x) {
+                /*a function to classify an item as "active":*/
+                if (!x) return false;
+                /*start by removing the "active" class on all items:*/
+                removeActive(x);
+                if (currentFocus >= x.length) currentFocus = 0;
+                if (currentFocus < 0) currentFocus = (x.length - 1);
+                /*add class "autocomplete-active":*/
+                x[currentFocus].classList.add("autocomplete-active");
+            }
+
+            function removeActive(x) {
+                /*a function to remove the "active" class from all autocomplete items:*/
+                for (var i = 0; i < x.length; i++) {
+                    x[i].classList.remove("autocomplete-active");
+                }
+            }
+
+            function closeAllLists(elmnt) {
+                /*close all autocomplete lists in the document,
+                except the one passed as an argument:*/
+                var x = document.getElementsByClassName("autocomplete-items");
+                for (var i = 0; i < x.length; i++) {
+                    if (elmnt != x[i] && elmnt != inp) {
+                        x[i].parentNode.removeChild(x[i]);
+                    }
+                }
+            }
+            /*execute a function when someone clicks in the document:*/
+            document.addEventListener("click", function(e) {
+                closeAllLists(e.target);
+            });
+        }
+
+        // End of Qualifications Auto Complete
+
+
+
+        /*An array containing all the country names in the world:*/
+        var countries = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Anguilla", "Antigua & Barbuda",
+            "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh",
+            "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia & Herzegovina",
+            "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia",
+            "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central Arfrican Republic", "Chad", "Chile", "China",
+            "Colombia", "Congo", "Cook Islands", "Costa Rica", "Cote D Ivoire", "Croatia", "Cuba", "Curacao", "Cyprus",
+            "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt",
+            "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands", "Faroe Islands",
+            "Fiji", "Finland", "France", "French Polynesia", "French West Indies", "Gabon", "Gambia", "Georgia",
+            "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guam", "Guatemala", "Guernsey",
+            "Guinea", "Guinea Bissau", "Guyana", "Haiti", "Honduras", "Hong Kong", "Hungary", "Iceland", "India",
+            "Indonesia", "Iran", "Iraq", "Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey",
+            "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon",
+            "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia",
+            "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania",
+            "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco",
+            "Mozambique", "Myanmar", "Namibia", "Nauro", "Nepal", "Netherlands", "Netherlands Antilles",
+            "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "Norway", "Oman",
+            "Pakistan", "Palau", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland",
+            "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russia", "Rwanda", "Saint Pierre & Miquelon",
+            "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles",
+            "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa",
+            "South Korea", "South Sudan", "Spain", "Sri Lanka", "St Kitts & Nevis", "St Lucia", "St Vincent", "Sudan",
+            "Suriname", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand",
+            "Timor L'Este", "Togo", "Tonga", "Trinidad & Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks & Caicos",
+            "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States of America",
+            "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Virgin Islands (US)", "Yemen",
+            "Zambia", "Zimbabwe"
+        ];
+
+        var ins = [];
+        @foreach ($institutes as $in)
+            ins.push('{{ $in->text }}');
+        @endforeach
+        var indu = [];
+        @foreach ($industries as $ind)
+            indu.push('{{ $ind->name }}');
+        @endforeach
+        /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
+        autocomplete(document.getElementById("country"), countries);
+        autocomplete(document.getElementById("city"), countries);
+        autocomplete(document.getElementById("company"), ins);
+        autocomplete(document.getElementById("search_industry"), indu);
     </script>
 @endpush
