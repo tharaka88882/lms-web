@@ -143,11 +143,11 @@
 
                                                 <label>Sort Order:</label>
 
-                                                <select class="select2 form-control" style="width: 100%;">
+                                                <select name="select_order" class="select2 form-control" style="width: 100%;">
 
-                                                    <option selected>Rating High to Low</option>
+                                                    <option value="1" selected>Rating High to Low</option>
 
-                                                    <option>Rating Low to High</option>
+                                                    <option value="0">Rating Low to High</option>
 
                                                 </select>
 
@@ -189,8 +189,7 @@
 
                                             <div class="form-group" id="">
                                                 <label>Industry:</label>
-                                                <input type="text" class="form-control" style="width: 100%;"
-                                                    name="search_industry" id="search_industry"/>
+                                                <input class="select2 form-control autocomplete" name="search_industry" id="search_industry" placeholder="Enter Industry"/>
                                             </div>
 
                                         </div>

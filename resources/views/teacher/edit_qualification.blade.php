@@ -409,11 +409,11 @@ rows="3">{{ $user->userable->skills }}</textarea>
         @endforeach
 
         /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-        autocomplete(document.getElementById("myInput"), ins);
+        //autocomplete(document.getElementById("myInput"), ins);
         autocomplete(document.getElementById("myInput1"), ins);
-        autocomplete(document.getElementById("ins"), ins);
+       // autocomplete(document.getElementById("ins"), ins);
         autocomplete(document.getElementById("ins2"), ins);
-        autocomplete(document.getElementById("position"), pos);
+       // autocomplete(document.getElementById("position"), pos);
         autocomplete(document.getElementById("position1"), pos);
     </script>
         @endpush

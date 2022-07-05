@@ -394,35 +394,40 @@ class TeacherController extends Controller
     {
         $query = null;
         $query = Teacher::query();
-        $query = $query->where('teachers.id', '<>', Auth()->user()->userable->id);
-
+        $query = $query->select('teachers.*')->join('users','users.userable_id','=','teachers.id')->where('teachers.id', '<>', Auth()->user()->userable->id)->where('users.userable_type','App\Models\Teacher');
+       // dd($query->get());
         if ($request->get('search_industry')!=null) {
-            //dd($request->get('search_industry'));
-            $query->where('industry', $request->get('search_industry'));
+
+            $query->where('teachers.industry', $request->get('search_industry'));
         }
-        else if ($request->get('m_name')!= null) {
-            $query->select('teachers.*')->join('users','users.userable_id','=','teachers.id')->where('users.name','LIKE', $request->get('m_name').'%');
+         if ($request->get('m_name')!= null) {
+            $query->where('users.name','LIKE', $request->get('m_name').'%');
         }
-        else if ($request->get('company') != null) {
-            $query->select('teachers.*')
-            ->leftjoin('experiences', 'experiences.teacher_id', '=', 'teachers.id')
+         if ($request->get('company') != null) {
+            $query->leftjoin('experiences', 'experiences.teacher_id', '=', 'teachers.id')
             ->join('institutes', 'institutes.id', '=', 'experiences.institute_id')
             ->where('institutes.text', $request->get('company'));
         }
-        else if ($request->get('search_subject') !=null) {
-            $query->select('teachers.*')
-            ->leftjoin('teacher_subjects', 'teacher_subjects.teacher_id', '=', 'teachers.id')
+         if ($request->get('search_subject') !=null) {
+            $query->leftjoin('teacher_subjects', 'teacher_subjects.teacher_id', '=', 'teachers.id')
             ->join('subjects', 'subjects.id', '=', 'teacher_subjects.subject_id')
             ->where('subjects.id', $request->get('search_subject'));
-        } else if ($request->get('city')) {
+        } if ($request->get('city')) {
             // dd('test2');
             // dd($request->get('city'));
-            $query->select('teachers.*')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.city', 'like', $request->get('city'))->where('status', 1)->where('users.id', '<>', Auth()->user()->id);
-        } else if ($request->get('country') != null) {
+            $query->where('users.city', 'like', $request->get('city'))->where('users.id', '<>', Auth()->user()->id);
+        } if ($request->get('country') != null) {
             // dd('test3');
             // dd($request->get('country'));
-            $query->select('teachers.*')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.country', 'like', $request->get('country'))->where('status', 1)->where('users.id', '<>', Auth()->user()->id);
+            $query->where('users.country', 'like', $request->get('country'))->where('users.id', '<>', Auth()->user()->id);
+        } if($request->get('select_order') != null){
+            if($request->get('select_order') == '1'){
+                $query->orderBy('rating', 'DESC');
+            }else{
+                $query->orderBy('rating', 'ASC');
+            }
         } else {
+            $query->orderBy('rating', 'DESC');
             //dd('test4');
           //  $query = Teacher::where('status', 1)->where('id', '<>', Auth()->user()->userable->id);
         }
@@ -554,34 +559,44 @@ class TeacherController extends Controller
     {
         $query = null;
         $query =  MentorConversation::query();
-        $query = $query->where('mentee_id', Auth()->user()->userable->id);
+        $query = $query->select('mentor_conversations.*')->join('teachers', 'teachers.id', '=', 'mentor_conversations.mentor_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('mentee_id', Auth()->user()->userable->id)->where('users.userable_type','App\Models\Teacher');
 
         if($request->get('search_subject')!=null){
-            $query-->select('mentor_conversations.*')->join('teachers', 'teachers.id', '=', 'mentor_conversations.mentor_id')->leftjoin('teacher_subjects', 'teacher_subjects.teacher_id', '=', 'teachers.id')
+            $query->leftjoin('teacher_subjects', 'teacher_subjects.teacher_id', '=', 'teachers.id')
             ->join('subjects', 'subjects.id', '=', 'teacher_subjects.subject_id')
             ->where('subjects.id', $request->get('search_subject'));
         }
-        else if($request->get('country')!=null){
-            $query->select('mentor_conversations.*')->join('teachers', 'teachers.id', '=', 'mentor_conversations.mentor_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.country', 'like', $request->get('country').'%');
+         if($request->get('country')!=null){
+            $query->where('users.country', 'like', $request->get('country').'%');
         }
-        else if($request->get('m_name')!=null){
-            $query->select('mentor_conversations.*')->join('teachers', 'teachers.id', '=', 'mentor_conversations.mentor_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.name', 'like', $request->get('m_name').'%')->where('mentor_conversations.mentee_id', Auth()->user()->userable->id);
+         if($request->get('m_name')!=null){
+            $query->where('users.name', 'like', $request->get('m_name').'%');
         }
-        else if($request->get('company')!=null){
-            $query->select('mentor_conversations.*')->join('teachers', 'teachers.id', '=', 'mentor_conversations.mentor_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.company', 'like', $request->get('company').'%');
+         if($request->get('company')!=null){
+            $query->leftjoin('experiences', 'experiences.teacher_id', '=', 'teachers.id')
+            ->join('institutes', 'institutes.id', '=', 'experiences.institute_id')
+            ->where('institutes.text', $request->get('company'));
         }
-        else if($request->get('city')!=null){
-            $query->select('mentor_conversations.*')->join('teachers', 'teachers.id', '=', 'mentor_conversations.mentor_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.city', 'like', $request->get('city').'%');
+         if($request->get('city')!=null){
+            $query->where('users.city', 'like', $request->get('city').'%');
         }
-        else if($request->get('search_industry')!="Any"){
-            $query->select('mentor_conversations.*')->join('teachers', 'teachers.id', '=', 'mentor_conversations.mentor_id')->where('industry', $request->get('search_industry'));
-        }else{
+         if($request->get('search_industry')!=null){
+            $query->where('industry', $request->get('search_industry'));
+
+        }if($request->get('select_order') != null){
+            if($request->get('select_order') == '1'){
+                $query->orderBy('teachers.rating', 'DESC');
+            }else{
+                $query->orderBy('teachers.rating', 'ASC');
+            }
+        }
+        else{
        // $query = $query->where('mentee_id', Auth()->user()->userable->id);
         //dd('');
-
+        $query->orderBy('mentor_conversations.created_at', 'DESC');
         }
 
-        $conversations= $query->orderBy('created_at', 'DESC')->paginate(20);
+        $conversations= $query->paginate(20);
 
         // $conversations = MentorConversation::where('mentee_id', Auth()->user()->userable->id)->orderBy('created_at', 'DESC')->paginate(20);
         // dd($conversations);
@@ -601,8 +616,9 @@ class TeacherController extends Controller
 
         $subjects = Subject::all();
         $industries = Industry::all();
+        $institutes = Institute::all();
 
-        return view('teacher.my_mentor', compact('conversations', 'request','subjects','industries'));
+        return view('teacher.my_mentor', compact('conversations', 'request','subjects','industries','institutes'));
     }
 
     public function rate_mentor(Request $request)
