@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Rating;
+use App\Models\Teacher;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Http\Requests\RatingRequest;
 
@@ -84,6 +85,22 @@ class RateController extends Controller
         $rating->teacher_id = $request->get('teacher_id');
         $rating->user_id = Auth()->user()->id;
         $rating->save();
+
+
+        $ratings = Rating::where('teacher_id',$request->get('teacher_id'))->get();
+        $rator_count = count(json_decode( $ratings,true));
+        $rating_count = 0;
+        $mediation = 0;
+            foreach($ratings as $rating){
+                $rating_count+=$rating->rating;
+            }
+       if($rator_count!=0){
+        $mediation = $rating_count/$rator_count;
+       }
+
+        $teacher = Teacher::findOrFail($request->get('teacher_id'));
+        $teacher->rating =$mediation;
+        $teacher->save();
 
         Toastr::success('Rating is added successfully', 'Success');
 

@@ -19,6 +19,7 @@ use App\Models\Industry;
 use App\Models\Message;
 
 use App\Models\Rating;
+use App\Models\Institute;
 
 use App\Models\Schedule;
 
@@ -322,48 +323,45 @@ class StudentController extends Controller
     {
         $query = null;
         $query = Teacher::query();
+        $query = $query->select('teachers.*')->join('users','users.userable_id','=','teachers.id')->where('users.userable_type','App\Models\Teacher');
 
-        if ($request->get('search_industry') != 'Any' && $request->get('search_industry')) {
-            $query->where('industry', $request->get('search_industry'));
+        if ($request->get('search_industry') !=null) {
+            $query->where('teachers.industry', $request->get('search_industry'));
         }
-        else if ($request->get('m_name')!=null) {
+         if ($request->get('m_name')!=null) {
            // dd($request->get('m_name'));
 
-            $query->select('teachers.*')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.name', 'like', $request->get('m_name').'%');
+            $query->where('users.name', 'like', $request->get('m_name').'%');
 
         }
-        else if ($request->get('company')!=null) {
+         if ($request->get('company')!=null) {
+            $query->leftjoin('experiences', 'experiences.teacher_id', '=', 'teachers.id')
+            ->join('institutes', 'institutes.id', '=', 'experiences.institute_id')
+            ->where('institutes.text', $request->get('company'));
 
-            $query->select('teachers.*')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.company', 'like', $request->get('company').'%');
-
-        }
-        else if ($request->get('search_subject') != 'Any' && $request->get('search_subject')) {
-            $query->select('teachers.*')
-                    ->leftjoin('teacher_subjects', 'teacher_subjects.teacher_id', '=', 'teachers.id')
+        } if ($request->get('search_subject') != null) {
+            $query->leftjoin('teacher_subjects', 'teacher_subjects.teacher_id', '=', 'teachers.id')
                     ->join('subjects', 'subjects.id', '=', 'teacher_subjects.subject_id')
                     ->where('subjects.id', $request->get('search_subject'));
-        }  else if ($request->get('city')) {
+        } if ($request->get('city') !=null) {
 
-            // dd('test2');
+            $query->where('users.city', 'like', $request->get('city').'%');
 
-            // dd($request->get('city'));
+        } if ($request->get('country') != null) {
 
-            $query->select('teachers.*')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.city', 'like', $request->get('city').'%')->where('status', 1);
 
-        }  else if ($request->get('country') != null) {
+            $query->where('users.country', 'like', $request->get('country').'%');
 
-            // dd('test3');
-
-            // dd($request->get('country'));
-
-            $query->select('teachers.*')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.country', 'like', $request->get('country').'%')->where('status', 1);
-
+        }if($request->get('select_order') != null){
+            if($request->get('select_order') == '1'){
+                $query->orderBy('rating', 'DESC');
+            }else{
+                $query->orderBy('rating', 'ASC');
+            }
         }
          else {
 
-            //dd('test4');
-
-            $query = Teacher::where('status', 1);
+            $query->orderBy('rating', 'DESC');
 
         }
 
@@ -384,10 +382,11 @@ class StudentController extends Controller
 
         $subjects = Subject::all();
         $industries = Industry::all();
+        $institutes = Institute::all();
 
         //$avg_time = round(1,5);
 
-        return view('student.tutors', compact('tutors', 'subjects', 'industries', 'request'));
+        return view('student.tutors', compact('tutors', 'subjects', 'industries', 'request','institutes'));
 
     }
 
@@ -604,27 +603,37 @@ class StudentController extends Controller
 
     {
         $query =  Conversation::query();
-        $query = $query->where('student_id', Auth()->user()->userable->id)->orderBy('created_at', 'DESC');
+        $query = $query->select('conversations.*')->join('teachers', 'teachers.id', '=', 'conversations.teacher_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('student_id', Auth()->user()->userable->id)->where('users.userable_type','App\Models\Teacher');
 
         if($request->get('search_subject')!=null){
-            $query-->select('conversations.*')->join('teachers', 'teachers.id', '=', 'conversations.teacher_id')->leftjoin('teacher_subjects', 'teacher_subjects.teacher_id', '=', 'teachers.id')
+            $query->leftjoin('teacher_subjects', 'teacher_subjects.teacher_id', '=', 'teachers.id')
             ->join('subjects', 'subjects.id', '=', 'teacher_subjects.subject_id')
             ->where('subjects.id', $request->get('search_subject'));
         }
-        else if($request->get('country')!=null){
-            $query->select('conversations.*')->join('teachers', 'teachers.id', '=', 'conversations.teacher_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.country', 'like', $request->get('country').'%');
+         if($request->get('country')!=null){
+            $query->where('users.country', 'like', $request->get('country').'%');
         }
-        else if($request->get('m_name')!=null){
-            $query->select('conversations.*')->join('teachers', 'teachers.id', '=', 'conversations.teacher_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.name', 'like', $request->get('m_name').'%');
+         if($request->get('m_name')!=null){
+            $query->where('users.name', 'like', $request->get('m_name').'%');
         }
-        else if($request->get('company')!=null){
-            $query->select('conversations.*')->join('teachers', 'teachers.id', '=', 'conversations.teacher_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.company', 'like', $request->get('company').'%');
+         if($request->get('company')!=null){
+            $query->where('users.company', 'like', $request->get('company').'%');
         }
-        else if($request->get('city')!=null){
-            $query->select('conversations.*')->join('teachers', 'teachers.id', '=', 'conversations.teacher_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('users.city', 'like', $request->get('city').'%');
+         if($request->get('city')!=null){
+            $query->where('users.city', 'like', $request->get('city').'%');
         }
-        else if($request->get('search_industry')!="Any"){
-            $query->select('conversations.*')->join('teachers', 'teachers.id', '=', 'conversations.teacher_id')->where('industry', $request->get('search_industry'));
+         if($request->get('search_industry')!= null){
+            $query->where('teachers.industry', $request->get('search_industry'));
+
+        }if($request->get('select_order') != null){
+            if($request->get('select_order') == '1'){
+                $query->orderBy('teachers.rating', 'DESC');
+            }else{
+                $query->orderBy('teachers.rating', 'ASC');
+            }
+        }
+        else{
+            $query->orderBy('conversations.created_at', 'DESC');
         }
 
         $conversations= $query->paginate(20);
@@ -643,8 +652,9 @@ class StudentController extends Controller
 
         $subjects = Subject::all();
         $industries = Industry::all();
+        $institutes = Institute::all();
 
-        return view('student.my_teachers', compact('conversations','request','subjects','industries'));
+        return view('student.my_teachers', compact('conversations','request','subjects','industries','institutes'));
 
     }
 
