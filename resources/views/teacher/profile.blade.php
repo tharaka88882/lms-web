@@ -404,7 +404,7 @@
 
                                         <div class="card border border-danger">
                                             <div class="card-header">
-                                                <h6><strong>My Leave</strong> <br> <small>(Add the dates you won't available)</small></h6>
+                                                <h6><strong>Away Status</strong> <br> <small>(add the dates you won't be available)</small></h6>
 
                                             </div>
                                             <div class="card-body">
