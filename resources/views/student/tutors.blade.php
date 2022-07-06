@@ -17,6 +17,61 @@
         .eletest{
             height: 37px !important;
         }
+
+
+        /*the container must be positioned relative:*/
+        .autocomplete {
+            position: relative;
+            display: inline-block;
+        }
+
+        input {
+            border: 1px solid transparent;
+            background-color: #f1f1f1;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        input[type=text] {
+            background-color: #f1f1f1;
+            width: 100%;
+        }
+
+        input[type=submit] {
+            background-color: DodgerBlue;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .autocomplete-items {
+            position: absolute;
+            border: 1px solid #d4d4d4;
+            border-bottom: none;
+            border-top: none;
+            z-index: 99;
+            /*position the autocomplete items to be the same width as the container:*/
+            top: 100%;
+            left: 0;
+            right: 0;
+        }
+
+        .autocomplete-items div {
+            padding: 10px;
+            cursor: pointer;
+            background-color: #fff;
+            border-bottom: 1px solid #d4d4d4;
+        }
+
+        /*when hovering an item:*/
+        .autocomplete-items div:hover {
+            background-color: #e9e9e9;
+        }
+
+        /*when navigating through the items using the arrow keys:*/
+        .autocomplete-active {
+            background-color: DodgerBlue !important;
+            color: #ffffff;
+        }
     </style>
 
 @endpush
@@ -72,65 +127,44 @@
                                     <div class="row">
 
                                         <div class="col-lg-3">
-
                                             <div class="form-group">
-
                                                 <label>Name:</label>
-
                                                 <input placeholder="Enter Mentor Name" class="select2 form-control" data-placeholder="Any" name="m_name"/>
-
                                             </div>
-
-
                                         </div>
 
-
                                         <div class="col-lg-3">
-
                                             <div class="form-group" id="currentModal">
-
-                                                <label> Mentoring Topics:</label>
-
-
-
+                                                <label> Skills:</label>
                                                  <select  name="search_subject" class="form-control select22 select2 @if($errors->has('search_subject')) {{'is-invalid'}} @endif" id="select2-echannel-doctor"  size="30">
-
                                                     {{-- <option>Any</option> --}}
-
                                                 </select>
-
                                             </div>
+                                        </div>
 
+                                        <div class="col-lg-3">
+                                            <div class="form-group autocomplete" style="width: 100%">
+                                                <label> Country:</label>
+                                                <input placeholder="Enter Country" class="select2 form-control"
+                                                name="country" id="country"/>
+                                            </div>
+                                        </div>
 
+                                        <div class="col-lg-3">
+                                            <div class="form-group autocomplete" style="width: 100%">
+                                                <label>City:</label>
+                                                <input placeholder="Enter City" class="select2 form-control" id="city" name="city"/>
+                                            </div>
                                         </div>
 
                                         <div class="col-lg-3">
                                             <div class="form-group">
-
                                                 <label>Sort Order:</label>
-
                                                 <select name="select_order" class="form-control" style="width: 100%;">
-
                                                     <option value="1" selected>Rating High to Low</option>
-
                                                     <option value="0">Rating Low to High</option>
-
                                                 </select>
-
                                             </div>
-                                        </div>
-
-                                     <div class="col-lg-3">
-
-                                            <div class="form-group">
-
-                                                <label>City:</label>
-
-                                                <input placeholder="Enter City" class="select2 form-control" id="city" name="city"/>
-
-                                            </div>
-
-
                                         </div>
 
                                         <div class="col-lg-3">
@@ -139,43 +173,18 @@
                                                 <input class="form-control" placeholder="Enter Industry"  style="width: 100%;" name="search_industry" id="search_industry"/>
                                             </div>
                                         </div>
-                                          <div class="col-lg-3">
-
-                                            <div class="form-group">
-
-                                                <label> Country:</label>
-
-                                                <input placeholder="Enter Country" class="select2 form-control"
-                                                name="country" id="country"/>
-
-                                            </div>
-
-
-                                        </div>
-                                          <div class="col-lg-3">
-
-                                            <div class="form-group">
-
+                                        <div class="col-lg-3">
+                                            <div class="form-group autocomplete" style="width: 100%">
                                                 <label> Company:</label>
-
                                                 <input placeholder="Enter Company" class="select2 form-control"  name="company" id="company"/>
-
                                             </div>
-
-
                                         </div>
-
 
                                         <div class="col-lg-3">
                                             <div class="form-group">
-                                            <button class="btn btn-success" style="margin-top: 30px;">Search</button>
+                                                <button class="btn btn-success" style="margin-top: 30px;">Search</button>
+                                            </div>
                                         </div>
-                                        </div>
-
-
-
-
-
                                     </div>
                                 </form>
                             </div>

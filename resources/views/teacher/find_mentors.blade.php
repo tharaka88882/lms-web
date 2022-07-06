@@ -47,9 +47,9 @@
             border-top: none;
             z-index: 99;
             /*position the autocomplete items to be the same width as the container:*/
-            top: 41%;
-            left: 9px;
-            right: 9px;
+            top: 100%;
+            left: 0;
+            right: 0;
         }
 
         .autocomplete-items div {
@@ -143,11 +143,11 @@
 
                                                 <label>Sort Order:</label>
 
-                                                <select name="select_order" class="select2 form-control" style="width: 100%;">
+                                                <select class="select2 form-control" style="width: 100%;">
 
-                                                    <option value="1" selected>Rating High to Low</option>
+                                                    <option selected>Rating High to Low</option>
 
-                                                    <option value="0">Rating Low to High</option>
+                                                    <option>Rating Low to High</option>
 
                                                 </select>
 
@@ -165,7 +165,7 @@
                                                     data-placeholder="Any" name="m_name" />
 
                                             </div>
-                                            <div class="form-group">
+                                            <div class="form-group autocomplete" style="width: 100%">
 
                                                 <label> Company:</label>
 
@@ -178,29 +178,30 @@
 
                                         <div class="col-lg-3">
 
-                                            <div class="form-group">
+                                            <div class="form-group autocomplete" style="width: 100%">
 
                                                 <label>City:</label>
 
-                                                <input placeholder="Enter City" class="select2 form-control autocomplete"
+                                                <input placeholder="Enter City" class="select2 form-control"
                                                     name="city" id="city" />
 
                                             </div>
 
                                             <div class="form-group" id="">
                                                 <label>Industry:</label>
-                                                <input class="select2 form-control autocomplete" name="search_industry" id="search_industry" placeholder="Enter Industry"/>
+                                                <input class="form-control" style="width: 100%;"
+                                                    name="search_industry" id="search_industry" placeholder="Enter Industry"/>
                                             </div>
 
                                         </div>
 
                                         <div class="col-lg-3">
 
-                                            <div class="form-group">
+                                            <div class="form-group autocomplete" style="width: 100%">
 
                                                 <label> Country:</label>
 
-                                                <input autocomplete="off" id="country" placeholder="Enter Country" class="select2 form-control autocomplete"
+                                                <input autocomplete="off" id="country" placeholder="Enter Country" class="select2 form-control"
                                                     name="country"/>
 
                                             </div>
