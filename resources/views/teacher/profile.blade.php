@@ -151,7 +151,7 @@
                     </div> --}}
 
                                         <div class="form-group">
-                                            <label for="exampleInputPassword1">Email Address</label>
+                                            <label for="exampleInputPassword1">Email Address <small>(This can't be updated)</small> </label>
                                             <input disabled="" type="email" name="email"
                                                 class="form-control @if ($errors->has('email')) {{ 'is-invalid' }} @endif"
                                                 placeholder="Enter Email" value="{{ $user->email }}">
@@ -175,21 +175,20 @@
                     @endif
                 </div> --}}
 
-                                    <div class="form-group">
+                                    <div class="form-group autocomplete" style="width: 100%">
                                         <label for="exampleInputPassword1">Country</label>
-                                        <input  id="country1" name="country" class="form-control autocomplete"/>
-
+                                        <input id="country1" name="country" class="form-control" placeholder="Choose your Country"/>
                                     </div>
 
-                                        <div class="form-group">
+                                        <div class="form-group autocomplete" style="width: 100%">
                                             <label for="exampleInputPassword1">City</label>
-                                            <input name="city" class="form-control autocomplete" id="city1" />
+                                            <input name="city" class="form-control" id="city1" placeholder="Choose your City" />
 
                                         </div>
 
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">About Me</label>
-                                            <textarea name="about" class="form-control" rows="3">{{ $user->about }}</textarea>
+                                            <textarea name="about" placeholder="Enter about you" class="form-control" rows="3">{{ $user->about }}</textarea>
 
                                             @if ($errors->has('country'))
                                                 <span class="invalid-feedback" role="alert">
@@ -214,6 +213,7 @@
                                             <label for="exampleInputEmail1">Linkedin Profile Link <small> (Please copy &
                                                     past your link)</small></label>
                                             <input name="linkedin_link"
+                                            placeholder="Your linkedin link"
                                                 class="form-control @if ($errors->has('linkedin_link')) {{ 'is-invalid' }} @endif"
                                                 value="{{ $user->userable->linkedin_link }}" />
 
@@ -314,6 +314,7 @@
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Job Title</label>
                                             <input type="text" name="job"
+                                            placeholder="Enter your job title"
                                                 class="form-control @if ($errors->has('job')) {{ 'is-invalid' }} @endif"
                                                 rows="3" value="{{ $user->userable->job }}">
 
@@ -470,7 +471,7 @@
                                         <div class="form-group">
                                             <div class="autocomplete" style="width:100%;">
                                                 <label for="exampleInputEmail1">Institute</label>
-                                                <input id="myInput" type="text" name="company" placeholder="">
+                                                <input id="myInput" type="text" name="company" placeholder="Enter your Institute">
                                             </div>
                                         </div>
 
@@ -478,7 +479,7 @@
                                             <label for="exampleInputEmail1">Degree/Certificate</label>
                                             <input name="qualification"
                                                 class="form-control @if ($errors->has('qualification')) {{ 'is-invalid' }} @endif"
-                                                type="text" />
+                                                type="text" placeholder="Enter your degree/certificate" />
 
                                             @if ($errors->has('qualification'))
                                                 <span class="invalid-feedback" role="alert">
@@ -492,7 +493,7 @@
                                             <label for="exampleInputEmail1">Field of study</label>
                                             <input name="field"
                                                 class="form-control @if ($errors->has('field')) {{ 'is-invalid' }} @endif"
-                                                type="text" />
+                                                type="text" placeholder="Enter your field of study" />
 
                                             @if ($errors->has('field'))
                                                 <span class="invalid-feedback" role="alert">
@@ -557,7 +558,7 @@
                                             <label for="exampleInputEmail1">Grade (Optional)</label>
                                             <input name="grade"
                                                 class="form-control @if ($errors->has('grade')) {{ 'is-invalid' }} @endif"
-                                                type="text" />
+                                                type="text" placeholder="Enter your grade" />
 
                                             @if ($errors->has('grade'))
                                                 <span class="invalid-feedback" role="alert">
@@ -868,14 +869,14 @@
                                         <div class="form-group">
                                             <div class="autocomplete" style="width:100%;">
                                                 <label for="exampleInputEmail1">Position</label>
-                                                <input id="position" type="text" name="position" placeholder="">
+                                                <input id="position" type="text" name="position" placeholder="Enter your position">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="autocomplete @if ($errors->has('company')) {{ 'is-invalid' }} @endif"
                                                 style="width:100%;">
                                                 <label for="exampleInputEmail1">Company</label>
-                                                <input id="ins" type="text" name="company" placeholder="">
+                                                <input id="ins" type="text" name="company" placeholder="Enter your company">
                                             </div>
 
                                             @if ($errors->has('company'))
@@ -888,7 +889,7 @@
                                         <div class="form-group">
                                             <div class="autocomplete" style="width:100%;">
                                                 <label for="exampleInputEmail1">Location</label>
-                                                <input type="text" name="location"
+                                                <input type="text" name="location" placeholder="Enter company location"
                                                     class="@if ($errors->has('location')) {{ 'is-invalid' }} @endif">
                                             </div>
 
