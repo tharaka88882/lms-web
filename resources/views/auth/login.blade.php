@@ -71,13 +71,27 @@
                                   </span>
                               @enderror --}}
                 </div>
+
+                @php
+                 if(isset($_COOKIE['login_email']) && isset($_COOKIE['login_pass']))
+                {
+                   $login_email = $_COOKIE['login_email'];
+                   $login_pass  = $_COOKIE['login_pass'];
+                   $is_remember = "checked='checked'";
+                }
+                else{
+                   $login_email ='';
+                   $login_pass = '';
+                   $is_remember = "";
+                 }
+                @endphp
                 <div id="form_div">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="input-group mb-3">
                             <input type="email"
                                 class="form-control @if ($errors->has('email')) {{ 'is-invalid' }} @endif"
-                                name="email" placeholder="Email">
+                                name="email" placeholder="Email" value="{{$login_email}}">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-envelope"></span>
@@ -92,7 +106,7 @@
                         <div class="input-group mb-3">
                             <input type="password"
                                 class="form-control @if ($errors->has('password')) {{ 'is-invalid' }} @endif"
-                                name="password" placeholder="Password">
+                                name="password" placeholder="Password" value="{{$login_pass}}">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-lock"></span>
@@ -107,7 +121,7 @@
                         <div class="row">
                             <div class="col-8">
                                 <div class="icheck-primary">
-                                    <input name="remember" type="checkbox" id="remember">
+                                    <input name="remember" type="checkbox" id="remember" {{$is_remember}}>
                                     <label for="remember">
                                         Remember Me
                                     </label>
@@ -115,7 +129,7 @@
                             </div>
                             <!-- /.col -->
                             <div class="col-4">
-                                <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                                <button id="sb_btn" type="submit" class="btn btn-primary btn-block">Sign In</button>
                             </div>
                             <!-- /.col -->
                         </div>
@@ -220,7 +234,12 @@
 
     <script>
         //alert('test');
+
         $('document').ready(function() {
+        //    if( $('#remember').is(":checked")){
+        //     document.getElementById("sb_btn").click();
+        //            }
+
             // alert('test');
 
             $('#form_div').show();

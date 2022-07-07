@@ -169,7 +169,7 @@
                                     <ul style="list-style: none; padding-left: 0px">
                                         <form action="{{ route('logout') }}" method="post">
                                             @csrf @method('post')
-                                            <button class="btn btn-link btn-flat pt-0" style="padding-left: 0">Sign
+                                            <button onclick="logclick();" class="btn btn-link btn-flat pt-0" style="padding-left: 0" id="logoutt">Sign
                                                 out</button>
                                         </form>
                                     </ul>
@@ -326,6 +326,12 @@
     <script src="{{ url('public/') }}/theme/admin/select2/dist/js/select2.full.min.js"></script>
 
     <script>
+
+            // function logclick(){
+            //     setCookie('login_email', 'value', 0);
+            //     setCookie('login_pass', 'value', 0);
+            // }
+
         function check_notifications() {
             console.log('checking notifications');
             $.post("{{ route('user.json.notifications') }}", {
