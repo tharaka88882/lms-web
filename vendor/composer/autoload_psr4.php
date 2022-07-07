@@ -109,7 +109,6 @@ return array(
     'Carbon\\' => array($vendorDir . '/nesbot/carbon/src/Carbon'),
     'Brick\\Math\\' => array($vendorDir . '/brick/math/src'),
     'Brian2694\\Toastr\\' => array($vendorDir . '/brian2694/laravel-toastr/src'),
-    'Birke\\Rememberme\\' => array($vendorDir . '/birke/rememberme/src'),
     'BaconQrCode\\' => array($vendorDir . '/bacon/bacon-qr-code/src'),
     'Asm89\\Stack\\' => array($vendorDir . '/asm89/stack-cors/src'),
     'App\\' => array($baseDir . '/app'),

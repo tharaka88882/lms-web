@@ -690,16 +690,16 @@ class StudentController extends Controller
             $complaints->save();
 
             $id = $request->get('mentor_id');
-            $name = Teacher::findOrFail($id)->name;
+            $teacher = Teacher::findOrFail($id);
 
             Toastr::success('Complaint Added successfully', 'Success');
 
-            $mentorEmail = Teacher::findOrFail($id)->email;
+            //$mentorEmail = Teacher::findOrFail($id)->email;
             // To do email send code hear....
-            Mail::to($mentorEmail)->send(new MenteeComplaints($name));
+            Mail::to($teacher->user->email)->send(new MenteeComplaints($teacher->user->name));
 
-            $this->createNotification('1', 'Mentee has filed a complaint', route('admin.complaints'));
-            $this->createNotification($id, 'Mentee has filed a complaint');
+            $this->createNotification(4, 'Mentee has filed a complaint', route('admin.complaints'));
+            $this->createNotification($teacher->user->id, 'Mentee has filed a complaint');
 
             return redirect()->route('student.view_tutor', compact('id'));
 
