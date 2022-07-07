@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d9a64e47c8e2980ad622d531533c3dcb",
+    "content-hash": "49495c1b7a842ad569183906824fee3c",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -115,63 +115,6 @@
                 "source": "https://github.com/Bacon/BaconQrCode/tree/2.0.7"
             },
             "time": "2022-03-14T02:02:36+00:00"
-        },
-        {
-            "name": "birke/rememberme",
-            "version": "4.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/gbirke/rememberme.git",
-                "reference": "fe2a5b2d20651bad1a8fd04f52d244a7dd66684f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/gbirke/rememberme/zipball/fe2a5b2d20651bad1a8fd04f52d244a7dd66684f",
-                "reference": "fe2a5b2d20651bad1a8fd04f52d244a7dd66684f",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.4 || ^8.0"
-            },
-            "require-dev": {
-                "escapestudios/symfony2-coding-standard": "~3.11",
-                "ircmaxell/random-lib": "^1.1",
-                "phpunit/phpunit": "^9.5",
-                "squizlabs/php_codesniffer": "^3.5"
-            },
-            "suggest": {
-                "ext-pdo": "*",
-                "ircmaxell/random-lib": "For generating random tokens with different entropy sources",
-                "predis/predis": "Needed if you used Redis storage"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Birke\\Rememberme\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Gabriel Birke",
-                    "email": "gb@birke-software.de"
-                }
-            ],
-            "description": "Secure \"Remember Me\" functionality",
-            "homepage": "https://github.com/gbirke/rememberme",
-            "keywords": [
-                "cookie",
-                "remember",
-                "security"
-            ],
-            "support": {
-                "issues": "https://github.com/gbirke/rememberme/issues",
-                "source": "https://github.com/gbirke/rememberme/tree/4.0.1"
-            },
-            "time": "2021-04-26T19:20:29+00:00"
         },
         {
             "name": "brian2694/laravel-toastr",
@@ -4131,16 +4074,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.11.6",
+            "version": "v0.11.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "3f5b5f8aaa979fbd0d1783173f4c82ad529fe621"
+                "reference": "77fc7270031fbc28f9a7bea31385da5c4855cb7a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/3f5b5f8aaa979fbd0d1783173f4c82ad529fe621",
-                "reference": "3f5b5f8aaa979fbd0d1783173f4c82ad529fe621",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/77fc7270031fbc28f9a7bea31385da5c4855cb7a",
+                "reference": "77fc7270031fbc28f9a7bea31385da5c4855cb7a",
                 "shasum": ""
             },
             "require": {
@@ -4201,9 +4144,9 @@
             ],
             "support": {
                 "issues": "https://github.com/bobthecow/psysh/issues",
-                "source": "https://github.com/bobthecow/psysh/tree/v0.11.6"
+                "source": "https://github.com/bobthecow/psysh/tree/v0.11.7"
             },
-            "time": "2022-07-03T16:40:23+00:00"
+            "time": "2022-07-07T13:49:11+00:00"
         },
         {
             "name": "ralouphie/getallheaders",

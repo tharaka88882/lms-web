@@ -667,6 +667,13 @@ class TeacherController extends Controller
         $complaints->status =$request->get('status');
         $complaints->save();
         $id = $request->get('mentor_id');
+
+        $teacher = Teacher::findOrFail($request->get('mentor_id'));
+        Mail::to($teacher->user->email)->send(new MenteeComplaints($teacher->user->name));
+
+        $this->createNotification(4, 'Mentee has filed a complaint', route('admin.complaints'));
+        $this->createNotification($teacher->user->id, 'Mentee has filed a complaint');
+
         Toastr::success('Complaint Added successfully', 'Success');
         return redirect()->route('teacher.view_mentor', compact('id'));
     }

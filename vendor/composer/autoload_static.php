@@ -205,7 +205,6 @@ class ComposerStaticInit24d43722947f657d1a46880f5ba77be8
         array (
             'Brick\\Math\\' => 11,
             'Brian2694\\Toastr\\' => 17,
-            'Birke\\Rememberme\\' => 17,
             'BaconQrCode\\' => 12,
         ),
         'A' => 
@@ -632,10 +631,6 @@ class ComposerStaticInit24d43722947f657d1a46880f5ba77be8
         array (
             0 => __DIR__ . '/..' . '/brian2694/laravel-toastr/src',
         ),
-        'Birke\\Rememberme\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/birke/rememberme/src',
-        ),
         'BaconQrCode\\' => 
         array (
             0 => __DIR__ . '/..' . '/bacon/bacon-qr-code/src',
@@ -745,6 +740,7 @@ class ComposerStaticInit24d43722947f657d1a46880f5ba77be8
         'App\\Http\\Requests\\UpdateTeacherProfileRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateTeacherProfileRequest.php',
         'App\\Http\\Requests\\UpdateTeacherRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateTeacherRequest.php',
         'App\\Imports\\SubjectsImport' => __DIR__ . '/../..' . '/app/Imports/SubjectsImport.php',
+        'App\\Mail\\MenteeComplaints' => __DIR__ . '/../..' . '/app/Mail/MenteeComplaints.php',
         'App\\Mail\\ReferMail' => __DIR__ . '/../..' . '/app/Mail/ReferMail.php',
         'App\\Mail\\SignUp' => __DIR__ . '/../..' . '/app/Mail/SignUp.php',
         'App\\Mail\\StartConversation' => __DIR__ . '/../..' . '/app/Mail/StartConversation.php',
@@ -854,21 +850,6 @@ class ComposerStaticInit24d43722947f657d1a46880f5ba77be8
         'BaconQrCode\\Renderer\\RendererStyle\\GradientType' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/RendererStyle/GradientType.php',
         'BaconQrCode\\Renderer\\RendererStyle\\RendererStyle' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/RendererStyle/RendererStyle.php',
         'BaconQrCode\\Writer' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Writer.php',
-        'Birke\\Rememberme\\Authenticator' => __DIR__ . '/..' . '/birke/rememberme/src/Authenticator.php',
-        'Birke\\Rememberme\\Cookie\\CookieInterface' => __DIR__ . '/..' . '/birke/rememberme/src/Cookie/CookieInterface.php',
-        'Birke\\Rememberme\\Cookie\\PHPCookie' => __DIR__ . '/..' . '/birke/rememberme/src/Cookie/PHPCookie.php',
-        'Birke\\Rememberme\\LoginResult' => __DIR__ . '/..' . '/birke/rememberme/src/LoginResult.php',
-        'Birke\\Rememberme\\Storage\\AbstractDBStorage' => __DIR__ . '/..' . '/birke/rememberme/src/Storage/AbstractDBStorage.php',
-        'Birke\\Rememberme\\Storage\\AbstractStorage' => __DIR__ . '/..' . '/birke/rememberme/src/Storage/AbstractStorage.php',
-        'Birke\\Rememberme\\Storage\\FileStorage' => __DIR__ . '/..' . '/birke/rememberme/src/Storage/FileStorage.php',
-        'Birke\\Rememberme\\Storage\\PDOStorage' => __DIR__ . '/..' . '/birke/rememberme/src/Storage/PDOStorage.php',
-        'Birke\\Rememberme\\Storage\\RedisStorage' => __DIR__ . '/..' . '/birke/rememberme/src/Storage/RedisStorage.php',
-        'Birke\\Rememberme\\Token\\AbstractToken' => __DIR__ . '/..' . '/birke/rememberme/src/Token/AbstractToken.php',
-        'Birke\\Rememberme\\Token\\ClassicToken' => __DIR__ . '/..' . '/birke/rememberme/src/Token/ClassicToken.php',
-        'Birke\\Rememberme\\Token\\DefaultToken' => __DIR__ . '/..' . '/birke/rememberme/src/Token/DefaultToken.php',
-        'Birke\\Rememberme\\Token\\RandomLibToken' => __DIR__ . '/..' . '/birke/rememberme/src/Token/RandomLibToken.php',
-        'Birke\\Rememberme\\Token\\TokenInterface' => __DIR__ . '/..' . '/birke/rememberme/src/Token/TokenInterface.php',
-        'Birke\\Rememberme\\Triplet' => __DIR__ . '/..' . '/birke/rememberme/src/Triplet.php',
         'Brian2694\\Toastr\\Facades\\Toastr' => __DIR__ . '/..' . '/brian2694/laravel-toastr/src/Facades/Toastr.php',
         'Brian2694\\Toastr\\Toastr' => __DIR__ . '/..' . '/brian2694/laravel-toastr/src/Toastr.php',
         'Brian2694\\Toastr\\ToastrServiceProvider' => __DIR__ . '/..' . '/brian2694/laravel-toastr/src/ToastrServiceProvider.php',
