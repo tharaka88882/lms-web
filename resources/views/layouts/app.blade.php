@@ -169,7 +169,7 @@
                                     <ul style="list-style: none; padding-left: 0px">
                                         <form action="{{ route('logout') }}" method="post">
                                             @csrf @method('post')
-                                            <button onclick="logclick();" class="btn btn-link btn-flat pt-0" style="padding-left: 0" id="logoutt">Sign
+                                            <button  class="btn btn-link btn-flat pt-0" style="padding-left: 0" id="logoutt">Sign
                                                 out</button>
                                         </form>
                                     </ul>
