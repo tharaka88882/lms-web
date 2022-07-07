@@ -61,6 +61,8 @@ use Illuminate\Support\Facades\Log;
 
 use League\CommonMark\Converter;
 use SebastianBergmann\Environment\Console;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MenteeComplaints;
 
 class StudentController extends Controller
 
@@ -688,7 +690,7 @@ class StudentController extends Controller
             $complaints->save();
 
             $id = $request->get('mentor_id');
-            $name = $id->name;
+            $name = Teacher::findOrFail($id)->name;
 
             Toastr::success('Complaint Added successfully', 'Success');
 
@@ -696,7 +698,7 @@ class StudentController extends Controller
             // To do email send code hear....
             Mail::to($mentorEmail)->send(new MenteeComplaints($name));
 
-            $this->createNotification(1, 'Mentee has filed a complaint', route('admin.complaints'));
+            $this->createNotification('1', 'Mentee has filed a complaint', route('admin.complaints'));
             $this->createNotification($id, 'Mentee has filed a complaint');
 
             return redirect()->route('student.view_tutor', compact('id'));
