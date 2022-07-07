@@ -126,7 +126,7 @@
 
                                             <div class="form-group" id="currentModal">
 
-                                                <label> Mentoring Topics:</label>
+                                                <label>Skills:</label>
 
 
                                                 <select name="search_subject"

@@ -318,7 +318,7 @@
                                                 <small style="text-transform: capitalize">
                                                     @if ($qualification->end_date != null)
                                                         Completed
-                                                        {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }}
+                                                        {{-- {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }} --}}
                                                         -
                                                         {{ explode('-', $qualification->end_date)[1] }}/{{ explode('-', $qualification->end_date)[0] }}
                                                     @else

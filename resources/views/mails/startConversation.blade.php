@@ -1,7 +1,7 @@
 @component('mail::message')
 # Mentee has started a conversation
 
-Hi {{ $user_name }}, A mentee has started a conversation with you.
+Hi {{ explode(',',$user_name)[0] }}, {{ explode(',',$user_name)[1] }} has started a conversation with you.
 
 @component('mail::button', ['url' => 'https://login.you2mentor.com/'])
         Go to You2Mentor

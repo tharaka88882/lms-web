@@ -318,16 +318,16 @@ class TeacherController extends Controller
     {
         $query1 = Conversation::query();
         $query2 = MentorConversation::query();
-        $query1 = $query1->where('teacher_id', Auth()->user()->userable->id);
-        $query2 = $query2->where('mentor_id', Auth()->user()->userable->id);
+        $query1 = $query1->select('conversations.*')->join('students', 'students.id', '=', 'conversations.student_id')->join('users', 'users.userable_id', '=', 'students.id')->where('conversations.teacher_id', Auth()->user()->userable->id)->where('users.userable_type','App\Models\Student');
+        $query2 = $query2->select('mentor_conversations.*')->join('students', 'students.id', '=', 'mentor_conversations.mentee_id')->join('users', 'users.userable_id', '=', 'students.id')->where('mentor_conversations.mentor_id', Auth()->user()->userable->id)->where('users.userable_type','App\Models\Teacher');
 
         if($request->get('m_name')!=null){
-            $query1->select('conversations.*')->join('students', 'students.id', '=', 'conversations.student_id')->join('users', 'users.userable_id', '=', 'students.id')->where('users.name', 'like', $request->get('m_name').'%');
-            $query2->select('mentor_conversations.*')->join('students', 'students.id', '=', 'mentor_conversations.mentee_id')->join('users', 'users.userable_id', '=', 'students.id')->where('users.name', 'like', $request->get('m_name').'%');
+            $query1->where('users.name', 'like', $request->get('m_name').'%');
+            $query2->where('users.name', 'like', $request->get('m_name').'%');
         }
-        else if($request->get('develop')!=null){
-            $query1->select('conversations.*')->join('students', 'students.id', '=', 'conversations.student_id')->join('users', 'users.userable_id', '=', 'students.id')->join('milestones','milestones.user_id','=','users.id')->where('milestones.note', 'like', $request->get('develop').'%');
-            $query2->select('mentor_conversations.*')->join('students', 'students.id', '=', 'mentor_conversations.mentee_id')->join('users', 'users.userable_id', '=', 'students.id')->join('milestones','milestones.user_id','=','users.id')->where('milestones.note', 'like', $request->get('develop').'%');
+         if($request->get('develop')!=null){
+            $query1->join('milestones','milestones.user_id','=','users.id')->where('milestones.note', 'like', $request->get('develop').'%');
+            $query2->join('milestones','milestones.user_id','=','users.id')->where('milestones.note', 'like', $request->get('develop').'%');
         }
         //dd( $mentee_conversations);
         $mentee_conversations = $query1->get();

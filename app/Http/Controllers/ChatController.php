@@ -63,7 +63,7 @@ class ChatController extends Controller
             // $headers = "From: info@you2mentor.com" . "\r\n";
 
            // mail($to,$subject,$txt,$headers);
-          // Mail::to($to)->send(new StartConversation($user_name));
+           Mail::to($to)->send(new StartConversation($user_name.','.Auth()->user()->name));
 
             DB::commit();
             Toastr::success('Conversation Started', 'Success');
@@ -95,10 +95,10 @@ class ChatController extends Controller
                 $query = Conversation::findOrFail($request->get('conversation_id'));
 
                if($query->student->user->id == Auth()->user()->id){
-                $this->createNotification($query->teacher->user->id, 'New Message',route('teacher.view_conversation',$query->id));
+                $this->createNotification($query->teacher->user->id, $query->student->user->name.' has sent new message',route('teacher.view_conversation',$query->id));
 
                }else{
-                $this->createNotification($query->student->user->id, 'New Message',route('student.view_conversation',$query->id));
+                $this->createNotification($query->student->user->id, $query->teacher->user->name.' has sent new message',route('student.view_conversation',$query->id));
                }
 
 
@@ -243,7 +243,7 @@ class ChatController extends Controller
 
             $user_name = $teacher->user->name;
             //mail($to,$subject,$txt,$headers);
-            //Mail::to($to)->send(new StartConversation($user_name));
+            Mail::to($to)->send(new StartConversation($user_name.','.Auth()->user()->name));
 
             DB::commit();
             Toastr::success('Conversation Started', 'Success');
@@ -268,6 +268,15 @@ class ChatController extends Controller
                 $message->conversation_id=$request->get('conversation_id');
                 $message->save();
                 DB::commit();
+
+                $query = MentorConversation::findOrFail($request->get('conversation_id'));
+
+                if($query->mentee->user->id == Auth()->user()->id){
+                 $this->createNotification($query->mentor->user->id, explode(' ',$query->mentee->user->name)[0].' has sent new message',route('teacher.view_mentor_conversation',$query->id));
+
+                }else{
+                 $this->createNotification($query->mentee->user->id,  explode(' ',$query->mentor->user->name)[0].' has sent new message',route('teacher.view_mentor_conversation',$query->id));
+                }
 
                 return array(
                     'success' => true,
