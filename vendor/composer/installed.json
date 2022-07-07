@@ -117,6 +117,66 @@
             "install-path": "../bacon/bacon-qr-code"
         },
         {
+            "name": "birke/rememberme",
+            "version": "4.0.1",
+            "version_normalized": "4.0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gbirke/rememberme.git",
+                "reference": "fe2a5b2d20651bad1a8fd04f52d244a7dd66684f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gbirke/rememberme/zipball/fe2a5b2d20651bad1a8fd04f52d244a7dd66684f",
+                "reference": "fe2a5b2d20651bad1a8fd04f52d244a7dd66684f",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4 || ^8.0"
+            },
+            "require-dev": {
+                "escapestudios/symfony2-coding-standard": "~3.11",
+                "ircmaxell/random-lib": "^1.1",
+                "phpunit/phpunit": "^9.5",
+                "squizlabs/php_codesniffer": "^3.5"
+            },
+            "suggest": {
+                "ext-pdo": "*",
+                "ircmaxell/random-lib": "For generating random tokens with different entropy sources",
+                "predis/predis": "Needed if you used Redis storage"
+            },
+            "time": "2021-04-26T19:20:29+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Birke\\Rememberme\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gabriel Birke",
+                    "email": "gb@birke-software.de"
+                }
+            ],
+            "description": "Secure \"Remember Me\" functionality",
+            "homepage": "https://github.com/gbirke/rememberme",
+            "keywords": [
+                "cookie",
+                "remember",
+                "security"
+            ],
+            "support": {
+                "issues": "https://github.com/gbirke/rememberme/issues",
+                "source": "https://github.com/gbirke/rememberme/tree/4.0.1"
+            },
+            "install-path": "../birke/rememberme"
+        },
+        {
             "name": "brian2694/laravel-toastr",
             "version": "5.57",
             "version_normalized": "5.57.0.0",
