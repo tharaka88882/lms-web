@@ -667,7 +667,6 @@ class StudentController extends Controller
     }
 
     public function add_complaint(Request $request)
-
     {
 
 
@@ -689,10 +688,16 @@ class StudentController extends Controller
             $complaints->save();
 
             $id = $request->get('mentor_id');
+            $name = $id->name;
 
             Toastr::success('Complaint Added successfully', 'Success');
 
-            $this->createNotification('3', 'Mentee has filed a complaint', route('admin.complaints'));
+            $mentorEmail = Teacher::findOrFail($id)->email;
+            // To do email send code hear....
+            Mail::to($mentorEmail)->send(new MenteeComplaints($name));
+
+            $this->createNotification(1, 'Mentee has filed a complaint', route('admin.complaints'));
+            $this->createNotification($id, 'Mentee has filed a complaint');
 
             return redirect()->route('student.view_tutor', compact('id'));
 
