@@ -49,10 +49,31 @@ class LoginController extends Controller
     // public function index(){
     //     return view('login');
     // }
+
+    // public function getLogout() {
+
+    //     $rememberMeCookie = Auth::getRecallerName();
+    //     // Tell Laravel to forget this cookie
+    //     $cookie = Cookie::forget($rememberMeCookie);
+
+    //     return Redirect::to('/')->withCookie($cookie);
+    // }
+
     protected function authenticated(Request $request)
     {
         $user =  Auth::user();
         // // return get_class($user);
+       // dd($request->get('remember'));
+
+        if($request->get('remember')==null){
+            setcookie('login_email',$request->email,100);
+            setcookie('login_pass',$request->password,100);
+         }
+         else{
+            setcookie('login_email',$request->email,time()+60*60*24*100);
+            setcookie('login_pass',$request->password,time()+60*60*24*100);
+
+         }
 
         // $pending_count = Teacher::where('status', '=', '0')->count();
         // //$teachers_count = $teachers->count();
