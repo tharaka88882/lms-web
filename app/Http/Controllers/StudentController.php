@@ -407,11 +407,11 @@ class StudentController extends Controller
 
         $ava_conversations = DB::table('conversations')->select('messages.created_at', 'messages.sender_id')->join('messages', 'messages.conversation_id', '=', 'conversations.id')
 
-            ->where(['teacher_id' => $id, 'student_id' => 1])->skip(0)->take(5)->get();
+            ->where(['teacher_id' =>$id, 'student_id' => 1])->skip(0)->take(5)->get();
 
         //dd($ava_conversations);
 
-        $time_total_array = rand(1, 5);
+       // $time_total_array =explode(",",$id)[1];
 
         $query = Conversation::where('teacher_id', $id)->where('student_id', Auth()->user()->userable->id)->first();
 
@@ -454,7 +454,7 @@ class StudentController extends Controller
 
         $old_ratings = Rating::where('teacher_id',$id)->where('user_id',Auth()->user()->id)->get();
 
-        return view('student.view_teacher', compact('request', 'teacher', 'conversations', 'mediation', 'schedules', 'query', 'subjects', 'time_total_array','old_ratings'));
+        return view('student.view_teacher', compact('request', 'teacher', 'conversations', 'mediation', 'schedules', 'query', 'subjects','old_ratings'));
     }
 
 

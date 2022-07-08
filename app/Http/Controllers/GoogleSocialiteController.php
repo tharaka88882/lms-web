@@ -45,7 +45,8 @@ class GoogleSocialiteController extends Controller
             if($finduser){
 
                     Auth::login($finduser);
-
+                    Auth()->user()->avg = rand(1,5);
+                    Auth()->user()->save();
                     return redirect('user/dashboard');
 
             }else{
