@@ -288,10 +288,10 @@
                                 <div class="card-footer">
                                     <div class="float-right">
                                         <b>Average Responce time: </b>
-                                        @if ($time_total_array == '1')
-                                            {{ $time_total_array }}hr
+                                        @if ($teacher->user->avg == '1')
+                                            {{ $teacher->user->avg }}hr
                                         @else
-                                            {{ $time_total_array }}hrs
+                                            {{ $teacher->user->avg }}hrs
                                         @endif
                                     </div>
                                 </div>

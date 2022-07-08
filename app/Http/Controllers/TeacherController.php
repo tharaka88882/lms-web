@@ -464,7 +464,7 @@ class TeacherController extends Controller
     {
         // dd($request);
         $teacher = Teacher::findOrFail($id);
-        $schedules = Schedule::where('teacher_id', $id)->get();
+        $schedules = Schedule::where('teacher_id',$id)->get();
 
          // Rating-------------------------------------------------------------------------
 
@@ -481,7 +481,7 @@ class TeacherController extends Controller
 
          $round_mediation =(int)$mediation;
 
-        $query = MentorConversation::where('mentor_id', $id)->where('mentee_id', Auth()->user()->userable->id)->first();
+        $query = MentorConversation::where('mentor_id',$id)->where('mentee_id', Auth()->user()->userable->id)->first();
         // dd($query);
         $conversations = array();
         if ($query != null) {
@@ -494,13 +494,13 @@ class TeacherController extends Controller
 
         $subjects = TeacherSubject::select('name')
             ->join('subjects', 'subjects.id', '=', 'teacher_subjects.subject_id')
-            ->where('teacher_subjects.teacher_id', $id)
+            ->where('teacher_subjects.teacher_id',$id)
             ->get();
 
         //return $rating;
         $old_ratings = Rating::where('teacher_id',$id)->where('user_id',Auth()->user()->id)->get();
-        $time_total_array = rand(1, 5);
-        return view('teacher.view_mentor', compact('request', 'teacher', 'conversations', 'mediation', 'schedules', 'query', 'subjects', 'time_total_array','old_ratings'));
+       // $time_total_array = explode(",",$id)[1];
+        return view('teacher.view_mentor', compact('request', 'teacher', 'conversations', 'mediation', 'schedules', 'query', 'subjects','old_ratings'));
     }
 
 

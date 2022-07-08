@@ -26,6 +26,9 @@ class LinkedinController extends Controller
 
            Auth::login($user);
 
+           Auth()->user()->avg = rand(1,5);
+           Auth()->user()->save();
+
            if(Auth()->user()->userable->linkedin_link!=null){
                return redirect('user/dashboard');
            }else{
@@ -58,6 +61,8 @@ class LinkedinController extends Controller
 
                 Auth::login($linkedinUser);
 
+                Auth()->user()->avg = rand(1,5);
+                Auth()->user()->save();
                 setcookie('login_email',Auth()->user()->email,time()+60*60*24*100);
                 setcookie('login_pass',Auth()->user()->password,time()+60*60*24*100);
 

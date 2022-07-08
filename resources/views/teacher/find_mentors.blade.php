@@ -411,10 +411,10 @@
                                             {{-- <div class="card-footer text-right"> --}}
                                             <span class="users-list-date text-right">Average Responce Time -
                                                 {{-- {{ $tutor->avg_time }} hour(s) --}}
-                                            @if ($tutor->avg_time=='1')
-                                                {{ $tutor->avg_time }} hour
+                                            @if ($tutor->user->avg=='1')
+                                                {{ $tutor->user->avg }} hour
                                             @else
-                                                {{ $tutor->avg_time }} hours
+                                                {{ $tutor->user->avg }} hours
                                             @endif
                                             </span>
                                             {{-- </div> --}}

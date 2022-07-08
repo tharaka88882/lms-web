@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->date('from_leave')->default('1994-10-02');
             $table->date('to_leave')->default('1994-10-02');
             $table->boolean('leave_status')->default(0);
+            $table->string('avg')->default(5);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password',2048);
             $table->rememberToken();
