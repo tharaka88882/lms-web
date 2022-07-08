@@ -32,6 +32,9 @@ use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MenteeComplaints;
+
 
 
 use function PHPUnit\Framework\isEmpty;
