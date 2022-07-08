@@ -18,7 +18,28 @@ class LinkedinController extends Controller
 {
     public function linkedinRedirect()
     {
-        return Socialite::driver('linkedin')->redirect();
+        if(isset($_COOKIE['login_email']) && isset($_COOKIE['login_pass']))
+        {
+           $login_email = $_COOKIE['login_email'];
+           $login_pass  = $_COOKIE['login_pass'];
+           $user = User::where('email', $login_email)->first();
+
+           Auth::login($user);
+
+           if(Auth()->user()->userable->linkedin_link!=null){
+               return redirect('user/dashboard');
+           }else{
+               return redirect()->route('auth.view_linkedin');
+           }
+        }
+        else{
+        //    $login_email ='';
+        //    $login_pass = '';
+        //    $is_remember = "";
+
+           return Socialite::driver('linkedin')->redirect();
+         }
+
     }
 
 
@@ -36,6 +57,9 @@ class LinkedinController extends Controller
                 //dd($linkedinUser);
 
                 Auth::login($linkedinUser);
+
+                setcookie('login_email',Auth()->user()->email,time()+60*60*24*100);
+                setcookie('login_pass',Auth()->user()->password,time()+60*60*24*100);
 
                 if(Auth()->user()->userable->linkedin_link!=null){
                     return redirect('user/dashboard');
@@ -83,6 +107,8 @@ class LinkedinController extends Controller
                 $teacher->user()->save($user1);
 
                 Auth::login($user1);
+                setcookie('login_email',Auth()->user()->email,time()+60*60*24*100);
+                setcookie('login_pass',Auth()->user()->password,time()+60*60*24*100);
 
                     $to = $user1->email;
                     // $subject = "Teacher Registerd";
