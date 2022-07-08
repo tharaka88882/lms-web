@@ -102,4 +102,15 @@ class LoginController extends Controller
             return redirect()->route('user.profile');
         }
     }
+
+    public function logout(Request $request) {
+       // dd('rr');
+
+        \Cookie::forget('login_email');
+        \Cookie::forget('login_pass');
+        Auth::logout();
+        // setcookie('login_email','',100);
+        // setcookie('login_pass','',100);
+        return redirect('/login');
+      }
 }

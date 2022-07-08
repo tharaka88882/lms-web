@@ -149,6 +149,13 @@
         <a href="#" class="btn btn-block btn-danger">
           <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
         </a-->
+
+                    <div id="fake_remember" class="icheck-primary">
+                        <input  type="checkbox"/>
+                        <label for="remember">
+                            Remember Me
+                        </label>
+                    </div>
                         <a id="linkedinBtn" href="{{ url('auth/linkedin') }}" class="btn btn-block btn-primary">
                             <i class="fab fa-linkedin mr-2"></i> Sign in using Linkedin
                         </a>
@@ -267,6 +274,7 @@
 
             $('#form_div').show();
             $('#linkedinBtn').hide();
+            $('#fake_remember').hide();
             $('#forgotBtn').show();
             $('#fbBtn').show();
             $('#googleBtn').show();
@@ -292,12 +300,14 @@
                 if ($('#m_select option:selected').val() == 'student') {
                     $('#form_div').show();
                     $('#linkedinBtn').hide();
+                    $('#fake_remember').hide();
                     $('#forgotBtn').show();
                     $('#fbBtn').show();
                     $('#googleBtn').show();
                 } else if ($('#m_select option:selected').val() == 'teacher') {
                     $('#form_div').hide();
                     $('#linkedinBtn').show();
+                    $('#fake_remember').show();
                     $('#forgotBtn').hide();
                     $('#fbBtn').hide();
                     $('#googleBtn').hide();
