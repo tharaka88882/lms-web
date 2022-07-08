@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Mentoring Topics | YOU2MENTOR
+Skills | YOU2MENTOR
 @endsection
 
 @push('styles')
@@ -34,7 +34,7 @@ Mentoring Topics | YOU2MENTOR
         <div class="col-md-9">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title"> Mentoring Topics List</h3>
+            <h3 class="card-title"> Skills List</h3>
 
             <div class="card-tools">
               <a href="{{route('admin.create_subject')}}" type="button" class="btn btn-block btn-success">Add New</a>

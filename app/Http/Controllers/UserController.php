@@ -229,6 +229,9 @@ class UserController extends Controller
         $complaints->seen = 1;
         $complaints->save();
 
+        $mentee = Student::findOrFail($complaints->user_id);
+        //$this->createNotification($mentee->user->user_id, 'We received your complaint. We will check into it.');
+        // Mail::to($mentee->user->email)->send(new CheckedComplaint());
         return array(
             "success" => true
         );

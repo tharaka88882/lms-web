@@ -107,11 +107,11 @@ class SubjectController extends Controller
 
             $subject->save();
 
-            Toastr::success('Subject Added successfully', 'Success');
+            Toastr::success('Skill Added successfully', 'Success');
 
         } else {
 
-            Toastr::error('Duplicate Subject Name', 'Error');
+            Toastr::error('Duplicate Skill Name', 'Error');
 
             //return redirect()->route('admin.create_subject');
 
@@ -207,7 +207,7 @@ class SubjectController extends Controller
 
         $subject->save();
 
-        Toastr::success('Subject Updated successfully', 'Success');
+        Toastr::success('Skill Updated successfully', 'Success');
 
         return redirect()->route('admin.edit_subject', $id);
 
@@ -231,7 +231,7 @@ class SubjectController extends Controller
     {
         $subject = Subject::findOrFail($id);
         $subject->delete();
-        Toastr::success('Subject Deleted successfully', 'Deleted');
+        Toastr::success('Skill Deleted successfully', 'Deleted');
         return redirect()->route('admin.subjects');
     }
 

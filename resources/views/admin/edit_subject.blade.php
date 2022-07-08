@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Edit Mentoring Topics
+    Edit Skill
 @endsection
 
 @push('styles')
@@ -30,7 +30,7 @@
         <div class="col-sm-6">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Edit Mentoring Topic</h3>
+                    <h3 class="card-title">Edit Skill</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
@@ -39,7 +39,7 @@
                         @csrf
                         @method('PUT')
                         <div class="form-group">
-                            <label for="SubjectName"> Mentoring Topic Name</label>
+                            <label for="SubjectName"> Skill Name</label>
                             <input type="text"
                                 class="form-control @if ($errors->has('name')) {{ 'is-invalid' }} @endif"
                                 id="exampleInputEmail1" name="name" placeholder="Subject Name"
