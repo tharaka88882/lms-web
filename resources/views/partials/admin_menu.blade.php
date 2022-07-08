@@ -145,7 +145,7 @@
 
             <p>
 
-                Mentoring Topics/Professions
+                Skills
 
                 <i class="fas fa-angle-left right"></i> {{-- <span class="badge badge-info right">6</span> --}}
 
@@ -164,7 +164,7 @@
 
                     <i class="far fa-circle nav-icon"></i>
 
-                    <p>Add Mentoring Topics</p>
+                    <p>Add Skills</p>
 
                 </a>
 
@@ -177,7 +177,7 @@
 
                     <i class="far fa-circle nav-icon"></i>
 
-                    <p>Mentoring Topics List</p>
+                    <p>Skills List</p>
 
                 </a>
 

@@ -335,60 +335,6 @@
 
                                         </div>
 
-                                        <div class="form-group">
-                                            <div class="card border border-primary">
-                                                {{-- <div class="card-header">
-                                    <h3 class="card-title">Add My  Mentoring Topics</h3>
-                                    </div> --}}
-                                                <!-- /.card-header -->
-                                                <!-- form start -->
-                                                {{-- <form action="{{route('teacher.stor_subject')}}" method="POST"> --}}
-                                                @csrf
-                                                <div class="card-body">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Skills</label>
-                                                        <textarea disabled name="skills"
-                                                            class="form-control @if ($errors->has('skills')) {{ 'is-invalid' }} @endif" rows="3">{{ $user->userable->skills }}</textarea>
-
-                                                        @if ($errors->has('skills'))
-                                                            <span class="invalid-feedback" role="alert">
-                                                                <strong>{{ $errors->first('skills') }}</strong>
-                                                            </span>
-                                                        @endif
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Add to Skills</label>
-
-                                                        {{-- <select class="form-control" name="subject_id">
-                                                                @foreach ($subjects as $subject)
-                                                                <option value="{{$subject->id}}">{{$subject->name}}</option>
-                                        @endforeach
-                                        </select> --}}
-
-                                                        <select id="select2-echannel-doctor"
-                                                            style="width: 100% !important;padding: 12px 20px !important;margin: 8px 0 !important;display: inline-block !important;border: 1px solid #ccc !important;box-sizing: border-box !important;"
-                                                            name="subject"
-                                                            class="select2 @if ($errors->has('subject')) {{ 'is-invalid' }} @endif">
-
-                                                        </select>
-
-                                                        @if ($errors->has('subject'))
-                                                            <span class="invalid-feedback" role="alert">
-                                                                <strong>{{ $errors->first('subject') }}</strong>
-                                                            </span>
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                                <!-- /.card-body -->
-
-                                                <div class="card-footer">
-                                                    <button id="add_btn" type="button"
-                                                        class="btn btn-success pull-right">Add</button>
-                                                </div>
-                                                {{-- </form> --}}
-                                            </div>
-                                            <!-- /.card -->
-                                        </div>
 
                                         {{-- <div class="form-group">
                                             <label for="exampleInputEmail1">Experience</label>
@@ -453,6 +399,65 @@
                     </div>
                 </div>
                 <!-- /.card -->
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="card">
+                            <div class="card-header">
+                            <h3 class="card-title">Skills</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            {{-- <form action="{{route('teacher.stor_subject')}}" method="POST"> --}}
+                            @csrf
+                            <div class="card-body">
+                                <div class="form-group">
+                                    {{-- <label for="exampleInputEmail1">Skills</label> --}}
+                                    <textarea disabled name="skills" placeholder="Add skills from below search box"
+                                        class="form-control @if ($errors->has('skills')) {{ 'is-invalid' }} @endif" rows="3">{{ $user->userable->skills }}</textarea>
+
+                                    @if ($errors->has('skills'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('skills') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Add to Skills</label>
+
+                                    {{-- <select class="form-control" name="subject_id">
+                                            @foreach ($subjects as $subject)
+                                            <option value="{{$subject->id}}">{{$subject->name}}</option>
+                    @endforeach
+                    </select> --}}
+
+                                    <select id="select2-echannel-doctor"
+                                        style="width: 100% !important;padding: 12px 20px !important;margin: 8px 0 !important;display: inline-block !important;border: 1px solid #ccc !important;box-sizing: border-box !important;"
+                                        name="subject"
+                                        class="select2 @if ($errors->has('subject')) {{ 'is-invalid' }} @endif">
+
+                                    </select>
+
+                                    @if ($errors->has('subject'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('subject') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+
+                            <div class="card-footer">
+                                <button id="add_btn" type="button"
+                                    class="btn btn-success pull-right">Add</button>
+                            </div>
+                            {{-- </form> --}}
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                </div>
             </div>
 
             <div class="row">

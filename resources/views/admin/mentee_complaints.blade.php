@@ -43,11 +43,13 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Mentee</th>
+                            <th>Complainee/Mentee</th>
                             <th>Mentor</th>
+                            <th>About</th>
                             <th>Complaint</th>
+                            <th>Reported</th>
                             <th>Seen</th>
-                            <th>action</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -60,7 +62,9 @@
                             <td>{{$i}}</td>
                             <td>{{$complaint->user->name}}</td>
                             <td>{{$complaint->mentor->user->name}}</td>
+                            <td>{{$complaint->status}}</td>
                             <td>{{$complaint->description}}</td>
+                            <td>{{$complaint->created_at->diffForHumans()}}</td>
                             <td>{{($complaint->seen==1)?'seen':'unseen'}}</td>
                             <td>
                                 <button  class="btn btn-sm btn-{{($complaint->seen==0)?'warning':'success'}}" id="updateBtn" {{($complaint->seen==1)?'disabled=""':''}} onclick="updateComplaiant('{{$complaint->id}}')"><i class="far fa-eye"></i>@if ($complaint->seen==0)Check @else

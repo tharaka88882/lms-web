@@ -41,8 +41,8 @@
         </ul>
     </nav> --}}
 
-    <div class="login-box">
-        <div class="login-logo">
+    <div class="login-box" style="margin-top: 25px; !important">
+        <div class="login-logo" style="margin-bottom: -2.1rem; !important">
             <a href="https://you2mentor.com">
                 <img height="200px" width="200px"
                     src="{{ url('public') }}/theme/admin/dist/img/logo/you2logo.png" /></a>
@@ -157,6 +157,7 @@
         <i class="fa fa-external-link-alt"></i>
 
     </a>
+    <div id="charging" class="fa" style='font-size:48px; position: relative; left: 68px; bottom: 48px'></div>
     <!-- /.login-card-body>
 
   </div>
@@ -217,6 +218,28 @@
 
     @stack('scripts')
 
+
+    <script>
+        function chargebattery() {
+          var a;
+          a = document.getElementById("charging");
+          a.innerHTML = "&#xf104;";
+          setTimeout(function () {
+            a.innerHTML = "&#xf100;";
+          }, 1000);
+          setTimeout(function () {
+            a.innerHTML = "&#xf104;";
+          }, 2000);
+          setTimeout(function () {
+            a.innerHTML = "&#xf100;";
+          }, 3000);
+          setTimeout(function () {
+            a.innerHTML = "&#xf104;";
+          }, 4000);
+        }
+        chargebattery();
+        setInterval(chargebattery, 4000);
+        </script>
 
     <script>
         //alert('test');
