@@ -25,11 +25,13 @@ use Illuminate\Support\Facades\Log;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ReferMail;
+use App\Mail\CheckedComplaint;
+use App\Traits\UserTrait;
 
 class UserController extends Controller
 {
 
-
+    use UserTrait;
     public function profile()
     {
         $user =  Auth::user();
@@ -229,9 +231,9 @@ class UserController extends Controller
         $complaints->seen = 1;
         $complaints->save();
 
-        $mentee = Student::findOrFail($complaints->user_id);
-        //$this->createNotification($mentee->user->user_id, 'We received your complaint. We will check into it.');
-        // Mail::to($mentee->user->email)->send(new CheckedComplaint());
+       // $mentee = Student::findOrFail($complaints->user->userable_id);
+        $this->createNotification($complaints->user->id, 'We received your complaint. We will check into it.');
+        Mail::to($complaints->user->email)->send(new CheckedComplaint());
         return array(
             "success" => true
         );
