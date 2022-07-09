@@ -208,8 +208,8 @@
                                         <div class="form-group">
                                             <label>Sort Order:</label>
                                             <select name="select_order" class="select2 form-control" style="width: 100%;">
-                                                <option value="1" selected>Rating ASC</option>
-                                                <option value="0">Rating DESC</option>
+                                                <option value="1" selected>Rating High to Low</option>
+                                                <option value="0">Rating Low to High</option>
                                             </select>
                                         </div>
                                     </div>
@@ -457,10 +457,11 @@
                                                                       <button type="button" onclick="del_stikey('{{$stikey->id}}');" class="btn btn-sm btn-danger" id="del_{{$stikey->id}}">Delete</button>
                                                                 </td>
                                                             </tr>
-                                                              @endif
                                                             @php
                                                                 $i++;
                                                             @endphp
+                                                              @endif
+
                                                             @endforeach
                                                             </tbody>
                                                         </table>

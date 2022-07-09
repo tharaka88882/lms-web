@@ -506,10 +506,11 @@
                                                                                                                   <button type="button" onclick="del_stikey('{{$stikey->id}}');" class="btn btn-sm btn-danger" id="del_{{$stikey->id}}">Delete</button>
                                                                                                             </td>
                                                                                                         </tr>
+                                                                                                        @php
+                                                                                                        $i++;
+                                                                                                    @endphp
                                                                                                            @endif
-                                                                                                            @php
-                                                                                                                $i++;
-                                                                                                            @endphp
+
                                                                                                             @endforeach
                                                                                                             </tbody>
                                                                                                         </table>
