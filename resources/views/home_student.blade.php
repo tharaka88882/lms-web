@@ -36,15 +36,12 @@
                 <div class="col-sm-12">
                     <div style="font-size:15px; text-align:center;" class="alert alert-warning">
                         Thanks for signing up and welcome to our pilot launch. Please update your profile, explore and check out the
-                        Knowledge Hub curated for your development. Your feedback is valuable to us, so please drop
+                        <a href="https://you2mentor.com/knowledge_hub/">Knowledge Hub</a> curated for your development.
+                        <br>
+                        Your feedback is valuable to us, so please drop
                         us a note if we can improve your mentoring experience.
-                        You can follow us on.
-                        This is the new note. Please hyperlink knowledge hub and the word note to give links to  knowledge hub and
-                        contact us respectfully.
                         <br />
-                        <br />
-                        We would love to hear feedback on how we can improve your experience, so drop us a note through <a
-                            href="https://you2mentor.com/contact/" target="_blank">here</a>
+                    {{-- <a href="https://you2mentor.com/contact/" target="_blank">here</a> --}}
                         <br />
                         <span style="color:black; font-size:larger;">
                             You can follow us on &nbsp;&nbsp;<a href="https://www.linkedin.com/company/you2mentor/"
