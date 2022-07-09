@@ -172,25 +172,26 @@
                                                     </span>
                                                     </div>
 
-
-
-
                                                     <div class="button mt-2 d-flex flex-row align-items-center">
-                                                         @if ($conversation['user']=='mentee')
-                                                         <a href="{{route('teacher.view_conversation',$conversation['conversation_id'])}}">
-                                                            <button class="btn btn-sm btn-primary w-100 ml-2">Conversation</button>
-                                                        </a>
+                                                         <div class="row">
+                                                            <div class="col-xs-12">
+                                                                @if ($conversation['user']=='mentee')
+                                                            <a href="{{route('teacher.view_conversation',$conversation['conversation_id'])}}">
+                                                               <button class="btn btn-sm btn-primary w-100">Conversation</button>
+                                                           </a>
 
-                                                        @else
-                                                        <a href="{{route('teacher.view_mentor_conversation',$conversation['conversation_id'])}}">
-                                                            <button class="btn btn-sm btn-primary w-100 ml-2">Conversation</button>
-                                                        </a>
-                                                         @endif
-
-                                                         <a>
-                                                            <button  data-toggle="modal" data-target="#modal-md{{$conversation['ar_index']}}" class="btn btn-sm btn-warning w-100 ml-3">Notes</button>
-                                                        </a>
-
+                                                           @else
+                                                           <a href="{{route('teacher.view_mentor_conversation',$conversation['conversation_id'])}}">
+                                                               <button class="btn btn-sm btn-primary w-100">Conversation</button>
+                                                           </a>
+                                                            @endif
+                                                            </div>
+                                                            <div class="col-xs-12">
+                                                                <a>
+                                                                    <button  data-toggle="modal" data-target="#modal-md{{$conversation['ar_index']}}" class="btn btn-sm btn-warning w-100 ml-1">Notes</button>
+                                                                </a>
+                                                            </div>
+                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>

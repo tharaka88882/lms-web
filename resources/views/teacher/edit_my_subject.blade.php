@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Edit My  Mentoring Topics
+    Edit My Skill
 @endsection
 
 @push('styles')
@@ -32,7 +32,7 @@
 <div class="col-sm-6">
   <div class="card">
     <div class="card-header">
-      <h3 class="card-title">Add My  Mentoring Topics</h3>
+      <h3 class="card-title">Edit My Skill</h3>
     </div>
     <!-- /.card-header -->
     <!-- form start -->
@@ -40,7 +40,7 @@
         @csrf
       <div class="card-body">
         <div class="form-group">
-          <label for="exampleInputEmail1"> Mentoring Topics</label>
+          <label for="exampleInputEmail1"> Skill</label>
         </div>
 
       </div>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Add My  Mentoring Topics
+    Add My Skills
 @endsection
 
 @push('styles')
@@ -32,7 +32,7 @@
 <div class="col-sm-6">
   <div class="card">
     <div class="card-header">
-      <h3 class="card-title">Add My  Mentoring Topics</h3>
+      <h3 class="card-title">Add My Skills</h3>
     </div>
     <!-- /.card-header -->
     <!-- form start -->
@@ -40,7 +40,7 @@
         @csrf
       <div class="card-body">
         <div class="form-group">
-          <label for="exampleInputEmail1"> Mentoring Topics</label>
+          <label for="exampleInputEmail1">Skills</label>
           {{-- <select class="form-control" name="subject_id">
               @foreach ($subjects as $subject)
               <option value="{{$subject->id}}">{{$subject->name}}</option>

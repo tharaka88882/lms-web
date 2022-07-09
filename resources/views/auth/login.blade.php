@@ -45,7 +45,7 @@
         </ul>
     </nav> --}}
 
-    <div class="login-box" style="margin-top: 25px; !important">
+    <div class="login-box">
         <div class="login-logo" style="margin-bottom: -2.1rem; !important">
             <a href="https://you2mentor.com">
                 <img height="200px" width="200px"
@@ -153,13 +153,14 @@
         <a href="#" class="btn btn-block btn-danger">
           <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
         </a-->
-
-                    <div id="fake_remember" class="icheck-primary">
-                        <input  type="checkbox"/>
-                        <label for="remember">
+            <div class="row pl-2">
+                    <div id="fake_remember" class="form-check" style="text-align: left">
+                        <input class="form-check-input" type="checkbox"/>
+                        <label class="form-check-lable" for="remember">
                             Remember Me
                         </label>
                     </div>
+                </div>
                         <a id="linkedinBtn" href="{{ url('auth/linkedin') }}" class="btn btn-block btn-primary">
                             <i class="fab fa-linkedin mr-2"></i> Sign in using Linkedin
                         </a>
@@ -333,13 +334,14 @@
     <script>
         const intro = introJs();
 
-        intro.setOption("dontShowAgain", true)
+        //intro.setOption("dontShowAgain", true)
         intro.setOption("doneLabel", " Close ");
         intro.setOptions({
             showBullets: false,
             steps: [
                 {
                     title: '<b>Welcome</b>',
+                    //element: '#charging-one',
                     element: document.querySelector('.card-demo'),
                     intro: 'Click here to add to home page'
                 }
