@@ -20,6 +20,10 @@
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/5.1.0/introjs.min.css" integrity="sha512-iaYE9B9u4GU8+KkRTOdRdZuzKdYw1X0hOAa4GwDV/uwdXgoX/ffT3ph1+HG1m4LPZD/HV+dkuHvWFLZtPviylQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/5.1.0/introjs-rtl.min.css" integrity="sha512-VwsKKwi99ZnRScgAkJ+ISGNolfoq+ic/mzJfhZWQ1xwfcbLZzLnHDoERYEppL25Okf+wEI/nDhHogudTa/YkWA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
     @stack('styles')
 </head>
 
@@ -173,12 +177,15 @@
             </div>
         </div>
     </div>
-    <a class="btn btn-app" style="top:10px; bottom:10px; right:10px; min-width:50px; height:50px; !important"
+    <div class="card-demo">
+        <a id="charging-one" class="btn btn-app bg-secondary" style="top:10px; bottom:10px; right:10px; min-width:50px; height:50px; !important"
         data-toggle="modal" data-target="#modal-md">
         <i class="fa fa-external-link-alt"></i>
 
     </a>
-    <div id="charging" class="fa" style='font-size:48px; position: relative; left: 68px; bottom: 48px'></div>
+    </div>
+
+    {{-- <div id="charging-one" class="fa" style='font-size:48px; position: relative; left: 68px; bottom: 48px'></div> --}}
     <!-- /.login-card-body>
 
   </div>
@@ -240,7 +247,7 @@
     @stack('scripts')
 
 
-    <script>
+    {{-- <script>
         function chargebattery() {
           var a;
           a = document.getElementById("charging");
@@ -260,7 +267,7 @@
         }
         chargebattery();
         setInterval(chargebattery, 4000);
-        </script>
+        </script> --}}
 
     <script>
         //alert('test');
@@ -321,6 +328,25 @@
         //         removeEvent();
         //     });
         // }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/5.1.0/intro.min.js" integrity="sha512-B0B1bdTGi9XHtoCINbtR6z9Vi8IYvvtImIE8KWMtqWAVUt2Wn2k69GxM7ya/3rQcz/Pgm/o1WcDU347/5k202A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        const intro = introJs();
+
+        intro.setOption("dontShowAgain", true)
+        intro.setOption("doneLabel", " Close ");
+        intro.setOptions({
+            showBullets: false,
+            steps: [
+                {
+                    title: '<b>Welcome</b>',
+                    element: document.querySelector('.card-demo'),
+                    intro: 'Click here to add to home page'
+                }
+            ]
+        })
+
+        intro.start();
     </script>
 </body>
 
