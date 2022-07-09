@@ -143,11 +143,11 @@
 
                                                 <label>Sort Order:</label>
 
-                                                <select class="select2 form-control" style="width: 100%;">
+                                                <select name="select_order" class="select2 form-control" style="width: 100%;">
 
-                                                    <option selected>Rating High to Low</option>
+                                                    <option value="1" selected>Rating High to Low</option>
 
-                                                    <option>Rating Low to High</option>
+                                                    <option value="0">Rating Low to High</option>
 
                                                 </select>
 

@@ -267,10 +267,11 @@
 
                                                                 </td>
                                                             </tr>
-                                                              @endif
                                                             @php
-                                                                $i++;
-                                                            @endphp
+                                                            $i++;
+                                                        @endphp
+                                                              @endif
+
                                                             @endforeach
 
                                                             </tbody>
