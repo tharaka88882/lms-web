@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Mentoring Topics
+Skills
 @endsection
 
 @push('styles')
@@ -55,7 +55,7 @@ Mentoring Topics
                             <th>#</th>
                             <th>Name</th>
                             {{-- <th>Status</th> --}}
-                            <th>action</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>

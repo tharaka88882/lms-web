@@ -415,7 +415,7 @@
                                                             </div>
                                                               <div class="col-xs-12">
                                                                 @if ($flag == false)
-                                                                <button disabled class="btn btn-xs btn-primary ml-1">Conversation</button>
+                                                                <button disabled class="btn btn-xs btn-primary w-100 ml-1">Conversation</button>
                                                                 @else
                                                                 <a href="{{route('teacher.view_mentor_conversation', $conversation->id)}}">
                                                                     <button class="btn btn-xs btn-primary w-100 ml-1">Conversation</button>
