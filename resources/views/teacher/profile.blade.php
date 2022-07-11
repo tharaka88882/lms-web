@@ -87,9 +87,9 @@
 @section('content')
     <!-- Content Header (Page header) -->
 
-    <section class="content">
+    <section class="content-header">
         <div class="container-fluid">
-
+            <div class="row mb-2">
             {{-- <div class="content-header">
     <div class="container-fluid">
         <div class="row">
@@ -106,8 +106,7 @@
     </div><!-- /.container-fluid -->
 </div> --}}
 
-            <div class="row">
-                <div class="col-md-12 mt-2">
+                <div class="col-md-12">
                     <!-- general form elements -->
                     <div class="card">
                         <div class="card-header">
@@ -399,11 +398,8 @@
                     </div>
                 </div>
                 <!-- /.card -->
-            </div>
 
-            <div class="row">
                 <div class="col-md-12">
-                    <div class="form-group">
                         <div class="card">
                             <div class="card-header">
                             <h3 class="card-title">Skills</h3>
@@ -456,745 +452,753 @@
                             {{-- </form> --}}
                         </div>
                         <!-- /.card -->
-                    </div>
                 </div>
-            </div>
+                {{-- End of Skills --}}
 
-            <div class="row">
-                {{-- Qualifications Card --}}
+                {{-- Qualifications --}}
                 <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Qualifications</h3>
-                        </div>
-                        <!--Make sure the form has the autocomplete function switched off:-->
-                        <form autocomplete="off" action="{{ route('user.add_qualification') }}" method="POST">
-                            @csrf
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <div class="autocomplete" style="width:100%;">
-                                                <label for="exampleInputEmail1">Institute</label>
-                                                <input id="myInput" type="text" name="company" placeholder="Enter your Institute">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Degree/Certificate</label>
-                                            <input name="qualification"
-                                                class="form-control @if ($errors->has('qualification')) {{ 'is-invalid' }} @endif"
-                                                type="text" placeholder="Enter your degree/certificate" />
-
-                                            @if ($errors->has('qualification'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('qualification') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-
-
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Field of study</label>
-                                            <input name="field"
-                                                class="form-control @if ($errors->has('field')) {{ 'is-invalid' }} @endif"
-                                                type="text" placeholder="Enter your field of study" />
-
-                                            @if ($errors->has('field'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('field') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="form-check">
-                                                <input id="undergrad" class="form-check-input" type="checkbox">
-                                                <label class="form-check-label">Ongoing</label>
-                                            </div>
-                                        </div>
-                                        {{-- <div class="form-group">
-                                            <label for="exampleInputEmail1">Sr</label>
-                                            <input id="dpic" name="date"
-                                                class="form-control @if ($errors->has('date')) {{ 'is-invalid' }} @endif"
-                                                type="date" />
-
-                                            @if ($errors->has('date'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('date') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div> --}}
-
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Qualifications</h3>
+                                </div>
+                                <!--Make sure the form has the autocomplete function switched off:-->
+                                <form autocomplete="off" action="{{ route('user.add_qualification') }}" method="POST">
+                                    @csrf
+                                    <div class="card-body">
                                         <div class="row">
-                                            {{-- <label for="exampleInputEmail1">Time of work</label> --}}
-                                            <div class="col-sm-4">
+                                            <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">Start</label>
-                                                    <input name="start_date" placeholder="Start Year"
-                                                        class="form-control @if ($errors->has('start_date')) {{ 'is-invalid' }} @endif"
-                                                        type="date" />
+                                                    <div class="autocomplete" style="width:100%;">
+                                                        <label for="exampleInputEmail1">Institute</label>
+                                                        <input id="myInput" type="text" name="company" placeholder="Enter your Institute">
+                                                    </div>
+                                                </div>
 
-                                                    @if ($errors->has('start_date'))
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Degree/Certificate</label>
+                                                    <input name="qualification"
+                                                        class="form-control @if ($errors->has('qualification')) {{ 'is-invalid' }} @endif"
+                                                        type="text" placeholder="Enter your degree/certificate" />
+
+                                                    @if ($errors->has('qualification'))
                                                         <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $errors->first('start_date') }}</strong>
+                                                            <strong>{{ $errors->first('qualification') }}</strong>
                                                         </span>
                                                     @endif
                                                 </div>
-                                            </div>
 
-                                            <div class="col-sm-4">
+
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">End</label>
-                                                    <input id="dpic" name="end_date" placeholder="End Year"
-                                                        class="form-control @if ($errors->has('end_date')) {{ 'is-invalid' }} @endif"
-                                                        type="date" />
+                                                    <label for="exampleInputEmail1">Field of study</label>
+                                                    <input name="field"
+                                                        class="form-control @if ($errors->has('field')) {{ 'is-invalid' }} @endif"
+                                                        type="text" placeholder="Enter your field of study" />
 
-                                                    @if ($errors->has('end_date'))
+                                                    @if ($errors->has('field'))
                                                         <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $errors->first('end_date') }}</strong>
+                                                            <strong>{{ $errors->first('field') }}</strong>
                                                         </span>
                                                     @endif
                                                 </div>
+
+                                                <div class="form-group">
+                                                    <div class="form-check">
+                                                        <input id="undergrad" class="form-check-input" type="checkbox">
+                                                        <label class="form-check-label">Ongoing</label>
+                                                    </div>
+                                                </div>
+                                                {{-- <div class="form-group">
+                                                    <label for="exampleInputEmail1">Sr</label>
+                                                    <input id="dpic" name="date"
+                                                        class="form-control @if ($errors->has('date')) {{ 'is-invalid' }} @endif"
+                                                        type="date" />
+
+                                                    @if ($errors->has('date'))
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $errors->first('date') }}</strong>
+                                                        </span>
+                                                    @endif
+                                                </div> --}}
+
+                                                <div class="row">
+                                                    {{-- <label for="exampleInputEmail1">Time of work</label> --}}
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Start</label>
+                                                            <input name="start_date" placeholder="Start Year"
+                                                                class="form-control @if ($errors->has('start_date')) {{ 'is-invalid' }} @endif"
+                                                                type="date" />
+
+                                                            @if ($errors->has('start_date'))
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $errors->first('start_date') }}</strong>
+                                                                </span>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">End</label>
+                                                            <input id="dpic" name="end_date" placeholder="End Year"
+                                                                class="form-control @if ($errors->has('end_date')) {{ 'is-invalid' }} @endif"
+                                                                type="date" />
+
+                                                            @if ($errors->has('end_date'))
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $errors->first('end_date') }}</strong>
+                                                                </span>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Grade (Optional)</label>
+                                                    <input name="grade"
+                                                        class="form-control @if ($errors->has('grade')) {{ 'is-invalid' }} @endif"
+                                                        type="text" placeholder="Enter your grade" />
+
+                                                    @if ($errors->has('grade'))
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $errors->first('grade') }}</strong>
+                                                        </span>
+                                                    @endif
+                                                </div>
+
+                                                {{-- <div class="form-group">
+                                                    <label for="exampleInputEmail1">Your Qualifications</label>
+                                                    <textarea disabled name="skills" class="form-control @if ($errors->has('skills')) {{ 'is-invalid' }} @endif"
+                                                        rows="3">{{ $user->userable->skills }}</textarea>
+
+                                                    @if ($errors->has('skills'))
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $errors->first('skills') }}</strong>
+                                                        </span>
+                                                    @endif
+                                                </div> --}}
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-success pull-right">Add</button>
+                                    </div>
+                                </form>
+                            </div>
+                            {{-- card-end --}}
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">My Qualifications</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 10px">#</th>
+                                                    <th>Institute</th>
+                                                    <th>Degree/Certificate</th>
+                                                    <th>Field of study</th>
+                                                    <th style="width: 40px">Study Period</th>
+                                                    <th>Grade</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @php
+                                                    $i = 1;
+                                                @endphp
+                                                @foreach (Auth()->user()->userable->qualifications as $qualification)
+                                                    <tr>
+                                                        <td>{{ $i }}</td>
+                                                        <td>{{ $qualification->institute->text }}</td>
+                                                        <td>{{ $qualification->text }}</td>
+                                                        <td>{{ $qualification->field }}</td>
+                                                        <td><span
+                                                                class="badge">{{ explode('-', $qualification->start_date)[0] }}/{{ explode('-', $qualification->start_date)[1] }}
+                                                                @if ($qualification->end_date != null)
+                                                                    -
+                                                                    {{ explode('-', $qualification->end_date)[0] }}/{{ explode('-', $qualification->end_date)[1] }}
+                                                                @else
+                                                                    - Present
+                                                                @endif
+                                                            </span>
+                                                        </td>
+                                                        <td>{{ $qualification->grade }}</td>
 
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Grade (Optional)</label>
-                                            <input name="grade"
-                                                class="form-control @if ($errors->has('grade')) {{ 'is-invalid' }} @endif"
-                                                type="text" placeholder="Enter your grade" />
+                                                        <td>
+                                                            <a type="button"
+                                                                class="btn btn-block btn-outline-primary btn-xs"
+                                                                href="{{route('user.view_qualification', $qualification->id)}}">View</a>
+                                                            {{-- <button type="button"
+                                                                class="btn btn-block btn-outline-warning btn-xs"
+                                                                data-target="#modal-mdq{{ $qualification->id }}"
+                                                                data-toggle="modal">Update</button> --}}
+                                                            <button type="button" class="btn btn-block btn-outline-danger btn-xs"
+                                                                onclick="removeQua('{{ $qualification->id }}');">Remove</button>
+                                                        </td>
+                                                    </tr>
+                                                    @php
+                                                        $i++;
+                                                    @endphp
 
-                                            @if ($errors->has('grade'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('grade') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
+                                                    <div class="modal fade" id="modal-mdq{{ $qualification->id }}">
+                                                        <div class="modal-dialog modal-md">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title" style="text-transform: capitalize">
+                                                                        Update qualification</h4>
+                                                                    <button type="button" class="close" data-dismiss="modal"
+                                                                        aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
 
-                                        {{-- <div class="form-group">
-                                            <label for="exampleInputEmail1">Your Qualifications</label>
-                                            <textarea disabled name="skills" class="form-control @if ($errors->has('skills')) {{ 'is-invalid' }} @endif"
-                                                rows="3">{{ $user->userable->skills }}</textarea>
+                                                                    <!--Make sure the form has the autocomplete function switched off:-->
+                                                                    <form autocomplete="off"
+                                                                        action="{{ route('user.edit_qualification', $qualification->id) }}"
+                                                                        method="POST">
+                                                                        @csrf
+                                                                        @method('PUT')
+                                                                        <div class="card-body">
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+                                                                                    <div class="form-group">
+                                                                                        <div class="autocomplete"
+                                                                                            style="width:100%;">
+                                                                                            <label
+                                                                                                for="exampleInputEmail1">Institute</label>
+                                                                                            <input id="myInput1" type="text"
+                                                                                                name="company"
+                                                                                                value="{{ $qualification->institute->text }}"
+                                                                                                placeholder="">
+                                                                                        </div>
+                                                                                    </div>
 
-                                            @if ($errors->has('skills'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('skills') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div> --}}
+                                                                                    <div class="form-group">
+                                                                                        <label
+                                                                                            for="exampleInputEmail1">Degree/Certificate</label>
+                                                                                        <input name="qualification"
+                                                                                            class="form-control @if ($errors->has('qualification')) {{ 'is-invalid' }} @endif"
+                                                                                            type="text"
+                                                                                            value="{{ $qualification->text }}" />
+
+                                                                                        @if ($errors->has('qualification'))
+                                                                                            <span class="invalid-feedback"
+                                                                                                role="alert">
+                                                                                                <strong>{{ $errors->first('qualification') }}</strong>
+                                                                                            </span>
+                                                                                        @endif
+                                                                                    </div>
+
+
+                                                                                    <div class="form-group">
+                                                                                        <label for="exampleInputEmail1">Field of
+                                                                                            study</label>
+                                                                                        <input name="field"
+                                                                                            class="form-control @if ($errors->has('field')) {{ 'is-invalid' }} @endif"
+                                                                                            type="text"
+                                                                                            value="{{ $qualification->field }}" />
+
+                                                                                        @if ($errors->has('field'))
+                                                                                            <span class="invalid-feedback"
+                                                                                                role="alert">
+                                                                                                <strong>{{ $errors->first('field') }}</strong>
+                                                                                            </span>
+                                                                                        @endif
+                                                                                    </div>
+
+                                                                                    <div class="form-group">
+                                                                                        <div class="form-check">
+                                                                                            <input
+                                                                                                id="undergrad{{ $qualification->id }}"
+                                                                                                {{ $qualification->end_date != null ? '' : 'checked' }}
+                                                                                                class="form-check-input"
+                                                                                                type="checkbox">
+                                                                                            <label class="form-check-label">Still
+                                                                                                studying</label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    {{-- <div class="form-group">
+                                                <label for="exampleInputEmail1">Sr</label>
+                                                <input id="dpic" name="date"
+                                                    class="form-control @if ($errors->has('date')) {{ 'is-invalid' }} @endif"
+                                                    type="date" />
+
+                                                @if ($errors->has('date'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $errors->first('date') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div> --}}
+
+                                                                                    <div class="row">
+                                                                                        {{-- <label for="exampleInputEmail1">Time of work</label> --}}
+                                                                                        <div class="col-sm-4">
+                                                                                            <div class="form-group">
+                                                                                                <label
+                                                                                                    for="exampleInputEmail1">Start</label>
+                                                                                                <input name="start_date"
+                                                                                                    placeholder="Start Year"
+                                                                                                    class="form-control @if ($errors->has('start_date')) {{ 'is-invalid' }} @endif"
+                                                                                                    type="date"
+                                                                                                    value="{{ $qualification->start_date }}" />
+
+                                                                                                @if ($errors->has('start_date'))
+                                                                                                    <span class="invalid-feedback"
+                                                                                                        role="alert">
+                                                                                                        <strong>{{ $errors->first('start_date') }}</strong>
+                                                                                                    </span>
+                                                                                                @endif
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-sm-4">
+                                                                                            <div class="form-group">
+                                                                                                <label
+                                                                                                    for="exampleInputEmail1">End</label>
+                                                                                                <input
+                                                                                                    id="dpic{{ $qualification->id }}"
+                                                                                                    name="end_date"
+                                                                                                    placeholder="End Year"
+                                                                                                    class="form-control @if ($errors->has('end_date')) {{ 'is-invalid' }} @endif"
+                                                                                                    type="date"
+                                                                                                    value="{{ $qualification->end_date }}" />
+
+                                                                                                @if ($errors->has('end_date'))
+                                                                                                    <span class="invalid-feedback"
+                                                                                                        role="alert">
+                                                                                                        <strong>{{ $errors->first('end_date') }}</strong>
+                                                                                                    </span>
+                                                                                                @endif
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="form-group">
+                                                                                        <label for="exampleInputEmail1">Grade
+                                                                                            (Optional)
+                                                                                        </label>
+                                                                                        <input name="grade"
+                                                                                            class="form-control @if ($errors->has('grade')) {{ 'is-invalid' }} @endif"
+                                                                                            type="text"
+                                                                                            value="{{ $qualification->grade }}" />
+
+                                                                                        @if ($errors->has('grade'))
+                                                                                            <span class="invalid-feedback"
+                                                                                                role="alert">
+                                                                                                <strong>{{ $errors->first('grade') }}</strong>
+                                                                                            </span>
+                                                                                        @endif
+                                                                                    </div>
+
+                                                                                    {{-- <div class="form-group">
+                                                <label for="exampleInputEmail1">Your Qualifications</label>
+                                                <textarea disabled name="skills" class="form-control @if ($errors->has('skills')) {{ 'is-invalid' }} @endif"
+                                                    rows="3">{{ $user->userable->skills }}</textarea>
+
+                                                @if ($errors->has('skills'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $errors->first('skills') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div> --}}
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="card-footer">
+                                                                            <button type="submit"
+                                                                                class="btn btn-warning pull-right">Update</button>
+                                                                        </div>
+                                                                    </form>
+
+
+
+                                                                </div>
+                                                            </div>
+                                                            <!-- /.modal-content -->
+                                                        </div>
+                                                        <!-- /.modal-dialog -->
+                                                    </div>
+                                                    <!-- /.modal -->
+                                                    @push('scripts')
+                                                        <script>
+                                                            if ($('#undergrad{{ $qualification->id }}').is(':checked')) {
+                                                                // alert("t");
+                                                                $('#dpic{{ $qualification->id }}').prop('disabled', true);
+                                                            } else {
+                                                                //alert("tjio");
+                                                                $('#dpic{{ $qualification->id }}').prop('disabled', false);
+                                                            }
+                                                            $('#undergrad{{ $qualification->id }}').click(function() {
+                                                                if ($('#undergrad{{ $qualification->id }}').is(':checked')) {
+                                                                    // alert("t");
+                                                                    $('#dpic{{ $qualification->id }}').prop('disabled', true);
+                                                                } else {
+                                                                    //alert("tjio");
+                                                                    $('#dpic{{ $qualification->id }}').prop('disabled', false);
+                                                                }
+                                                            });
+                                                        </script>
+                                                    @endpush
+                                                @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-success pull-right">Add</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">My Qualifications</h3>
+                            {{-- card-end --}}
                         </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th style="width: 10px">#</th>
-                                            <th>Institute</th>
-                                            <th>Degree/Certificate</th>
-                                            <th>Field of study</th>
-                                            <th style="width: 40px">Study Period</th>
-                                            <th>Grade</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @php
-                                            $i = 1;
-                                        @endphp
-                                        @foreach (Auth()->user()->userable->qualifications as $qualification)
-                                            <tr>
-                                                <td>{{ $i }}</td>
-                                                <td>{{ $qualification->institute->text }}</td>
-                                                <td>{{ $qualification->text }}</td>
-                                                <td>{{ $qualification->field }}</td>
-                                                <td><span
-                                                        class="badge">{{ explode('-', $qualification->start_date)[0] }}/{{ explode('-', $qualification->start_date)[1] }}
-                                                        @if ($qualification->end_date != null)
-                                                            -
-                                                            {{ explode('-', $qualification->end_date)[0] }}/{{ explode('-', $qualification->end_date)[1] }}
-                                                        @else
-                                                            - Present
-                                                        @endif
-                                                    </span>
-                                                </td>
-                                                <td>{{ $qualification->grade }}</td>
+                    </div>
+                </div>
+                {{-- End of Qualifications--}}
 
-                                                <td>
-                                                    <a type="button"
-                                                        class="btn btn-block btn-outline-primary btn-xs"
-                                                        href="{{route('user.view_qualification', $qualification->id)}}">View</a>
-                                                    {{-- <button type="button"
-                                                        class="btn btn-block btn-outline-warning btn-xs"
-                                                        data-target="#modal-mdq{{ $qualification->id }}"
-                                                        data-toggle="modal">Update</button> --}}
-                                                    <button type="button" class="btn btn-block btn-outline-danger btn-xs"
-                                                        onclick="removeQua('{{ $qualification->id }}');">Remove</button>
-                                                </td>
-                                            </tr>
-                                            @php
-                                                $i++;
-                                            @endphp
+                {{-- Experiences --}}
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Experience</h3>
+                                </div>
+                                <!--Make sure the form has the autocomplete function switched off:-->
+                                <form autocomplete="off" action="{{ route('user.add_experience') }}" method="POST">
+                                    @csrf
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <div class="autocomplete" style="width:100%;">
+                                                        <label for="exampleInputEmail1">Position</label>
+                                                        <input id="position" type="text" name="position" placeholder="Enter your position">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="autocomplete @if ($errors->has('company')) {{ 'is-invalid' }} @endif"
+                                                        style="width:100%;">
+                                                        <label for="exampleInputEmail1">Company</label>
+                                                        <input id="ins" type="text" name="company" placeholder="Enter your company">
+                                                    </div>
 
-                                            <div class="modal fade" id="modal-mdq{{ $qualification->id }}">
-                                                <div class="modal-dialog modal-md">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title" style="text-transform: capitalize">
-                                                                Update qualification</h4>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
+                                                    @if ($errors->has('company'))
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $errors->first('company') }}</strong>
+                                                        </span>
+                                                    @endif
+                                                </div>
 
-                                                            <!--Make sure the form has the autocomplete function switched off:-->
-                                                            <form autocomplete="off"
-                                                                action="{{ route('user.edit_qualification', $qualification->id) }}"
-                                                                method="POST">
-                                                                @csrf
-                                                                @method('PUT')
-                                                                <div class="card-body">
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-                                                                                <div class="autocomplete"
-                                                                                    style="width:100%;">
-                                                                                    <label
-                                                                                        for="exampleInputEmail1">Institute</label>
-                                                                                    <input id="myInput1" type="text"
-                                                                                        name="company"
-                                                                                        value="{{ $qualification->institute->text }}"
-                                                                                        placeholder="">
-                                                                                </div>
-                                                                            </div>
+                                                <div class="form-group">
+                                                    <div class="autocomplete" style="width:100%;">
+                                                        <label for="exampleInputEmail1">Location</label>
+                                                        <input type="text" name="location" placeholder="Enter company location"
+                                                            class="@if ($errors->has('location')) {{ 'is-invalid' }} @endif">
+                                                    </div>
 
-                                                                            <div class="form-group">
-                                                                                <label
-                                                                                    for="exampleInputEmail1">Degree/Certificate</label>
-                                                                                <input name="qualification"
-                                                                                    class="form-control @if ($errors->has('qualification')) {{ 'is-invalid' }} @endif"
-                                                                                    type="text"
-                                                                                    value="{{ $qualification->text }}" />
+                                                    @if ($errors->has('location'))
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $errors->first('location') }}</strong>
+                                                        </span>
+                                                    @endif
+                                                </div>
 
-                                                                                @if ($errors->has('qualification'))
-                                                                                    <span class="invalid-feedback"
-                                                                                        role="alert">
-                                                                                        <strong>{{ $errors->first('qualification') }}</strong>
-                                                                                    </span>
-                                                                                @endif
-                                                                            </div>
-
-
-                                                                            <div class="form-group">
-                                                                                <label for="exampleInputEmail1">Field of
-                                                                                    study</label>
-                                                                                <input name="field"
-                                                                                    class="form-control @if ($errors->has('field')) {{ 'is-invalid' }} @endif"
-                                                                                    type="text"
-                                                                                    value="{{ $qualification->field }}" />
-
-                                                                                @if ($errors->has('field'))
-                                                                                    <span class="invalid-feedback"
-                                                                                        role="alert">
-                                                                                        <strong>{{ $errors->first('field') }}</strong>
-                                                                                    </span>
-                                                                                @endif
-                                                                            </div>
-
-                                                                            <div class="form-group">
-                                                                                <div class="form-check">
-                                                                                    <input
-                                                                                        id="undergrad{{ $qualification->id }}"
-                                                                                        {{ $qualification->end_date != null ? '' : 'checked' }}
-                                                                                        class="form-check-input"
-                                                                                        type="checkbox">
-                                                                                    <label class="form-check-label">Still
-                                                                                        studying</label>
-                                                                                </div>
-                                                                            </div>
-                                                                            {{-- <div class="form-group">
-                                        <label for="exampleInputEmail1">Sr</label>
-                                        <input id="dpic" name="date"
-                                            class="form-control @if ($errors->has('date')) {{ 'is-invalid' }} @endif"
-                                            type="date" />
-
-                                        @if ($errors->has('date'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('date') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div> --}}
-
-                                                                            <div class="row">
-                                                                                {{-- <label for="exampleInputEmail1">Time of work</label> --}}
-                                                                                <div class="col-sm-4">
-                                                                                    <div class="form-group">
-                                                                                        <label
-                                                                                            for="exampleInputEmail1">Start</label>
-                                                                                        <input name="start_date"
-                                                                                            placeholder="Start Year"
-                                                                                            class="form-control @if ($errors->has('start_date')) {{ 'is-invalid' }} @endif"
-                                                                                            type="date"
-                                                                                            value="{{ $qualification->start_date }}" />
-
-                                                                                        @if ($errors->has('start_date'))
-                                                                                            <span class="invalid-feedback"
-                                                                                                role="alert">
-                                                                                                <strong>{{ $errors->first('start_date') }}</strong>
-                                                                                            </span>
-                                                                                        @endif
-                                                                                    </div>
-                                                                                </div>
-
-                                                                                <div class="col-sm-4">
-                                                                                    <div class="form-group">
-                                                                                        <label
-                                                                                            for="exampleInputEmail1">End</label>
-                                                                                        <input
-                                                                                            id="dpic{{ $qualification->id }}"
-                                                                                            name="end_date"
-                                                                                            placeholder="End Year"
-                                                                                            class="form-control @if ($errors->has('end_date')) {{ 'is-invalid' }} @endif"
-                                                                                            type="date"
-                                                                                            value="{{ $qualification->end_date }}" />
-
-                                                                                        @if ($errors->has('end_date'))
-                                                                                            <span class="invalid-feedback"
-                                                                                                role="alert">
-                                                                                                <strong>{{ $errors->first('end_date') }}</strong>
-                                                                                            </span>
-                                                                                        @endif
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div class="form-group">
-                                                                                <label for="exampleInputEmail1">Grade
-                                                                                    (Optional)
-                                                                                </label>
-                                                                                <input name="grade"
-                                                                                    class="form-control @if ($errors->has('grade')) {{ 'is-invalid' }} @endif"
-                                                                                    type="text"
-                                                                                    value="{{ $qualification->grade }}" />
-
-                                                                                @if ($errors->has('grade'))
-                                                                                    <span class="invalid-feedback"
-                                                                                        role="alert">
-                                                                                        <strong>{{ $errors->first('grade') }}</strong>
-                                                                                    </span>
-                                                                                @endif
-                                                                            </div>
-
-                                                                            {{-- <div class="form-group">
-                                        <label for="exampleInputEmail1">Your Qualifications</label>
-                                        <textarea disabled name="skills" class="form-control @if ($errors->has('skills')) {{ 'is-invalid' }} @endif"
-                                            rows="3">{{ $user->userable->skills }}</textarea>
-
-                                        @if ($errors->has('skills'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('skills') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div> --}}
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="card-footer">
-                                                                    <button type="submit"
-                                                                        class="btn btn-warning pull-right">Update</button>
-                                                                </div>
-                                                            </form>
+                                                <div class="form-group">
+                                                    <div class="form-check">
+                                                        <input id="present" class="form-check-input" type="checkbox">
+                                                        <label class="form-check-label">I am currently working in this role</label>
+                                                    </div>
+                                                </div>
 
 
 
+                                                <div class="row">
+                                                    {{-- <label for="exampleInputEmail1">Time of work</label> --}}
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Start</label>
+                                                            <input name="start_date" placeholder="Start Year"
+                                                                class="form-control @if ($errors->has('start_date')) {{ 'is-invalid' }} @endif"
+                                                                type="date" />
+
+                                                            @if ($errors->has('start_date'))
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $errors->first('start_date') }}</strong>
+                                                                </span>
+                                                            @endif
                                                         </div>
                                                     </div>
-                                                    <!-- /.modal-content -->
+
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">End</label>
+                                                            <input id="end_y" name="end_date" placeholder="End Year"
+                                                                class="form-control @if ($errors->has('end_date')) {{ 'is-invalid' }} @endif"
+                                                                type="date" />
+
+                                                            @if ($errors->has('end_date'))
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $errors->first('end_date') }}</strong>
+                                                                </span>
+                                                            @endif
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <!-- /.modal-dialog -->
+                                                {{-- <div class="form-group">
+                                                    <label for="exampleInputEmail1">Your Experiences</label>
+                                                    <textarea disabled name="skills" class="form-control @if ($errors->has('skills')) {{ 'is-invalid' }} @endif"
+                                                        rows="3">{{ $user->userable->skills }}</textarea>
+
+                                                    @if ($errors->has('skills'))
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $errors->first('skills') }}</strong>
+                                                        </span>
+                                                    @endif
+                                                </div> --}}
                                             </div>
-                                            <!-- /.modal -->
-                                            @push('scripts')
-                                                <script>
-                                                    if ($('#undergrad{{ $qualification->id }}').is(':checked')) {
-                                                        // alert("t");
-                                                        $('#dpic{{ $qualification->id }}').prop('disabled', true);
-                                                    } else {
-                                                        //alert("tjio");
-                                                        $('#dpic{{ $qualification->id }}').prop('disabled', false);
-                                                    }
-                                                    $('#undergrad{{ $qualification->id }}').click(function() {
-                                                        if ($('#undergrad{{ $qualification->id }}').is(':checked')) {
-                                                            // alert("t");
-                                                            $('#dpic{{ $qualification->id }}').prop('disabled', true);
-                                                        } else {
-                                                            //alert("tjio");
-                                                            $('#dpic{{ $qualification->id }}').prop('disabled', false);
-                                                        }
-                                                    });
-                                                </script>
-                                            @endpush
-                                        @endforeach
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-success pull-right">Add</button>
+                                    </div>
+                                </form>
+                            </div>
+                            {{-- card-end --}}
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">My Experience</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 10px">#</th>
+                                                    <th>Position</th>
+                                                    <th>Company</th>
+                                                    <th>Location</th>
+                                                    <th style="width: 80px">Work Period</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @php
+                                                    $i = 1;
+                                                @endphp
+                                                @foreach (Auth()->user()->userable->experiences as $experiences)
+                                                    <tr>
+                                                        <td>{{ $i }}</td>
+                                                        <td>{{ $experiences->position->text }}</td>
+                                                        <td>{{ $experiences->institute->text }}</td>
+                                                        <td>{{ $experiences->location }}</td>
+                                                        <td><span
+                                                                class="badge">{{ explode('-', $experiences->start_date)[0] }}/{{ explode('-', $experiences->start_date)[1] }}
+                                                                @if ($experiences->end_date != null)
+                                                                    -
+                                                                    {{ explode('-', $experiences->end_date)[0] }}/{{ explode('-', $experiences->end_date)[1] }}
+                                                                @else
+                                                                    - Present
+                                                                @endif
+                                                            </span>
+                                                        </td>
+                                                        <td style="width: 80px">
+                                                            <a type="button"
+                                                                class="btn btn-block btn-outline-primary btn-xs"
+                                                                href="{{route('user.view_experience', $experiences->id)}}">View</a>
+                                                            {{-- <button type="button"
+                                                                class="btn btn-block btn-outline-warning btn-xs"
+                                                                data-target="#modal-mdx{{ $experiences->id }}"
+                                                                data-toggle="modal">Update</button> --}}
+                                                            <button type="button" class="btn btn-block btn-outline-danger btn-xs"
+                                                                onclick="removeEx({{ $experiences->id }});">Remove</button>
+
+                                                        </td>
+                                                    </tr>
+                                                    @php
+                                                        $i++;
+                                                    @endphp
+
+
+                                                    <!-- /.view profile modal -->
+                                                    <div class="modal fade" id="modal-mdx{{ $experiences->id }}">
+                                                        <div class="modal-dialog modal-md">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title" style="text-transform: capitalize">
+                                                                        Update experience</h4>
+                                                                    <button type="button" class="close" data-dismiss="modal"
+                                                                        aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+
+                                                                    <!--Make sure the form has the autocomplete function switched off:-->
+                                                                    <form autocomplete="off"
+                                                                        action="{{ route('user.edit_experience', $experiences->id) }}"
+                                                                        method="POST">
+                                                                        @csrf
+                                                                        @method('PUT')
+                                                                        <div class="card-body">
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+                                                                                    <div class="form-group">
+                                                                                        <div class="autocomplete"
+                                                                                            style="width:100%;">
+                                                                                            <label
+                                                                                                for="exampleInputEmail1">Position</label>
+                                                                                            <input id="position1" type="text"
+                                                                                                name="position"
+                                                                                                value="{{ $experiences->position->text }}"
+                                                                                                placeholder="">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <div class="autocomplete @if ($errors->has('company')) {{ 'is-invalid' }} @endif"
+                                                                                            style="width:100%;">
+                                                                                            <label
+                                                                                                for="exampleInputEmail1">Company</label>
+                                                                                            <input id="ins2" type="text"
+                                                                                                name="company"
+                                                                                                value="{{ $experiences->institute->text }}"
+                                                                                                placeholder="">
+                                                                                        </div>
+
+                                                                                        @if ($errors->has('company'))
+                                                                                            <span class="invalid-feedback"
+                                                                                                role="alert">
+                                                                                                <strong>{{ $errors->first('company') }}</strong>
+                                                                                            </span>
+                                                                                        @endif
+                                                                                    </div>
+
+                                                                                    <div class="form-group">
+                                                                                        <div class="autocomplete"
+                                                                                            style="width:100%;">
+                                                                                            <label
+                                                                                                for="exampleInputEmail1">Location</label>
+                                                                                            <input type="text" name="location"
+                                                                                                value="{{ $experiences->location }}"
+                                                                                                class="@if ($errors->has('location')) {{ 'is-invalid' }} @endif">
+                                                                                        </div>
+
+                                                                                        @if ($errors->has('location'))
+                                                                                            <span class="invalid-feedback"
+                                                                                                role="alert">
+                                                                                                <strong>{{ $errors->first('location') }}</strong>
+                                                                                            </span>
+                                                                                        @endif
+                                                                                    </div>
+
+                                                                                    <div class="form-group">
+                                                                                        <div class="form-check">
+                                                                                            <input
+                                                                                                id="present{{ $experiences->id }}"
+                                                                                                class="form-check-input"
+                                                                                                {{ $experiences->end_date != null ? '' : 'checked' }}
+                                                                                                type="checkbox">
+                                                                                            <label class="form-check-label">I am
+                                                                                                currently working in this
+                                                                                                role</label>
+                                                                                        </div>
+                                                                                    </div>
+
+
+
+                                                                                    <div class="row">
+                                                                                        {{-- <label for="exampleInputEmail1">Time of work</label> --}}
+                                                                                        <div class="col-sm-4">
+                                                                                            <div class="form-group">
+                                                                                                <label
+                                                                                                    for="exampleInputEmail1">Start</label>
+                                                                                                <input name="start_date"
+                                                                                                    placeholder="Start Year"
+                                                                                                    class="form-control @if ($errors->has('start_date')) {{ 'is-invalid' }} @endif"
+                                                                                                    type="date"
+                                                                                                    value="{{ $experiences->start_date }}" />
+
+                                                                                                @if ($errors->has('start_date'))
+                                                                                                    <span class="invalid-feedback"
+                                                                                                        role="alert">
+                                                                                                        <strong>{{ $errors->first('start_date') }}</strong>
+                                                                                                    </span>
+                                                                                                @endif
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-sm-4">
+                                                                                            <div class="form-group">
+                                                                                                <label
+                                                                                                    for="exampleInputEmail1">End</label>
+                                                                                                <input
+                                                                                                    id="end_y{{ $experiences->id }}"
+                                                                                                    name="end_date"
+                                                                                                    placeholder="End Year"
+                                                                                                    class="form-control @if ($errors->has('end_date')) {{ 'is-invalid' }} @endif"
+                                                                                                    type="date"
+                                                                                                    value="{{ $experiences->end_date }}" />
+
+                                                                                                @if ($errors->has('end_date'))
+                                                                                                    <span class="invalid-feedback"
+                                                                                                        role="alert">
+                                                                                                        <strong>{{ $errors->first('end_date') }}</strong>
+                                                                                                    </span>
+                                                                                                @endif
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="card-footer">
+                                                                            <button type="submit"
+                                                                                class="btn btn-warning pull-right">Update</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+
+
+                                                            </div>
+                                                        </div>
+                                                        <!-- /.modal-content -->
+                                                    </div>
+                                                    <!-- /.modal-dialog -->
+                                    </div>
+                                    <!-- /.modal -->
+                                    @push('scripts')
+                                        <script>
+                                            if ($('#present{{ $experiences->id }}').is(':checked')) {
+                                                // alert("t");
+                                                $('#end_y{{ $experiences->id }}').prop('disabled', true);
+                                            } else {
+                                                //alert("tjio");
+                                                $('#end_y{{ $experiences->id }}').prop('disabled', false);
+                                            }
+                                            $('#present{{ $experiences->id }}').click(function() {
+                                                if ($('#present{{ $experiences->id }}').is(':checked')) {
+                                                    // alert("t");
+                                                    $('#end_y{{ $experiences->id }}').prop('disabled', true);
+                                                } else {
+                                                    //alert("tjio");
+                                                    $('#end_y{{ $experiences->id }}').prop('disabled', false);
+                                                }
+                                            });
+                                        </script>
+                                    @endpush
+                                    @endforeach
                                     </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                </div>
-                {{-- End of Qualifications Card --}}
-
-                {{-- Qualifications Card --}}
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Experience</h3>
-                        </div>
-                        <!--Make sure the form has the autocomplete function switched off:-->
-                        <form autocomplete="off" action="{{ route('user.add_experience') }}" method="POST">
-                            @csrf
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <div class="autocomplete" style="width:100%;">
-                                                <label for="exampleInputEmail1">Position</label>
-                                                <input id="position" type="text" name="position" placeholder="Enter your position">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="autocomplete @if ($errors->has('company')) {{ 'is-invalid' }} @endif"
-                                                style="width:100%;">
-                                                <label for="exampleInputEmail1">Company</label>
-                                                <input id="ins" type="text" name="company" placeholder="Enter your company">
-                                            </div>
-
-                                            @if ($errors->has('company'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('company') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="autocomplete" style="width:100%;">
-                                                <label for="exampleInputEmail1">Location</label>
-                                                <input type="text" name="location" placeholder="Enter company location"
-                                                    class="@if ($errors->has('location')) {{ 'is-invalid' }} @endif">
-                                            </div>
-
-                                            @if ($errors->has('location'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('location') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="form-check">
-                                                <input id="present" class="form-check-input" type="checkbox">
-                                                <label class="form-check-label">I am currently working in this role</label>
-                                            </div>
-                                        </div>
-
-
-
-                                        <div class="row">
-                                            {{-- <label for="exampleInputEmail1">Time of work</label> --}}
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">Start</label>
-                                                    <input name="start_date" placeholder="Start Year"
-                                                        class="form-control @if ($errors->has('start_date')) {{ 'is-invalid' }} @endif"
-                                                        type="date" />
-
-                                                    @if ($errors->has('start_date'))
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $errors->first('start_date') }}</strong>
-                                                        </span>
-                                                    @endif
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">End</label>
-                                                    <input id="end_y" name="end_date" placeholder="End Year"
-                                                        class="form-control @if ($errors->has('end_date')) {{ 'is-invalid' }} @endif"
-                                                        type="date" />
-
-                                                    @if ($errors->has('end_date'))
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $errors->first('end_date') }}</strong>
-                                                        </span>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {{-- <div class="form-group">
-                                            <label for="exampleInputEmail1">Your Experiences</label>
-                                            <textarea disabled name="skills" class="form-control @if ($errors->has('skills')) {{ 'is-invalid' }} @endif"
-                                                rows="3">{{ $user->userable->skills }}</textarea>
-
-                                            @if ($errors->has('skills'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('skills') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div> --}}
-                                    </div>
+                                    </table>
                                 </div>
                             </div>
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-success pull-right">Add</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">My Experience</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th style="width: 10px">#</th>
-                                            <th>Position</th>
-                                            <th>Company</th>
-                                            <th>Location</th>
-                                            <th style="width: 80px">Work Period</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @php
-                                            $i = 1;
-                                        @endphp
-                                        @foreach (Auth()->user()->userable->experiences as $experiences)
-                                            <tr>
-                                                <td>{{ $i }}</td>
-                                                <td>{{ $experiences->position->text }}</td>
-                                                <td>{{ $experiences->institute->text }}</td>
-                                                <td>{{ $experiences->location }}</td>
-                                                <td><span
-                                                        class="badge">{{ explode('-', $experiences->start_date)[0] }}/{{ explode('-', $experiences->start_date)[1] }}
-                                                        @if ($experiences->end_date != null)
-                                                            -
-                                                            {{ explode('-', $experiences->end_date)[0] }}/{{ explode('-', $experiences->end_date)[1] }}
-                                                        @else
-                                                            - Present
-                                                        @endif
-                                                    </span>
-                                                </td>
-                                                <td style="width: 80px">
-                                                    <a type="button"
-                                                        class="btn btn-block btn-outline-primary btn-xs"
-                                                        href="{{route('user.view_experience', $experiences->id)}}">View</a>
-                                                    {{-- <button type="button"
-                                                        class="btn btn-block btn-outline-warning btn-xs"
-                                                        data-target="#modal-mdx{{ $experiences->id }}"
-                                                        data-toggle="modal">Update</button> --}}
-                                                    <button type="button" class="btn btn-block btn-outline-danger btn-xs"
-                                                        onclick="removeEx({{ $experiences->id }});">Remove</button>
-
-                                                </td>
-                                            </tr>
-                                            @php
-                                                $i++;
-                                            @endphp
-
-
-                                            <!-- /.view profile modal -->
-                                            <div class="modal fade" id="modal-mdx{{ $experiences->id }}">
-                                                <div class="modal-dialog modal-md">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title" style="text-transform: capitalize">
-                                                                Update experience</h4>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-
-                                                            <!--Make sure the form has the autocomplete function switched off:-->
-                                                            <form autocomplete="off"
-                                                                action="{{ route('user.edit_experience', $experiences->id) }}"
-                                                                method="POST">
-                                                                @csrf
-                                                                @method('PUT')
-                                                                <div class="card-body">
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-                                                                                <div class="autocomplete"
-                                                                                    style="width:100%;">
-                                                                                    <label
-                                                                                        for="exampleInputEmail1">Position</label>
-                                                                                    <input id="position1" type="text"
-                                                                                        name="position"
-                                                                                        value="{{ $experiences->position->text }}"
-                                                                                        placeholder="">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                <div class="autocomplete @if ($errors->has('company')) {{ 'is-invalid' }} @endif"
-                                                                                    style="width:100%;">
-                                                                                    <label
-                                                                                        for="exampleInputEmail1">Company</label>
-                                                                                    <input id="ins2" type="text"
-                                                                                        name="company"
-                                                                                        value="{{ $experiences->institute->text }}"
-                                                                                        placeholder="">
-                                                                                </div>
-
-                                                                                @if ($errors->has('company'))
-                                                                                    <span class="invalid-feedback"
-                                                                                        role="alert">
-                                                                                        <strong>{{ $errors->first('company') }}</strong>
-                                                                                    </span>
-                                                                                @endif
-                                                                            </div>
-
-                                                                            <div class="form-group">
-                                                                                <div class="autocomplete"
-                                                                                    style="width:100%;">
-                                                                                    <label
-                                                                                        for="exampleInputEmail1">Location</label>
-                                                                                    <input type="text" name="location"
-                                                                                        value="{{ $experiences->location }}"
-                                                                                        class="@if ($errors->has('location')) {{ 'is-invalid' }} @endif">
-                                                                                </div>
-
-                                                                                @if ($errors->has('location'))
-                                                                                    <span class="invalid-feedback"
-                                                                                        role="alert">
-                                                                                        <strong>{{ $errors->first('location') }}</strong>
-                                                                                    </span>
-                                                                                @endif
-                                                                            </div>
-
-                                                                            <div class="form-group">
-                                                                                <div class="form-check">
-                                                                                    <input
-                                                                                        id="present{{ $experiences->id }}"
-                                                                                        class="form-check-input"
-                                                                                        {{ $experiences->end_date != null ? '' : 'checked' }}
-                                                                                        type="checkbox">
-                                                                                    <label class="form-check-label">I am
-                                                                                        currently working in this
-                                                                                        role</label>
-                                                                                </div>
-                                                                            </div>
-
-
-
-                                                                            <div class="row">
-                                                                                {{-- <label for="exampleInputEmail1">Time of work</label> --}}
-                                                                                <div class="col-sm-4">
-                                                                                    <div class="form-group">
-                                                                                        <label
-                                                                                            for="exampleInputEmail1">Start</label>
-                                                                                        <input name="start_date"
-                                                                                            placeholder="Start Year"
-                                                                                            class="form-control @if ($errors->has('start_date')) {{ 'is-invalid' }} @endif"
-                                                                                            type="date"
-                                                                                            value="{{ $experiences->start_date }}" />
-
-                                                                                        @if ($errors->has('start_date'))
-                                                                                            <span class="invalid-feedback"
-                                                                                                role="alert">
-                                                                                                <strong>{{ $errors->first('start_date') }}</strong>
-                                                                                            </span>
-                                                                                        @endif
-                                                                                    </div>
-                                                                                </div>
-
-                                                                                <div class="col-sm-4">
-                                                                                    <div class="form-group">
-                                                                                        <label
-                                                                                            for="exampleInputEmail1">End</label>
-                                                                                        <input
-                                                                                            id="end_y{{ $experiences->id }}"
-                                                                                            name="end_date"
-                                                                                            placeholder="End Year"
-                                                                                            class="form-control @if ($errors->has('end_date')) {{ 'is-invalid' }} @endif"
-                                                                                            type="date"
-                                                                                            value="{{ $experiences->end_date }}" />
-
-                                                                                        @if ($errors->has('end_date'))
-                                                                                            <span class="invalid-feedback"
-                                                                                                role="alert">
-                                                                                                <strong>{{ $errors->first('end_date') }}</strong>
-                                                                                            </span>
-                                                                                        @endif
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="card-footer">
-                                                                    <button type="submit"
-                                                                        class="btn btn-warning pull-right">Update</button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-
-
-                                                    </div>
-                                                </div>
-                                                <!-- /.modal-content -->
-                                            </div>
-                                            <!-- /.modal-dialog -->
-                            </div>
-                            <!-- /.modal -->
-                            @push('scripts')
-                                <script>
-                                    if ($('#present{{ $experiences->id }}').is(':checked')) {
-                                        // alert("t");
-                                        $('#end_y{{ $experiences->id }}').prop('disabled', true);
-                                    } else {
-                                        //alert("tjio");
-                                        $('#end_y{{ $experiences->id }}').prop('disabled', false);
-                                    }
-                                    $('#present{{ $experiences->id }}').click(function() {
-                                        if ($('#present{{ $experiences->id }}').is(':checked')) {
-                                            // alert("t");
-                                            $('#end_y{{ $experiences->id }}').prop('disabled', true);
-                                        } else {
-                                            //alert("tjio");
-                                            $('#end_y{{ $experiences->id }}').prop('disabled', false);
-                                        }
-                                    });
-                                </script>
-                            @endpush
-                            @endforeach
-                            </tbody>
-                            </table>
+                            {{-- card-end --}}
                         </div>
                     </div>
                 </div>
+
+                {{-- End of Experiences --}}
             </div>
-            {{-- End of Qualifications Card --}}
         </div>
     </section>
 
@@ -1223,7 +1227,7 @@
                                         <div class="widget-user-header bg-olive"
                                             @if ($user->cover_image != null) style="background-image: url('{{ url('public') }}/images/profile/{{ $user->cover_image }}') !important;" @endif>
                                             <h3 class="widget-user-username"
-                                                style="margin-top: -10px; margin-bottom:0px; !important">
+                                                style="margin-top: -10px; margin-bottom: -5px; !important">
                                                 {{ ucwords($user->name) }}
                                             </h3>
                                             @if (sizeof(Auth()->user()->userable->experiences) > 0)
@@ -1299,7 +1303,6 @@
                                             </div>
                                             <!-- /.row -->
 
-                                            <div class="col-md-12">
                                                 <div class="row text-center">
                                                     {{-- <div class="col-sm-2">
                                     <a class="btn btn-success" href="{{ route('student.view_conversation', $query->id) }}">Complaint</a>
@@ -1307,21 +1310,19 @@
                                                     {{-- <div class="col-xs-2">
                                                     <a class="btn btn-warning" href="{{route('student.complaint',$teacher->id)}}">Complaint Mentor</a>
                                                 </div> --}}
-                                                    <div class="col-sm-12 col-md-4 mb-1">
+                                                    <div class="col mb-1">
                                                         <a class="btn btn-success">Connect</a>
                                                     </div>
-                                                    <div class="col-sm-12 col-md-4 mb-1">
+                                                    <div class="col mb-1">
                                                         <button class="btn btn-warning"><i class="fa fa-star"></i> Rate
                                                             Now</button>
 
                                                     </div>
-
-                                                    <div class="col-sm-12 col-md-4 mb-1">
+                                                    <div class="col mb-1">
                                                         <a class="btn btn-warning"><i class="fa fa-flag"
                                                                 style="color: red;"></i> Flag</a>
                                                     </div>
                                                 </div>
-                                            </div>
                                         </div>
                                     </div>
                                     <!-- /.widget-user -->
@@ -1443,7 +1444,12 @@
 
                                         <div class="card-footer">
                                             <div class="float-right">
-                                                <b>Average Responce time: </b> {{ round(1, 5) }}hrs
+                                                <b>Average Responce time: </b>
+                                                @if (Auth()->user()->avg == '1')
+                                                    {{ Auth()->user()->avg }}hr
+                                                @else
+                                                    {{ Auth()->user()->avg }}hrs
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -1526,51 +1532,28 @@
                                     </div>
                                     {{-- Experience Card --}}
 
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h3 class="card-title">
+                                                <i class="fas fa-book-open"></i>
+                                                Skils
+                                            </h3>
+                                        </div>
+                                        <!-- /.card-header -->
+
+                                        <div class="card-body">
+                                            <ul>
+                                                @foreach (Auth()->user()->userable->teachersubject as $subject)
+                                                    <li>{{ $subject->subject->name }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                        <!-- /.card-body -->
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="col-sm-7">
-                            {{-- <div class="card">
-                          <div class="card-header">
-                              <h3 class="card-title">
-                                <i class="fas fa-tasks"></i>
-                                Schedule
-                              </h3>
-                            </div>
-                          <div class="card-body p-2">
-                            <!-- THE CALENDAR -->
-                            <div id="calendar"></div>
-                          </div>
-                          <!-- /.card-body -->
-                      </div> --}}
-                        </div>
-
-                        <div class="col-md-5">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">
-                                        <i class="fas fa-book-open"></i>
-                                        Skils
-                                    </h3>
-                                </div>
-                                <!-- /.card-header -->
-
-                                <div class="card-body">
-                                    <ul>
-                                        @foreach (Auth()->user()->userable->teachersubject as $subject)
-                                            <li>{{ $subject->subject->name }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                                <!-- /.card-body -->
-                            </div>
-                        </div>
-                    </div><!-- /.container-fluid -->
-
-
                 </div>
             </div>
             <!-- /.modal-content -->
