@@ -236,7 +236,7 @@
     <!-- /.modal -->
 
 <!-- /.modal -->
-    <div class="modal fade" id="modal_arrow">
+    {{-- <div class="modal fade" id="modal_arrow">
         <div class="modal-dialog modal-xs">
             <div class="">
     <center>
@@ -247,7 +247,7 @@
             <!-- /.modal-content -->
         </div>
         <!-- /.modal-dialog -->
-    </div>
+    </div> --}}
     <!-- /.modal -->
     <a id="arrow_click" data-toggle="modal" data-target="#modal_arrow" style="display: none;">
     <!-- jQuery -->
@@ -348,7 +348,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/5.1.0/intro.min.js" integrity="sha512-B0B1bdTGi9XHtoCINbtR6z9Vi8IYvvtImIE8KWMtqWAVUt2Wn2k69GxM7ya/3rQcz/Pgm/o1WcDU347/5k202A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
 
-        $('#arrow_click').click();
+        // $('#arrow_click').click();
         // const intro = introJs();
 
         // intro.setOption("dontShowAgain", true)
