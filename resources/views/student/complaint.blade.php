@@ -44,6 +44,8 @@
                         <option>Behaviour</option>
                         <option>Content</option>
                         <option>Other</option>
+                        <option>Spam</option>
+
                     </select>
                     {{-- @if($errors->has('complaint'))
                         <span class="invalid-feedback" role="alert">

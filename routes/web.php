@@ -199,7 +199,7 @@ Route::prefix('user')->middleware('check.user')->group(function () {
 
 });
 
-Route::prefix('student')->middleware('check.user')->group(function () {
+Route::prefix('mentee')->middleware('check.user')->group(function () {
     Route::get('/tutor', 'App\Http\Controllers\StudentController@tutors')->name('student.tutors');
     Route::get('/tutor/{id}', 'App\Http\Controllers\StudentController@view_tutor')->name('student.view_tutor');
 
@@ -222,7 +222,7 @@ Route::prefix('student')->middleware('check.user')->group(function () {
 
 });
 
-Route::prefix('teacher')->middleware(['check.tutor', 'check.user'])->group(function () {
+Route::prefix('mentor')->middleware(['check.tutor', 'check.user'])->group(function () {
 
 
     Route::get('/schedule', 'App\Http\Controllers\ScheduleController@index')->name('teacher.schedule_list');

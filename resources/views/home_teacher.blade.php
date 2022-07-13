@@ -40,7 +40,7 @@
                         <a href="https://you2mentor.com/knowledge_hub/">Knowledge Hub</a> curated for your development.
                         <br>
                         Your feedback is valuable to us, so please drop
-                        us a note if we can improve your mentoring experience.
+                        us a <a href="https://you2mentor.com/contact/">note</a> if we can improve your mentoring experience.
                         <br />
                     {{-- <a href="https://you2mentor.com/contact/" target="_blank">here</a> --}}
                         <br />

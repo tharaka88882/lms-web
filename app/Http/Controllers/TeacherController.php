@@ -672,7 +672,7 @@ class TeacherController extends Controller
         $id = $request->get('mentor_id');
 
         $teacher = Teacher::findOrFail($request->get('mentor_id'));
-        Mail::to($teacher->user->email)->send(new MenteeComplaints($teacher->user->name));
+        Mail::to($teacher->user->email)->send(new MenteeComplaints($teacher->user->name."-".$complaints->status));
 
         $this->createNotification(4, 'Mentee has filed a complaint', route('admin.complaints'));
         $this->createNotification($teacher->user->id, 'Mentee has filed a complaint');
