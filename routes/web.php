@@ -69,32 +69,32 @@ Route::post('/user-registration', [App\Http\Controllers\RegisterController::clas
 
 Route::prefix('admin')->middleware('check.user')->group(function () {
 
-    Route::get('/students', 'App\Http\Controllers\StudentController@index')->name('admin.students');
-    Route::get('/add_student', 'App\Http\Controllers\StudentController@create')->name('admin.add_students');
-    Route::post('/add_student', 'App\Http\Controllers\StudentController@store')->name('admin.save_students');
-    Route::get('/student/{id}/edit', 'App\Http\Controllers\StudentController@edit')->name('admin.edit_student');
-    Route::put('/student/{id}', 'App\Http\Controllers\StudentController@update')->name('admin.update_student');
-    Route::delete('/student/{id}', 'App\Http\Controllers\StudentController@destroy')->name('admin.delete_student');
+    Route::get('/mentees', 'App\Http\Controllers\StudentController@index')->name('admin.students');
+    Route::get('/add_mentee', 'App\Http\Controllers\StudentController@create')->name('admin.add_students');
+    Route::post('/add_mentee', 'App\Http\Controllers\StudentController@store')->name('admin.save_students');
+    Route::get('/mentee/{id}/edit', 'App\Http\Controllers\StudentController@edit')->name('admin.edit_student');
+    Route::put('/mentee/{id}', 'App\Http\Controllers\StudentController@update')->name('admin.update_student');
+    Route::delete('/mentee/{id}', 'App\Http\Controllers\StudentController@destroy')->name('admin.delete_student');
 
-    Route::get('/subject', 'App\Http\Controllers\SubjectController@index')->name('admin.subjects');
-    Route::get('/subject/create', 'App\Http\Controllers\SubjectController@create')->name('admin.create_subject');
-    Route::post('/subject', 'App\Http\Controllers\SubjectController@store')->name('admin.store_subject');
-    Route::get('/subject/{id}/edit', 'App\Http\Controllers\SubjectController@edit')->name('admin.edit_subject');
-    Route::put('/subject/{id}', 'App\Http\Controllers\SubjectController@update')->name('admin.update_subject');
-    Route::get('/subject/{id}', 'App\Http\Controllers\SubjectController@show')->name('admin.show_subject');
-    Route::delete('/subject/{id}', 'App\Http\Controllers\SubjectController@destroy')->name('admin.delete_subject');
+    Route::get('/skill', 'App\Http\Controllers\SubjectController@index')->name('admin.subjects');
+    Route::get('/skill/create', 'App\Http\Controllers\SubjectController@create')->name('admin.create_subject');
+    Route::post('/skill', 'App\Http\Controllers\SubjectController@store')->name('admin.store_subject');
+    Route::get('/skill/{id}/edit', 'App\Http\Controllers\SubjectController@edit')->name('admin.edit_subject');
+    Route::put('/skill/{id}', 'App\Http\Controllers\SubjectController@update')->name('admin.update_subject');
+    Route::get('/skill/{id}', 'App\Http\Controllers\SubjectController@show')->name('admin.show_subject');
+    Route::delete('/skill/{id}', 'App\Http\Controllers\SubjectController@destroy')->name('admin.delete_subject');
 
     Route::get('/industry', 'App\Http\Controllers\IndustryController@index')->name('admin.industry');
     Route::post('/industry', 'App\Http\Controllers\IndustryController@store')->name('admin.store_industry');
     Route::delete('/industry/{id}', 'App\Http\Controllers\IndustryController@destroy')->name('admin.delete_industry');
 
-    Route::get('/teachers', 'App\Http\Controllers\TeacherController@index')->name('admin.teachers');
-    Route::get('/add_teacher', 'App\Http\Controllers\TeacherController@create')->name('admin.add-teachers');
-    Route::post('/add_teacher', 'App\Http\Controllers\TeacherController@store')->name('admin.add_teachers');
-    Route::get('/teacher/{id}/edit', 'App\Http\Controllers\TeacherController@edit')->name('admin.edit_teacher');
-    Route::put('/teacher/{id}', 'App\Http\Controllers\TeacherController@update')->name('admin.update_teacher');
-    Route::delete('/teacher/{id}', 'App\Http\Controllers\TeacherController@destroy')->name('admin.delete_teacher');
-    Route::get('/teacher', 'App\Http\Controllers\TeacherController@pending')->name('admin.pending_teacher');
+    Route::get('/mentors', 'App\Http\Controllers\TeacherController@index')->name('admin.teachers');
+    Route::get('/add_mentor', 'App\Http\Controllers\TeacherController@create')->name('admin.add-teachers');
+    Route::post('/add_mentor', 'App\Http\Controllers\TeacherController@store')->name('admin.add_teachers');
+    Route::get('/mentor/{id}/edit', 'App\Http\Controllers\TeacherController@edit')->name('admin.edit_teacher');
+    Route::put('/mentor/{id}', 'App\Http\Controllers\TeacherController@update')->name('admin.update_teacher');
+    Route::delete('/mentor/{id}', 'App\Http\Controllers\TeacherController@destroy')->name('admin.delete_teacher');
+    Route::get('/mentor', 'App\Http\Controllers\TeacherController@pending')->name('admin.pending_teacher');
 
     Route::get('/complaint', 'App\Http\Controllers\UserController@mentee_complaints')->name('admin.complaints');
     Route::get('/complaint/{id}', 'App\Http\Controllers\UserController@view_complaint')->name('admin.view_complaint');
@@ -203,8 +203,8 @@ Route::prefix('user')->middleware('check.user')->group(function () {
 });
 
 Route::prefix('mentee')->middleware('check.user')->group(function () {
-    Route::get('/tutor', 'App\Http\Controllers\StudentController@tutors')->name('student.tutors');
-    Route::get('/tutor/{id}', 'App\Http\Controllers\StudentController@view_tutor')->name('student.view_tutor');
+    Route::get('/mentor', 'App\Http\Controllers\StudentController@tutors')->name('student.tutors');
+    Route::get('/mentor/{id}', 'App\Http\Controllers\StudentController@view_tutor')->name('student.view_tutor');
 
     Route::get('/conversation/{id}', 'App\Http\Controllers\StudentController@chat')->name('student.view_conversation');
     Route::any('/conversation', 'App\Http\Controllers\StudentController@conversations')->name('student.conversation_list');
@@ -235,11 +235,11 @@ Route::prefix('mentor')->middleware(['check.tutor', 'check.user'])->group(functi
     Route::put('/schedule/{id}', 'App\Http\Controllers\ScheduleController@update')->name('teacher.update_schedule');
 
     Route::delete('/schedule/{id}', 'App\Http\Controllers\ScheduleController@destroy')->name('teacher.delete_schedule');
-    Route::get('/subject', 'App\Http\Controllers\TeacherController@my_subject')->name('teacher.my_subject');
-    Route::get('/subject/find', 'App\Http\Controllers\TeacherController@find_subject')->name('teacher.find_subject');
-    Route::post('/subject/find', 'App\Http\Controllers\TeacherController@stor_my_subject')->name('teacher.stor_subject');
-    Route::post('/subject1/find', 'App\Http\Controllers\TeacherController@stor_my_subject1')->name('teacher.stor_subject1');
-    Route::delete('/subject', 'App\Http\Controllers\TeacherController@destroy_subject')->name('teacher.remove_subject');
+    Route::get('/skill', 'App\Http\Controllers\TeacherController@my_subject')->name('teacher.my_subject');
+    Route::get('/skill/find', 'App\Http\Controllers\TeacherController@find_subject')->name('teacher.find_subject');
+    Route::post('/skill/find', 'App\Http\Controllers\TeacherController@stor_my_subject')->name('teacher.stor_subject');
+    Route::post('/skill1/find', 'App\Http\Controllers\TeacherController@stor_my_subject1')->name('teacher.stor_subject1');
+    Route::delete('/skill', 'App\Http\Controllers\TeacherController@destroy_subject')->name('teacher.remove_subject');
 
     Route::get('/conversation/{id}', 'App\Http\Controllers\TeacherController@chat')->name('teacher.view_conversation');
     Route::any('/conversation', 'App\Http\Controllers\TeacherController@conversations')->name('teacher.conversation_list');
