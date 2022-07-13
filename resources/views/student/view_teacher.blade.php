@@ -357,7 +357,7 @@
                                         {{-- <ul> --}}
                                         <span style="text-transform: capitalize">{{ $experience->institute->text }}
                                             <br>@if ($experience->end_date ==null)
-                                            <small>Currently employed </small>
+                                            {{-- <small>Currently employed </small> --}}
                                              @endif
                                             <small style="text-transform: capitalize">{{ explode('-', $experience->start_date)[1] }}/{{ explode('-', $experience->start_date)[0] }}
                                                 @if ($experience->end_date != null)

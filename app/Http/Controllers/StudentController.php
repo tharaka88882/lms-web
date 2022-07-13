@@ -686,6 +686,7 @@ class StudentController extends Controller
             $complaints->description = $request->get('complaint');
 
             $complaints->seen = 0;
+            $complaints->status =$request->get('status');
 
             $complaints->save();
 
@@ -696,7 +697,7 @@ class StudentController extends Controller
 
             //$mentorEmail = Teacher::findOrFail($id)->email;
             // To do email send code hear....
-            Mail::to($teacher->user->email)->send(new MenteeComplaints($teacher->user->name));
+            Mail::to($teacher->user->email)->send(new MenteeComplaints($teacher->user->name."-".$complaints->status));
 
             $this->createNotification(4, 'Mentee has filed a complaint', route('admin.complaints'));
             $this->createNotification($teacher->user->id, 'Mentee has filed a complaint');

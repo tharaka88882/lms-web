@@ -18,7 +18,7 @@ class MenteeComplaints extends Mailable
      */
     public function __construct($name)
     {
-        $this->username = $name;
+        $this->name = $name;
     }
 
     /**

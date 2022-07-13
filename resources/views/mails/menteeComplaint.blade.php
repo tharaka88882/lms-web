@@ -1,9 +1,9 @@
 @component('mail::message')
-# Hi (username)
+# Hi {{ explode('-',$name)[0] }} !
 
 A Mentee has flagged a complaint as below:
 <br>
-Reson (what mentee selected in the combo box)
+Reson - {{ explode('-',$name)[1] }}
 <br>
 We will review and get back to you if there are any further actions required from you.
 <br>
