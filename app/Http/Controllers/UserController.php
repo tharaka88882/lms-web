@@ -497,4 +497,9 @@ class UserController extends Controller
         );
     }
 
+    public function view_my_profile()
+    {
+        return view('teacher.view_my_profile');
+    }
+
 }
