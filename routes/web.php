@@ -196,6 +196,9 @@ Route::prefix('user')->middleware('check.user')->group(function () {
     Route::delete('/delete-experience', 'App\Http\Controllers\UserController@delete_experience')->name('user.delete_experience');
     Route::delete('/delete-qualification', 'App\Http\Controllers\UserController@delete_qualification')->name('user.delete_qualification');
 
+    // view my profile
+    Route::get('/view-my-profile', 'App\Http\Controllers\UserController@view_my_profile')->name('user.view_my_profile');
+
 
 });
 
