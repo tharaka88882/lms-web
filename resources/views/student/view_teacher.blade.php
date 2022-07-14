@@ -40,7 +40,7 @@
                                    @php
                                         $i++;
                                    @endphp
-                                   @if ($i == $sizeArr)
+                                   @if ($experience->end_date == null)
                                    <span><small>{{ $experience->position->text }}</small></span><br>
                                    @endif
                                     @endforeach
@@ -67,7 +67,7 @@
 
                                 <div class="widget-user-image">
                                     <img class="img-circle elevation-2"
-                                        onerror="this.src='{{ url('public') }}/theme/admin/dist/img/default-avatar.jpg'"
+                                        onerror="this.src='{{ url('public') }}/theme/admin/dist/img/default-avatar.jpg'" style="width: 110px; height: 110px;"
                                         @if ($teacher->user->image != null) src="{{ url('public') }}/images/profile/{{ $teacher->user->image }}" @else src="" @endif
                                         alt="User Avatar">
                                 </div>

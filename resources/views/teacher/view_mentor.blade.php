@@ -33,6 +33,7 @@
 
                                     @if (sizeof($teacher->experiences)>0)
                                     @php
+
                                        $sizeArr = sizeof($teacher->experiences);
                                        $i = 0;
                                     @endphp
@@ -40,7 +41,7 @@
                                    @php
                                         $i++;
                                    @endphp
-                                   @if ($i == $sizeArr)
+                                   @if ($experience->end_date == null)
                                    <span><small>{{ $experience->position->text }}</small></span><br>
                                    @endif
                                     @endforeach
@@ -68,10 +69,10 @@
                                 </div>
 
                                 <div class="widget-user-image">
-                                    <img class="img-circle elevation-2"
+                                    <img class="img-circle elevation-2" style="width: 110px; height: 110px;"
                                         onerror="this.src='{{ url('public') }}/theme/admin/dist/img/default-avatar.jpg'"
                                         @if ($teacher->user->image != null) src="{{ url('public') }}/images/profile/{{ $teacher->user->image }}" @else src="" @endif
-                                        alt="User Avatar">
+                                        alt="User Avatar"/>
                                 </div>
 
                                 <div class="card-footer">

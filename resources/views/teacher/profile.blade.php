@@ -414,7 +414,7 @@
                                 <div class="form-group">
                                     {{-- <label for="exampleInputEmail1">Skills</label> --}}
                                     <textarea disabled name="skills" placeholder="Add skills from below search box"
-                                        class="form-control @if ($errors->has('skills')) {{ 'is-invalid' }} @endif" rows="3">{{ $user->userable->skills }}</textarea>
+                                        class="form-control @if ($errors->has('skills')) {{ 'is-invalid' }} @endif" rows="3"> @if (sizeOf(Auth()->user()->userable->teachersubject)>0) @foreach (Auth()->user()->userable->teachersubject as $t_subject) | {{$t_subject->subject->name}} @endforeach @endif </textarea>
 
                                     @if ($errors->has('skills'))
                                         <span class="invalid-feedback" role="alert">
@@ -450,6 +450,8 @@
                             <div class="card-footer">
                                 <button id="add_btn" type="button"
                                     class="btn btn-success pull-right">Add</button>
+                                <a id="add_btn" type="button" href="{{ route('teacher.my_subject') }}"
+                                    class="btn btn-warning pull-right mr-2">Change</a>
                             </div>
                             {{-- </form> --}}
                         </div>

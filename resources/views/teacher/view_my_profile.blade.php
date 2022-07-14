@@ -66,7 +66,7 @@
                                 </div>
 
                                 <div class="widget-user-image">
-                                    <img class="img-circle elevation-2"
+                                    <img class="img-circle elevation-2" style="width: 110px; height: 110px;"
                                         onerror="this.src='{{ url('public') }}/theme/admin/dist/img/default-avatar.jpg'"
                                         @if (Auth()->user()->image != null) src="{{ url('public') }}/images/profile/{{ Auth()->user()->image }}" @else src="" @endif
                                         alt="User Avatar">
