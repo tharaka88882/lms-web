@@ -27,6 +27,8 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\ReferMail;
 use App\Mail\CheckedComplaint;
 use App\Traits\UserTrait;
+use Intervention\Image\ImageManagerStatic;
+use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
@@ -124,6 +126,14 @@ class UserController extends Controller
             $coverImageName = null;
 
              if ($request->has('image')) {
+                // $image = new Image();
+                // $imageName = time() . '.' . $request->image->extension();
+                // // $image_resize = ImageManagerStatic::make($request->image);
+                // $image->load($_FILES['image']['tmp_name']);
+                // // $image_resize->resize(300, 300);
+                // $image->resize(300,300);
+                // $image->save(public_path('images/profile/'), $imageName);
+
                 $imageName = time() . '.' . $request->image->extension();
                 $request->image->move(public_path('images/profile/'), $imageName);
                 //return back()->with('success','You have successfully upload image.')->with('image',$imageName);

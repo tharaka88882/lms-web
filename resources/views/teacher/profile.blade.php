@@ -352,11 +352,14 @@
                                                 <h6><strong>Away Status</strong> <br> <small>(add the dates you won't be available)</small></h6>
 
                                             </div>
+                                            @php
+                                                $date_now = date('Y-m-d');
+                                            @endphp
                                             <div class="card-body">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">From Date</label>
                                                     <input class="form-control" type="date" name="from_leave"
-                                                        value="{{ $user->from_leave }}" />
+                                                        value="{{ ($user->from_leave)== null? $date_now : $user->from_leave }}" />
 
                                                     @if ($errors->has('from_leave'))
                                                         <span class="invalid-feedback" role="alert">
@@ -367,7 +370,7 @@
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">To Date</label>
                                                     <input class="form-control" type="date" name="to_leave"
-                                                        value="{{ $user->to_leave }}" />
+                                                        value="{{ ($user->to_leave)==null? $date_now : $user->to_leave}}" />
 
                                                     @if ($errors->has('to_leave'))
                                                         <span class="invalid-feedback" role="alert">
