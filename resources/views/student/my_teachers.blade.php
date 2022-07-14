@@ -333,7 +333,7 @@
                                                    @php
                                                         $i++;
                                                    @endphp
-                                                   @if ($i == $sizeArr)
+                                                   @if ($experience->end_date == null)
                                                    <span class="users-list-date">{{ $experience->position->text }}</span>
                                                    @endif
                                                     @endforeach
