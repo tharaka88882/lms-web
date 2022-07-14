@@ -180,6 +180,7 @@ return [
 
         Laravel\Socialite\SocialiteServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
     ],
 
     /*
@@ -237,6 +238,8 @@ return [
 
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Image' => Intervention\Image\Facades\Image::class,
+
     ],
 
 ];
