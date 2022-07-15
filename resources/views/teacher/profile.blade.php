@@ -175,12 +175,12 @@
 
                                     <div class="form-group autocomplete" style="width: 100%">
                                         <label for="exampleInputPassword1">Country</label>
-                                        <input id="country1" name="country" class="form-control" placeholder="Choose your Country"/>
+                                        <input id="country1" name="country" value="{{ $user->country }}" class="form-control" placeholder="Choose your Country"/>
                                     </div>
 
                                         <div class="form-group autocomplete" style="width: 100%">
                                             <label for="exampleInputPassword1">City</label>
-                                            <input name="city" class="form-control" id="city1" placeholder="Choose your City" />
+                                            <input name="city" class="form-control" value="{{ $user->city }}" id="city1" placeholder="Choose your City" />
 
                                         </div>
 
@@ -245,8 +245,8 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="profileImageInput">Cover Image <small>(120PX *
-                                                    480PX)</small></label>
+                                            <label for="profileImageInput">Cover Image <small>(Recommended 700PX *
+                                                    300PX)</small></label>
                                             <div style="padding: 10px;">
                                                 <img id="cover-image-output"
                                                     style="max-width: 100%; max-height:120px; border: 1px solid rgb(187, 187, 187)"

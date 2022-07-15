@@ -26,7 +26,7 @@
                             <div class="card card-widget widget-user">
                                 <!-- Add the bg color to the header using any of the bg-* classes -->
                                 <div class="widget-user-header bg-olive"
-                                    @if ($teacher->user->cover_image != null) style="background-image: url('{{ url('public') }}/images/profile/{{ $teacher->user->cover_image }}') !important;" @endif>
+                                    @if ($teacher->user->cover_image != null) style="background-image: url('{{ url('public') }}/images/profile/{{ $teacher->user->cover_image }}'); background-repeat: round; !important;" @endif>
                                     <h3 class="widget-user-username" style="margin-top: -10px; margin-bottom:-10px; !important">
                                         {{ ucwords($teacher->user->name) }}
                                     </h3>
@@ -69,7 +69,7 @@
                                 </div>
 
                                 <div class="widget-user-image">
-                                    <img class="img-circle elevation-2" style="width: 110px; height: 110px;"
+                                    <img class="img-circle elevation-2" style="width: 100px; height: 100px;"
                                         onerror="this.src='{{ url('public') }}/theme/admin/dist/img/default-avatar.jpg'"
                                         @if ($teacher->user->image != null) src="{{ url('public') }}/images/profile/{{ $teacher->user->image }}" @else src="" @endif
                                         alt="User Avatar"/>

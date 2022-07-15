@@ -1,3 +1,4 @@
+
 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
     <!-- Add icons to the links using the .nav-icon class
@@ -171,6 +172,24 @@
         <a href="{{route('user.milestone')}}" class="nav-link {{ request()->is('user/milestone*') ? 'active' : '' }}">
             <i class="nav-icon fas fa-flag"></i>
             <p>My Development</p>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="https://you2mentor.com/" class="nav-link">
+            <i class="nav-icon fas fa-home"></i>
+            <p>Home Page</p>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a target="_blank" href="https://you2mentor.com/about/" class="nav-link">
+            <i class="nav-icon fas fa-address-card"></i>
+            <p>About Us</p>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a target="_blank" href="https://you2mentor.com/privacy-policy/" class="nav-link">
+            <i class="nav-icon fas fa-file-contract"></i>
+            <p>Privacy Policy</p>
         </a>
     </li>
 
