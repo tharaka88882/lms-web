@@ -18,7 +18,19 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
-            <div class="row mb-2">
+            <div class="row p-2">
+                <div class="col">
+                  <h1>My Profile</h1>
+                </div>
+                <div class="col">
+                  <a href="{{ url()->previous() }}" type="button" class="btn btn-warning pull-right">
+                    <i class="fa fa-arrow-left"></i> Go Back
+                  </a>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid border border-primary rounded">
+            <div class="row p-2 mb-2">
                 <div class="col-sm-7">
                     <div class="row">
                         <div class="col-sm-12">
@@ -26,7 +38,7 @@
                             <div class="card card-widget widget-user">
                                 <!-- Add the bg color to the header using any of the bg-* classes -->
                                 <div class="widget-user-header bg-olive"
-                                    @if (Auth()->user()->cover_image != null) style="background-image: url('{{ url('public') }}/images/profile/{{ Auth()->user()->cover_image }}') !important;" @endif>
+                                    @if (Auth()->user()->cover_image != null) style="background-image: url('{{ url('public') }}/images/profile/{{ Auth()->user()->cover_image }}'); background-repeat: round; !important;" @endif>
                                     <h3 class="widget-user-username"
                                         style="margin-top: -10px; margin-bottom: -5px; !important">
                                         {{ ucwords(Auth()->user()->name) }}
@@ -66,7 +78,7 @@
                                 </div>
 
                                 <div class="widget-user-image">
-                                    <img class="img-circle elevation-2" style="width: 110px; height: 110px;"
+                                    <img class="img-circle elevation-2" style="width: 100px; height: 100px;"
                                         onerror="this.src='{{ url('public') }}/theme/admin/dist/img/default-avatar.jpg'"
                                         @if (Auth()->user()->image != null) src="{{ url('public') }}/images/profile/{{ Auth()->user()->image }}" @else src="" @endif
                                         alt="User Avatar">
@@ -111,15 +123,15 @@
                                             {{-- <div class="col-xs-2">
                                             <a class="btn btn-warning" href="{{route('student.complaint',$teacher->id)}}">Complaint Mentor</a>
                                         </div> --}}
-                                            <div class="col mb-1">
+                                            <div class="col-xm-12 col-md-4 mb-1">
                                                 <a class="btn btn-success">Connect</a>
                                             </div>
-                                            <div class="col mb-1">
+                                            <div class="col-xm-12 col-md-4 mb-1">
                                                 <button class="btn btn-warning"><i class="fa fa-star"></i> Rate
                                                     Now</button>
 
                                             </div>
-                                            <div class="col mb-1">
+                                            <div class="col-xm-12 col-md-4 mb-1">
                                                 <a class="btn btn-warning"><i class="fa fa-flag"
                                                         style="color: red;"></i> Flag</a>
                                             </div>
