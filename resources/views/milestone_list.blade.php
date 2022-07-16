@@ -176,7 +176,7 @@
 
         .timeline-horizontal .timeline-item .timeline-panel {
             top: auto;
-            bottom: 64px;
+            bottom: 50px;
             display: inline-block;
             float: none !important;
             left: 0 !important;
@@ -222,13 +222,13 @@
                     <div class="small-box bg-light">
                         <div class="inner">
                             <center>
-                                <p style="margin-bottom: 3px; font-size: 14px;">My Development</p>
+                                <p style="margin-bottom: 3px; font-size: 24px;">My Development</p>
                             </center>
                             <div class="row">
                                 <div class="col-4 border-right">
                                     <div class="description-block">
                                         <h5 class="description-header">{{ $completed_milestones_count }}</h5>
-                                        <p style="color:green; font-size: 11px;">Completed</p>
+                                        <p style="color:green; font-size: 16px;">Completed</p>
                                         <!-- <span class="description-text">Completed</span> -->
                                     </div>
                                     <!-- /.description-block -->
@@ -237,7 +237,7 @@
                                 <div class="col-4 border-right">
                                     <div class="description-block">
                                         <h5 class="description-header">{{ $inprogress_milestones_count }}</h5>
-                                        <p style="color:rgb(255, 153, 0); font-size: 11px;">In Progress</p>
+                                        <p style="color:rgb(255, 153, 0); font-size: 16px;">In Progress</p>
                                         <!-- <span class="description-text">In Progress</span> -->
                                     </div>
                                     <!-- /.description-block -->
@@ -246,7 +246,7 @@
                                 <div class="col-4">
                                     <div class="description-block">
                                         <h5 class="description-header">{{ $overdue_milestones_count }}</h5>
-                                        <p style="color:red; font-size: 11px;">Overdue</p>
+                                        <p style="color:red; font-size: 16px;">Overdue</p>
                                         <!-- <span class="description-text">Overdue</span> -->
                                     </div>
                                     <!-- /.description-block -->
@@ -307,17 +307,17 @@
                                         </div>
                                         <div class="timeline-panel">
                                             <div class="timeline-heading">
-                                                <h4 class="timeline-title" style="margin-bottom: 0px; !important">
+                                                <h5 class="timeline-title" style="margin-bottom: 0px; !important">
                                                     <strong>{{ $milestone->note }}</strong>
-                                                </h4>
+                                                </h5>
                                                 <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>
                                                         Due Date: {{ $milestone->due_date }}</small></p>
                                             </div>
                                             <div class="timeline-body">
                                                 {{-- <p>Mussum ipsum cacilds, vidis litro abertis. Consetis faiz elementum girarzis, nisi eros gostis.</p> --}}
-                                                <h5 class="text-center"><strong>Number of Tasks : <span
+                                                <h6 class="text-center"><strong>Number of Tasks : <span
                                                             class="badge bg-gray">{{ count(json_decode($milestone->notes, true)) }}</span></strong>
-                                                </h5>
+                                                </h6>
                                                 <a type="button" href="{{ route('user.notes', $milestone->id) }}"
                                                     class="btn btn-block btn-info btn-xs">See More <i
                                                         class='fa fa-angle-double-right'></i></a>
@@ -415,7 +415,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Goals List</h3>
+                            <h3 class="card-title">My Goals</h3>
                         </div>
                         <div class="card-body">
                             <div class="container col-md-12">
@@ -465,17 +465,17 @@
                                                     @endphp
                                                     @if ($date_facturation->isPast())
                                                         @if ($milestone->status == 1)
-                                                        <span class="badge" style="background-color: green;">
+                                                        <span class="badge" style="background-color: green; color: white;">
                                                         @else
-                                                            <span class="badge" style="background-color: red;">
+                                                            <span class="badge" style="background-color: red; color: white;">
                                                         @endif
                                                         @else
                                                             @if ($milestone->status == 1)
                                                                 <span class="badge"
-                                                                    style="background-color: green;">
+                                                                    style="background-color: green; color: white;">
                                                                 @else
                                                                     <span class="badge"
-                                                                        style="background-color: rgb(255, 153, 0);">
+                                                                        style="background-color: rgb(255, 153, 0); color: white;">
                                                             @endif
                                                     @endif
                                                     {{ \Carbon\Carbon::parse($milestone->due_date)->format('d-m-Y') }}</span>
