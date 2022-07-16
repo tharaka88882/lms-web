@@ -108,18 +108,18 @@
                             <!-- small card -->
                             <div class="small-box bg-light">
                                 <div class="inner">
-                                  
-                                    @if ($avg_time == 1)
-                                        <h3 style="color: green;">{{ $avg_time }} hour<sup
+
+                                    @if ( Auth()->user()->avg == 1)
+                                        <h3 style="color: green;">{{ Auth()->user()->avg }} hour<sup
                                                 style="font-size: 20px"></sup></h3>
-                                    @elseif ($avg_time > 1 && $avg_time < 4)
-                                        <h3 style="color: green;">{{ $avg_time }} hours<sup
+                                    @elseif ( Auth()->user()->avg >= 2 && Auth()->user()->avg <= 4)
+                                        <h3 style="color: green;">{{ Auth()->user()->avg }} hours<sup
                                                 style="font-size: 20px"></sup></h3>
-                                    @elseif ($avg_time > 4 && $avg_time < 49)
-                                        <h3 style="color: rgb(255, 174, 0);">{{ $avg_time }} hours <sup
+                                    @elseif ( Auth()->user()->avg >= 5 && Auth()->user()->avg < 49)
+                                        <h3 style="color: rgb(255, 174, 0);">{{ Auth()->user()->avg }} hours <sup
                                                 style="font-size: 20px"></sup></h3>
                                     @else
-                                        <h3 style="color: red;">{{ $avg_time }} hours <sup
+                                        <h3 style="color: red;">{{ Auth()->user()->avg }} hours <sup
                                                 style="font-size: 20px"></sup></h3>
                                     @endif
 
@@ -182,10 +182,10 @@
                         </div>
                         <hr class="mt-0">
 
-                        @foreach ($ratings as $rating)
                         <div class="row">
 
-                                <div class="col-12 col-sm-6 col-md-6 d-flex align-items-stretch flex-column">
+                            @foreach ($ratings as $rating)
+                                <div class="col-md-6 d-flex align-items-stretch flex-column">
 
                                     <div class="card bg-light d-flex flex-fill">
                                         <div class="card-header text-muted border-bottom-0" style="text-align: right;">
@@ -256,8 +256,8 @@
                 </div> -->
               </div>
             </div> --}}
+            @endforeach
                         </div>
-                        @endforeach
                     </div>
                 </div>
                 <!-- /.card-body -->

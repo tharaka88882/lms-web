@@ -6,11 +6,22 @@
 
 @push('styles')
     {{-- <style>h1 {background-color: red !important}</style> --}}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> --}}
 @endpush
 
 @section('content')
     <section class="content-header">
+        <div class="container-fluid">
+            <div class="row p-2">
+                <div class="col">
+                </div>
+                <div class="col">
+                  <a href="{{ url()->previous() }}" type="button" class="btn btn-warning pull-right">
+                    <i class="fa fa-arrow-left"></i> Go Back
+                  </a>
+                </div>
+            </div>
+        </div>
         <!-- general form elements -->
         <div class="col-md-12">
             <div class="col-md-9">

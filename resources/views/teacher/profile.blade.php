@@ -463,7 +463,7 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Qualifications</h3>
+                                    <h3 class="card-title">Education</h3>
                                 </div>
                                 <!--Make sure the form has the autocomplete function switched off:-->
                                 <form autocomplete="off" action="{{ route('user.add_qualification') }}" method="POST">
@@ -592,7 +592,7 @@
                             {{-- card-end --}}
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">My Qualifications</h3>
+                                    <h3 class="card-title">My Education</h3>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">

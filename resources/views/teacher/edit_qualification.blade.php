@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Edit My Qualification
+    Edit My Education
 @endsection
 
 @push('script')
@@ -105,7 +105,7 @@
     <div class="col-sm-6">
         <div class="card">
             <div class="card-header">
-            <h3 class="card-title">Edit Qualification</h3>
+            <h3 class="card-title">Edit Education</h3>
             </div>
             <!-- /.card-header -->
             <!--Make sure the form has the autocomplete function switched off:-->
