@@ -288,10 +288,10 @@
                                                     Completed
                                                     {{-- {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }} --}}
                                                     -
-                                                    {{ explode('-', $qualification->end_date)[1] }}/{{ explode('-', $qualification->end_date)[0] }}
+                                                    {{ explode('-', $qualification->end_date)[0] }}
                                                 @else
                                                     Ongoing
-                                                    {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }}
+                                                    {{ explode('-', $qualification->start_date)[0]}}
                                                     - Present
                                                     <br>
                                                     @if ($qualification->grade != null)
@@ -323,12 +323,12 @@
                                         <span>{{ $experience->institute->text }}
                                             <br>
                                             @if ($experience->end_date == null)
-                                                <small>Currently employed </small>
+                                                {{-- <small>Currently employed </small> --}}
                                             @endif
-                                            <small>{{ explode('-', $experience->start_date)[1] }}/{{ explode('-', $experience->start_date)[0] }}
+                                            <small>{{ explode('-', $experience->start_date)[0] }}
                                                 @if ($experience->end_date != null)
                                                     -
-                                                    {{ explode('-', $experience->end_date)[1] }}/{{ explode('-', $experience->end_date)[0] }}
+                                                    {{ explode('-', $experience->end_date)[0] }}
                                                 @else
                                                     - Present
                                                 @endif
