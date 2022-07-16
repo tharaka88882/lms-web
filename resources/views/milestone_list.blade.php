@@ -6,7 +6,7 @@
 
 @push('styles')
     {{-- <style>h1 {background-color: red !important}</style> --}}
-    {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> --}}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
     <style>
         /* Timeline */
@@ -422,7 +422,7 @@
                                 {{-- <h2>Stacked Progress Bars</h2>
                 <p>Create a stacked progress bar by placing multiple bars into the same div with class .progress:</p> --}}
                                 <div class="progress">
-                                    <div class="progress-bar progress-bar-success" role="progressbar"
+                                    <div class="progress-bar progress-bar-success"  role="progressbar"
                                         style="width:{{ $completed }}%">
                                         Completed
                                     </div>
@@ -464,7 +464,11 @@
                                                     ($date_facturation = \Carbon\Carbon::parse($milestone->due_date))
                                                     @endphp
                                                     @if ($date_facturation->isPast())
-                                                        <span class="badge" style="background-color: red;">
+                                                        @if ($milestone->status == 1)
+                                                        <span class="badge" style="background-color: green;">
+                                                        @else
+                                                            <span class="badge" style="background-color: red;">
+                                                        @endif
                                                         @else
                                                             @if ($milestone->status == 1)
                                                                 <span class="badge"
