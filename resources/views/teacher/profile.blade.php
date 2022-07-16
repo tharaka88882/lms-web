@@ -309,7 +309,7 @@
                                                 </span>
                                             @endif
                                         </div>
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <label for="exampleInputEmail1">Job Title</label>
                                             <input type="text" name="job"
                                             placeholder="Enter your job title"
@@ -321,14 +321,12 @@
                                                     <strong>{{ $errors->first('job') }}</strong>
                                                 </span>
                                             @endif
-                                        </div>
+                                        </div> --}}
 
-                                        <div class="form-group">
+                                        <div class="form-group autocomplete" style="width: 100%">
                                             <label for="exampleInputEmail1">Working Industry</label>
-                                            <select class="select2 form-control" style="width: 100%;" name="industry"
-                                                id="industry">
-
-                                            </select>
+                                            <input class="form-control"  value="{{$user->userable->industry}}" name="industry"
+                                                id="industry11"/>
 
 
                                         </div>
@@ -1360,55 +1358,55 @@
 
             });
 
-            $('#industry').select2({
+            // $('#industry').select2({
 
-                ajax: {
+            //     ajax: {
 
-                    method: 'GET',
+            //         method: 'GET',
 
-                    url: '{{ route('teacher.get_industry') }}',
+            //         url: '{{ route('teacher.get_industry') }}',
 
-                    contentType: "application/json; charset=utf-8",
+            //         contentType: "application/json; charset=utf-8",
 
-                    dataType: 'json',
+            //         dataType: 'json',
 
-                    data: function(params) {
+            //         data: function(params) {
 
-                        var query = {
+            //             var query = {
 
-                            search: params.term,
+            //                 search: params.term,
 
-                            _method: "GET",
+            //                 _method: "GET",
 
-                            // _token: "{{ csrf_token() }}",
+            //                 // _token: "{{ csrf_token() }}",
 
-                            type: 'public'
+            //                 type: 'public'
 
-                        };
+            //             };
 
-                        // Query parameters will be ?search=[term]&type=public
+            //             // Query parameters will be ?search=[term]&type=public
 
-                        return query;
+            //             return query;
 
-                    },
+            //         },
 
-                    processResults: function(data) {
+            //         processResults: function(data) {
 
-                        // Transforms the top-level key of the response object from 'items' to 'results'
+            //             // Transforms the top-level key of the response object from 'items' to 'results'
 
-                        return {
+            //             return {
 
-                            results: data.results
+            //                 results: data.results
 
-                        };
+            //             };
 
-                    }
+            //         }
 
-                },
+            //     },
 
-                // dropdownParent: $('#currentModal')
+            //     // dropdownParent: $('#currentModal')
 
-            });
+            // });
 
         });
 
@@ -2730,9 +2728,14 @@
         @foreach ($position as $po)
             pos.push('{{ $po->text }}');
         @endforeach
+        var indus = [];
+        @foreach ($industries as $ind)
+        indus.push('{{ $ind->name }}');
+        @endforeach
 
         /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
         autocomplete(document.getElementById("myInput"), ins);
+        autocomplete(document.getElementById("industry11"), indus);
        // autocomplete(document.getElementById("myInput1"), ins);
         autocomplete(document.getElementById("ins"), ins);
        // autocomplete(document.getElementById("ins2"), ins);
