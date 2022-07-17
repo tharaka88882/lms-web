@@ -96,7 +96,7 @@
                                                 <th>Tasks to achieve goal</th>
                                                 <th>Due by</th>
                                                 <th style="width: 150px">Status</th>
-                                                <th style="width: 100px">Action</th>
+                                                <th style="width: 125px">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -125,9 +125,17 @@
                                                                 Cancelled</option>
                                                         </select>
                                                     </td>
-                                                    <td>
-                                                        <button onclick="delete_note('{{ $note->id }}');" type="button"
-                                                            class="btn btn-danger">Delete</button>
+                                                    <td style="width: 100px;">
+                                                        <div class="row ml-6">
+                                                            <div class="col-md-6">
+                                                                <button onclick="delete_note('{{ $note->id }}');" type="button"
+                                                                    class="btn btn-danger">Delete</button>
+                                                            </div>
+                                                              <div class="col-md-6">
+                                                                <a href="{{ route('user.edit_task', $note->id) }}" type="button"
+                                                                    class="btn btn-warning">Edit</a>
+                                                              </div>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                                 @php
