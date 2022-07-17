@@ -41,7 +41,7 @@
                 <form method="POST" action="{{ route('auth.save_linkedin') }}">
                     @csrf
 
-                    <label>Please enter your linkedin profile link</label>
+                    <label>Please enter your linkedin profile,IMDb or other professional links</label>
                     <div class="input-group mb-3">
                         <input type="text"
                             class="form-control @if ($errors->has('linkedin_link')) {{ 'is-invalid' }} @endif"
