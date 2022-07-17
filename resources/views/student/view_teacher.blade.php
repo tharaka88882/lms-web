@@ -313,17 +313,15 @@
                                             {{-- <ul> --}}
                                             <span style="text-transform: capitalize">{{ $qualification->institute->text }}
                                                 <br>
-                                                {{ $qualification->field }}<br>
+                                                {{ $qualification->field }}<br style="display: block;
+                                                margin-bottom: 0em;">
                                                 <small style="text-transform: capitalize">
                                                     @if ($qualification->end_date != null)
-                                                        Completed
-                                                        {{-- {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }} --}}
+                                                        {{ explode('-', $qualification->start_date)[0] }}
                                                         -
                                                         {{ explode('-', $qualification->end_date)[0] }}
                                                     @else
-                                                    Ongoing
                                                         {{ explode('-', $qualification->start_date)[0] }}
-                                                        - Present
                                                         <br> @if ($qualification->grade !=null)
                                                         Grade-{{ $qualification->grade }}
                                                         @endif

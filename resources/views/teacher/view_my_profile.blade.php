@@ -284,14 +284,11 @@
                                             {{ $qualification->field }}<br>
                                             <small>
                                                 @if ($qualification->end_date != null)
-                                                    Completed
-                                                    {{-- {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }} --}}
+                                                    {{ explode('-', $qualification->start_date)[0] }}
                                                     -
                                                     {{ explode('-', $qualification->end_date)[0] }}
                                                 @else
-                                                    Ongoing
                                                     {{ explode('-', $qualification->start_date)[0]}}
-                                                    - Present
                                                     <br>
                                                     @if ($qualification->grade != null)
                                                         Grade-{{ $qualification->grade }}

@@ -189,7 +189,7 @@
     <li class="nav-item">
         <a target="_blank" href="https://you2mentor.com/privacy-policy/" class="nav-link">
             <i class="nav-icon fas fa-file-contract"></i>
-            <p>Privacy Policy</p>
+            <p>Legal</p>
         </a>
     </li>
 
