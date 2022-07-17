@@ -19,9 +19,8 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-7">
-                    <div class="row">
-                        <div class="col-sm-12">
+                    <div class="row col-sm-12">
+                        <div class="col-sm-7">
                             <!-- Widget: user widget style 1 -->
                             <div class="card card-widget widget-user">
                                 <!-- Add the bg color to the header using any of the bg-* classes -->
@@ -196,9 +195,7 @@
                         <!-- /.card-body -->
                     </div> --}}
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-sm-5">
                             <div class="card">
                                 <div class="card-header">
                                     <h3 class="card-title">
@@ -295,108 +292,114 @@
                                 </div>
                             </div>
                             <!-- /.card -->
-                            {{-- Qualifications Card --}}
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">
-                                        <i class="fas fa-bookmark"></i>
-                                        Education
-                                    </h3>
-                                </div>
-                                <!-- /.card-header -->
 
-                                <div class="card-body">
-                                    @foreach ($teacher->qualifications as $qualification)
-                                        <strong style="text-transform: capitalize">{{ $qualification->text }}</strong><br>
-                                        {{-- <ul> --}}
-                                        <span style="text-transform: capitalize">{{ $qualification->institute->text }}
+
+
+                        </div>
+                    </div>
+                <div class="row col-sm-12">
+                    <div class="col-sm-7">
+                        {{-- Qualifications Card --}}
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    <i class="fas fa-bookmark"></i>
+                                    Education
+                                </h3>
+                            </div>
+                            <!-- /.card-header -->
+
+                            <div class="card-body">
+                                @foreach ($teacher->qualifications as $qualification)
+                                    <strong style="text-transform: capitalize">{{ $qualification->text }}</strong><br>
+                                    {{-- <ul> --}}
+                                    <span style="text-transform: capitalize">{{ $qualification->institute->text }}
+                                        <br>
+                                        {{ $qualification->field }}<br>
+                                        <small style="text-transform: capitalize">
+                                            @if ($qualification->end_date != null)
+                                                Completed
+                                                {{-- {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }} --}}
+                                                -
+                                               {{ explode('-', $qualification->end_date)[0] }}
+                                            @else
+                                            Ongoing
+                                                {{ explode('-', $qualification->start_date)[0] }}
+                                                - Present
+                                                <br>@if ($qualification->grade !=null)
+                                                Grade-{{ $qualification->grade }}
+                                                @endif
+                                            @endif
+
+                                        </small>
+                                    </span>
+                                    <hr>
+                                    {{-- </ul> --}}
+                                @endforeach
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        {{-- End of Qualifications Card --}}
+
+                        {{-- Experience Card --}}
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    <i class="fas fa-briefcase"></i>
+                                    Experience
+                                </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                @foreach ($teacher->experiences as $experience)
+                                    <strong style="text-transform: capitalize">{{ $experience->position->text }}</strong><br>
+                                    {{-- <ul> --}}
+                                    <span style="text-transform: capitalize">{{ $experience->institute->text }}
+                                        <br>@if ($experience->end_date ==null)
+                                        {{-- <small>Currently employed </small> --}}
+                                         @endif
+                                        <small style="text-transform: capitalize">{{ explode('-', $experience->start_date)[0] }}
+                                            @if ($experience->end_date != null)
+                                                -
+                                                {{ explode('-', $experience->end_date)[0] }}
+                                            @else
+                                                - Present
+                                            @endif
                                             <br>
-                                            {{ $qualification->field }}<br>
-                                            <small style="text-transform: capitalize">
-                                                @if ($qualification->end_date != null)
-                                                    Completed
-                                                    {{-- {{ explode('-', $qualification->start_date)[1] }}/{{ explode('-', $qualification->start_date)[0] }} --}}
-                                                    -
-                                                   {{ explode('-', $qualification->end_date)[0] }}
-                                                @else
-                                                Ongoing
-                                                    {{ explode('-', $qualification->start_date)[0] }}
-                                                    - Present
-                                                    <br>@if ($qualification->grade !=null)
-                                                    Grade-{{ $qualification->grade }}
-                                                    @endif
-                                                @endif
+                                          @if ($experience->location != null)
+                                          Location : {{ $experience->location }}
+                                          @endif
+                                        </small>
+                                    </span>
+                                    <hr>
+                                    {{-- </ul> --}}
+                                @endforeach
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        {{-- Experience Card --}}
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    <i class="fas fa-book-open"></i>
+                                    Skills
+                                </h3>
+                            </div>
+                            <!-- /.card-header -->
 
-                                            </small>
-                                        </span>
-                                        <hr>
-                                        {{-- </ul> --}}
+                            <div class="card-body">
+                                <ul>
+                                    @foreach ($subjects as $subject)
+                                        <li>{{ $subject->name }}</li>
                                     @endforeach
-                                </div>
-                                <!-- /.card-body -->
+                                </ul>
                             </div>
-                            {{-- End of Qualifications Card --}}
-
-                            {{-- Experience Card --}}
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">
-                                        <i class="fas fa-briefcase"></i>
-                                        Experience
-                                    </h3>
-                                </div>
-                                <!-- /.card-header -->
-                                <div class="card-body">
-                                    @foreach ($teacher->experiences as $experience)
-                                        <strong style="text-transform: capitalize">{{ $experience->position->text }}</strong><br>
-                                        {{-- <ul> --}}
-                                        <span style="text-transform: capitalize">{{ $experience->institute->text }}
-                                            <br>@if ($experience->end_date ==null)
-                                            {{-- <small>Currently employed </small> --}}
-                                             @endif
-                                            <small style="text-transform: capitalize">{{ explode('-', $experience->start_date)[0] }}
-                                                @if ($experience->end_date != null)
-                                                    -
-                                                    {{ explode('-', $experience->end_date)[0] }}
-                                                @else
-                                                    - Present
-                                                @endif
-                                                <br>
-                                              @if ($experience->location != null)
-                                              Location : {{ $experience->location }}
-                                              @endif
-                                            </small>
-                                        </span>
-                                        <hr>
-                                        {{-- </ul> --}}
-                                    @endforeach
-                                </div>
-                                <!-- /.card-body -->
-                            </div>
-                            {{-- Experience Card --}}
-
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">
-                                        <i class="fas fa-book-open"></i>
-                                        Skills
-                                    </h3>
-                                </div>
-                                <!-- /.card-header -->
-
-                                <div class="card-body">
-                                    <ul>
-                                        @foreach ($subjects as $subject)
-                                            <li>{{ $subject->name }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                                <!-- /.card-body -->
-                            </div>
+                            <!-- /.card-body -->
                         </div>
                     </div>
                 </div>
-
             </div>
         </div><!-- /.container-fluid -->
     </section>

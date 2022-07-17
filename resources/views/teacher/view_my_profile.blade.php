@@ -31,9 +31,8 @@
         </div>
         <div class="container-fluid border border-primary rounded">
             <div class="row p-2 mb-2">
-                <div class="col-sm-7">
-                    <div class="row">
-                        <div class="col-sm-12">
+                    <div class="row col-sm-12">
+                        <div class="col-sm-7">
                             <!-- Widget: user widget style 1 -->
                             <div class="card card-widget widget-user">
                                 <!-- Add the bg color to the header using any of the bg-* classes -->
@@ -153,9 +152,7 @@
                   <!-- /.card-body -->
               </div> --}}
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-sm-5">
                             <div class="card">
                                 <div class="card-header">
                                     <h3 class="card-title">
@@ -264,6 +261,11 @@
                                 </div>
                             </div>
                             <!-- /.card -->
+                        </div>
+                    </div>
+
+                    <div class="row col-sm-12">
+                        <div class="col-md-7">
                             {{-- Qualifications Card --}}
                             <div class="card">
                                 <div class="card-header">
@@ -342,6 +344,8 @@
                             </div>
                             {{-- Experience Card --}}
 
+                        </div>
+                        <div class="col-sm-5">
                             <div class="card">
                                 <div class="card-header">
                                     <h3 class="card-title">
@@ -362,7 +366,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         </div><!-- /.container-fluid -->
     </section>
