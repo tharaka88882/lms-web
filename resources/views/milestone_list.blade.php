@@ -6,7 +6,7 @@
 
 @push('styles')
     {{-- <style>h1 {background-color: red !important}</style> --}}
-    {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> --}}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
     <style>
         /* Timeline */
@@ -176,7 +176,7 @@
 
         .timeline-horizontal .timeline-item .timeline-panel {
             top: auto;
-            bottom: 50px;
+            bottom: 90px;
             display: inline-block;
             float: none !important;
             left: 0 !important;
