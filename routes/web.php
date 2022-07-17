@@ -152,12 +152,16 @@ Route::prefix('user')->middleware('check.user')->group(function () {
     Route::delete('/milestone/delete/{id}', 'App\Http\Controllers\MilestoneController@destroy')->name('user.milestone_delete');
     Route::put('/milestone/add-stikey', 'App\Http\Controllers\MilestoneController@add_s_note')->name('user.add_s_note');
     Route::delete('/milestone/delete-stikey', 'App\Http\Controllers\MilestoneController@distory_s_note')->name('user.distory_s_note');
+    Route::get('/milestone/edit/{id}', 'App\Http\Controllers\MilestoneController@edit_milestone')->name('user.edit_milestone');
+    Route::put('/milestone/edit/{id}', 'App\Http\Controllers\MilestoneController@update_milestone')->name('user.milestone_update');
 
 
      Route::put('/milestone/update', 'App\Http\Controllers\MilestoneController@update')->name('user.update_milestone');
      Route::get('/milestone/notes/{id}', 'App\Http\Controllers\NoteController@index')->name('user.notes');
      Route::get('/milestone/notes/create/{id}', 'App\Http\Controllers\NoteController@create')->name('user.create_notes');
      Route::post('/milestone/notes/store', 'App\Http\Controllers\NoteController@store')->name('user.store_notes');
+     Route::get('/milestone/notes/edit/{id}', 'App\Http\Controllers\MilestoneController@edit_task')->name('user.edit_task');
+     Route::put('/milestone/notes/edit/{id}', 'App\Http\Controllers\MilestoneController@update_task')->name('user.task_update');
 
      Route::put('/milestone/notes/update', 'App\Http\Controllers\NoteController@update')->name('user.update_notes');
 

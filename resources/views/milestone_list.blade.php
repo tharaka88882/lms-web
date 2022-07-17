@@ -446,7 +446,7 @@
                                             <th>Created On</th>
                                             <th>Due Date</th>
                                             <th>Status</th>
-                                            <th>Actions</th>
+                                            <th style="width: 165px;">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -499,15 +499,22 @@
                                                             Cancelled</option>
                                                     </select>
                                                 </td>
-                                                <td>
-                                                    <div class="row ml-4">
-                                                        <div class="col-xs-6 p-1">
+                                                <td style="width: 125px">
+                                                    <div class="row">
+
+                                                        <div class="col-xs-4 p-1">
+                                                            <a href="{{ route('user.edit_milestone', $milestone->id) }}"
+                                                                class="btn btn-sm btn-warning float-right"
+                                                                id="goal">Edit</a>
+                                                        </div>
+
+                                                        <div class="col-xs-4 p-1">
                                                             <a href="{{ route('user.notes', $milestone->id) }}"
                                                                 class="btn btn-sm btn-success float-right"
                                                                 id="goal">Tasks</a>
                                                         </div>
-                                                        <div class="col-xs-6 p-1">
-                                                            <button type="button" class="btn btn-sm btn-danger pull-left"
+                                                        <div class="col-xs-4 p-1">
+                                                            <button type="button" class="btn btn-sm btn-danger float-left"
                                                                 id="deleteBtn-{{ $milestone->id }}">Delete</button>
                                                             <form
                                                                 action="{{ route('user.milestone_delete', $milestone->id) }}"
@@ -516,6 +523,7 @@
                                                                 @method('delete')
                                                             </form>
                                                         </div>
+
                                                     </div>
                                                 </td>
                                             </tr>

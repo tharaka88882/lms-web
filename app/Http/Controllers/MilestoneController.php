@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Milestone;
+use App\Models\Note;
 use App\Models\StikeyMilestone;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
@@ -93,6 +94,25 @@ class MilestoneController extends Controller
             'success'=>true
         );
     }
+    public function edit_milestone($id)
+    {
+        $milestone = Milestone::findOrFail($id);
+
+        return view('edit_milestone', compact('milestone','id'));
+
+    }
+    public function update_milestone(Request $request,$id)
+    {
+        //dd("");
+        $milestone = Milestone::findOrFail($id);
+        $milestone->note = $request->get('note');
+        $milestone->due_date = $request->get('due_date');
+        $milestone->save();
+
+        Toastr::success('Goal is update successfully', 'Updated');
+        return  redirect()->route('user.milestone');
+
+    }
     public function add_s_note(Request $request)
     {
         $stikey_milestone =  new StikeyMilestone();
@@ -105,6 +125,25 @@ class MilestoneController extends Controller
         return array(
             'success'=>true
         );
+    }
+    public function edit_task($id)
+    {
+        $note =   Note::findOrFail($id);
+
+      //  Toastr::success('Milestone is update successfully :)', 'Updated');
+      return view('edit_task', compact('id','note'));
+
+    }
+    public function update_task(Request $request,$id)
+    {
+        $note =   Note::findOrFail($id);
+        $note->text = $request->get('text');
+        $note->due_date = $request->get('due_date');
+        $note->milestone_id = $request->get('milestone_id');
+
+        $note->save();
+        Toastr::success('Task is update successfully', 'Updated');
+        return redirect()->route('user.notes',$id);
     }
     public function distory_s_note(Request $request)
     {
