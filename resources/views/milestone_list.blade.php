@@ -438,15 +438,15 @@
                             </div>
 
                             <div class="table-responsive">
-                                <table class="table text-center">
+                                <table class="table table-bordered text-center">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
+                                            <th style="width: 10px;">#</th>
                                             <th>Goals</th>
                                             <th>Created On</th>
                                             <th>Due Date</th>
                                             <th>Status</th>
-                                            <th style="width: 165px;">Actions</th>
+                                            <th style="width: 190px;">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -499,22 +499,21 @@
                                                             Cancelled</option>
                                                     </select>
                                                 </td>
-                                                <td style="width: 125px">
-                                                    <div class="row">
-
-                                                        <div class="col-xs-4 p-1">
+                                                <td style="width: 190px">
+                                                    <div class="button-group">
+                                                        <div class="col-xm-12 col-md-4 p-1">
                                                             <a href="{{ route('user.edit_milestone', $milestone->id) }}"
-                                                                class="btn btn-sm btn-warning float-right"
+                                                                class="btn btn-sm btn-warning"
                                                                 id="goal">Edit</a>
                                                         </div>
 
-                                                        <div class="col-xs-4 p-1">
+                                                        <div class="col-xm-12 col-md-4 p-1">
                                                             <a href="{{ route('user.notes', $milestone->id) }}"
-                                                                class="btn btn-sm btn-success float-right"
+                                                                class="btn btn-sm btn-success"
                                                                 id="goal">Tasks</a>
                                                         </div>
-                                                        <div class="col-xs-4 p-1">
-                                                            <button type="button" class="btn btn-sm btn-danger float-left"
+                                                        <div class="col-xm-12 col-md-4 p-1">
+                                                            <button type="button" class="btn btn-sm btn-danger"
                                                                 id="deleteBtn-{{ $milestone->id }}">Delete</button>
                                                             <form
                                                                 action="{{ route('user.milestone_delete', $milestone->id) }}"
