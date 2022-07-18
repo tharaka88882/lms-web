@@ -127,7 +127,7 @@
                         <div class="inner">
                             <h3>{{ $subject_count }}</h3>
 
-                            <p>Mentoring Topics/Professions</p>
+                            <p>Skills</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-ios-book"></i>

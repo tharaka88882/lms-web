@@ -301,7 +301,7 @@
                                                         @endphp
 
 
-
+                                                    @endforeach
                                                         @if ($rator_count != 0)
                                                             @php
                                                                 $mediation = $rating_count / $rator_count;
@@ -311,12 +311,13 @@
                                                         @php
                                                             $round_mediation = (int) $mediation;
                                                         @endphp
-                                                    @endforeach
+
 
                                                     @php
                                                         $i = 0;
                                                         //$r = intval(Auth()->user()->userable->level);
                                                         $r = (int) $mediation;
+
                                                     @endphp
                                                     @while ($i < 5)
                                                         @if ($r > 0)
@@ -346,16 +347,33 @@
                                                         @php
                                                             $sizeArr = sizeof($tutor->experiences);
                                                             $i = 0;
+
+                                                            $st_date_diff = 0;
+                                                            $ff = false;
+                                                            $position_now  = '';
                                                         @endphp
                                                         @foreach ($tutor->experiences as $experience)
-                                                            @php
-                                                                $i++;
-                                                            @endphp
+
                                                             @if ($experience->end_date == null)
-                                                                <span
-                                                                    class="users-list-date">{{ $experience->position->text }}</span>
+                                                            @php
+                                                            $i++;
+                                                            $date = \Carbon\Carbon::parse($experience->start_date);
+                                                             $now = \Carbon\Carbon::now();
+
+                                                             if( $st_date_diff > $date->diffInDays($now) || $st_date_diff==0){
+                                                                 $st_date_diff =$date->diffInDays($now);
+                                                             $position_now = $experience->position->text;
+                                                             $ff = true;
+                                                             }
+
+                                                             @endphp
+                                                                {{-- <span class="users-list-date">{{ $experience->position->text }}</span> --}}
                                                             @endif
                                                         @endforeach
+                                                        @if ($ff)
+                                                        <span class="users-list-date">{{  $position_now }}</span>
+                                                        {{-- <span><small>{{ $experience->position->text }}</small></span><br> --}}
+                                                        @endif
                                                     @endif
                                                     {{-- <span class="users-list-date">Timely Responce - {{ $tutor->avg_time }} hour</span> --}}
 

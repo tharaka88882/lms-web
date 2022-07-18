@@ -35,16 +35,38 @@
 
                                        $sizeArr = sizeof($teacher->experiences);
                                        $i = 0;
+
+                                       $st_date_diff = 0;
+                                       $ff = false;
+                                       $position_now  = '';
                                     @endphp
+
                                     @foreach ($teacher->experiences as $experience)
-                                   @php
-                                        $i++;
-                                   @endphp
+
                                    @if ($experience->end_date == null)
-                                   <span><small>{{ $experience->position->text }}</small></span><br>
+                                   @php
+                                   $i++;
+                                   $date = \Carbon\Carbon::parse($experience->start_date);
+                                    $now = \Carbon\Carbon::now();
+
+                                    if( $st_date_diff > $date->diffInDays($now) || $st_date_diff==0){
+                                        $st_date_diff =$date->diffInDays($now);
+                                    $position_now = $experience->position->text;
+                                    $ff = true;
+                                    }
+
+                                    @endphp
+
+
                                    @endif
                                     @endforeach
-
+                                    @if ($ff)
+                                    <span><small>{{ $position_now }}</small></span><br>
+                                    {{-- <span><small>{{ $experience->position->text }}</small></span><br> --}}
+                                    @endif
+                                    @php
+                                         $po_arr = null;
+                                    @endphp
                                     @endif
 
                                     {{-- <a href="{{route('user.view_rating')}}"> --}}
