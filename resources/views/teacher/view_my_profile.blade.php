@@ -46,15 +46,32 @@
                                         @php
                                             $sizeArr = sizeof(Auth()->user()->userable->experiences);
                                             $i = 0;
+
+                                            $st_date_diff = 0;
+                                            $ff = false;
+                                            $position_now  = '';
                                         @endphp
                                         @foreach (Auth()->user()->userable->experiences as $experience)
-                                            @php
-                                                $i++;
-                                            @endphp
-                                            @if ($i == $sizeArr)
-                                                <span><small>{{ $experience->position->text }}</small></span><br>
-                                            @endif
+                                        @if ($experience->end_date == null)
+                                        @php
+                                        $i++;
+                                        $date = \Carbon\Carbon::parse($experience->start_date);
+                                         $now = \Carbon\Carbon::now();
+
+                                         if( $st_date_diff > $date->diffInDays($now) || $st_date_diff==0){
+                                             $st_date_diff =$date->diffInDays($now);
+                                         $position_now = $experience->position->text;
+                                         $ff = true;
+                                         }
+
+                                         @endphp
+                                        {{-- <span><small>{{ $experience->position->text }}</small></span><br> --}}
+                                        @endif
                                         @endforeach
+                                        @if ($ff)
+                                        <span><small>{{ $position_now }}</small></span><br>
+                                        {{-- <span><small>{{ $experience->position->text }}</small></span><br> --}}
+                                        @endif
                                     @endif
                                     @php
                                         $i = 0;

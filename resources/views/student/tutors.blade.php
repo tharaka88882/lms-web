@@ -262,9 +262,9 @@
 
                                                     ?>
 
-                                                    @foreach ($tutor->rate as $rate)
+                                                    @foreach ($tutor->rate as $rating1)
                                                     <?php
-                                                    $rating_count ++;
+                                                    $rating_count += $rating1->rating;
                                                     ?>
                                                     @endforeach
 
@@ -284,6 +284,7 @@
                                                         $i = 0;
                                                         //$r = intval(Auth()->user()->userable->level);
                                                         $r = (int)$mediation;
+                                                      //  dd($r);
                                                     @endphp
                                                     @while ($i<5)
                                                         @if ($r>0)
@@ -308,16 +309,33 @@
                                                     @php
                                                        $sizeArr = sizeof($tutor->experiences);
                                                        $i = 0;
+
+                                                       $st_date_diff = 0;
+                                                        $ff = false;
+                                                        $position_now  = '';
                                                     @endphp
                                                     @foreach ($tutor->experiences as $experience)
-                                                   @php
-                                                        $i++;
-                                                   @endphp
+
                                                    @if ($experience->end_date == null)
-                                                   <span class="users-list-date">{{ $experience->position->text }}</span>
+                                                   @php
+                                                   $i++;
+                                                   $date = \Carbon\Carbon::parse($experience->start_date);
+                                                    $now = \Carbon\Carbon::now();
+
+                                                    if( $st_date_diff > $date->diffInDays($now) || $st_date_diff==0){
+                                                        $st_date_diff =$date->diffInDays($now);
+                                                    $position_now = $experience->position->text;
+                                                    $ff = true;
+                                                    }
+
+                                                    @endphp
+                                                   {{-- <span class="users-list-date">{{ $experience->position->text }}</span> --}}
                                                    @endif
                                                     @endforeach
-
+                                                    @if ($ff)
+                                                    <span class="users-list-date">{{ $position_now  }}</span>
+                                                    {{-- <span><small>{{ $experience->position->text }}</small></span><br> --}}
+                                                    @endif
                                                     @endif
                                                     {{-- <span class="users-list-date">Timely Responce - {{ $tutor->avg_time }} hour</span> --}}
 
