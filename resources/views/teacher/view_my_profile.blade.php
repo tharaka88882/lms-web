@@ -301,12 +301,12 @@
                                             @if ($experience->end_date == null)
                                                 {{-- <small>Currently employed </small> --}}
                                             @endif
-                                            <small>{{ explode('-', $experience->start_date)[0] }}
+                                            <small>{{ \Carbon\Carbon::parse($experience->start_date)->format('M-Y') }}
                                                 @if ($experience->end_date != null)
-                                                    -
-                                                    {{ explode('-', $experience->end_date)[0] }}
+                                                &nbsp;&nbsp;
+                                                    {{ \Carbon\Carbon::parse($experience->end_date)->format('M-Y') }}
                                                 @else
-                                                    - Present
+
                                                 @endif
                                                 <br>
                                                 @if ($experience->location != null)
@@ -345,13 +345,13 @@
                                             <small>
                                                 @if ($qualification->end_date != null)
                                                     {{-- {{ explode('-', $qualification->start_date)[0] }} --}}
-                                                    {{ \Carbon\Carbon::parse($qualification->start_date)->format('M-Y') }}
+                                                    {{ \Carbon\Carbon::parse($qualification->start_date)->format('Y') }}
                                                     -
                                                     {{-- {{ explode('-', $qualification->end_date)[0] }} --}}
-                                                    {{ \Carbon\Carbon::parse($qualification->end_date)->format('M-Y') }}
+                                                    {{ \Carbon\Carbon::parse($qualification->end_date)->format('Y') }}
                                                 @else
                                                     {{-- {{ explode('-', $qualification->start_date)[0]}} --}}
-                                                    {{ \Carbon\Carbon::parse($qualification->start_date)->format('M-Y') }}
+                                                    {{ \Carbon\Carbon::parse($qualification->start_date)->format('Y') }}
                                                     <br>
                                                     @if ($qualification->grade != null)
                                                         Grade-{{ $qualification->grade }}
@@ -388,7 +388,6 @@
                                         <span>{{ $experience->institute->text }}
                                             <br>
                                             @if ($experience->end_date == null)
-                                                {{-- <small>Currently employed </small> --}}
                                             @endif
                                             <small>{{ explode('-', $experience->start_date)[0] }}
                                                 @if ($experience->end_date != null)
@@ -407,7 +406,8 @@
                                     @endforeach
                                 </div>
                                 <!-- /.card-body -->
-                            </div>--}}
+                            </div>
+                            --}}
                             {{-- Experience Card --}}
 
 
