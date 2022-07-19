@@ -1,7 +1,7 @@
 @component('mail::message')
 # Hi!
 
-We received your complaint. We will check into it.
+We have received your complaint, we will review it and let you know if we require further information.
 
 Thanks,<br>
 {{ config('app.name') }}
