@@ -34,8 +34,10 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <div style="font-size:15px; text-align:center;" class="alert alert-warning">
-                        Thanks for signing up and welcome to our pilot launch. Please update your profile, explore and check out the
+                    <div style="font-size:15px; text-align:center; background-color: #1dcece;" class="alert">
+                        Thanks for signing up and welcome to our pilot launch.<br>
+                        <br>
+                        Please update your profile, explore and check out the
                         <a href="https://you2mentor.com/knowledge_hub/">Knowledge Hub</a> curated for your development.
                         <br>
                         <br>
@@ -113,7 +115,7 @@
                         <div class="inner">
                             <h3>{{ $teachers_count }}</h3>
 
-                            <p>Mentors</p>
+                            <p>Find Mentors</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-android-people"></i>
@@ -122,7 +124,7 @@
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-6">
+                {{-- <div class="col-lg-3 col-6">
                     <!-- small box -->
                     <div class="small-box bg-light">
                         <div class="inner">
@@ -136,7 +138,7 @@
                         <a href="{{ route('student.tutors') }}" class="small-box-footer">More info <i
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
-                </div>
+                </div> --}}
                 <div class="col-lg-3 col-6">
                     <!-- small box -->
                     <div class="small-box bg-light">

@@ -332,18 +332,26 @@
                                 <!-- /.card-header -->
 
                                 <div class="card-body">
-                                    @foreach (Auth()->user()->userable->qualifications as $qualification)
+                                    @php
+                                    $sorted = collect(Auth()->user()->userable->qualifications)->sortByDesc(function ($obj, $key) {
+                                   return $obj->start_date;
+                                   });
+                                    @endphp
+                                    @foreach ($sorted as $qualification)
                                         <strong>{{ $qualification->text }}</strong><br>
                                         <span>{{ $qualification->institute->text }}
                                             <br>
                                             {{ $qualification->field }}<br>
                                             <small>
                                                 @if ($qualification->end_date != null)
-                                                    {{ explode('-', $qualification->start_date)[0] }}
+                                                    {{-- {{ explode('-', $qualification->start_date)[0] }} --}}
+                                                    {{ \Carbon\Carbon::parse($qualification->start_date)->format('M-Y') }}
                                                     -
-                                                    {{ explode('-', $qualification->end_date)[0] }}
+                                                    {{-- {{ explode('-', $qualification->end_date)[0] }} --}}
+                                                    {{ \Carbon\Carbon::parse($qualification->end_date)->format('M-Y') }}
                                                 @else
-                                                    {{ explode('-', $qualification->start_date)[0]}}
+                                                    {{-- {{ explode('-', $qualification->start_date)[0]}} --}}
+                                                    {{ \Carbon\Carbon::parse($qualification->start_date)->format('M-Y') }}
                                                     <br>
                                                     @if ($qualification->grade != null)
                                                         Grade-{{ $qualification->grade }}
@@ -358,6 +366,49 @@
                                 <!-- /.card-body -->
                             </div>
                             {{-- End of Qualifications Card --}}
+
+
+                            {{-- Experience Card --}}
+                          {{--  <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="fas fa-briefcase"></i>
+                                        Experience
+                                    </h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    @php
+                                    $sorted = collect(Auth()->user()->userable->experiences)->sortByDesc(function ($obj, $key) {
+                                   return $obj->start_date;
+                                   });
+                                    @endphp
+                                    @foreach ($sorted as $experience)
+                                        <strong>{{ $experience->position->text }}</strong><br>
+                                        <span>{{ $experience->institute->text }}
+                                            <br>
+                                            @if ($experience->end_date == null)
+                                                {{-- <small>Currently employed </small> --}}
+                                            @endif
+                                            <small>{{ explode('-', $experience->start_date)[0] }}
+                                                @if ($experience->end_date != null)
+                                                    -
+                                                    {{ explode('-', $experience->end_date)[0] }}
+                                                @else
+                                                    - Present
+                                                @endif
+                                                <br>
+                                                @if ($experience->location != null)
+                                                    Location : {{ $experience->location }}
+                                                @endif
+                                            </small>
+                                        </span>
+                                        <hr>
+                                    @endforeach
+                                </div>
+                                <!-- /.card-body -->
+                            </div>--}}
+                            {{-- Experience Card --}}
 
 
                         </div>

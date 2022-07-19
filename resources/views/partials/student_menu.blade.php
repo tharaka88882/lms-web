@@ -30,7 +30,7 @@
 
             <p>
 
-                Mentor
+                Mentors
 
                 <i class="fas fa-angle-left right"></i> {{-- <span class="right badge badge-danger">New</span> --}}
 
@@ -55,7 +55,7 @@
             <li class="nav-item">
                 <a href="{{route('student.conversation_list')}}" class="nav-link {{ request()->is('student/conversation*') ? 'active' : '' }}">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>My Mentor</p>
+                    <p>My Mentors</p>
                 </a>
             </li>
         </ul>
