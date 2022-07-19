@@ -159,20 +159,22 @@
                                   <i class="fas fa-list"></i>
                                       Mentee development goals
                                </h3>
-                               <div class="card-body">
-                            <div class="p-2 mt-2 bg-light d-flex justify-content rounded text-white stats" style="font-size: 18px;">
-                                @foreach ($menteeDevs as $development)
-                                    <span class="badge bg-gray mr-1">{{$development->note}}</span>
-                                @endforeach
-                            </div>
-
-                               </div>
                              </div>
+                             <div class="card-body">
+                                <div class="p-2 mt-2 bg-light d-flex justify-content rounded text-white stats" style="font-size: 18px;">
+                                    <span>
+                                    @foreach ($menteeDevs as $development)
+                                        <span class="badge bg-gray mr-1">{{$development->note}}</span>
+                                    @endforeach
+                                    </span>
+                                </div>
+
+                                   </div>
                           </div>
 
                           <div class="card card-default">
                             <div class="card-header">
-                              <button data-toggle="modal" data-target="#modal-md" class="btn btn-s btn-warning">Note</button>
+                              <button data-toggle="modal" data-target="#modal-md" class="btn btn-s btn-warning">Notes</button>
                              </div>
                           </div>
 
