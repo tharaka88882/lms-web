@@ -371,16 +371,33 @@
                                                     @php
                                                        $sizeArr = sizeof($conversation->mentor->experiences);
                                                        $i = 0;
+
+                                                       $st_date_diff = 0;
+                                                            $ff = false;
+                                                            $position_now  = '';
                                                     @endphp
                                                     @foreach ($conversation->mentor->experiences as $experience)
-                                                   @php
-                                                        $i++;
-                                                   @endphp
+
                                                    @if ($experience->end_date == null)
-                                                   <span class="users-list-date">{{ $experience->position->text }}</span>
+                                                   @php
+                                                   $i++;
+                                                   $date = \Carbon\Carbon::parse($experience->start_date);
+                                                    $now = \Carbon\Carbon::now();
+
+                                                    if( $st_date_diff > $date->diffInDays($now) || $st_date_diff==0){
+                                                        $st_date_diff =$date->diffInDays($now);
+                                                    $position_now = $experience->position->text;
+                                                    $ff = true;
+                                                    }
+
+                                                    @endphp
+                                                   {{-- <span class="users-list-date">{{ $experience->position->text }}</span> --}}
                                                    @endif
                                                     @endforeach
-
+                                                    @if ($ff)
+                                                    <span class="users-list-date">{{  $position_now }}</span>
+                                                    {{-- <span><small>{{ $experience->position->text }}</small></span><br> --}}
+                                                    @endif
                                                     @endif
                                                     {{-- <div class="p-2 mt-2 bg-light d-flex justify-content-between rounded text-white stats" style="font-size: 14px;">
                                                         <span>Skills -
