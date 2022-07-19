@@ -159,21 +159,23 @@
                               <i class="fas fa-list"></i>
                                   Mentor Skills
                            </h3>
-                           <div class="card-body">
-                        @if (count($teacherSubs)>0)
-                        <div class="p-2 mt-2 bg-light d-flex justify-content rounded text-white stats" style="font-size: 18px;">
-                            @foreach ($teacherSubs as $subject)
-                                <span class="badge bg-gray mr-1">{{$subject->name}}</span>
-                            @endforeach
-                        </div>
-                        @endif
-
-                           </div>
                          </div>
+                         <div class="card-body">
+                            @if (count($teacherSubs)>0)
+                            <div class="p-2 mt-2 bg-light d-flex justify-content rounded text-white stats" style="font-size: 18px;">
+                                <span>
+                                @foreach ($teacherSubs as $subject)
+                                    <span class="badge bg-gray mr-1">{{$subject->name}}</span>
+                                @endforeach
+                            </span>
+                            </div>
+                            @endif
+
+                               </div>
                       </div>
                       <div class="card card-default">
                         <div class="card-header">
-                          <button data-toggle="modal" data-target="#modal-md1" class="btn btn-s btn-warning">Note</button>
+                          <button data-toggle="modal" data-target="#modal-md1" class="btn btn-s btn-warning">Notes</button>
                          </div>
                       </div>
                 </div>
