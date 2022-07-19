@@ -333,12 +333,12 @@
                                             <br>@if ($experience->end_date ==null)
                                             {{-- <small>Currently employed </small> --}}
                                              @endif
-                                            <small style="text-transform: capitalize"> {{ \Carbon\Carbon::parse($experience->start_date)->format('M-Y') }}
+                                            <small style="text-transform: capitalize"> {{ \Carbon\Carbon::parse($experience->start_date)->format('M Y') }}
                                                 @if ($experience->end_date != null)
                                                 &nbsp;&nbsp;
-                                                   {{ \Carbon\Carbon::parse( $experience->end_date)->format('M-Y') }}
+                                                   {{ \Carbon\Carbon::parse( $experience->end_date)->format('M Y') }}
                                                 @else
-
+                                                - Present
                                                 @endif
                                                 <br>
                                                @if ($experience->location != null)

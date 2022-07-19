@@ -322,121 +322,97 @@
                 <div class="row col-sm-12">
                     <div class="col-sm-7">
 
-                        {{-- Experience Card --}}
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">
-                                    <i class="fas fa-briefcase"></i>
-                                    Experience
-                                </h3>
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
+ {{-- Experience Card --}}
+ <div class="card">
+    <div class="card-header">
+        <h3 class="card-title">
+            <i class="fas fa-briefcase"></i>
+            Experience
+        </h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
 
-                            {{--    @foreach ($teacher->experiences as $experience)
-                                    <strong style="text-transform: capitalize">{{ $experience->position->text }}</strong><br>
-                                    <span style="text-transform: capitalize">{{ $experience->institute->text }}
-                                        <br>@if ($experience->end_date ==null)
-                                         @endif
-                                        <small style="text-transform: capitalize">{{ explode('-', $experience->start_date)[0] }}
-                                            @if ($experience->end_date != null)
-                                                -
-                                                {{ explode('-', $experience->end_date)[0] }}
-                                            @else
-                                                - Present
-                                                --}}
+        @foreach ($teacher->experiences as $experience)
+            <strong style="text-transform: capitalize">{{ $experience->position->text }}</strong><br>
+            {{-- <ul> --}}
+            <span style="text-transform: capitalize">{{ $experience->institute->text }}
+                <br>@if ($experience->end_date ==null)
+                {{-- <small>Currently employed </small> --}}
+                 @endif
+                <small style="text-transform: capitalize"> {{ \Carbon\Carbon::parse($experience->start_date)->format('M Y') }}
+                    @if ($experience->end_date != null)
+                    &nbsp;&nbsp;
+                       {{ \Carbon\Carbon::parse( $experience->end_date)->format('M Y') }}
+                    @else
+                    - Present
+                    @endif
+                    <br>
+                   @if ($experience->location != null)
+                   Location : {{ $experience->location }}
+                   @endif
+                </small>
+            </span>
+            <hr>
+            {{-- </ul> --}}
+        @endforeach
 
-                                @php
-                                    // function date_compare($element1, $element2) {
-                                    // $datetime1 = strtotime($element1->start_date);
-                                    // $datetime2 = strtotime($element2->start_date);
-                                    // return $datetime1 - $datetime2;
-                                    // }
-                                    // usort($teacher->qualifications, 'date_compare');
-                                    $sorted = collect($teacher->qualifications)->sortByDesc(function ($obj, $key) {
-                                    return $obj->start_date;
-                                    });
-                                @endphp
-                                @foreach ($sorted as $qualification)
-                                    <strong style="text-transform: capitalize">{{ $qualification->text }}</strong><br>
-                                    {{-- <ul> --}}
-                                    <span style="text-transform: capitalize">{{ $qualification->institute->text }}
-                                        <br>
-                                        {{ $qualification->field }}<br>
-                                        <small style="text-transform: capitalize">
-                                            @if ($qualification->end_date != null)
-                                                {{-- {{ explode('-', $qualification->start_date)[0] }} --}}
-                                                {{ \Carbon\Carbon::parse($qualification->start_date)->format('M-Y') }}&nbsp;&nbsp;{{ \Carbon\Carbon::parse($qualification->end_date)->format('M-Y') }}
-                                            @else
-                                                {{-- {{ explode('-', $qualification->start_date)[0] }} --}}
-                                                {{ \Carbon\Carbon::parse($qualification->start_date)->format('M-Y') }}
-                                                <br>@if ($qualification->grade !=null)
-                                                Grade-{{ $qualification->grade }}
-                                                @endif
+    </div>
+    <!-- /.card-body -->
+</div>
+{{-- Experience Card --}}
 
-                                            @endif
-                                            <br>
-                                          @if ($experience->location != null)
-                                          Location : {{ $experience->location }}
-                                          @endif
-                                        </small>
-                                    </span>
-                                    <hr>
-                                    {{-- </ul> --}}
-                                @endforeach
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
-                        {{-- Experience Card --}}
+{{-- Qualifications Card --}}
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">
+            <i class="fas fa-bookmark"></i>
+            Education
+        </h3>
+    </div>
+    <!-- /.card-header -->
 
-                        {{-- Qualifications Card --}}
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">
-                                    <i class="fas fa-bookmark"></i>
-                                    Education
-                                </h3>
-                            </div>
-                            <!-- /.card-header -->
+    <div class="card-body">
+        <p>
+            @php
+                  $sorted = collect($teacher->qualifications)->sortByDesc(function ($obj, $key) {
+                    return $obj->start_date;
+                    });
+            @endphp
+            @foreach ($sorted as $qualification)
+                <strong style="text-transform: capitalize">{{ $qualification->text }}</strong><br>
+                {{-- <ul> --}}
+                <span style="text-transform: capitalize">{{ $qualification->institute->text }}
+                    <br>
+                    {{ $qualification->field }}<br style="display: block;
+                    margin-bottom: 0em;">
+                    <small style="text-transform: capitalize">
+                        @if ($qualification->end_date != null)
+                            {{-- {{ explode('-', $qualification->start_date)[0] }} --}}
+                            {{ \Carbon\Carbon::parse($qualification->start_date)->format('Y') }}
+                            -
+                            {{-- {{ explode('-', $qualification->end_date)[0] }} --}}
+                            {{ \Carbon\Carbon::parse($qualification->end_date)->format('Y') }}
+                        @else
+                            {{-- {{ explode('-', $qualification->start_date)[0] }} --}}
+                            {{ \Carbon\Carbon::parse($qualification->start_date)->format('Y') }}
+                            <br> @if ($qualification->grade !=null)
+                            Grade-{{ $qualification->grade }}
+                            @endif
+                        @endif
 
-                            <div class="card-body">
+                    </small>
+                </span>
+                <hr>
+                {{-- </ul> --}}
+            @endforeach
+        </p>
+    </div>
+    <!-- /.card-body -->
+</div>
+{{-- End of Qualifications Card --}}
 
-                               {{-- @foreach ($teacher->qualifications as $qualification)
-                                    <strong style="text-transform: capitalize">{{ $qualification->text }}</strong><br> --}}
 
-                                @php
-                                     $sorted = collect($teacher->experiences)->sortByDesc(function ($obj, $key) {
-                                    return $obj->start_date;
-                                    });
-                                @endphp
-                                @foreach ($sorted as $experience)
-                                    <strong style="text-transform: capitalize">{{ $experience->position->text }}</strong><br>
-
-                                    {{-- <ul> --}}
-                                    <span style="text-transform: capitalize">{{ $qualification->institute->text }}
-                                        <br>
-                                        {{ $qualification->field }}<br>
-                                        <small style="text-transform: capitalize">
-                                            @if ($qualification->end_date != null)
-                                                {{ explode('-', $qualification->start_date)[0] }}
-                                                -
-                                                {{ explode('-', $qualification->end_date)[0] }}
-                                            @else
-                                                {{ explode('-', $qualification->start_date)[0] }}
-                                                <br>@if ($qualification->grade !=null)
-                                                Grade-{{ $qualification->grade }}
-                                                @endif
-                                            @endif
-
-                                        </small>
-                                    </span>
-                                    <hr>
-                                    {{-- </ul> --}}
-                                @endforeach
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
-                        {{-- End of Qualifications Card --}}
 
                     </div>
                     <div class="col-sm-5">

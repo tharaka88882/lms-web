@@ -114,33 +114,39 @@ class ResetPasswordController extends Controller
                 return $query->where('email', $request->get('email'));
             });
         }
-        $student = $query->get();
+        $student = $query->first();
          //return  dd($user);
         try{
 
-         if(!empty($student[0])){
-            $code = rand(1000, 99999);
+        if($student->user->social_type==null){
+            if($student !=null){
+                $code = rand(1000, 99999);
 
 
-        $user_mail = $request->get('email');
-        // $subject = "You2Mentor Verification Code";
-        // $txt = "Hi,  Your Code is :- ".$code;
-        // $headers = "From: info@you2mentor.com" . "\r\n";
+            $user_mail = $request->get('email');
+            // $subject = "You2Mentor Verification Code";
+            // $txt = "Hi,  Your Code is :- ".$code;
+            // $headers = "From: info@you2mentor.com" . "\r\n";
 
-        // mail($to,$subject,$txt,$headers);
-        Mail::to($user_mail)->send(new VerifyMail($code));
+            // mail($to,$subject,$txt,$headers);
+            Mail::to($user_mail)->send(new VerifyMail($code));
 
-           // dd($student);
-         // Toastr::success("Can't Find Your Account  :(", "Can't Find");
-        //  $data=  array(
-        //      'code'=>sha1($code),
-        //      'email'=>$request->get('email')
-        //  );
-         return Redirect()->route('auth.verify_view',sha1($code)."-".$request->get('email'));
-         }else{
+               // dd($student);
+             // Toastr::success("Can't Find Your Account  :(", "Can't Find");
+            //  $data=  array(
+            //      'code'=>sha1($code),
+            //      'email'=>$request->get('email')
+            //  );
+             return Redirect()->route('auth.verify_view',sha1($code)."-".$request->get('email'));
+             }else{
+               // dd("");
+                Toastr::error("Can't Find Your Account", "Can't Find");
+                return Redirect()->route('auth.find_account');
+             }
+        } else{
             Toastr::error("Can't Find Your Account", "Can't Find");
             return Redirect()->route('auth.find_account');
-         }
+        }
         }catch(Exception $ex){
             Toastr::error($ex->getMessage(), 'Danger');
             return redirect()->back();
