@@ -283,6 +283,44 @@
 
                     <div class="row col-sm-12">
                         <div class="col-md-7">
+
+                            {{-- Experience Card --}}
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="fas fa-briefcase"></i>
+                                        Experience
+                                    </h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    @foreach (Auth()->user()->userable->experiences as $experience)
+                                        <strong>{{ $experience->position->text }}</strong><br>
+                                        <span>{{ $experience->institute->text }}
+                                            <br>
+                                            @if ($experience->end_date == null)
+                                                {{-- <small>Currently employed </small> --}}
+                                            @endif
+                                            <small>{{ explode('-', $experience->start_date)[0] }}
+                                                @if ($experience->end_date != null)
+                                                    -
+                                                    {{ explode('-', $experience->end_date)[0] }}
+                                                @else
+                                                    - Present
+                                                @endif
+                                                <br>
+                                                @if ($experience->location != null)
+                                                    Location : {{ $experience->location }}
+                                                @endif
+                                            </small>
+                                        </span>
+                                        <hr>
+                                    @endforeach
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            {{-- Experience Card --}}
+
                             {{-- Qualifications Card --}}
                             <div class="card">
                                 <div class="card-header">
@@ -321,42 +359,6 @@
                             </div>
                             {{-- End of Qualifications Card --}}
 
-                            {{-- Experience Card --}}
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">
-                                        <i class="fas fa-briefcase"></i>
-                                        Experience
-                                    </h3>
-                                </div>
-                                <!-- /.card-header -->
-                                <div class="card-body">
-                                    @foreach (Auth()->user()->userable->experiences as $experience)
-                                        <strong>{{ $experience->position->text }}</strong><br>
-                                        <span>{{ $experience->institute->text }}
-                                            <br>
-                                            @if ($experience->end_date == null)
-                                                {{-- <small>Currently employed </small> --}}
-                                            @endif
-                                            <small>{{ explode('-', $experience->start_date)[0] }}
-                                                @if ($experience->end_date != null)
-                                                    -
-                                                    {{ explode('-', $experience->end_date)[0] }}
-                                                @else
-                                                    - Present
-                                                @endif
-                                                <br>
-                                                @if ($experience->location != null)
-                                                    Location : {{ $experience->location }}
-                                                @endif
-                                            </small>
-                                        </span>
-                                        <hr>
-                                    @endforeach
-                                </div>
-                                <!-- /.card-body -->
-                            </div>
-                            {{-- Experience Card --}}
 
                         </div>
                         <div class="col-sm-5">

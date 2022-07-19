@@ -38,6 +38,7 @@
                         Thanks for signing up and welcome to our pilot launch. Please update your profile, explore and check out the
                         <a href="https://you2mentor.com/knowledge_hub/">Knowledge Hub</a> curated for your development.
                         <br>
+                        <br>
                         Your feedback is valuable to us, so please drop
                         us a <a href="https://you2mentor.com/contact/">note</a> if we can improve your mentoring experience.
                         <br />
