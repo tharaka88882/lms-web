@@ -335,17 +335,16 @@
 
                             {{--    @foreach ($teacher->experiences as $experience)
                                     <strong style="text-transform: capitalize">{{ $experience->position->text }}</strong><br>
-                                    {{-- <ul> --}}
                                     <span style="text-transform: capitalize">{{ $experience->institute->text }}
                                         <br>@if ($experience->end_date ==null)
-                                        {{-- <small>Currently employed </small> --}}
                                          @endif
                                         <small style="text-transform: capitalize">{{ explode('-', $experience->start_date)[0] }}
                                             @if ($experience->end_date != null)
                                                 -
                                                 {{ explode('-', $experience->end_date)[0] }}
                                             @else
-                                                - Present--}}
+                                                - Present
+                                                --}}
 
                                 @php
                                     // function date_compare($element1, $element2) {
@@ -367,10 +366,7 @@
                                         <small style="text-transform: capitalize">
                                             @if ($qualification->end_date != null)
                                                 {{-- {{ explode('-', $qualification->start_date)[0] }} --}}
-                                                {{ \Carbon\Carbon::parse($qualification->start_date)->format('M-Y') }}
-                                                -
-                                                {{-- {{ explode('-', $qualification->end_date)[0] }} --}}
-                                                {{ \Carbon\Carbon::parse($qualification->end_date)->format('M-Y') }}
+                                                {{ \Carbon\Carbon::parse($qualification->start_date)->format('M-Y') }}&nbsp;&nbsp;{{ \Carbon\Carbon::parse($qualification->end_date)->format('M-Y') }}
                                             @else
                                                 {{-- {{ explode('-', $qualification->start_date)[0] }} --}}
                                                 {{ \Carbon\Carbon::parse($qualification->start_date)->format('M-Y') }}
