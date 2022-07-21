@@ -446,11 +446,13 @@
                             <!-- /.card-body -->
 
                             <div class="card-footer">
+                                <div class="button-group pull-right">
                                 <button id="add_btn" type="button"
-                                    class="btn btn-success pull-right">Add</button>
+                                    class="btn btn-success">Add</button>
                                 <a id="add_btn" type="button" href="{{ route('teacher.my_subject') }}"
-                                    class="btn btn-warning pull-right mr-2">Change</a>
-                            </div>
+                                    class="btn btn-warning">Change</a>
+                                </div>
+                                </div>
                             {{-- </form> --}}
                         </div>
                         <!-- /.card -->
