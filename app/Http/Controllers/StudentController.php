@@ -341,6 +341,7 @@ class StudentController extends Controller
 
     {
         $query = null;
+        $select_subject = null;
         $query = Teacher::query();
         $query = $query->select('teachers.*')->join('users','users.userable_id','=','teachers.id')->where('users.userable_type','App\Models\Teacher');
 
@@ -362,6 +363,7 @@ class StudentController extends Controller
             $query->leftjoin('teacher_subjects', 'teacher_subjects.teacher_id', '=', 'teachers.id')
                     ->join('subjects', 'subjects.id', '=', 'teacher_subjects.subject_id')
                     ->where('subjects.id', $request->get('search_subject'));
+                     $select_subject = Subject::findOrFail($request->get('search_subject'));
         } if ($request->get('city') !=null) {
 
             $query->where('users.city', 'like', $request->get('city').'%');
@@ -405,7 +407,7 @@ class StudentController extends Controller
 
         //$avg_time = round(1,5);
 
-        return view('student.tutors', compact('tutors', 'subjects', 'industries', 'request','institutes'));
+        return view('student.tutors', compact('tutors', 'subjects', 'industries', 'request','institutes','select_subject'));
 
     }
 
@@ -621,6 +623,7 @@ class StudentController extends Controller
     public function conversations(Request $request)
 
     {
+        $select_subject = null;
         $query =  Conversation::query();
         $query = $query->select('conversations.*')->join('teachers', 'teachers.id', '=', 'conversations.teacher_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('student_id', Auth()->user()->userable->id)->where('users.userable_type','App\Models\Teacher');
 
@@ -628,6 +631,7 @@ class StudentController extends Controller
             $query->leftjoin('teacher_subjects', 'teacher_subjects.teacher_id', '=', 'teachers.id')
             ->join('subjects', 'subjects.id', '=', 'teacher_subjects.subject_id')
             ->where('subjects.id', $request->get('search_subject'));
+            $select_subject = Subject::findOrFail($request->get('search_subject'));
         }
          if($request->get('country')!=null){
             $query->where('users.country', 'like', $request->get('country').'%');
@@ -673,7 +677,7 @@ class StudentController extends Controller
         $industries = Industry::all();
         $institutes = Institute::all();
 
-        return view('student.my_teachers', compact('conversations','request','subjects','industries','institutes'));
+        return view('student.my_teachers', compact('conversations','request','subjects','industries','institutes','select_subject'));
 
     }
 

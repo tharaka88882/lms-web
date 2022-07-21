@@ -396,6 +396,7 @@ class TeacherController extends Controller
     public function mentors(Request $request)
     {
         $query = null;
+        $select_subject = null;
         $query = Teacher::query();
         $query = $query->select('teachers.*')->join('users','users.userable_id','=','teachers.id')->where('teachers.id', '<>', Auth()->user()->userable->id)->where('users.userable_type','App\Models\Teacher');
        // dd($query->get());
@@ -415,6 +416,7 @@ class TeacherController extends Controller
             $query->leftjoin('teacher_subjects', 'teacher_subjects.teacher_id', '=', 'teachers.id')
             ->join('subjects', 'subjects.id', '=', 'teacher_subjects.subject_id')
             ->where('subjects.id', $request->get('search_subject'));
+            $select_subject = Subject::findOrFail($request->get('search_subject'));
         } if ($request->get('city')) {
             // dd('test2');
             // dd($request->get('city'));
@@ -457,7 +459,8 @@ class TeacherController extends Controller
         $institutes = Institute::all();
 
 
-        return view('teacher.find_mentors', compact('tutors', 'subjects', 'industries','institutes','request'));
+
+        return view('teacher.find_mentors', compact('tutors', 'subjects', 'industries','institutes','request','select_subject'));
     }
 
     public function view_mentor(Request $request, $id)
@@ -561,6 +564,7 @@ class TeacherController extends Controller
     public function mentor_conversation(Request $request)
     {
         $query = null;
+        $select_subject = null;
         $query =  MentorConversation::query();
         $query = $query->select('mentor_conversations.*')->join('teachers', 'teachers.id', '=', 'mentor_conversations.mentor_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('mentee_id', Auth()->user()->userable->id)->where('users.userable_type','App\Models\Teacher');
 
@@ -568,6 +572,7 @@ class TeacherController extends Controller
             $query->leftjoin('teacher_subjects', 'teacher_subjects.teacher_id', '=', 'teachers.id')
             ->join('subjects', 'subjects.id', '=', 'teacher_subjects.subject_id')
             ->where('subjects.id', $request->get('search_subject'));
+            $select_subject = Subject::findOrFail($request->get('search_subject'));
         }
          if($request->get('country')!=null){
             $query->where('users.country', 'like', $request->get('country').'%');
@@ -621,7 +626,7 @@ class TeacherController extends Controller
         $industries = Industry::all();
         $institutes = Institute::all();
 
-        return view('teacher.my_mentor', compact('conversations', 'request','subjects','industries','institutes'));
+        return view('teacher.my_mentor', compact('conversations', 'request','subjects','industries','institutes','select_subject'));
     }
 
     public function rate_mentor(Request $request)
