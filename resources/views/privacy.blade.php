@@ -6,7 +6,7 @@
     <title>Terms & Conditions | YOU2MENTOR </title>
     <!-- Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Landing page template for creative dashboard">
+    <meta name="description" content="">
     <meta name="keywords" content="Landing page template">
     <!-- Favicon icon -->
     <link rel="icon" href="{{ url('public/') }}/theme/landingpage/assets/logos/favicon.ico" type="image/png"

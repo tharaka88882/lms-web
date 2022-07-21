@@ -54,18 +54,24 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                            $x =1;
+                        @endphp
                         @foreach($teachers as $teacher)
                         <tr>
-                            <td>{{$teacher->id}}</td>
-                            <td>{{$teacher->user->name}}</td>
+                            <td>{{$x}}</td>
+                            <td>{{$teacher->user->name?? null}}</td>
                             <td>{{$teacher->nic}}</td>
-                            <td>{{$teacher->user->email}}</td>
+                            <td>{{$teacher->user->email?? null}}</td>
                             <td>{{$teacher->qualification}}</td>
                             <td><h5><span class="badge badge-secondary">{{$teacher->status==('1')? 'Active':'Inactive'}}</span><h5></td>
                             <td>
                                  <a class="btn btn-sm btn-warning" href="{{route('admin.edit_teacher', $teacher->id)}}"><i class="far fa-edit"></i> Edit</a>
                             </td>
                         </tr>
+                        @php
+                            $x++;
+                        @endphp
                         @endforeach
                     </tbody>
                 </table>

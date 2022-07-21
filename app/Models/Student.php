@@ -15,6 +15,11 @@ class Student extends Model
     {
         return $this->morphOne(User::class, 'userable');
     }
+
+    public function user1()
+    {
+        return $this->morphOne(User::class, 'userable');
+    }
     // public function complaint()
     // {
     //     return $this->hashMany(Complaint::class, 'mentee_id','id');

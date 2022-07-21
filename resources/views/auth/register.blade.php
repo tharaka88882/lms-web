@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>YOU2MENTOR | Log in</title>
+    <title>YOU2MENTOR | Register</title>
     <link rel="icon" href="{{ url('public/') }}/theme/admin/dist/img/logo/favnew.ico" type="image/x-icon" />
 
     <!-- Google Font: Source Sans Pro -->

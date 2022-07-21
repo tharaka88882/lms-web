@@ -85,8 +85,25 @@ class StudentController extends Controller
     {
 
         $students = Student::paginate(10);
+        // $students = Student::get();
 
-        return view('admin.students_list', compact('students'));
+        $new_array = array();
+        $y = 0;
+
+    foreach ($students as $student){
+
+        $new_array[$y] = array(
+            'student_id' =>$student->id,
+             'student_name' =>$student->user->name??  null ,
+             'student_email' =>$student->user->email??  null ,
+            'student_grade' =>$student->grade,
+            'student_status' =>$student->status
+);
+        $y++;
+}
+        //dd($new_array);
+
+        return view('admin.students_list', compact('students','new_array'));
 
     }
 
