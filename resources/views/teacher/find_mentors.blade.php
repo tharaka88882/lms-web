@@ -492,9 +492,15 @@
                             results: data.results
                         };
                     }
+
                 },
+
                 dropdownParent: $('#currentModal')
             });
+
+            @if ($select_subject!=null)
+            $('#select2-select2-echannel-doctor-container').html('{{$select_subject->name}}');
+            @endif
 
 
             // $('#search_industry').select2({
