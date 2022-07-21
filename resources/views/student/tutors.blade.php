@@ -129,7 +129,7 @@
                                         <div class="col-lg-3">
                                             <div class="form-group">
                                                 <label>Name:</label>
-                                                <input placeholder="Enter Mentor Name" class="select2 form-control" data-placeholder="Any" name="m_name"/>
+                                                <input value="{{$request->get('m_name')}}" placeholder="Enter Mentor Name" class="select2 form-control" data-placeholder="Any" name="m_name"/>
                                             </div>
                                         </div>
 
@@ -145,7 +145,7 @@
                                         <div class="col-lg-3">
                                             <div class="form-group autocomplete" style="width: 100%">
                                                 <label> Country:</label>
-                                                <input placeholder="Enter Country" class="select2 form-control"
+                                                <input value="{{$request->get('country')}}" placeholder="Enter Country" class="select2 form-control"
                                                 name="country" id="country"/>
                                             </div>
                                         </div>
@@ -153,7 +153,7 @@
                                         <div class="col-lg-3">
                                             <div class="form-group autocomplete" style="width: 100%">
                                                 <label>City:</label>
-                                                <input placeholder="Enter City" class="select2 form-control" id="city" name="city"/>
+                                                <input placeholder="Enter City" class="select2 form-control" id="city" name="city" value="{{$request->get('city')}}"/>
                                             </div>
                                         </div>
 
@@ -161,8 +161,8 @@
                                             <div class="form-group">
                                                 <label>Sort Order:</label>
                                                 <select name="select_order" class="form-control" style="width: 100%;">
-                                                    <option value="1" selected>Rating High to Low</option>
-                                                    <option value="0">Rating Low to High</option>
+                                                    <option {{($request->get('select_order')==1)? 'selected':''}} value="1" selected>Rating High to Low</option>
+                                                    <option {{($request->get('select_order')==0)? 'selected':''}} value="0">Rating Low to High</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -170,13 +170,13 @@
                                         <div class="col-lg-3">
                                             <div class="form-group">
                                                 <label>Industry :</label>
-                                                <input class="form-control" placeholder="Enter Industry"  style="width: 100%;" name="search_industry" id="search_industry"/>
+                                                <input value="{{$request->get('search_industry')}}" class="form-control" placeholder="Enter Industry"  style="width: 100%;" name="search_industry" id="search_industry"/>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="form-group autocomplete" style="width: 100%">
                                                 <label> Company:</label>
-                                                <input placeholder="Enter Company" class="select2 form-control"  name="company" id="company"/>
+                                                <input value="{{$request->get('company')}}" placeholder="Enter Company" class="select2 form-control"  name="company" id="company"/>
                                             </div>
                                         </div>
 

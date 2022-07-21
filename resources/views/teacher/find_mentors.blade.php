@@ -131,7 +131,7 @@
 
                                                 <select name="search_subject"
                                                     class="form-control select22 @if ($errors->has('search_subject')) {{ 'is-invalid' }} @endif"
-                                                    id="select2-echannel-doctor">
+                                                    id="select2-echannel-doctor" data-placeholder="{{$request->get('search_subject')}}">
 
                                                     {{-- <option>Any</option> --}}
 
@@ -145,9 +145,9 @@
 
                                                 <select name="select_order" class="select2 form-control" style="width: 100%;">
 
-                                                    <option value="1" selected>Rating High to Low</option>
+                                                    <option {{($request->get('select_order')==1)? 'selected':''}} value="1" selected>Rating High to Low</option>
 
-                                                    <option value="0">Rating Low to High</option>
+                                                    <option {{($request->get('select_order')==0)? 'selected':''}} value="0">Rating Low to High</option>
 
                                                 </select>
 
@@ -162,14 +162,14 @@
                                                 <label> Name:</label>
 
                                                 <input placeholder="Enter Mentor name" class="select2 form-control"
-                                                    data-placeholder="Any" name="m_name" />
+                                                    data-placeholder="Any" name="m_name" value="{{$request->get('m_name')}}"/>
 
                                             </div>
                                             <div class="form-group autocomplete" style="width: 100%">
 
                                                 <label> Company:</label>
 
-                                                <input placeholder="Enter Company" class="select2 form-control"  name="company" id="company"/>
+                                                <input placeholder="Enter Company" class="select2 form-control"  name="company" id="company" value="{{$request->get('company')}}"/>
 
                                             </div>
 
@@ -183,14 +183,14 @@
                                                 <label>City:</label>
 
                                                 <input placeholder="Enter City" class="select2 form-control"
-                                                    name="city" id="city" />
+                                                    name="city" id="city" value="{{$request->get('city')}}"/>
 
                                             </div>
 
                                             <div class="form-group" id="">
                                                 <label>Industry:</label>
                                                 <input class="form-control" style="width: 100%;"
-                                                    name="search_industry" id="search_industry" placeholder="Enter Industry"/>
+                                                    name="search_industry" id="search_industry" placeholder="Enter Industry" value="{{$request->get('search_industry')}}"/>
                                             </div>
 
                                         </div>
@@ -202,7 +202,7 @@
                                                 <label> Country:</label>
 
                                                 <input autocomplete="off" id="country" placeholder="Enter Country" class="select2 form-control"
-                                                    name="country"/>
+                                                    name="country" value="{{$request->get('country')}}"/>
 
                                             </div>
 

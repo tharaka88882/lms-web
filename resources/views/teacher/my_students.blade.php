@@ -93,7 +93,7 @@
 
                                             <label>Name:</label>
 
-                                            <input placeholder="Enter Mentee name" class="select2 form-control"  name="m_name"/>
+                                            <input value="{{$request->get('m_name')}}" placeholder="Enter Mentee name" class="select2 form-control"  name="m_name"/>
 
                                         </div>
 
@@ -107,7 +107,7 @@
 
                                             <label>Development Area:</label>
 
-                                            <input placeholder="Enter Development" class="select2 form-control"  name="develop"/>
+                                            <input value="{{$request->get('develop')}}" placeholder="Enter Development" class="select2 form-control"  name="develop"/>
 
                                         </div>
 

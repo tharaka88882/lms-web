@@ -181,7 +181,7 @@
 
                                             <label> Name:</label>
 
-                                            <input placeholder="Enter Mentor Name" class="select2 form-control" data-placeholder="Any" name="m_name"/>
+                                            <input placeholder="Enter Mentor Name" class="select2 form-control" value="{{$request->get('m_name')}}" data-placeholder="Any" name="m_name"/>
 
                                         </div>
 
@@ -191,9 +191,9 @@
 
                                             <select name="select_order" class="select2 form-control" style="width: 100%;">
 
-                                                <option value="1" selected>Rating High to Low</option>
+                                                <option {{($request->get('select_order')==1)? 'selected':''}} value="1" selected>Rating High to Low</option>
 
-                                                <option value="0">Rating Low to High</option>
+                                                <option {{($request->get('select_order')==0)? 'selected':''}} value="0">Rating Low to High</option>
 
                                             </select>
 
@@ -232,7 +232,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Industry:</label>
-                                            <input class=" form-control" placeholder="Enter Industry" style="width: 100%;" name="search_industry" id="search_industry"/>
+                                            <input value="{{$request->get('search_industry')}}" class=" form-control" placeholder="Enter Industry" style="width: 100%;" name="search_industry" id="search_industry"/>
                                         </div>
                                     </div>
 
@@ -242,14 +242,14 @@
 
                                             <label>City:</label>
 
-                                            <input placeholder="Enter City" class="form-control" name="city" id="city"/>
+                                            <input value="{{$request->get('city')}}" placeholder="Enter City" class="form-control" name="city" id="city"/>
 
                                         </div>
                                         <div class="form-group autocomplete" style="width: 100%">
 
                                             <label>Company:</label>
 
-                                            <input placeholder="Enter Company" class="form-control" name="company" id="company"/>
+                                            <input value="{{$request->get('company')}}" placeholder="Enter Company" class="form-control" name="company" id="company"/>
 
                                         </div>
 
@@ -261,7 +261,7 @@
 
                                             <label> Country:</label>
 
-                                            <input placeholder="Enter Country" class="form-control"
+                                            <input value="{{$request->get('country')}}" placeholder="Enter Country" class="form-control"
                                             name="country" id="country"/>
 
                                         </div>

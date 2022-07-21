@@ -52,24 +52,35 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($students as $student)
-                                <tr>
-                                    <td>{{ $student->id }}</td>
-                                    <td>{{ $student->user->name }}</td>
-                                    <td>{{ $student->user->email }}</td>
-                                    <td>{{ $student->grade }}</td>
-                                    <td>
-                                        <h5><span
-                                                class="badge badge-secondary">{{ $student->status == '1' ? 'Active' : 'Inactive' }}</span>
-                                            <h5>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-sm btn-warning"
-                                            href="{{ route('admin.edit_student', $student->id) }}"><i
-                                                class="far fa-edit"></i> Edit</a>
-                                    </td>
-                                </tr>
-                            @endforeach
+
+                            {{-- {{dd($new_array);}} --}}
+                            @php
+                                $x = 1;
+                            @endphp
+                               @foreach ($new_array as $st_data)
+                               <tr>
+                                <td>{{$x}}</td>
+                                <td>@php
+                                   echo $st_data['student_name'];
+                                @endphp</td>
+                                <td>{{$st_data['student_email']}}</td>
+                                <td>{{$st_data['student_grade']}}</td>
+                                <td>
+                                    <h5><span
+                                            class="badge badge-secondary">{{ $st_data['student_status'] == '1' ? 'Active' : 'Inactive' }}</span>
+                                        <h5>
+                                </td>
+                                <td>
+                                    <a class="btn btn-sm btn-warning"
+                                        href="{{ route('admin.edit_student', $st_data['student_id']) }}"><i
+                                            class="far fa-edit"></i> Edit</a>
+                                </td>
+                            </tr>
+                            @php
+                                $x++;
+                            @endphp
+                               @endforeach
+
                         </tbody>
                     </table>
 
