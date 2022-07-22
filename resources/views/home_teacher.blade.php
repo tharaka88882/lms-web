@@ -370,7 +370,17 @@
                             <img src='{{ url('public') }}/images/profile/First3.png' alt="You2Mentor" width="100%;" />
                         </div>
                         <div class="col-md-12 mb-2">
-                            <img src='{{ url('public') }}/images/profile/Title02.png' alt="You2Mentor" width="100%;" />
+                            {{-- <img src='{{ url('public') }}/images/profile/Title02.png' alt="You2Mentor" width="100%;" /> --}}
+
+                            <picture>
+                                <source
+                                   media="(min-width: 480px)"
+                                   srcset="{{ url('public') }}/images/profile/Title05.png" alt="You2Mentor" width="100%">
+                                <source
+                                   media="(max-width: 480px)"
+                                   srcset="{{ url('public') }}/images/profile/Title02.png" alt="You2Mentor" width="100%">
+                                <img src="{{ url('public') }}/images/profile/Title02.png" alt="You2Mentor" width="100%">
+                             </picture>
                         </div>
 
                         <div class="col-md-12 mb-2">
