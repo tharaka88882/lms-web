@@ -163,7 +163,7 @@
                                             <div class="col-xm-12 col-md-4 mb-1">
                                                 <button {{ sizeof($old_ratings) > 0 ? 'disabled' : '' }}
                                                     data-toggle="modal" data-target="#modal-md" class="btn btn-warning"><i
-                                                        class="fa fa-star"></i>Rate Now</button>
+                                                        class="fa fa-star" id="rating_id"></i>Rate Now</button>
                                             </div>
 
                                             <div class="col-xm-12 col-md-4 mb-1">
@@ -501,8 +501,8 @@
 
 @push('scripts')
     <script>
-        $(function() {
 
+        $(function() {
 
 
             /* initialize the external events

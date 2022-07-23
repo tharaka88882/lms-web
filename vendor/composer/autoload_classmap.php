@@ -101,6 +101,7 @@ return array(
     'App\\Models\\ProductName' => $baseDir . '/app/Models/ProductName.php',
     'App\\Models\\Qualification' => $baseDir . '/app/Models/Qualification.php',
     'App\\Models\\Rating' => $baseDir . '/app/Models/Rating.php',
+    'App\\Models\\RatingView' => $baseDir . '/app/Models/RatingView.php',
     'App\\Models\\Role' => $baseDir . '/app/Models/Role.php',
     'App\\Models\\Schedule' => $baseDir . '/app/Models/Schedule.php',
     'App\\Models\\Setting' => $baseDir . '/app/Models/Setting.php',

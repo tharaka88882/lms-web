@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Rating;
 use App\Models\Teacher;
+use App\Models\RatingView;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Http\Requests\RatingRequest;
 
@@ -78,16 +79,18 @@ class RateController extends Controller
      */
     public function store(RatingRequest $request)
     {
+        $rating_view = RatingView::where('status',0)->where('user_id',Auth()->user()->id)->first();
+
         $rating = new Rating();
         $rating->rating = $request->get('rating');
         $rating->description = $request->get('question_3');
         $rating->answer = $request->get('question_2');
-        $rating->teacher_id = $request->get('teacher_id');
+        $rating->teacher_id = $rating_view->mentor_id;
         $rating->user_id = Auth()->user()->id;
         $rating->save();
 
 
-        $ratings = Rating::where('teacher_id',$request->get('teacher_id'))->get();
+        $ratings = Rating::where('teacher_id',$rating_view->mentor_id)->get();
         $rator_count = count(json_decode( $ratings,true));
         $rating_count = 0;
         $mediation = 0;
@@ -98,10 +101,13 @@ class RateController extends Controller
         $mediation = $rating_count/$rator_count;
        }
 
-        $teacher = Teacher::findOrFail($request->get('teacher_id'));
+        $teacher = Teacher::findOrFail($rating_view->mentor_id);
         $teacher->rating =$mediation;
         $teacher->save();
 
+
+        $rating_view->status = 1;
+        $rating_view->save();
         Toastr::success('Rating is added successfully', 'Success');
 
         return array(
