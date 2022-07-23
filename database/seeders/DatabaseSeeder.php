@@ -41,6 +41,26 @@ class DatabaseSeeder extends Seeder
         $teacher2->save();
         $teacher2->user()->save($user4);
 
+        $user5 = new User();
+        $user5->name = "Kalpana";
+        $user5->email = "kalpana@gmail.com";
+        $user5->password = bcrypt('12345678');
+        $teacher3 = new Teacher();
+        $teacher3->status = true;
+        $teacher3->level = 4;
+        $teacher3->save();
+        $teacher3->user()->save($user5);
+
+        $user6 = new User();
+        $user6->name = "Tharaka";
+        $user6->email = "tharaka@gmail.com";
+        $user6->password = bcrypt('12345678');
+        $teacher4 = new Teacher();
+        $teacher4->status = true;
+        $teacher4->level = 4;
+        $teacher4->save();
+        $teacher4->user()->save($user6);
+
         $user2 = new User();
         $user2->name = "dinesh";
         $user2->email = "dinesh@gmail.com";
