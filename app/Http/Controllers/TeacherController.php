@@ -581,7 +581,7 @@ class TeacherController extends Controller
      }else{
         return view('teacher.mentor_chat', compact('request', 'id', 'conversation', 'userTransaction', 'userMentorTransaction', 'teacher', 'setting','menteeDevs','teacherSubs','rating_view'));
      }
-        if( $flag && $looping_count == $conver_count){
+        if($flag && $looping_count == $conver_count){
             return view('teacher.mentor_chat', compact('request', 'id', 'conversation', 'userTransaction', 'userMentorTransaction', 'teacher', 'setting','menteeDevs','teacherSubs','rating_view'));
         }
 

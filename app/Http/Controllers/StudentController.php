@@ -28,6 +28,7 @@ use App\Models\Setting;
 use App\Models\Student;
 
 use App\Models\Subject;
+use App\Models\RatingView;
 
 use App\Models\Teacher;
 
@@ -490,73 +491,122 @@ class StudentController extends Controller
         $teacherSubs = TeacherSubject::select('*')->join('subjects','teacher_subjects.subject_id','=','subjects.id')->where('teacher_id', $conversation->teacher_id)->get();
         $userTransaction = UserTransaction::where('sender_id', Auth()->user()->id)->where('receiver_id', $conversation->teacher->user->id)->where('status', 0)->first();
 
-        $conversations = Conversation::where('student_id', Auth()->user()->userable->id)->where('teacher_id',$conversation->teacher_id)->first();
+       // $conversations = Conversation::where('student_id', Auth()->user()->userable->id)->where('teacher_id',$conversation->teacher_id)->first();
 
-        // $conversations = Conversation::select('messages.sender_id')->join('messages', 'messages.conversation_id', '=', 'conversations.id')
+       $rating_view =null;
+       $rating_view = RatingView::where('r_count','<=',3)->where('status',0)->where('user_id',Auth()->user()->id)->first();
+       if($rating_view == null){
+           $rating_view = RatingView::where('r_count',3)->where('status',0)->where('user_id',Auth()->user()->id)->first();
+       }
 
-        //     ->where('conversations.student_id', Auth()->user()->userable->id)->get();
 
-        //dd();
+        $conversations = Conversation::select('messages.sender_id')->join('messages', 'messages.conversation_id', '=', 'conversations.id')
+            ->where('conversations.student_id', Auth()->user()->userable->id)->get();
 
-        $flag = false;
-
-        foreach ($conversations->messages as $conver) {
-
-            if ($conver->sender_id != Auth()->user()->id) {
-
-                // dd('tt');
-
-                $user = User::findOrFail($conver->sender_id);
-
-                // dd($user);
-
-                if ($user->userable_type == 'App\Models\Teacher') {
-
+            $conver_count =Conversation::select('messages.sender_id')->join('messages', 'messages.conversation_id', '=', 'conversations.id')
+            ->where('conversations.student_id', Auth()->user()->userable->id)->count();
+            $flag = false;
+            $looping_count =0;
+            foreach($conversations as $conver){
+                $looping_count ++;
+                if($conver->sender_id != Auth()->user()->id){
                     $flag = false;
+                    $user = User::findOrFail($conver->sender_id);
+                    $rating = Rating::where('teacher_id',$user->userable_id)->where('user_id', Auth()->user()->id)->first();
 
-                    $rating =  Rating::where('teacher_id', $user->userable->id)->where('user_id', Auth()->user()->id)->get();
-
-                    // dd(sizeof($rating));
-
-                    if (sizeof($rating) > 0) {
-
-                        return view('student.chat', compact('request', 'id', 'conversation', 'userTransaction', 'teacher', 'setting','teacherSubs'));
-
-                    } else {
-
-                        Toastr::warning("Please rate mentor (" . $user->name . ")", 'Warning');
-
-                        return redirect()->route('student.view_tutor', $user->userable->id);
-
+                    if($rating == null){
+                        if($rating_view == null){
+                            $rating_view = new RatingView();
+                            $rating_view->r_count = 1;
+                            $rating_view->status = 0;
+                            $rating_view->mentor_id = $user->userable_id;
+                            $rating_view->user_id =Auth()->user()->id;
+                            $rating_view->save();
+                            return view('student.chat', compact('request', 'id', 'conversation', 'userTransaction', 'teacher', 'setting','teacherSubs','rating_view'));
+                        }else{
+                        if($rating_view->r_count<3){
+                            $rating_view->r_count = $rating_view->r_count +1;
+                            $rating_view->save();
+                            return view('student.chat', compact('request', 'id', 'conversation', 'userTransaction', 'teacher', 'setting','teacherSubs','rating_view'));
+                        }else{
+                      if($rating_view->status == 0){
+                        Toastr::warning("Please rate mentor (" . $rating_view->mentor->user->name . ")", 'Warning');
+                        return redirect()->route('student.view_tutor',$rating_view->mentor->id);
+                      }
+                        }
+                        }
+                    }else{
+                        $flag = true;
                     }
-
+                }else{
+                    $flag = true;
                 }
-
-            } else {
-
-                $flag = true;
-
-                //    if(sizeof($conversations)<2){
-
-                //     return view('student.chat', compact('request', 'id', 'conversation'));
-
-                //    }
-
-                //dd(sizeof($conver));
-
             }
 
-        }
+            if($flag && $looping_count == $conver_count){
+                return view('student.chat', compact('request', 'id', 'conversation', 'userTransaction', 'teacher', 'setting','teacherSubs','rating_view'));
+            }
+        //dd();
 
-        if ($flag) {
+        // $flag = false;
 
-            return view('student.chat', compact('request', 'id', 'conversation', 'userTransaction', 'teacher', 'setting','teacherSubs'));
+        // foreach ($conversations->messages as $conver) {
 
-        } elseif (sizeof($conversations) == 0) {
+        //     if ($conver->sender_id != Auth()->user()->id) {
 
-            return view('student.chat', compact('request', 'id', 'conversation', 'userTransaction', 'teacher', 'setting','teacherSubs'));
+        //         // dd('tt');
 
-        }
+        //         $user = User::findOrFail($conver->sender_id);
+
+        //         // dd($user);
+
+        //         if ($user->userable_type == 'App\Models\Teacher') {
+
+        //             $flag = false;
+
+        //             $rating =  Rating::where('teacher_id', $user->userable->id)->where('user_id', Auth()->user()->id)->get();
+
+        //             // dd(sizeof($rating));
+
+        //             if (sizeof($rating) > 0) {
+
+        //                 return view('student.chat', compact('request', 'id', 'conversation', 'userTransaction', 'teacher', 'setting','teacherSubs'));
+
+        //             } else {
+
+        //                 Toastr::warning("Please rate mentor (" . $user->name . ")", 'Warning');
+
+        //                 return redirect()->route('student.view_tutor', $user->userable->id);
+
+        //             }
+
+        //         }
+
+        //     } else {
+
+        //         $flag = true;
+
+        //         //    if(sizeof($conversations)<2){
+
+        //         //     return view('student.chat', compact('request', 'id', 'conversation'));
+
+        //         //    }
+
+        //         //dd(sizeof($conver));
+
+        //     }
+
+        // }
+
+        // if ($flag) {
+
+        //     return view('student.chat', compact('request', 'id', 'conversation', 'userTransaction', 'teacher', 'setting','teacherSubs'));
+
+        // } elseif (sizeof($conversations) == 0) {
+
+        //     return view('student.chat', compact('request', 'id', 'conversation', 'userTransaction', 'teacher', 'setting','teacherSubs'));
+
+        // }
 
     }
 

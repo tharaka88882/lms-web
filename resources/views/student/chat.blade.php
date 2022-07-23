@@ -261,10 +261,75 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
+
+
+
+    <!-- /.modal -->
+    <div class="modal fade" id="modal-md">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Please rate {{($rating_view !=null)? $rating_view->mentor->user->name:''}}</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                @csrf
+                <input type="hidden" name="milestone_id" value="" />
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>How would you rate your overall experience with the mentor</label>
+                        <!-- <input type="text" name="text" class="form-control" placeholder="Type Here"> -->
+                        <div>
+                            <span class="fa fa-star" style="cursor: pointer" aria-hidden="true" id="st1"></span>
+                            <span class="fa fa-star" style="cursor: pointer" aria-hidden="true" id="st2"></span>
+                            <span class="fa fa-star" style="cursor: pointer" aria-hidden="true" id="st3"></span>
+                            <span class="fa fa-star" style="cursor: pointer" aria-hidden="true" id="st4"></span>
+                            <span class="fa fa-star" style="cursor: pointer" aria-hidden="true" id="st5"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Was your Question answered?</label>
+                        <div class="form-check">
+                            <input id="radio1" class="form-check-input" type="radio" name="radio1" value="1"
+                                checked="">
+                            <label class="form-check-label">Yes</label><br>
+                            <input id="radio2" class="form-check-input" type="radio" value="0"
+                                name="radio1">
+                            <label class="form-check-label">No</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Any Comments</label>
+                        <textarea id="question3" name="question3" class="form-control" column="3" rows="2" required></textarea>
+                        <!-- <input type="test" name="due_date" class="form-control" placeholder="Enter ..."> -->
+                    </div>
+                    <div class="modal-footer justify-content-between btn-group">
+                        <button onclick="store_rating('{{ $teacher->id }}');" type="submit"
+                            class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+    </div>
+    <!-- /.modal -->
+    <button id="rating_i" style="display: none;" data-toggle="modal" data-target="#modal-md"></button>
 @endsection
 
 @push('scripts')
     <script>
+
+    @if ($rating_view !=null)
+    @if ($rating_view->r_count<=4)
+        $(document).ready(function(){
+    $("#rating_i").trigger("click");
+    });
+
+    @endif
+    @endif
 
         var last_id = "{{$last_id}}";
 
@@ -425,5 +490,132 @@ function saveNote1(id){
    }
 
 }
+
+
+
+$('#ratingInp').change(function() {
+
+$('#changeRatings').submit();
+
+});
+
+
+
+
+// Star Ratings
+var rating_count = 0;
+
+$(document).ready(function() {
+    var st1 = true;
+    $("#st1").click(function() {
+        if (st1) {
+            $("#st1").css("color", "rgb(255, 153, 0)");
+            rating_count = 1;
+            st1 = false;
+        } else {
+            $(".fa-star").css("color", "black");
+            rating_count = 0;
+            st1 = true;
+        }
+
+
+        //console.log(rating_count);
+
+    });
+    var st2 = true;
+    $("#st2").click(function() {
+        if (st2) {
+            $("#st1, #st2").css("color", "rgb(255, 153, 0)");
+            rating_count = 2;
+            st2 = false;
+        } else {
+            $(".fa-star").css("color", "black");
+            rating_count = 0;
+            st2 = true;
+        }
+
+
+        // console.log(rating_count);
+
+    });
+    var st3 = true;
+    $("#st3").click(function() {
+        if (st3) {
+            $("#st1, #st2, #st3").css("color", "rgb(255, 153, 0)");
+            rating_count = 3;
+            st3 = false;
+        } else {
+            $(".fa-star").css("color", "black")
+            rating_count = 0;
+            st3 = true;
+        }
+
+
+        // console.log(rating_count);
+
+    });
+
+    var st4 = true;
+    $("#st4").click(function() {
+        if (st4) {
+            $("#st1, #st2, #st3, #st4").css("color", "rgb(255, 153, 0)");
+            rating_count = 4;
+            st4 = false;
+        } else {
+            $(".fa-star").css("color", "black");
+            rating_count = 0;
+            st4 = true;
+        }
+        // console.log(rating_count);
+
+    });
+
+
+    var st5 = true;
+    $("#st5").click(function() {
+        if (st5) {
+            $("#st1, #st2, #st3, #st4, #st5").css("color", "rgb(255, 153, 0)");
+            rating_count = 5;
+            st5 = false;
+        } else {
+            $(".fa-star").css("color", "black");
+            rating_count = 0;
+            st5 = true;
+        }
+
+
+        //  console.log(rating_count);
+
+    });
+
+
+
+
+    });
+
+    function store_rating(id) {
+    // console.log("test");
+    var q2 = 1;
+    if ($('#radio1').is(":checked")) {
+        q2 = 1;
+
+    } else {
+        q2 = 0;
+    }
+
+    $.post("{{ route('user.store_rates') }}", {
+            rating: rating_count,
+            question_2: q2,
+            question_3: $('#question3').val(),
+            teacher_id: id,
+            _token: "{{ csrf_token() }}"
+        },
+        function(data, status) {
+            if (data.success == true) {
+                window.location = "{{ route('student.view_tutor', ($rating_view!=null)? $rating_view->mentor->id : $teacher->id) }}";
+            }
+        });
+
+    }
     </script>
 @endpush
