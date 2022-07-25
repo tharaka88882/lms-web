@@ -524,13 +524,13 @@ class StudentController extends Controller
                             $rating_view->save();
                             return view('student.chat', compact('request', 'id', 'conversation', 'userTransaction', 'teacher', 'setting','teacherSubs','rating_view'));
                         }else{
-                        if($rating_view->r_count<3){
+                        if($rating_view->r_count<6){
                             $rating_view->r_count = $rating_view->r_count +1;
                             $rating_view->save();
                             return view('student.chat', compact('request', 'id', 'conversation', 'userTransaction', 'teacher', 'setting','teacherSubs','rating_view'));
                         }else{
                       if($rating_view->status == 0){
-                        Toastr::warning("Please rate mentor (" . $rating_view->mentor->user->name . ")", 'Warning');
+                        Toastr::warning("Please rate mentor (" . $rating_view->mentor->user->name . ")", 'Attention');
                         return redirect()->route('student.view_tutor',$rating_view->mentor->id);
                       }
                         }

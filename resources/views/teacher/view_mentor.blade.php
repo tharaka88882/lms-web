@@ -466,7 +466,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Was your Question answered?</label>
+                        <label>Was your question answered?</label>
                         <div class="form-check">
                             <input id="radio1" class="form-check-input" type="radio" name="radio1" value="1"
                                 checked="">
