@@ -449,8 +449,7 @@
                                 <div class="button-group pull-right">
                                 <button id="add_btn" type="button"
                                     class="btn btn-success">Add</button>
-                                <a id="add_btn" type="button" href="{{ route('teacher.my_subject') }}"
-                                    class="btn btn-warning">Change</a>
+                                <button onclick="change_sub_btn();" type="button" class="btn btn-warning">Change</button>
                                 </div>
                                 </div>
                             {{-- </form> --}}
@@ -1211,7 +1210,7 @@
 
 
     <!-- /.view profile modal -->
-    <div class="modal fade" id="modal-md">
+    <div class="modal fade" id="modal-mdddd">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -1234,6 +1233,7 @@
 
 
     <!-- /.view profile modal -->
+    <a id="change_sub1" href="{{ route('teacher.my_subject') }}"></a>
 @endsection
 
 
@@ -1242,6 +1242,15 @@
 
 @push('scripts')
     <script>
+
+
+      function change_sub_btn(){
+        console.log('test');
+            $('#change_sub1')[0].click();
+
+      }
+
+
         var loadImage = function(event) {
 
             var reader = new FileReader();

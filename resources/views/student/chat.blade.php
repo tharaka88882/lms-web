@@ -265,7 +265,7 @@
 
 
     <!-- /.modal -->
-    <div class="modal fade" id="modal-md">
+    <div class="modal fade" id="modal-mdr">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -289,7 +289,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Was your Question answered?</label>
+                        <label>Was your question answered?</label>
                         <div class="form-check">
                             <input id="radio1" class="form-check-input" type="radio" name="radio1" value="1"
                                 checked="">
@@ -316,14 +316,14 @@
         </div>
     </div>
     <!-- /.modal -->
-    <button id="rating_i" style="display: none;" data-toggle="modal" data-target="#modal-md"></button>
+    <button id="rating_i" style="display: none;" data-toggle="modal" data-target="#modal-mdr"></button>
 @endsection
 
 @push('scripts')
     <script>
 
     @if ($rating_view !=null)
-    @if ($rating_view->r_count<=4)
+    @if ($rating_view->r_count<=6)
         $(document).ready(function(){
     $("#rating_i").trigger("click");
     });

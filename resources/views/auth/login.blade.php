@@ -62,8 +62,8 @@
                 <div class="input-group mb-3">
                     <select id="m_select" type="text" class="form-control">
                         <!--<option value="select">Select One</option>-->
-                        <option selected="" value="student">Mentee only</option>
-                        <option value="teacher">Mentor/Mentee</option>
+                        <option  value="student">Mentee only</option>
+                        <option selected="" value="teacher">Mentor/Mentee</option>
                     </select>
                     <div class="input-group-append">
                         <div class="input-group-text">
@@ -296,12 +296,12 @@
 
             // alert('test');
 
-            $('#form_div').show();
-            $('#linkedinBtn').hide();
-            $('#fake_remember').hide();
-            $('#forgotBtn').show();
-            $('#fbBtn').show();
-            $('#googleBtn').show();
+            $('#form_div').hide();
+            $('#linkedinBtn').show();
+            $('#fake_remember').show();
+            $('#forgotBtn').hide();
+            $('#fbBtn').hide();
+            $('#googleBtn').hide();
             //$('#registerBtn').attr("disabled",true);
             //$('#lilnedinBtn').removeAttr('href');
             //$('#lilnedinBtn').addClass('disabled');
