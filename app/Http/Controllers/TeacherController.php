@@ -323,7 +323,7 @@ class TeacherController extends Controller
         $query1 = Conversation::query();
         $query2 = MentorConversation::query();
         $query1 = $query1->select('conversations.*')->join('students', 'students.id', '=', 'conversations.student_id')->join('users', 'users.userable_id', '=', 'students.id')->where('conversations.teacher_id', Auth()->user()->userable->id)->where('users.userable_type','App\Models\Student');
-        $query2 = $query2->select('mentor_conversations.*')->join('students', 'students.id', '=', 'mentor_conversations.mentee_id')->join('users', 'users.userable_id', '=', 'students.id')->where('mentor_conversations.mentor_id', Auth()->user()->userable->id)->where('users.userable_type','App\Models\Teacher');
+        $query2 = $query2->select('mentor_conversations.*')->join('teachers', 'teachers.id', '=', 'mentor_conversations.mentee_id')->join('users', 'users.userable_id', '=', 'teachers.id')->where('mentor_conversations.mentor_id', Auth()->user()->userable->id)->where('users.userable_type','App\Models\Teacher');
 
         if($request->get('m_name')!=null){
             $query1->where('users.name', 'like', $request->get('m_name').'%');
