@@ -266,6 +266,7 @@ Route::prefix('mentor')->middleware(['check.tutor', 'check.user'])->group(functi
     Route::post('/message/list', 'App\Http\Controllers\ChatController@list_mentor_messages_json')->name('chat.mentor_message_list');
 
     Route::get('/mentor/conversation/{id}', 'App\Http\Controllers\TeacherController@mentor_chat')->name('teacher.view_mentor_conversation');
+    Route::get('/mentee/conversation/{id}', 'App\Http\Controllers\TeacherController@mentee_chat')->name('teacher.view_mentee_conversation');
 
     Route::get('/mentor/conversation', 'App\Http\Controllers\TeacherController@mentor_conversation')->name('teacher.mentor_conversation_list');
     Route::post('/rate', 'App\Http\Controllers\TeacherController@rate_mentor')->name('teacher.rate_mentor');

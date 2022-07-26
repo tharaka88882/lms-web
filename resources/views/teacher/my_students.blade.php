@@ -181,7 +181,7 @@
                                                            </a>
 
                                                            @else
-                                                           <a href="{{route('teacher.view_mentor_conversation',$conversation['conversation_id'])}}">
+                                                           <a href="{{route('teacher.view_mentee_conversation',$conversation['conversation_id'])}}">
                                                                <button class="btn btn-sm btn-primary w-100">Conversation</button>
                                                            </a>
                                                             @endif
