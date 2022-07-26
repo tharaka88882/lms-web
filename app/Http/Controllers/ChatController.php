@@ -275,7 +275,7 @@ class ChatController extends Controller
                  $this->createNotification($query->mentor->user->id, explode(' ',$query->mentee->user->name)[0].' has sent new message',route('teacher.view_mentor_conversation',$query->id));
 
                 }else{
-                 $this->createNotification($query->mentee->user->id,  explode(' ',$query->mentor->user->name)[0].' has sent new message',route('teacher.view_mentor_conversation',$query->id));
+                 $this->createNotification($query->mentee->user->id,  explode(' ',$query->mentor->user->name)[0].' has sent new message',route('teacher.view_mentee_conversation',$query->id));
                 }
 
                 return array(
