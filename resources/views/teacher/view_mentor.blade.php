@@ -307,6 +307,9 @@
                                         <b>Average Responce time: </b>
                                         @if ($teacher->user->avg == '1')
                                             {{ $teacher->user->avg }}hr
+
+                                        @elseif ($teacher->user->avg == 0)
+                                            1 hour
                                         @else
                                             {{ $teacher->user->avg }}hrs
                                         @endif

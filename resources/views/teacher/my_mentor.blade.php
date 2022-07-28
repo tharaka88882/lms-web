@@ -453,6 +453,9 @@
                                             <span class="users-list-date text-right">Average Responce Time -
                                             @if ($conversation->mentor->user->avg=='1')
                                                 {{ $conversation->mentor->user->avg }} hour
+
+                                            @elseif (Auth()->user()->avg == 0)
+                                                1 hour
                                             @else
                                                 {{ $conversation->mentor->user->avg }} hours
                                             @endif

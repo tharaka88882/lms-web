@@ -410,7 +410,14 @@
                                                       </div> --}}
                                                 </div>
                                             </div>
-                                            <span class="users-list-date text-right">Average Responce Time - {{ $conversation->teacher->user->avg }} hour(s)</span>
+                                            <span class="users-list-date text-right">Average Responce Time -
+                                                @if ($conversation->teacher->user->avg == 1)
+                                                1 hour
+
+                                                @elseif ($conversation->teacher->user->avg ==0)
+                                                1 hour
+                                                @endif
+                                                {{ $conversation->teacher->user->avg }} hours</span>
                                         </div>
                                     </div>
 

@@ -431,6 +431,9 @@
                                                 {{-- {{ $tutor->avg_time }} hour(s) --}}
                                             @if ($tutor->user->avg=='1')
                                                 {{ $tutor->user->avg }} hour
+
+                                            @elseif (Auth()->user()->avg == 0)
+                                               1 hour
                                             @else
                                                 {{ $tutor->user->avg }} hours
                                             @endif
