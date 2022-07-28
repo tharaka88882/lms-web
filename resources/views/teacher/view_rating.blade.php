@@ -109,7 +109,7 @@
                             <div class="small-box bg-light">
                                 <div class="inner">
 
-                                    @if ( Auth()->user()->avg == 1 || Auth()->user()->avg == 0)
+                                    @if ( Auth()->user()->avg == 1)
                                         <h3 style="color: green;">{{ Auth()->user()->avg }} hour<sup
                                                 style="font-size: 20px"></sup></h3>
                                     @elseif ( Auth()->user()->avg >= 2 && Auth()->user()->avg <= 4)
@@ -118,6 +118,9 @@
                                     @elseif ( Auth()->user()->avg >= 5 && Auth()->user()->avg < 49)
                                         <h3 style="color: rgb(255, 174, 0);">{{ Auth()->user()->avg }} hours <sup
                                                 style="font-size: 20px"></sup></h3>
+                                    @elseif (Auth()->user()->avg == 0)
+                                    <h3 style="color: green;">1 hour<sup
+                                        style="font-size: 20px"></sup></h3>
                                     @else
                                         <h3 style="color: red;">{{ Auth()->user()->avg }} hours <sup
                                                 style="font-size: 20px"></sup></h3>

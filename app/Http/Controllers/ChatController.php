@@ -63,7 +63,7 @@ class ChatController extends Controller
             // $headers = "From: info@you2mentor.com" . "\r\n";
 
            // mail($to,$subject,$txt,$headers);
-          // Mail::to($to)->send(new StartConversation($user_name.','.Auth()->user()->name));
+           //Mail::to($to)->send(new StartConversation($user_name.','.Auth()->user()->name));
 
             DB::commit();
             Toastr::success('Conversation Started', 'Success');
@@ -234,7 +234,7 @@ class ChatController extends Controller
 
             $teacher = Teacher::findOrFail($request->get('teacher_id'));
 
-            $this->createNotification($teacher->user->id,explode(' ',Auth()->user()->name)[0].' has started a conversation.',route('teacher.view_mentor_conversation',$conversation->id));
+            $this->createNotification($teacher->user->id,explode(' ',Auth()->user()->name)[0].' has started a conversation.',route('teacher.view_mentee_conversation',$conversation->id));
 
             $to = $teacher->user->email;
             // $subject = "Welcome to You2Mentor";
@@ -243,7 +243,7 @@ class ChatController extends Controller
 
             $user_name = $teacher->user->name;
             //mail($to,$subject,$txt,$headers);
-           // Mail::to($to)->send(new StartConversation($user_name.','.Auth()->user()->name));
+            Mail::to($to)->send(new StartConversation($user_name.','.Auth()->user()->name));
 
             DB::commit();
             Toastr::success('Conversation Started', 'Success');
