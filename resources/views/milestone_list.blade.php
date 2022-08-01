@@ -445,7 +445,7 @@
                                             <th>Goals</th>
                                             <th>Created On</th>
                                             <th>Due Date</th>
-                                            <th>Status</th>
+                                            <th style="width: 190px !important;">Status</th>
                                             <th style="width: 190px;">Actions</th>
                                         </tr>
                                     </thead>
@@ -481,9 +481,9 @@
                                                     {{ \Carbon\Carbon::parse($milestone->due_date)->format('d-m-Y') }}</span>
 
                                                 </td>
-                                                <td>
+                                                <td style="width: 190px !important;">
                                                     <select onchange="update_milestone('{{ $milestone->id }}')"
-                                                        id='status-{{ $milestone->id }}' class="form-control">
+                                                        id='status-{{ $milestone->id }}' class="form-control" style="width: auto !important;">
                                                         <option {{ $milestone->status == 1 ? 'selected="true"' : '' }}
                                                             value="1">
                                                             Completed</option>
