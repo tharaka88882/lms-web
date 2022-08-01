@@ -24,7 +24,7 @@
         </div>
         <!-- general form elements -->
         <div class="col-md-12">
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Goal Details</h3>
@@ -128,14 +128,14 @@
                                                     </td>
                                                     <td style="width: 100px;">
                                                         <div class="button-group">
-                                                            <div class="col-md-6 p-1">
+
                                                               <a href="{{ route('user.edit_task', $note->id) }}" type="button"
                                                                   class="btn btn-warning">Edit</a>
-                                                            </div>
-                                                            <div class="col-md-6 p-1">
+
+
                                                                 <button onclick="delete_note('{{ $note->id }}');" type="button"
                                                                     class="btn btn-danger">Delete</button>
-                                                            </div>
+
                                                         </div>
                                                     </td>
                                                 </tr>
