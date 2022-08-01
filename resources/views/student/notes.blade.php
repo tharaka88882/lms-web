@@ -71,6 +71,7 @@
                             </div>
                             <!-- /.col -->
                         </div>
+
                         <table class="table table-bordered">
                             <tbody>
                                 <!-- success -->
@@ -88,8 +89,8 @@
                         </table>
                         <div class="row">
                             <div class="col-md-11">
-                                <div class="card-body p-2">
-                                    <table class="table table-sm">
+                                <div class="card-body p-2 table-responsive">
+                                    <table class="table table-md">
                                         <thead>
                                             <tr>
                                                 <th style="width: 10px">#</th>
@@ -113,7 +114,7 @@
                                                     <td>
 
                                                         <select onchange="update_note('{{ $note->id }}')"
-                                                            id="status-{{ $note->id }}" class="form-control">
+                                                            id="status-{{ $note->id }}" class="form-control" style="width: auto !important;">
 
                                                             <option {{ $note->status == 2 ? 'selected="true"' : '' }} value="2">In
                                                                 progress</option>
