@@ -501,18 +501,18 @@
                                                 </td>
                                                 <td style="width: 190px">
                                                     <div class="button-group">
-                                                        <div class="col-xm-12 col-md-4 p-1">
+
                                                             <a href="{{ route('user.edit_milestone', $milestone->id) }}"
                                                                 class="btn btn-sm btn-warning"
                                                                 id="goal">Edit</a>
-                                                        </div>
 
-                                                        <div class="col-xm-12 col-md-4 p-1">
+
+
                                                             <a href="{{ route('user.notes', $milestone->id) }}"
                                                                 class="btn btn-sm btn-success"
                                                                 id="goal">Tasks</a>
-                                                        </div>
-                                                        <div class="col-xm-12 col-md-4 p-1">
+
+
                                                             <button type="button" class="btn btn-sm btn-danger"
                                                                 id="deleteBtn-{{ $milestone->id }}">Delete</button>
                                                             <form
@@ -521,7 +521,7 @@
                                                                 @csrf
                                                                 @method('delete')
                                                             </form>
-                                                        </div>
+                                                      
 
                                                     </div>
                                                 </td>
