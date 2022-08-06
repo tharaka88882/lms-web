@@ -146,7 +146,8 @@ class LoginController extends Controller
         Auth()->user()->avg = $real_avg;
         Auth()->user()->save();
         if(Auth()->user()->first_login==1){
-            return redirect()->route('dashboard');
+           // return redirect()->route('dashboard');
+            return redirect()->route('user.profile_1');
         }else{
             Auth()->user()->first_login = 1;
             Auth()->user()->save();

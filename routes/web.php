@@ -139,8 +139,10 @@ Route::prefix('user')->middleware('check.user')->group(function () {
     Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
 
     Route::get('/profile', 'App\Http\Controllers\UserController@profile')->name('user.profile');
+    Route::get('/profile_1', 'App\Http\Controllers\UserController@profile1')->name('user.profile_1');
     Route::put('/profile', 'App\Http\Controllers\UserController@update_profile')->name('user.update_profile');
     Route::put('/techerprofile', 'App\Http\Controllers\UserController@update_teacher_profile')->name('user.update_teacher_profile');
+    Route::put('/techerprofile_1', 'App\Http\Controllers\UserController@update_teacher_profile1')->name('user.update_teacher_profile_1');
 
     Route::post('/conversation', 'App\Http\Controllers\ChatController@add_conversation')->name('user.store_conversation');
     Route::post('/message', 'App\Http\Controllers\ChatController@add_message_json')->name('chat.store_message');
@@ -202,6 +204,7 @@ Route::prefix('user')->middleware('check.user')->group(function () {
 
     // view my profile
     Route::get('/view-my-profile', 'App\Http\Controllers\UserController@view_my_profile')->name('user.view_my_profile');
+    Route::get('/view-my-profile_1', 'App\Http\Controllers\UserController@view_my_profile_1')->name('user.view_my_profile_1');
 
 
 });
