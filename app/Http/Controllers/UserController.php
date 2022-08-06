@@ -69,6 +69,41 @@ class UserController extends Controller
             return view('admin.profile', compact('user'));
         }
     }
+    public function profile1()
+    {
+        $user =  Auth::user();
+        $industries = Industry::all();
+        $institutes = Institute::all();
+        $position = Position::all();
+
+
+
+        $ratings = Rating::where('teacher_id',Auth()->user()->userable_id)->get();
+        $rator_count = count(json_decode( $ratings,true));
+        $rating_count = 0;
+        $mediation = 0;
+            foreach($ratings as $rating){
+                $rating_count+=$rating->rating;
+            }
+       if($rator_count!=0){
+        $mediation = $rating_count/$rator_count;
+       }
+
+        $round_mediation =(int)$mediation;
+
+        // return get_class($user);
+        if (get_class($user->userable) == 'App\Models\Teacher') {
+            if (Auth()->user()->userable->status == 1) {
+                return view('teacher.first_prifile_edit', compact('user', 'industries','round_mediation','institutes','position'));
+            } else {
+                return abort(403, 'You not approved yet');
+            }
+        } else if (get_class($user->userable) == 'App\Models\Student') {
+            return view('student.profile', compact('user'));
+        } else if (get_class($user->userable) == 'App\Models\Admin') {
+            return view('admin.profile', compact('user'));
+        }
+    }
 
 
     public function update_profile(UpdateProfileRequest $request)
@@ -147,39 +182,46 @@ class UserController extends Controller
             $user =  Auth::user();
 
             if (get_class($user->userable) == 'App\Models\Teacher') {
-                $user->name = $request->get('name');
-               if($imageName!=null){
-                $user->image = $imageName;
-               }
-               if($coverImageName!=null){
-                $user->cover_image = $coverImageName;
-               }
-                $user->address = $request->get('address');
-                $user->city = $request->get('city');
-                $user->country = $request->get('country');
-                $user->about = $request->get('about');
-                if($request->get('from_leave')!=null && $request->get('to_leave')!=null){
-                    $user->from_leave = $request->get('from_leave');
-                    $user->to_leave = $request->get('to_leave');
-                }
 
-                //dd($request->get('leave_status'));
-                if($request->get('leave_status')=='on'){
-                    $user->leave_status = 1;
+
+                if(sizeof(Auth()->user()->userable->experiences)>0 && sizeof(Auth()->user()->userable->qualifications)>0){
+                    $user->name = $request->get('name');
+                    if($imageName!=null){
+                     $user->image = $imageName;
+                    }
+                    if($coverImageName!=null){
+                     $user->cover_image = $coverImageName;
+                    }
+                     $user->address = $request->get('address');
+                     $user->city = $request->get('city');
+                     $user->country = $request->get('country');
+                     $user->about = $request->get('about');
+                     if($request->get('from_leave')!=null && $request->get('to_leave')!=null){
+                         $user->from_leave = $request->get('from_leave');
+                         $user->to_leave = $request->get('to_leave');
+                     }
+
+                     //dd($request->get('leave_status'));
+                     if($request->get('leave_status')=='on'){
+                         $user->leave_status = 1;
+                     }else{
+                         $user->leave_status = 0;
+                     }
+
+                   //  $user->userable->nic = $request->get('nic');
+                     $user->userable->qualification = $request->get('qualification');
+                     $user->userable->experience = $request->get('experience');
+                    // $user->userable->skills = $request->get('skills');
+                     $user->userable->job = $request->get('job');
+                     $user->userable->industry = $request->get('industry');
+                     $user->userable->linkedin_link = $request->get('linkedin_link');
+                     $user->userable->save();
+                     $user->save();
+                    Toastr::success('Profile Updated successfully', 'Success');
                 }else{
-                    $user->leave_status = 0;
+                    Toastr::warning('Please Update your Experience & Qualifications', 'Attention');
                 }
 
-              //  $user->userable->nic = $request->get('nic');
-                $user->userable->qualification = $request->get('qualification');
-                $user->userable->experience = $request->get('experience');
-               // $user->userable->skills = $request->get('skills');
-                $user->userable->job = $request->get('job');
-                $user->userable->industry = $request->get('industry');
-                $user->userable->linkedin_link = $request->get('linkedin_link');
-                $user->userable->save();
-                $user->save();
-                Toastr::success('Profile Updated successfully', 'Success');
             } else {
                 Toastr::success('Profile Updated Unsuccessful', 'Error');
             }
@@ -192,6 +234,91 @@ class UserController extends Controller
         }
 
         return redirect()->route('user.profile');
+    }
+    public function update_teacher_profile1(UpdateTeacherProfileRequest $request)
+    {
+        //return $request;
+        DB::beginTransaction();
+
+        try {
+
+            $imageName = null;
+            $coverImageName = null;
+
+             if ($request->has('image')) {
+                // $image = new Image();
+                // $imageName = time() . '.' . $request->image->extension();
+                // // $image_resize = ImageManagerStatic::make($request->image);
+                // $image->load($_FILES['image']['tmp_name']);
+                // // $image_resize->resize(300, 300);
+                // $image->resize(300,300);
+                // $image->save(public_path('images/profile/'), $imageName);
+
+                $imageName = time() . '.' . $request->image->extension();
+                $request->image->move(public_path('images/profile/'), $imageName);
+                //return back()->with('success','You have successfully upload image.')->with('image',$imageName);
+            }
+             if ($request->has('cover_image')) {
+                $coverImageName = time() . '.' . $request->cover_image->extension();
+                $request->cover_image->move(public_path('images/profile/'), $coverImageName);
+                //return back()->with('success','You have successfully upload image.')->with('image',$imageName);
+            }
+
+            $user =  Auth::user();
+
+            if (get_class($user->userable) == 'App\Models\Teacher') {
+
+
+                if(sizeof(Auth()->user()->userable->experiences)>0 && sizeof(Auth()->user()->userable->qualifications)>0){
+                    $user->name = $request->get('name');
+                    if($imageName!=null){
+                     $user->image = $imageName;
+                    }
+                    if($coverImageName!=null){
+                     $user->cover_image = $coverImageName;
+                    }
+                     $user->address = $request->get('address');
+                     $user->city = $request->get('city');
+                     $user->country = $request->get('country');
+                     $user->about = $request->get('about');
+                     if($request->get('from_leave')!=null && $request->get('to_leave')!=null){
+                         $user->from_leave = $request->get('from_leave');
+                         $user->to_leave = $request->get('to_leave');
+                     }
+
+                     //dd($request->get('leave_status'));
+                     if($request->get('leave_status')=='on'){
+                         $user->leave_status = 1;
+                     }else{
+                         $user->leave_status = 0;
+                     }
+
+                   //  $user->userable->nic = $request->get('nic');
+                     $user->userable->qualification = $request->get('qualification');
+                     $user->userable->experience = $request->get('experience');
+                    // $user->userable->skills = $request->get('skills');
+                     $user->userable->job = $request->get('job');
+                     $user->userable->industry = $request->get('industry');
+                     $user->userable->linkedin_link = $request->get('linkedin_link');
+                     $user->userable->save();
+                     $user->save();
+                    Toastr::success('Profile Updated successfully', 'Success');
+                }else{
+                    Toastr::warning('Please Update your Experience & Qualifications', 'Attention');
+                }
+
+            } else {
+                Toastr::success('Profile Updated Unsuccessful', 'Error');
+            }
+            DB::commit();
+        } catch (Exception $e) {
+            return $e;
+            Log::error($e);
+            DB::rollback();
+            Toastr::error($e->getMessage(), 'Error');
+        }
+
+        return redirect()->route('user.profile_1');
     }
 
 
@@ -513,6 +640,10 @@ class UserController extends Controller
     public function view_my_profile()
     {
         return view('teacher.view_my_profile');
+    }
+    public function view_my_profile_1()
+    {
+        return view('teacher.first_view_profile');
     }
 
 }

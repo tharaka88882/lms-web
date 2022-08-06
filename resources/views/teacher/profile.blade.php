@@ -175,13 +175,25 @@
 
                                     <div class="form-group autocomplete" style="width: 100%">
                                         <label for="exampleInputPassword1">Country</label>
-                                        <input id="country1" name="country" value="{{ $user->country }}" class="form-control" placeholder="Choose your Country"/>
+                                        <input id="country1" name="country" value="{{ $user->country }}" class="form-control @if ($errors->has('country')) {{ 'is-invalid' }} @endif" placeholder="Choose your Country"/>
+
+                                        @if ($errors->has('country'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('country') }}</strong>
+                                        </span>
+                                    @endif
                                     </div>
 
                                         <div class="form-group autocomplete" style="width: 100%">
                                             <label for="exampleInputPassword1">City</label>
-                                            <input name="city" class="form-control" value="{{ $user->city }}" id="city1" placeholder="Choose your City" />
+                                            <input name="city" class="form-control @if ($errors->has('city')) {{ 'is-invalid' }} @endif" value="{{ $user->city }}" id="city1" placeholder="Choose your City" />
 
+
+                                             @if ($errors->has('city'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('city') }}</strong>
+                                                </span>
+                                            @endif
                                         </div>
 
                                         <div class="form-group">
@@ -390,7 +402,10 @@
                             <!-- /.card-body -->
 
                             <div class="card-footer">
+
                                 <button type="submit" class="btn btn-success pull-right">Save</button>
+
+
                                 {{-- <button type="button" data-target="#modal-md" data-toggle="modal"
                                     class="btn btn-warning pull-right  mr-2">View Profile</button> --}}
                             </div>

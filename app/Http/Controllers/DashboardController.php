@@ -201,7 +201,7 @@ class DashboardController extends Controller
         $teacher = Teacher::findOrFail(Auth()->user()->userable_id);
         $teacher->linkedin_link = $request->get('linkedin_link');
         $teacher->save();
-        Toastr::success('successfully :)', 'Success');
+        Toastr::success('successfully', 'Success');
         if(Auth()->user()->first_login==1){
             return redirect('user/dashboard');
          }else{
