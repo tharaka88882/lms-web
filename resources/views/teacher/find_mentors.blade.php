@@ -284,7 +284,7 @@
                                                         style="width: 120px; height: 120px; border-radius: 50%;"
                                                         onerror=" this.src='{{ url('public') }}/theme/admin/dist/img/default-avatar.jpg'">
                                                 </a>
-                                                <div class="ml-3 w-100">
+                                                <div class="ml-3 w-100 pb-3" style="overflow-x: auto; !important">
                                                     <h4 class="mb-0 mt-0"><a style="text-transform: capitalize"
                                                             href="{{ route('teacher.view_mentor', $tutor->id) }}">{{ $tutor->user->name }}</a>
                                                     </h4>
