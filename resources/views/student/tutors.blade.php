@@ -253,7 +253,7 @@
                                                 <a href="{{ route('student.view_tutor',$tutor->id)}}">
                                                     <img @if ($tutor->user->image != null) src="{{ url('public') }}/images/profile/{{ $tutor->user->image}}" @else src="" @endif alt="User Image" style="width: 120px; height: 120px; border-radius: 50%;" onerror=" this.src='{{ url('public') }}/theme/admin/dist/img/default-avatar.jpg'">
                                                 </a>
-                                                <div class="ml-3 w-100">
+                                                <div class="ml-3 w-100 pb-3" style="overflow-x: auto; !important">
                                                     <h4 class="mb-0 mt-0"><a style="text-transform: capitalize" href="{{ route('student.view_tutor', $tutor->id) }}">{{ $tutor->user->name }}</a></h4>
                                                     <?php
                                                     $rator_count = count(json_decode($tutor->rate,true));
