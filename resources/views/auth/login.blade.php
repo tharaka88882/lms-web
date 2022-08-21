@@ -46,7 +46,7 @@
     </nav> --}}
 
     <div class="login-box">
-        <div style="margin-top: 164px; margin-bottom:-214px;!important"><h5 class="text-center">A Platform for Peer to Peer Mentoring and Development</h5></div>
+        <div style="margin-top: 164px; margin-bottom:-214px;!important"><h5 class="text-center">Unleash Your Potential!</h5></div>
         <div class="login-logo" style="margin-bottom: 3.9rem; !important">
             <a href="https://you2mentor.com">
                 <img height="200px" width="200px"

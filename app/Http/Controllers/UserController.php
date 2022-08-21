@@ -238,6 +238,7 @@ class UserController extends Controller
     public function update_teacher_profile1(UpdateTeacherProfileRequest $request)
     {
         //return $request;
+        $flag_ = false;
         DB::beginTransaction();
 
         try {
@@ -303,12 +304,15 @@ class UserController extends Controller
                      $user->userable->save();
                      $user->save();
                     Toastr::success('Profile Updated successfully', 'Success');
+                    $flag_ = true;
                 }else{
-                    Toastr::warning('Please Update your Experience & Qualifications', 'Attention');
+                    Toastr::warning('Please complete updating your profile to the navigate to the dashboard', 'Attention');
+                    $flag_ = false;
                 }
 
             } else {
                 Toastr::success('Profile Updated Unsuccessful', 'Error');
+                $flag_ = false;
             }
             DB::commit();
         } catch (Exception $e) {
@@ -316,9 +320,16 @@ class UserController extends Controller
             Log::error($e);
             DB::rollback();
             Toastr::error($e->getMessage(), 'Error');
+            $flag_ = false;
         }
 
-        return redirect()->route('user.profile_1');
+        if($flag_){
+                Auth()->user()->first_login = 1;
+                Auth()->user()->save();
+            return redirect('user/dashboard');
+        }else{
+            return redirect()->route('user.profile_1');
+        }
     }
 
 

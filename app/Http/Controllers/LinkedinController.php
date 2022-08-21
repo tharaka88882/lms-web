@@ -80,7 +80,15 @@ class LinkedinController extends Controller
            Auth()->user()->save();
 
            if(Auth()->user()->userable->linkedin_link!=null){
-               return redirect('user/dashboard');
+            if(Auth()->user()->first_login==1){
+
+                return redirect('user/dashboard');
+            }else{
+                // Auth()->user->first_login = 1;
+                // Auth()->user->save();
+
+                return redirect()->route('user.profile_1');
+            }
            }else{
                return redirect()->route('auth.view_linkedin');
            }
@@ -168,7 +176,15 @@ class LinkedinController extends Controller
                 Auth()->user()->save();
 
                 if(Auth()->user()->userable->linkedin_link!=null){
-                    return redirect('user/dashboard');
+                    if(Auth()->user()->first_login==1){
+
+                        return redirect('user/dashboard');
+                    }else{
+                        // Auth()->user->first_login = 1;
+                        // Auth()->user->save();
+
+                        return redirect()->route('user.profile_1');
+                    }
                 }else{
                     return redirect()->route('auth.view_linkedin');
                 }
@@ -232,10 +248,10 @@ class LinkedinController extends Controller
 
                         return redirect('user/dashboard');
                     }else{
-                        Auth()->user->first_login = 1;
-                        Auth()->user->save();
+                        // Auth()->user->first_login = 1;
+                        // Auth()->user->save();
 
-                        return redirect('user.profile');
+                        return redirect()->route('user.profile_1');
                     }
 
                 }else{
