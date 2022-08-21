@@ -205,9 +205,9 @@ class DashboardController extends Controller
         if(Auth()->user()->first_login==1){
             return redirect('user/dashboard');
          }else{
-             Auth()->user()->first_login = 1;
-             Auth()->user()->save();
-            return redirect()->route('user.profile');
+            //  Auth()->user()->first_login = 1;
+            //  Auth()->user()->save();
+            return redirect()->route('user.profile_1');
          }
        // return redirect('user/dashboard');
        }else{
