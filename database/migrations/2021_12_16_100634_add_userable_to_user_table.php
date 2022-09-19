@@ -16,6 +16,7 @@ class AddUserableToUserTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('userable_type')->nullable(); //Student, Teacher, Admin
             $table->string('userable_id')->nullable(); //Student->id, Teacher->id, Admin->id
+            $table->string('program')->nullable();
 
             //$table->foreign('userable_id')->references('id')->on('positions')->cascadeOnDelete();
         });

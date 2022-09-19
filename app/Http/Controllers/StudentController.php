@@ -349,6 +349,9 @@ class StudentController extends Controller
         if ($request->get('search_industry') !=null) {
             $query->where('teachers.industry', $request->get('search_industry'));
         }
+        if ($request->get('program') !=null) {
+            $query->where('users.program', 'like', $request->get('program').'%');
+        }
          if ($request->get('m_name')!=null) {
            // dd($request->get('m_name'));
 
@@ -686,7 +689,12 @@ class StudentController extends Controller
          if($request->get('search_industry')!= null){
             $query->where('teachers.industry', $request->get('search_industry'));
 
-        }if($request->get('select_order') != null){
+        }
+         if($request->get('program')!= null){
+            $query->where('users.program','like', $request->get('program').'%');
+
+        }
+        if($request->get('select_order') != null){
             if($request->get('select_order') == '1'){
                 $query->orderBy('teachers.rating', 'DESC');
             }else{
