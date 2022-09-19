@@ -411,6 +411,13 @@
 
 
                                                     </div>
+                                                    <div class="form-group autocomplete" style="width: 100%">
+                                                        <label for="exampleInputEmail1">Program</label>
+                                                        <input class="form-control"   name="program"
+                                                            id="program">
+
+
+                                                    </div>
 
 
                                                     {{-- <div class="form-group">
@@ -2828,10 +2835,11 @@
                     indus.push('{{ $ind->name }}');
                     @endforeach
 
+                    var programs = ["P1","P2","P3"];
                     /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
                     autocomplete(document.getElementById("myInput"), ins);
                     autocomplete(document.getElementById("industry11"), indus);
-                   // autocomplete(document.getElementById("myInput1"), ins);
+                    autocomplete(document.getElementById("program"), programs);
                     autocomplete(document.getElementById("ins"), ins);
                    // autocomplete(document.getElementById("ins2"), ins);
                     autocomplete(document.getElementById("position"), pos);

@@ -179,6 +179,12 @@
                                                 <input value="{{$request->get('company')}}" placeholder="Enter Company" class="select2 form-control"  name="company" id="company"/>
                                             </div>
                                         </div>
+                                        <div class="col-lg-3">
+                                            <div class="form-group autocomplete" style="width: 100%">
+                                                <label> Program:</label>
+                                                <input value="{{$request->get('Program')}}" placeholder="Enter Program" class="select2 form-control"  name="Program" id="Program"/>
+                                            </div>
+                                        </div>
 
                                         <div class="col-lg-3">
                                             <div class="form-group">
@@ -1780,11 +1786,14 @@
         @foreach ($industries as $ind)
             indu.push('{{ $ind->name }}');
         @endforeach
+
+        var programs = ["P1","P2","P3"];
         /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
         autocomplete(document.getElementById("country"), countries);
         autocomplete(document.getElementById("city"), cities);
         autocomplete(document.getElementById("company"), ins);
         autocomplete(document.getElementById("search_industry"), indu);
+        autocomplete(document.getElementById("program"), programs);
 
   </script>
 

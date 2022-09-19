@@ -196,6 +196,7 @@ class UserController extends Controller
                      $user->city = $request->get('city');
                      $user->country = $request->get('country');
                      $user->about = $request->get('about');
+                     $user->program = $request->get('program');
                      if($request->get('from_leave')!=null && $request->get('to_leave')!=null){
                          $user->from_leave = $request->get('from_leave');
                          $user->to_leave = $request->get('to_leave');
@@ -282,6 +283,7 @@ class UserController extends Controller
                      $user->city = $request->get('city');
                      $user->country = $request->get('country');
                      $user->about = $request->get('about');
+                     $user->program = $request->get('program');
                      if($request->get('from_leave')!=null && $request->get('to_leave')!=null){
                          $user->from_leave = $request->get('from_leave');
                          $user->to_leave = $request->get('to_leave');

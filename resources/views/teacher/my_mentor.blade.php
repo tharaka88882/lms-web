@@ -265,6 +265,14 @@
                                             name="country" id="country"/>
 
                                         </div>
+                                        <div class="form-group autocomplete" style="width: 100%">
+
+                                            <label> program:</label>
+
+                                            <input value="{{$request->get('program')}}" placeholder="Enter Program" class="form-control"
+                                            name="program" id="program"/>
+
+                                        </div>
 
 
 
@@ -2014,10 +2022,13 @@ $(function () {
         @foreach ($industries as $ind)
             indu.push('{{ $ind->name }}');
         @endforeach
+
+        var programs = ["P1","P2","P3"];
         /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
         autocomplete(document.getElementById("country"), countries);
         autocomplete(document.getElementById("city"), cities);
         autocomplete(document.getElementById("company"), ins);
         autocomplete(document.getElementById("search_industry"), indu);
+        autocomplete(document.getElementById("program"), programs);
 </script>
 @endpush
