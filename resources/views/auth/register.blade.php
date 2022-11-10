@@ -32,7 +32,7 @@
 
 
 
-                <div class="input-group mb-3">
+                <div class="input-group mb-3" style="display: none;" >
                     <select id="m_select" type="text" class="form-control">
                         <!--<option value="select">Select One</option>-->
                         <option selected="" value="student">Mentee</option>
@@ -52,7 +52,7 @@
                 <div>
                     <form id="form_div" action="{{ route('auth.verify_mentee_email') }}" method="post">
                         @csrf
-                        <input type="hidden" name="type" value="student" />
+                        <input type="hidden" name="type" value="teacher" />
                         <div id="name_div" class="input-group mb-3 se">
                             <input type="text"
                                 class="form-control @if ($errors->has('name')) {{ 'is-invalid' }} @endif"
@@ -171,7 +171,7 @@
             // alert('test');
 
             $('.se').show();
-            $('#lilnedinBtn').hide();
+            $('#lilnedinBtn').show();
             $('#fbBtn').show();
             $('#googleBtn').show();
             //$('#registerBtn').attr("disabled",true);

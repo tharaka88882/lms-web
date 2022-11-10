@@ -59,8 +59,8 @@
                 <p class="login-box-msg">Sign in to start your session</p>
 
 
-                <div class="input-group mb-3">
-                    <select id="m_select" type="text" class="form-control">
+                <div class="input-group mb-3" style="display: none;">
+                    <select id="m_select" type="text" class="form-control" >
                         <!--<option value="select">Select One</option>-->
                         <option  value="student">Mentee only</option>
                         <option selected="" value="teacher">Mentor/Mentee</option>
@@ -147,6 +147,9 @@
                     <a id="googleBtn" href="{{ url('auth/google') }}" class="btn btn-block btn-danger">
                         <i class="fab fa-google mr-2"></i> Sign in using Google
                         </a>
+                    <a id="linkedinBtn" href="{{ url('auth/linkedin') }}" class="btn btn-block btn-primary">
+                            <i class="fab fa-linkedin mr-2"></i> Sign in using Linkedin
+                     </a>
                         {{-- <p>- OR -</p> --}}
                         <!--a href="{{ url('auth/linkedin') }}" class="btn btn-block btn-primary">
           <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
@@ -162,9 +165,15 @@
                         </label>
                     </div>
                 </div>
-                        <a id="linkedinBtn" href="{{ url('auth/linkedin') }}" class="btn btn-block btn-primary">
+                        {{-- <a id="linkedinBtn" href="{{ url('auth/linkedin') }}" class="btn btn-block btn-primary">
                             <i class="fab fa-linkedin mr-2"></i> Sign in using Linkedin
-                        </a>
+                        </a> --}}
+                        {{-- <a id="googleBtn_1" href="{{ url('auth/google') }}" class="btn btn-block btn-danger">
+                            <i class="fab fa-google mr-2"></i> Sign in using Google
+                            </a>
+                        <a id="fbBtn_1" href="{{ url('auth/facebook') }}" class="btn btn-block btn-primary">
+                                <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+                        </a> --}}
                         {{-- </div--> --}}
                         {{-- </.social-auth-links> --}}
 
@@ -296,10 +305,14 @@
 
             // alert('test');
 
-            $('#form_div').hide();
+            $('#form_div').show();
             $('#linkedinBtn').show();
-            $('#fake_remember').show();
-            $('#forgotBtn').hide();
+           // $('#googleBtn_1').hide();
+           // $('#fbBtn_1').hide();
+            // $('#googleBtn_1').show();
+            // $('#fbBtn_1').show();
+            $('#fake_remember').hide();
+            $('#forgotBtn').show();
             $('#fbBtn').hide();
             $('#googleBtn').hide();
             //$('#registerBtn').attr("disabled",true);
@@ -324,6 +337,8 @@
                 if ($('#m_select option:selected').val() == 'student') {
                     $('#form_div').show();
                     $('#linkedinBtn').hide();
+                    // $('#fbBtn_1').hide();
+                    // $('#googleBtn_1').hide();
                     $('#fake_remember').hide();
                     $('#forgotBtn').show();
                     $('#fbBtn').show();
@@ -331,6 +346,8 @@
                 } else if ($('#m_select option:selected').val() == 'teacher') {
                     $('#form_div').hide();
                     $('#linkedinBtn').show();
+                    // $('#fbBtn_1').show();
+                    // $('#googleBtn_1').show();
                     $('#fake_remember').show();
                     $('#forgotBtn').hide();
                     $('#fbBtn').hide();

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\WelcomeMentorMail;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\Student;
+use App\Models\Teacher;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Log;
 use PhpParser\Node\Stmt\TryCatch;
@@ -91,10 +92,14 @@ class FacebookSocialiteController extends Controller
                 $newUser->password=encrypt('my-facebook');
                 $newUser->save();
 
-                $student = new Student();
-                $student->status = true;
-                $student->save();
-                $student->user()->save($newUser);
+                // $student = new Student();
+                // $student->status = true;
+                // $student->save();
+                // $student->user()->save($newUser);
+                $teacher = new Teacher();
+                $teacher->status = true;
+                $teacher->save();
+                $teacher->user()->save($newUser);
 
                 Auth::login($newUser);
 
@@ -106,7 +111,7 @@ class FacebookSocialiteController extends Controller
                  }else{
                      Auth()->user()->first_login = 1;
                      Auth()->user()->save();
-                    return redirect()->route('user.profile');
+                    return redirect()->route('user.profile_1');
                  }
 
                 }
