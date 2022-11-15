@@ -320,7 +320,7 @@
            @endforeach
 
                                     <div class="col-md-6">
-                                        <div class="card p-2">
+                                        <div class="card p-2" style="min-height: 300px!important;">
                                             <div class="d-flex align-items-center">
                                                 <a href="#">
                                                     <img alt="User Image" style="width: 120px; height: 120px; border-radius: 50%;" src="{{ url('public') }}/images/profile/{{$conversation->mentor->user->image}}" onerror=" src='{{ url('public') }}/images/def.jpg'">

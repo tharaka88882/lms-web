@@ -284,7 +284,7 @@
                                     @endforeach
 
                                     <div class="col-md-6">
-                                        <div class="card p-3">
+                                        <div class="card p-3" style="min-height: 300px!important;">
                                             <div class="d-flex align-items-center">
                                                 <a href="{{ route('teacher.view_mentor', $tutor->id) }}">
                                                     <img @if ($tutor->user->image != null) src="{{ url('public') }}/images/profile/{{ $tutor->user->image }}" @else src="" @endif
