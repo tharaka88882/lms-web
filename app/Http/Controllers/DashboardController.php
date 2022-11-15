@@ -34,8 +34,8 @@ class DashboardController extends Controller
         $pending_count = Teacher::where('status', '=', '0')->count();
         //$teachers_count = $teachers->count();
         //dd($pending_count);
-        $teachers_count = Teacher::where('status', '=', '1')->count();
-
+        $teachers_count = Teacher::select('teachers.*')->join('users','users.userable_id','=','teachers.id')->where('teachers.id', '<>', Auth()->user()->userable->id)->where('users.userable_type','App\Models\Teacher')->where('teachers.status', '=', '1')->count();
+       // dd($teachers_count);
         $my_teachers_count = 0;
         $my_students_count = 0;
 

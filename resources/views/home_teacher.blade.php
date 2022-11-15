@@ -36,15 +36,15 @@
             <div class="row mb-2">
                 <div class="col-sm-12">
                     <div style="font-size:15px; text-align:center; background-color: #1dcece;" class="alert">
-                        Thanks for signing up and welcome to our pilot launch.
+                        Welcome to You2Mentor
                         <br>
                         <br>
                         Please update your profile, explore and check out the
                         <a href="https://you2mentor.com/knowledge_hub/">Knowledge Hub</a> curated for your development.
                         <br>
                         <br>
-                        Your feedback is valuable to us, so please drop
-                        us a <a href="https://you2mentor.com/contact/">note</a> if we can improve your mentoring experience.
+                        If you have any suggestions for improving your mentoring experience, please click
+                         <a href="https://you2mentor.com/contact/">here</a> to contact us.
                         <br />
                     {{-- <a href="https://you2mentor.com/contact/" target="_blank">here</a> --}}
                         <br />

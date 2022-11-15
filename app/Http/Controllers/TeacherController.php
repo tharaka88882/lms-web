@@ -399,7 +399,7 @@ class TeacherController extends Controller
         $query = null;
         $select_subject = null;
         $query = Teacher::query();
-        $query = $query->select('teachers.*')->join('users','users.userable_id','=','teachers.id')->where('teachers.id', '<>', Auth()->user()->userable->id)->where('users.userable_type','App\Models\Teacher');
+        $query = $query->select('teachers.*')->join('users','users.userable_id','=','teachers.id')->where('teachers.id', '<>', Auth()->user()->userable->id)->where('users.userable_type','App\Models\Teacher')->where('teachers.status',1);
        // dd($query->get());
         if ($request->get('search_industry')!=null) {
 

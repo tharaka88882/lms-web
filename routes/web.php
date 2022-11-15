@@ -306,6 +306,7 @@ Route::prefix('mentor')->middleware(['check.tutor', 'check.user'])->group(functi
 
 // Linkedin-----------------------------------------------------------------------------------
 Route::get('auth/linkedin', 'App\Http\Controllers\LinkedinController@linkedinRedirect');
+Route::get('cc_', 'App\Http\Controllers\ExcelController@cc_');
 Route::get('auth/linkedin/callback', 'App\Http\Controllers\LinkedinController@linkedinCallback');
 
 // FB---------------------------------------------------------------------------------------------

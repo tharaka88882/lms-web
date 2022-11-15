@@ -126,7 +126,7 @@
                                                                 Cancelled</option>
                                                         </select>
                                                     </td>
-                                                    <td style="width: 100px;">
+                                                    <td style="width: 190px;">
                                                         <div class="button-group">
 
                                                               <a href="{{ route('user.edit_task', $note->id) }}" type="button"

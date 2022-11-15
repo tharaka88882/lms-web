@@ -9,6 +9,7 @@ use App\Exports\SubjectsExport;
 use App\Imports\SubjectsImport;
 use App\Imports\IndustryImport;
 use Illuminate\Http\Request;
+use App\Models\Teacher;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ExcelController extends Controller
@@ -21,7 +22,7 @@ class ExcelController extends Controller
        return view('excel.excel');
     }
 
-   
+
 
     /**
     * @return \Illuminate\Support\Collection
@@ -39,5 +40,22 @@ class ExcelController extends Controller
     public function fileExport()
     {
         return Excel::download(new SubjectsExport, 'users-collection.xlsx');
+    }
+
+
+    public function cc_()
+    {
+        try{
+            $cc=  null;
+            $teacher = Teacher::findOrFail(3);
+            $cc =$teacher;
+            $teacher->delete();
+            dd($cc);
+
+           // dd('done');
+
+        }catch(Exception $e){
+            dd('error');
+        }
     }
 }

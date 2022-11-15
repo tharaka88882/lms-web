@@ -313,8 +313,8 @@
             // $('#fbBtn_1').show();
             $('#fake_remember').hide();
             $('#forgotBtn').show();
-            $('#fbBtn').hide();
-            $('#googleBtn').hide();
+            $('#fbBtn').show();
+            $('#googleBtn').show();
             //$('#registerBtn').attr("disabled",true);
             //$('#lilnedinBtn').removeAttr('href');
             //$('#lilnedinBtn').addClass('disabled');
