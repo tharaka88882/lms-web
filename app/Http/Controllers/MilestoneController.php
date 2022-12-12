@@ -143,7 +143,7 @@ class MilestoneController extends Controller
 
         $note->save();
         Toastr::success('Task is update successfully', 'Updated');
-        return redirect()->route('user.notes',$id);
+        return redirect()->route('user.notes',$request->get('milestone_id'));
     }
     public function distory_s_note(Request $request)
     {

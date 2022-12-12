@@ -768,7 +768,7 @@
                                                                                                         <input id="myInput1" type="text"
                                                                                                             name="company"
                                                                                                             value="{{ $qualification->institute->text }}"
-                                                                                                            placeholder="">
+                                                                                                            placeholder="" required>
                                                                                                     </div>
                                                                                                 </div>
 
@@ -778,7 +778,7 @@
                                                                                                     <input name="qualification"
                                                                                                         class="form-control @if ($errors->has('qualification')) {{ 'is-invalid' }} @endif"
                                                                                                         type="text"
-                                                                                                        value="{{ $qualification->text }}" />
+                                                                                                        value="{{ $qualification->text }}" required/>
 
                                                                                                     @if ($errors->has('qualification'))
                                                                                                         <span class="invalid-feedback"
@@ -967,14 +967,14 @@
                                                             <div class="form-group">
                                                                 <div class="autocomplete" style="width:100%;">
                                                                     <label for="exampleInputEmail1">Position</label>
-                                                                    <input id="position" type="text" name="position" placeholder="Enter your position">
+                                                                    <input id="position" type="text" name="position" placeholder="Enter your position" required>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <div class="autocomplete @if ($errors->has('company')) {{ 'is-invalid' }} @endif"
                                                                     style="width:100%;">
                                                                     <label for="exampleInputEmail1">Company</label>
-                                                                    <input id="ins" type="text" name="company" placeholder="Enter your company">
+                                                                    <input id="ins" type="text" name="company" placeholder="Enter your company" required>
                                                                 </div>
 
                                                                 @if ($errors->has('company'))
@@ -1330,8 +1330,35 @@
 
 
 
+                <script src="{{ url('public/') }}/theme/admin/plugins/jquery/jquery.min.js"></script>
+                <!-- jQuery UI 1.11.4 -->
+                <script src="{{ url('public/') }}/theme/admin/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+    <!-- Bootstrap 4 -->
+    <script src="{{ url('public/') }}/theme/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Sparkline -->
+    <script src="{{ url('public/') }}/theme/admin/plugins/sparklines/sparkline.js"></script>
+
+    <!-- ChartJS -->
+    <script src="{{ url('public/') }}/theme/admin/plugins/chart.js/Chart.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ url('public/') }}/theme/admin/dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="{{ url('public/') }}/theme/admin/dist/js/demo.js"></script>
+    <!-- fullCalendar 2.2.5 -->
+    <!-- Page specific script -->
+    <script src="{{ url('public/') }}/theme/admin/plugins/moment/moment.min.js"></script>
+    <script src="{{ url('public/') }}/theme/admin/plugins/fullcalendar/main.js"></script>
+    <script src="{{ url('public/') }}/theme/admin/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+
+    <!-- Toastr Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    {!! Toastr::message() !!}
 
 
+    <!-- Select2 -->
+    <script src="{{ url('public/') }}/theme/admin/select2/dist/js/select2.full.min.js"></script>
                 <script>
 
 
@@ -1385,30 +1412,6 @@
 
                     $(function() {
 
-                        // if ($('#present1').is(':checked')) {
-                        //     // alert("t");
-                        //     $('#end_y1').prop('disabled', true);
-                        // } else {
-                        //     //alert("tjio");
-                        //     $('#end_y1').prop('disabled', false);
-                        // }
-
-                        // if ($('#undergrad1').is(':checked')) {
-                        //     // alert("t");
-                        //     $('#dpic1').prop('disabled', true);
-                        // } else {
-                        //     //alert("tjio");
-                        //     $('#dpic1').prop('disabled', false);
-                        // }
-                        //Initialize Select2 Elements
-
-                        // $('.select2').select2({
-
-                        //     dropdownParent: $('#currentModal')
-
-                        // });
-
-
 
                         $('#select2-echannel-doctor').select2({
 
@@ -1456,59 +1459,10 @@
 
                             },
 
-                            // dropdownParent: $('#currentModal')
 
                         });
 
-                        // $('#industry').select2({
 
-                        //     ajax: {
-
-                        //         method: 'GET',
-
-                        //         url: '{{ route('teacher.get_industry') }}',
-
-                        //         contentType: "application/json; charset=utf-8",
-
-                        //         dataType: 'json',
-
-                        //         data: function(params) {
-
-                        //             var query = {
-
-                        //                 search: params.term,
-
-                        //                 _method: "GET",
-
-                        //                 // _token: "{{ csrf_token() }}",
-
-                        //                 type: 'public'
-
-                        //             };
-
-                        //             // Query parameters will be ?search=[term]&type=public
-
-                        //             return query;
-
-                        //         },
-
-                        //         processResults: function(data) {
-
-                        //             // Transforms the top-level key of the response object from 'items' to 'results'
-
-                        //             return {
-
-                        //                 results: data.results
-
-                        //             };
-
-                        //         }
-
-                        //     },
-
-                        //     // dropdownParent: $('#currentModal')
-
-                        // });
 
                     });
 
@@ -1546,13 +1500,13 @@
 
                                 if (data.error == false) {
 
-                                    window.location = "{{ route('user.profile') }}";
+                                    window.location = "{{ route('user.profile_1') }}";
 
                                     //  alert(data.flag);
 
                                 } else {
 
-                                    window.location = "{{ route('user.profile') }}";
+                                    window.location = "{{ route('user.profile_1') }}";
 
                                 }
 
@@ -2933,72 +2887,10 @@
 
 
 
-    <script src="{{ url('public/') }}/theme/admin/plugins/jquery/jquery.min.js"></script>
-    <!-- jQuery UI 1.11.4 -->
-    <script src="{{ url('public/') }}/theme/admin/plugins/jquery-ui/jquery-ui.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="{{ url('public/') }}/theme/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- Sparkline -->
-    <script src="{{ url('public/') }}/theme/admin/plugins/sparklines/sparkline.js"></script>
-
-    <!-- ChartJS -->
-    <script src="{{ url('public/') }}/theme/admin/plugins/chart.js/Chart.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="{{ url('public/') }}/theme/admin/dist/js/adminlte.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="{{ url('public/') }}/theme/admin/dist/js/demo.js"></script>
-    <!-- fullCalendar 2.2.5 -->
-    <!-- Page specific script -->
-    <script src="{{ url('public/') }}/theme/admin/plugins/moment/moment.min.js"></script>
-    <script src="{{ url('public/') }}/theme/admin/plugins/fullcalendar/main.js"></script>
-    <script src="{{ url('public/') }}/theme/admin/plugins/jquery-ui/jquery-ui.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-
-    <!-- Toastr Script -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-
-    {!! Toastr::message() !!}
 
 
-    <!-- Select2 -->
-    <script src="{{ url('public/') }}/theme/admin/select2/dist/js/select2.full.min.js"></script>
 
-    <script>
 
-            // function logclick(){
-            //     setCookie('login_email', 'value', 0);
-            //     setCookie('login_pass', 'value', 0);
-            // }
-
-        // function check_notifications() {
-        //     console.log('checking notifications');
-        //     $.post("{{ route('user.json.notifications') }}", {
-        //         _token: '{{ csrf_token() }}'
-        //     }, function(data, status) {
-
-        //         //alert("Data: " + data + "\nStatus: " + status);
-
-        //         var json = JSON.parse(data);
-        //         //alert(json.data.length);
-        //         $('#notificaton_count').html(json.data.length);
-        //         $('#notification_icon_count').html(json.data.length);
-        //         var notifications = '';
-        //         for (var i = 0; i < json.data.length; i++) {
-        //             notifications += "<a href=\"" + json.data[i].url + "\" class=\"dropdown-item\">";
-        //             notifications += "    <i class=\"fas fa-envelope mr-2\"></i> " + json.data[i].message;
-        //             notifications +=
-        //                 "    <br><small class=\"float-right text-muted text-sm\" style=\"font-size:8px;\">" + json
-        //                 .data[i].created_at + "</small><br>";
-        //             notifications += "</a>";
-        //             notifications += "<div class=\"dropdown-divider\"></div>";
-        //         }
-        //         $('#notification_panel').html(notifications);
-
-        //     });
-        // }
-        // check_notifications();
-        // setInterval(check_notifications, 20000);
-    </script>
 
 
 

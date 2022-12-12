@@ -255,6 +255,7 @@ class TeacherController extends Controller
 
         return redirect()->route('teacher.my_subject');
     }
+    
     public function stor_my_subject1(StoreMySubjectRequest $request)
     {
         $user = Auth::user();

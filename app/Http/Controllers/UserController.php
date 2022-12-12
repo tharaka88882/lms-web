@@ -236,6 +236,8 @@ class UserController extends Controller
 
         return redirect()->route('user.profile');
     }
+
+
     public function update_teacher_profile1(UpdateTeacherProfileRequest $request)
     {
         //return $request;
@@ -308,7 +310,40 @@ class UserController extends Controller
                     Toastr::success('Profile Updated successfully', 'Success');
                     $flag_ = true;
                 }else{
-                    Toastr::warning('Please complete updating your profile to the navigate to the dashboard', 'Attention');
+                    $user->name = $request->get('name');
+                    if($imageName!=null){
+                     $user->image = $imageName;
+                    }
+                    if($coverImageName!=null){
+                     $user->cover_image = $coverImageName;
+                    }
+                     $user->address = $request->get('address');
+                     $user->city = $request->get('city');
+                     $user->country = $request->get('country');
+                     $user->about = $request->get('about');
+                     $user->program = $request->get('program');
+                     if($request->get('from_leave')!=null && $request->get('to_leave')!=null){
+                         $user->from_leave = $request->get('from_leave');
+                         $user->to_leave = $request->get('to_leave');
+                     }
+
+                     //dd($request->get('leave_status'));
+                     if($request->get('leave_status')=='on'){
+                         $user->leave_status = 1;
+                     }else{
+                         $user->leave_status = 0;
+                     }
+
+                   //  $user->userable->nic = $request->get('nic');
+                     $user->userable->qualification = $request->get('qualification');
+                     $user->userable->experience = $request->get('experience');
+                    // $user->userable->skills = $request->get('skills');
+                     $user->userable->job = $request->get('job');
+                     $user->userable->industry = $request->get('industry');
+                     $user->userable->linkedin_link = $request->get('linkedin_link');
+                     $user->userable->save();
+                     $user->save();
+                    Toastr::warning('Please complete updating your Experience & Qualifications to the navigate to the dashboard', 'Attention');
                     $flag_ = false;
                 }
 

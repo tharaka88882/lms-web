@@ -25,7 +25,6 @@ class UpdateTeacherProfileRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'linkedin_link'=>'required',
             'cover_image'=>'mimes:jpeg,jpg,png,gif|max:10000',
             'city'=>'required',
             'country'=>'required'

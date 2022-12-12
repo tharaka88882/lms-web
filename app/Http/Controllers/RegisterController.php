@@ -37,7 +37,7 @@ class RegisterController extends Controller
                 // $user->userable_type = Student::class;
             } else if ($request->get('type') == 'teacher') {
                 $teacher = new Teacher();
-                $teacher->status = false;
+                $teacher->status = true;
                 $teacher->save();
                 $teacher->user()->save($user);
 
@@ -78,7 +78,7 @@ class RegisterController extends Controller
         }else{
             Auth()->user()->first_login = 1;
             Auth()->user()->save();
-            return redirect()->route('user.profile');
+            return redirect()->route('user.profile_1');
         }
     }
 }

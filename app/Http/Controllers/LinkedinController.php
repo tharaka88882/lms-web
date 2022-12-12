@@ -80,7 +80,13 @@ class LinkedinController extends Controller
            Auth()->user()->save();
 
            if(Auth()->user()->userable->linkedin_link!=null){
-            if(Auth()->user()->first_login==1){
+            $empty_profile = true;
+            if(sizeof(Auth()->user()->userable->experiences)>0){
+                $empty_profile = false;
+            } elseif(sizeof(Auth()->user()->userable->qualifications)>0){
+                $empty_profile = false;
+            }
+            if($empty_profile == false){
 
                 return redirect('user/dashboard');
             }else{
@@ -176,7 +182,13 @@ class LinkedinController extends Controller
                 Auth()->user()->save();
 
                 if(Auth()->user()->userable->linkedin_link!=null){
-                    if(Auth()->user()->first_login==1){
+                    $empty_profile = true;
+                    if(sizeof(Auth()->user()->userable->experiences)>0){
+                        $empty_profile = false;
+                    } elseif(sizeof(Auth()->user()->userable->qualifications)>0){
+                        $empty_profile = false;
+                    }
+                    if($empty_profile ==false){
 
                         return redirect('user/dashboard');
                     }else{

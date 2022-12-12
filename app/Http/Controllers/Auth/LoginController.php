@@ -145,14 +145,20 @@ class LoginController extends Controller
 
         Auth()->user()->avg = $real_avg;
         Auth()->user()->save();
-        if(Auth()->user()->first_login==1){
-           // return redirect()->route('dashboard');
-            return redirect()->route('user.profile_1');
-        }else{
-            Auth()->user()->first_login = 1;
-            Auth()->user()->save();
-            return redirect()->route('user.profile');
-        }
+
+
+
+               $empty_profile = true;
+                if(sizeof(Auth()->user()->userable->experiences)>0){
+                    $empty_profile = false;
+                } elseif(sizeof(Auth()->user()->userable->qualifications)>0){
+                    $empty_profile = false;
+                }
+                if($empty_profile == false){
+                    return redirect('user/dashboard');
+                }else{
+                    return redirect()->route('user.profile_1');
+                }
     }
 
     public function logout(Request $request) {

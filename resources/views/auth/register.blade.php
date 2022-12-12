@@ -117,8 +117,8 @@
                             <div class="col-8">
                                 <div class="icheck-primary">
                                     <input type="checkbox" id="agreeTerms" name="terms" value="agree">
-                                    <label for="agreeTerms">
-                                        I agree to the <a href="{{ route('privacy') }}">Terms & Conditions</a>
+                                    <label for="agreeTerms" >
+                                        I agree to the <a target="_blank" href="https://you2mentor.com/legal-terms-conditions/">Terms & Conditions</a>
                                     </label>
                                 </div>
                                 <div class="icheck-primary">
