@@ -36,15 +36,15 @@
             <div class="row mb-2">
                 <div class="col-sm-12">
                     <div style="font-size:15px; text-align:center; background-color: #1dcece;" class="alert">
-                        Welcome to You2Mentor
+                        <b>Welcome to You2Mentor</b>
                         <br>
                         <br>
                         Please update your profile, explore and check out the
-                        <a href="https://you2mentor.com/knowledge_hub/">Knowledge Hub</a> curated for your development.
+                        <a href="https://you2mentor.com/knowledge-hub/">Knowledge Hub</a> curated for your development.
                         <br>
                         <br>
                         If you have any suggestions for improving your mentoring experience, please click
-                         <a href="https://you2mentor.com/contact/">here</a> to contact us.
+                         <a href="https://you2mentor.com/get-in-touch/">here</a> to contact us.
                         <br />
                     {{-- <a href="https://you2mentor.com/contact/" target="_blank">here</a> --}}
                         <br />
@@ -54,7 +54,7 @@
                                 href="https://www.twitter.com/You2Mentor" target="_blank"><i class="bi bi-twitter"></i></a>
                             &nbsp;&nbsp; <a href="https://www.instagram.com/You2Mentor/" target="_blank"><i
                                     class="bi bi-instagram"></i></a> &nbsp;&nbsp; <a
-                                href="https://www.tiktok.com/You2Mentor/" target="_blank"><i class="bi bi-tiktok"></i></a>
+                                href="https://www.tiktok.com/@you2mentor" target="_blank"><i class="bi bi-tiktok"></i></a>
                                 &nbsp;&nbsp; <a
                                 href="https://www.facebook.com/You2mentor/" target="_blank"><i class="bi bi-facebook"></i></a>
                         </span>

@@ -105,6 +105,8 @@ class RegisterController extends Controller
                 Mail::to($to)->send(new WelcomeMail($data['name']));
             } else if ($data['type'] == 'teacher') {
                 $teacher = new Teacher();
+                $teacher->status = true;
+                $teacher->save();
                 $teacher->save();
 
                 $teacher->user()->save($user);

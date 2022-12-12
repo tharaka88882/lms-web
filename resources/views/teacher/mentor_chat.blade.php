@@ -118,7 +118,7 @@
 
                        <div class="card-body">
                          <div class="callout callout-danger">
-                             <p>Please do not share personal identifiable information such as credit card details, phone numbers and email addresses through chat for your online safety.
+                             <p>Please do not share personal identifiable information such as credit card details, phone numbers, or email addresses through chat for your online safety.
                              </p>
                          </div>
                        </div>
@@ -159,7 +159,7 @@
                         <div class="card-body">
                             <div class="callout callout-danger">
 
-                                <p>Please do not share personal identifiable information such as credit card details, phone numbers and email addresses through chat for your online safety.
+                                <p>Please do not share personally identifiable information such as credit card numbers, phone numbers, or email addresses through chat for your online safety.
                                     </p>
                             </div>
                         </div>
@@ -175,11 +175,12 @@
                        <div class="card-body">
                     @if (count($teacherSubs)>0)
                     <div class="p-2 mt-2 bg-light d-flex justify-content rounded text-white stats" style="font-size: 18px;">
-                        <span>
-                        @foreach ($teacherSubs as $subject)
-                            <span class="badge bg-gray mr-1">{{$subject->name}}</span>
-                        @endforeach
-                    </span>
+
+                        <div>
+                            @foreach ($teacherSubs as $subject)
+                           <span class="badge bg-gray mr-1">{{$subject->name}}</span>
+                            @endforeach
+                        </div>
                     </div>
                     @endif
 
