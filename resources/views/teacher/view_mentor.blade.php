@@ -306,12 +306,18 @@
                                     <div class="float-right">
                                         <b>Average Responce time: </b>
                                         @if ($teacher->user->avg == '1')
-                                            {{ $teacher->user->avg }}hr
+                                            {{ $teacher->user->avg }} hr
 
-                                        @elseif ($teacher->user->avg == 0)
-                                            1 hour
+                                        @elseif ($teacher->user->avg > 1)
+                                        @php
+                                        if($teacher->user->avg > 24){
+                                           print(((int)($teacher->user->avg/24))." day(s)");
+                                        }else{
+                                            print($teacher->user->avg. " hrs");
+                                        }
+                                    @endphp
                                         @else
-                                            {{ $teacher->user->avg }}hrs
+                                           N/A
                                         @endif
                                     </div>
                                 </div>

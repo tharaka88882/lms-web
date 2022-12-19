@@ -284,7 +284,7 @@
                                     @endforeach
 
                                     <div class="col-md-6">
-                                        <div class="card p-3" style="min-height: 300px!important;">
+                                        <div class="card p-3" style="min-height: 300px!important;overflow-x: auto; !important;">
                                             <div class="d-flex align-items-center">
                                                 <a href="{{ route('teacher.view_mentor', $tutor->id) }}">
                                                     <img @if ($tutor->user->image != null) src="{{ url('public') }}/images/profile/{{ $tutor->user->image }}" @else src="" @endif
@@ -292,7 +292,7 @@
                                                         style="width: 120px; height: 120px; border-radius: 50%;"
                                                         onerror=" this.src='{{ url('public') }}/theme/admin/dist/img/default-avatar.jpg'">
                                                 </a>
-                                                <div class="ml-3 w-100 pb-3" style="overflow-x: auto; !important">
+                                                <div class="ml-3 w-100 pb-3" style="">
                                                     <h4 class="mb-0 mt-0"><a style="text-transform: capitalize"
                                                             href="{{ route('teacher.view_mentor', $tutor->id) }}">{{ $tutor->user->name }}</a>
                                                     </h4>
@@ -437,13 +437,20 @@
                                             {{-- <div class="card-footer text-right"> --}}
                                             <span class="users-list-date text-right">Average Responce Time -
                                                 {{-- {{ $tutor->avg_time }} hour(s) --}}
-                                            @if ($tutor->user->avg=='1')
+                                            @if ($tutor->user->avg== 1)
                                                 {{ $tutor->user->avg }} hour
 
-                                            @elseif (Auth()->user()->avg == 0)
-                                               1 hour
+                                            @elseif (($tutor->user->avg) > 1)
+
+                                            @php
+                                                if($tutor->user->avg > 24){
+                                                   print(((int)($tutor->user->avg/24))." day(s)");
+                                                }else{
+                                                    print($tutor->user->avg. " hrs");
+                                                }
+                                            @endphp
                                             @else
-                                                {{ $tutor->user->avg }} hours
+                                                N/A
                                             @endif
                                             </span>
                                             {{-- </div> --}}

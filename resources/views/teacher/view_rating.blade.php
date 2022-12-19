@@ -118,11 +118,11 @@
                                     @elseif ( Auth()->user()->avg >= 5 && Auth()->user()->avg < 49)
                                         <h3 style="color: rgb(255, 174, 0);">{{ Auth()->user()->avg }} hours <sup
                                                 style="font-size: 20px"></sup></h3>
-                                    @elseif (Auth()->user()->avg == 0)
+                                    {{-- @elseif (Auth()->user()->avg == 0)
                                     <h3 style="color: green;">1 hour<sup
-                                        style="font-size: 20px"></sup></h3>
+                                        style="font-size: 20px"></sup></h3> --}}
                                     @else
-                                        <h3 style="color: red;">{{ Auth()->user()->avg }} hours <sup
+                                        <h3 style="color: red;">N/A<sup
                                                 style="font-size: 20px"></sup></h3>
                                     @endif
 

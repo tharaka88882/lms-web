@@ -35,6 +35,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MenteeComplaints;
+use Carbon\Carbon;
 
 
 
@@ -255,7 +256,7 @@ class TeacherController extends Controller
 
         return redirect()->route('teacher.my_subject');
     }
-    
+
     public function stor_my_subject1(StoreMySubjectRequest $request)
     {
         $user = Auth::user();
@@ -455,7 +456,63 @@ class TeacherController extends Controller
             $tutor_convversation = MentorConversation::where('mentor_id', $tutors[$i]['id'])->where('mentee_id', Auth()->user()->userable->id)->first();
             $tutor_convversation = json_decode($tutor_convversation, true);
             $tutors[$i]['conversation'] = $tutor_convversation;
-            $tutors[$i]['avg_time'] =rand(1,5);
+           // $tutors[$i]['avg_time'] =rand(1,5);
+
+    //     //AVG
+
+    //     $conversations = MentorConversation::where('mentor_id',$tutors[$i]['id'])->latest()->take(10)->orderBy('created_at', 'DESC')->get();
+    //     $avg_times_array = array();
+    //      $i = 0;
+    //     // dd($conversations);
+    //     foreach($conversations as $conver){
+    //      $my_response_time = null;
+    //      $other_response_time = null;
+    //      $mentor_messages =  MentorMessage::where('conversation_id',$conver->id)->orderBy('created_at', 'DESC')->get();
+    //      foreach($mentor_messages as $message){
+    //        //  dd($mentor_messages);
+    //          if($message->sender_id == $tutors[$i]['id']){
+    //              $my_response_time = $message->created_at;
+    //          }else{
+    //              $other_response_time = $message->created_at;
+    //          }
+    //      }
+    //     // dd($my_response_time."-".$other_response_time);
+    //      if($my_response_time !=null && $other_response_time !=null){
+    //          $response_time = null;
+    //         $time1 =  Carbon::createFromDate($my_response_time);
+    //         $time2 =  Carbon::createFromDate($other_response_time);
+    //         $response_time = $time1->diffInHours($time2);
+    //        // dd($time1);
+    //          $avg_times_array[$i] = array(
+    //              'response_time' => $response_time
+    //          );
+    //          $i++;
+    //      }
+
+    //     }
+
+    //   //  dd($avg_times_array);
+    //     $real_avg = 0;
+    //     if(sizeof($avg_times_array)>0){
+    //     if(sizeof($avg_times_array) == 1){
+    //      $real_avg = $avg_times_array[0];
+    //     }else{
+    //      $arr_size = sizeof($avg_times_array);
+    //      $arr_value_total = 0;
+    //      foreach($avg_times_array as $value){
+    //          $arr_value_total += $value['response_time'];
+    //      }
+    //      $real_avg = (int)($arr_value_total / $arr_size);
+    //     }
+    //     }
+
+    //     if( $real_avg == 0){
+    //      $real_avg = 'N/A';
+    //     }
+
+    //     $avg_user = User::where('userable_id',$tutors[$i]['id'])->first();
+    //     $avg_user->avg = $real_avg;
+    //     $avg_user->save();
 
         }
 
@@ -463,6 +520,7 @@ class TeacherController extends Controller
         $subjects = Subject::all();
         $industries = Industry::all();
         $institutes = Institute::all();
+
 
 
 

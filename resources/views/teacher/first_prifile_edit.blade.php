@@ -558,7 +558,7 @@
                                                 <h3 class="card-title">Education</h3>
                                             </div>
                                             <!--Make sure the form has the autocomplete function switched off:-->
-                                            <form autocomplete="off" action="{{ route('user.add_qualification') }}" method="POST">
+                                            <form autocomplete="off" action="{{ route('user.add_qualification_1') }}" method="POST">
                                                 @csrf
                                                 <div class="card-body">
                                                     <div class="row">
@@ -959,7 +959,7 @@
                                                 <h3 class="card-title">Experience</h3>
                                             </div>
                                             <!--Make sure the form has the autocomplete function switched off:-->
-                                            <form autocomplete="off" action="{{ route('user.add_experience') }}" method="POST">
+                                            <form autocomplete="off" action="{{ route('user.add_experience_1') }}" method="POST">
                                                 @csrf
                                                 <div class="card-body">
                                                     <div class="row">
@@ -2869,8 +2869,7 @@
             <div class="float-right d-none d-sm-block">
                 <b>Version</b> 1.0.0
             </div>
-            <strong>Copyright &copy; 2022 You2Mentor<a href="#"></a>.</strong><a href="https://ceylonxcorp.com/">
-                Powered By CeylonX Corporation</a>
+            <strong>Copyright &copy; 2022 You2Mentor<a href="#"></a>.</strong>
         </footer>
 
         <!-- Control Sidebar -->

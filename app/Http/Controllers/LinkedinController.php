@@ -64,7 +64,11 @@ class LinkedinController extends Controller
            $real_avg = 0;
            if(sizeof($avg_times_array)>0){
            if(sizeof($avg_times_array) == 1){
-            $real_avg = $avg_times_array[0];
+            if($avg_times_array[0]['response_time'] > 0){
+                $real_avg = $avg_times_array[0]['response_time'];
+               }else{
+                $real_avg = 1;
+               }
            }else{
             $arr_size = sizeof($avg_times_array);
             $arr_value_total = 0;
@@ -75,7 +79,9 @@ class LinkedinController extends Controller
            }
            }
 
-
+           if( $real_avg == 0){
+            $real_avg = 0;
+           }
            Auth()->user()->avg = $real_avg;
            Auth()->user()->save();
 
@@ -166,7 +172,11 @@ class LinkedinController extends Controller
                 $real_avg = 0;
                 if(sizeof($avg_times_array)>0){
                 if(sizeof($avg_times_array) == 1){
-                 $real_avg = $avg_times_array[0];
+                    if($avg_times_array[0]['response_time'] > 0){
+                        $real_avg = $avg_times_array[0]['response_time'];
+                       }else{
+                        $real_avg = 1;
+                       }
                 }else{
                  $arr_size = sizeof($avg_times_array);
                  $arr_value_total = 0;
@@ -176,7 +186,9 @@ class LinkedinController extends Controller
                  $real_avg = (int)($arr_value_total / $arr_size);
                 }
                 }
-
+                if( $real_avg == 0){
+                    $real_avg = 0;
+                 }
 
                 Auth()->user()->avg = $real_avg;
                 Auth()->user()->save();
@@ -236,7 +248,7 @@ class LinkedinController extends Controller
                     'password' => encrypt('admin12345')
                 ]);
                 $teacher = new Teacher();
-                $teacher->status = true;
+                $teacher->status = false;
                 $teacher->save();
                 $teacher->user()->save($user1);
 

@@ -194,7 +194,9 @@ Route::prefix('user')->middleware('check.user')->group(function () {
 
     //Experience & Qualification----------------------------------------------------------------------------------------------------------
     Route::post('/add-experience', 'App\Http\Controllers\UserController@store_experience')->name('user.add_experience');
+    Route::post('/add-experience_1', 'App\Http\Controllers\UserController@store_experience1')->name('user.add_experience_1');
     Route::post('/add-qualification', 'App\Http\Controllers\UserController@store_qualification')->name('user.add_qualification');
+    Route::post('/add-qualification_1', 'App\Http\Controllers\UserController@store_qualification1')->name('user.add_qualification_1');
     Route::get('/view-qualification/{id}', 'App\Http\Controllers\UserController@edit_qualification')->name('user.view_qualification');
     Route::get('/view-experience/{id}', 'App\Http\Controllers\UserController@edit_experience')->name('user.view_experience');
     Route::put('/edit-qualification/{id}', 'App\Http\Controllers\UserController@update_qualification')->name('user.edit_qualification');
@@ -232,7 +234,7 @@ Route::prefix('mentee')->middleware('check.user')->group(function () {
 
 });
 
-Route::prefix('mentor')->middleware(['check.tutor', 'check.user'])->group(function () {
+Route::prefix('mentor')->middleware('check.user')->group(function () {
 
 
     Route::get('/schedule', 'App\Http\Controllers\ScheduleController@index')->name('teacher.schedule_list');
