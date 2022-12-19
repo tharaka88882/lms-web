@@ -161,7 +161,7 @@
                                                 <a href="#">
                                                     <img alt="User Image" style="width: 120px; height: 120px; border-radius: 50%;" src="{{ url('public') }}/images/profile/{{$conversation['image']}}" onerror=" this.src='{{ url('public') }}/images/def.jpg'">
                                                 </a>
-                                                <div class="ml-3 w-100">
+                                                <div class="ml-3 w-100" style="overflow-x: auto; !important">
                                                     <h4 class="mb-0 mt-0"><a style="text-transform: capitalize" href="#">{{$conversation['name']}}</a></h4>
 
                                                     <div class="p-2 mt-2 bg-light d-flex justify-content-between rounded text-white stats" style="font-size: 14px;">

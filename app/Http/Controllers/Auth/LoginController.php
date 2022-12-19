@@ -132,7 +132,11 @@ class LoginController extends Controller
                 $real_avg = 0;
                 if(sizeof($avg_times_array)>0){
                 if(sizeof($avg_times_array) == 1){
-                 $real_avg = $avg_times_array[0];
+                    if($avg_times_array[0]['response_time'] > 0){
+                        $real_avg = $avg_times_array[0]['response_time'];
+                       }else{
+                        $real_avg = 1;
+                       }
                 }else{
                  $arr_size = sizeof($avg_times_array);
                  $arr_value_total = 0;
@@ -143,12 +147,19 @@ class LoginController extends Controller
                 }
                 }
 
+                if( $real_avg == 0){
+                    $real_avg = 0;
+                   }
+
         Auth()->user()->avg = $real_avg;
         Auth()->user()->save();
 
 
 
-               $empty_profile = true;
+             if( Auth()->user()->userable_type == 'App\Models\Admin'){
+                return redirect('user/dashboard');
+             }else{
+                $empty_profile = true;
                 if(sizeof(Auth()->user()->userable->experiences)>0){
                     $empty_profile = false;
                 } elseif(sizeof(Auth()->user()->userable->qualifications)>0){
@@ -159,6 +170,7 @@ class LoginController extends Controller
                 }else{
                     return redirect()->route('user.profile_1');
                 }
+             }
     }
 
     public function logout(Request $request) {

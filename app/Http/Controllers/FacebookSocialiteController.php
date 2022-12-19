@@ -82,7 +82,11 @@ class FacebookSocialiteController extends Controller
                 $real_avg = 0;
                 if(sizeof($avg_times_array)>0){
                 if(sizeof($avg_times_array) == 1){
-                $real_avg = $avg_times_array[0];
+                    if($avg_times_array[0]['response_time'] > 0){
+                        $real_avg = $avg_times_array[0]['response_time'];
+                       }else{
+                        $real_avg = 1;
+                       }
                 }else{
                 $arr_size = sizeof($avg_times_array);
                 $arr_value_total = 0;
@@ -92,7 +96,9 @@ class FacebookSocialiteController extends Controller
                 $real_avg = (int)($arr_value_total / $arr_size);
                 }
                 }
-
+                if( $real_avg == 0){
+                    $real_avg = 0;
+                 }
 
                 Auth()->user()->avg = $real_avg;
 
@@ -158,7 +164,7 @@ class FacebookSocialiteController extends Controller
                 // $student->save();
                 // $student->user()->save($newUser);
                 $teacher = new Teacher();
-                $teacher->status = true;
+                $teacher->status = false;
                 $teacher->save();
                 $teacher->user()->save($newUser);
 

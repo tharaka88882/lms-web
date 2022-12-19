@@ -175,7 +175,7 @@
                        <div class="card-body">
                     @if (count($teacherSubs)>0)
                     <div class="p-2 mt-2 bg-light d-flex justify-content rounded text-white stats" style="font-size: 18px;">
-                       <div>
+                       <div style="overflow-x: auto; !important">
                         @foreach ($teacherSubs as $subject)
                         <span class="badge bg-gray mr-1">{{$subject->name}}</span>
                          @endforeach

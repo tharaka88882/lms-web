@@ -320,12 +320,12 @@
            @endforeach
 
                                     <div class="col-md-6">
-                                        <div class="card p-2" style="min-height: 300px!important;">
+                                        <div class="card p-2" style="min-height: 300px!important;overflow-x: auto; !important;">
                                             <div class="d-flex align-items-center">
                                                 <a href="#">
                                                     <img alt="User Image" style="width: 120px; height: 120px; border-radius: 50%;" src="{{ url('public') }}/images/profile/{{$conversation->mentor->user->image}}" onerror=" src='{{ url('public') }}/images/def.jpg'">
                                                 </a>
-                                                <div class="ml-3 w-100">
+                                                <div class="ml-3 w-100" style="">
                                                     <h4 class="mb-0 mt-0"><a style="text-transform: capitalize" href="#">{{$conversation->mentor->user->name}}</a></h4>
 
 
@@ -462,10 +462,16 @@
                                             @if ($conversation->mentor->user->avg=='1')
                                                 {{ $conversation->mentor->user->avg }} hour
 
-                                            @elseif (Auth()->user()->avg == 0)
-                                                1 hour
+                                            @elseif ($conversation->mentor->user->avg > 1)
+                                            @php
+                                            if($conversation->mentor->user->avg > 24){
+                                               print(((int)($conversation->mentor->user->avg/24))." day(s)");
+                                            }else{
+                                                print($conversation->mentor->user->avg. " hrs");
+                                            }
+                                        @endphp
                                             @else
-                                                {{ $conversation->mentor->user->avg }} hours
+                                               N/A
                                             @endif
                                             </span>
                                         </div>

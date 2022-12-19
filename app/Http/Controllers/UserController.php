@@ -10,6 +10,7 @@ use App\Models\Complaint;
 use App\Models\Industry;
 use App\Models\Position;
 use App\Models\Institute;
+use App\Models\Teacher;
 use App\Models\Experience;
 use App\Models\Qualification;
 use App\Models\Rating;
@@ -93,11 +94,12 @@ class UserController extends Controller
 
         // return get_class($user);
         if (get_class($user->userable) == 'App\Models\Teacher') {
-            if (Auth()->user()->userable->status == 1) {
-                return view('teacher.first_prifile_edit', compact('user', 'industries','round_mediation','institutes','position'));
-            } else {
-                return abort(403, 'You not approved yet');
-            }
+            return view('teacher.first_prifile_edit', compact('user', 'industries','round_mediation','institutes','position'));
+
+            // if (Auth()->user()->userable->status == 1) {
+            // } else {
+            //     return abort(403, 'You not approved yet');
+            // }
         } else if (get_class($user->userable) == 'App\Models\Student') {
             return view('student.profile', compact('user'));
         } else if (get_class($user->userable) == 'App\Models\Admin') {
@@ -273,7 +275,7 @@ class UserController extends Controller
             if (get_class($user->userable) == 'App\Models\Teacher') {
 
 
-                if(sizeof(Auth()->user()->userable->experiences)>0 && sizeof(Auth()->user()->userable->qualifications)>0){
+                if(sizeof(Auth()->user()->userable->experiences)>0 && sizeof(Auth()->user()->userable->qualifications)>0 && sizeof(Auth()->user()->userable->teachersubject)>0){
                     $user->name = $request->get('name');
                     if($imageName!=null){
                      $user->image = $imageName;
@@ -305,6 +307,7 @@ class UserController extends Controller
                      $user->userable->job = $request->get('job');
                      $user->userable->industry = $request->get('industry');
                      $user->userable->linkedin_link = $request->get('linkedin_link');
+                     $user->userable->status = true;
                      $user->userable->save();
                      $user->save();
                     Toastr::success('Profile Updated successfully', 'Success');
@@ -343,7 +346,7 @@ class UserController extends Controller
                      $user->userable->linkedin_link = $request->get('linkedin_link');
                      $user->userable->save();
                      $user->save();
-                    Toastr::warning('Please complete updating your Experience & Qualifications to the navigate to the dashboard', 'Attention');
+                    Toastr::warning('Please complete updating your Skills, Experience & Qualifications to the navigate to the dashboard', 'Attention');
                     $flag_ = false;
                 }
 
@@ -552,8 +555,48 @@ class UserController extends Controller
         $experience->save();
 
 
+        $teacher = Teacher::findOrFail(Auth()->user()->userable_id);
+        $teacher->status = true;
+        $teacher->save();
+
+
         Toastr::success('New Experience Added', 'Success');
         return  redirect()->route('user.profile');
+    }
+    public function store_experience1(AddExperienceRequest $request)
+    {
+        $position =Position::where('text',$request->get('position'))->first();
+        $institute =Institute::where('text',$request->get('company'))->first();
+        //dd("");
+        if($position==null){
+            $position = new Position();
+            $position->text = $request->get('position');
+            $position->save();
+        }
+        if($institute == null){
+            $institute = new Institute();
+            $institute->text = $request->get('company');
+            $institute->save();
+        }
+
+        $experience = new Experience();
+        $experience->text = '';
+        $experience->location = $request->get('location');
+        $experience->start_date = $request->get('start_date');
+        $experience->end_date = $request->get('end_date');
+        $experience->teacher_id = Auth()->user()->userable->id;
+        $experience->institute_id = $institute->id;
+        $experience->position_id =$position->id;
+        $experience->save();
+
+
+        // $teacher = Teacher::findOrFail(Auth()->user()->userable_id);
+        // $teacher->status = true;
+        // $teacher->save();
+
+
+        Toastr::success('New Experience Added', 'Success');
+        return  redirect()->route('user.profile_1');
     }
 
     public function store_qualification(AddQualificationRequest $request)
@@ -578,8 +621,41 @@ class UserController extends Controller
         $qualification->save();
 
 
+        $teacher = Teacher::findOrFail(Auth()->user()->userable_id);
+        $teacher->status = true;
+        $teacher->save();
+
         Toastr::success('New Qualification Added', 'Success');
         return  redirect()->route('user.profile');
+    }
+    public function store_qualification1(AddQualificationRequest $request)
+    {
+        $institute = Institute::where('text',$request->get('company'))->first();
+       // dd( $institute );
+        if($institute == null){
+            $institute = new Institute();
+            $institute->text = $request->get('company');
+            $institute->save();
+        }
+
+        $qualification = new Qualification();
+        $qualification->text = $request->get('qualification');
+        $qualification->field = $request->get('field');
+        // $qualification->location = $request->get('location');
+        $qualification->start_date = $request->get('start_date');
+        $qualification->end_date = $request->get('end_date');
+        $qualification->grade = $request->get('grade');
+        $qualification->teacher_id = Auth()->user()->userable->id;
+        $qualification->institute_id = $institute->id;
+        $qualification->save();
+
+
+        // $teacher = Teacher::findOrFail(Auth()->user()->userable_id);
+        // $teacher->status = true;
+        // $teacher->save();
+
+        Toastr::success('New Qualification Added', 'Success');
+        return  redirect()->route('user.profile_1');
     }
 
     public function edit_qualification($id)
